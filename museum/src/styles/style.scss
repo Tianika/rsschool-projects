@@ -9,6 +9,7 @@
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 ul,
 ol,
@@ -31,8 +32,36 @@ html,
 body {
   height: 100%;
   line-height: 1;
+  scroll-behavior: smooth;
 }
 
+/*-------Variables-------*/
+$bg-dark: #030303;
+$dark-red: #710707;
+$gold: #9d8665;
+$black: #000000;
+$white: #ffffff;
+$forum: 'Forum', cursive;
+$roboto: 'Roboto', sans-serif;
+$font80: 80px;
+$font32: 32px;
+$font28: 28px;
+$font22: 22px;
+$font18: 18px;
+
+/*-----Extendes-------*/
+%flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*------Mixins--------*/
+@mixin font($size, $weight, $style: $roboto) {
+  font-size: $size;
+  font-weight: $weight;
+  font-family: $style;
+}
 /*--------Base----------*/
 .wrapper {
   min-height: 100%;
@@ -40,9 +69,72 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .container {
-  max-width: 1440px;
-  padding: 0 15px;
+  max-width: 1480px;
+  width: 100%;
+  padding: 0 20px;
   margin: 0 auto;
+  border: 1px solid red;
+}
+.section {
+  padding: 75px 0;
+}
+.dark-section {
+  background-color: $bg-dark;
+}
+.video-section {
+  padding-top: 90px;
+  padding-bottom: 75px;
+}
+
+/*------Header-----*/
+.header {
+  color: $white;
+  padding: 62px 0;
+}
+.header-container {
+  @extend %flex-row;
+}
+.logo-container {
+}
+.logo-link {
+  @extend %flex-row;
+  transition: 0.3s ease;
+  transition-property: filter;
+  &:hover {
+    filter: invert(54%) sepia(30%) saturate(411%) hue-rotate(356deg)
+      brightness(100%) contrast(92%);
+  }
+}
+.logo-icon {
+  background-image: url(../assets/svg/logo.svg);
+  width: 49px;
+  height: 26px;
+  object-fit: cover;
+  margin-right: 25px;
+}
+.logo-title {
+  @include font($font28, normal, $forum);
+  line-height: 31px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.header-menu {
+  max-width: 720px;
+  width: 100%;
+}
+.menu {
+  @extend %flex-row;
+
+  li {
+    @include font($font22, 200);
+    line-height: 26px;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
+    transition-property: color;
+
+    &:hover {
+      color: $gold;
+    }
+  }
 }
