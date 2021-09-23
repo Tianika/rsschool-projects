@@ -1,4 +1,4 @@
-//reset
+/*------reset-----*/
 *,
 *::before,
 *::after {
@@ -64,6 +64,7 @@ $font18: 18px;
   font-weight: $weight;
   font-family: $style;
 }
+
 /*--------Base----------*/
 .wrapper {
   min-height: 100%;
@@ -239,26 +240,35 @@ $font18: 18px;
 .card {
   width: 440px;
   height: 424px;
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
 .card-link {
   display: block;
+  position: relative;
+  .underline-title::after {
+    bottom: -12px;
+    left: 0;
+    right: 32%;
+    transition: ease 0.3s;
+    transition-property: right;
+  }
+  .underline-title:hover::after {
+    right: 0;
+  }
 }
 .card-image {
   margin: 25px 0;
 }
 .card-title {
-  position: relative;
   @include font($font32, normal, $forum);
   text-transform: uppercase;
   line-height: 35px;
   letter-spacing: 5px;
   margin-bottom: 25px;
-  &.underline-title {
-    bottom: -12px;
-    left: 0;
-    right: 50px;
-  }
 }
+
 .card-content {
   @include font($font22, 200);
   line-height: 26px;
@@ -267,4 +277,30 @@ $font18: 18px;
 .card-content-small {
   @include font($font18, 200);
   line-height: 21px;
+}
+
+/*---------Explore--------*/
+.explore {
+  color: $white;
+}
+.explore-container {
+  display: flex;
+  justify-content: space-between;
+}
+.explore-content {
+  padding-right: 60px;
+  .title {
+    margin-bottom: 100px;
+  }
+}
+.explore-content-text {
+  @include font($font22, 300);
+  line-height: 38px;
+  padding-bottom: 25px;
+  .yellow-text {
+    color: $gold;
+  }
+}
+
+.explore-image {
 }
