@@ -25,6 +25,8 @@ h3,
 h4,
 h5,
 h6 {
+  margin: 0;
+  padding: 0;
   font-weight: inherit;
   font-size: inherit;
 }
@@ -86,6 +88,19 @@ $font18: 18px;
   padding-top: 90px;
   padding-bottom: 75px;
 }
+.title {
+  @include font($font80, normal, $forum);
+  line-height: 90px;
+  text-transform: uppercase;
+  &-white {
+    color: $white;
+  }
+  &-gold {
+    color: $gold;
+  }
+}
+.main {
+}
 
 /*------Header-----*/
 .header {
@@ -137,4 +152,62 @@ $font18: 18px;
       color: $gold;
     }
   }
+}
+
+/*-------Welcome--------*/
+.welcome {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.welcome-container {
+  min-height: 810px;
+  position: relative;
+  background-image: url(../assets/img/bg-welcome.jpg);
+  background-position: calc(100% - 20px) calc(100% - 60px);
+  background-repeat: no-repeat;
+  bottom: 0;
+  right: 0;
+  color: $white;
+}
+.welcome-title {
+  line-height: 112%;
+  letter-spacing: 5px;
+  margin-top: 150px;
+  margin-bottom: 25px;
+}
+.welcome-subtitle {
+  @include font($font28, 300);
+  line-height: 33px;
+  letter-spacing: 2px;
+  margin-bottom: 75px;
+}
+.welcome-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 75px;
+  border-radius: 10px;
+  background-color: $dark-red;
+  margin-bottom: 152px;
+  transition: 0.5s ease;
+  transition-property: background-color;
+
+  &:hover {
+    background-color: $gold;
+  }
+}
+.welcome-button-text {
+  @include font($font22, 300);
+  line-height: 26px;
+  letter-spacing: 2px;
+}
+.welcome-slider {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  width: 600px;
+  height: 120px;
+  align-self: end;
+  background-color: #fff;
 }
