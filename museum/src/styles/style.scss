@@ -301,6 +301,20 @@ $font18: 18px;
     color: $gold;
   }
 }
-
 .explore-image {
+  flex: 1 1 50%;
 }
+
+/*------Video-----*/
+.video {
+}
+.video-container {
+  @extend %flex-row;
+}
+.video-content-text {
+  @include font($font22, 300);
+  line-height: 38px;
+  flex: 0 1 50%;
+}
+
+/*-----Gallery-----*/
