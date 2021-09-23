@@ -76,7 +76,6 @@ $font18: 18px;
   width: 100%;
   padding: 0 20px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 .section {
   padding: 75px 0;
@@ -92,6 +91,7 @@ $font18: 18px;
   @include font($font80, normal, $forum);
   line-height: 90px;
   text-transform: uppercase;
+  letter-spacing: 5px;
   &-white {
     color: $white;
   }
@@ -105,7 +105,7 @@ $font18: 18px;
 /*------Header-----*/
 .header {
   color: $white;
-  padding: 62px 0;
+  padding: 60px 0;
 }
 .header-container {
   @extend %flex-row;
@@ -122,6 +122,8 @@ $font18: 18px;
   }
 }
 .logo-icon {
+  display: flex;
+  align-self: flex-start;
   background-image: url(../assets/svg/logo.svg);
   width: 49px;
   height: 26px;
@@ -135,7 +137,7 @@ $font18: 18px;
   text-transform: uppercase;
 }
 .header-menu {
-  max-width: 720px;
+  max-width: 775px;
   width: 100%;
 }
 .menu {
@@ -156,6 +158,7 @@ $font18: 18px;
 
 /*-------Welcome--------*/
 .welcome {
+  margin-top: -1px;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -171,8 +174,7 @@ $font18: 18px;
 }
 .welcome-title {
   line-height: 112%;
-  letter-spacing: 5px;
-  margin-top: 150px;
+  padding-top: 150px;
   margin-bottom: 25px;
 }
 .welcome-subtitle {
@@ -210,4 +212,59 @@ $font18: 18px;
   height: 120px;
   align-self: end;
   background-color: #fff;
+}
+
+/*-----Visiting-----*/
+.visiting {
+}
+.visiting-container {
+}
+.underline-title {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -27px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $dark-red;
+  }
+}
+.cards-container {
+  @extend %flex-row;
+  flex-wrap: wrap;
+  gap: 79px 60px;
+}
+.card {
+  width: 440px;
+  height: 424px;
+}
+.card-link {
+  display: block;
+}
+.card-image {
+  margin: 25px 0;
+}
+.card-title {
+  position: relative;
+  @include font($font32, normal, $forum);
+  text-transform: uppercase;
+  line-height: 35px;
+  letter-spacing: 5px;
+  margin-bottom: 25px;
+  &.underline-title {
+    bottom: -12px;
+    left: 0;
+    right: 50px;
+  }
+}
+.card-content {
+  @include font($font22, 200);
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+.card-content-small {
+  @include font($font18, 200);
+  line-height: 21px;
 }
