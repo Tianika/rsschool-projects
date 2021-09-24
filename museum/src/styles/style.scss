@@ -318,3 +318,147 @@ $font18: 18px;
 }
 
 /*-----Gallery-----*/
+
+/*-----Tickets-----*/
+.tickets {
+}
+.tickets-container {
+  .title {
+    margin-bottom: 25px;
+  }
+}
+.tickets-content {
+  @extend %flex-row;
+  align-items: start;
+  column-gap: 60px;
+}
+.tickets-img {
+  flex: 0 1 50%;
+}
+.tickets-choice {
+  @extend %flex-row;
+  align-items: start;
+  flex-grow: 1;
+}
+.tickets-type {
+}
+.tickets-subtitle {
+  @include font($font28, bold);
+  line-height: 33px;
+}
+// --TODO--change radio buttons
+.ticket-radio {
+  margin-top: 50px;
+  padding-top: 5px;
+}
+.ticket-radio input[type='radio'] {
+  display: none;
+}
+.ticket-radio label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  line-height: 21px;
+  user-select: none;
+}
+.ticket-radio label:before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  background: url(../assets/svg/radio-2.svg) 0 0 no-repeat;
+}
+.ticket-radio input[type='radio']:checked + label:before {
+  background: url(../assets/svg/radio-1.svg) 0 0 no-repeat;
+}
+.ticket-choice {
+  @include font($font22, 300);
+  line-height: 26px;
+  padding-left: 40px;
+}
+.tickets-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.amount {
+}
+.ticket-block {
+}
+.tickets-choice-age {
+  @include font($font22, 300);
+  line-height: 26px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  align-self: start;
+}
+.button-border {
+  width: 149px;
+  height: 50px;
+  border: 3px solid $black;
+  width: 149px;
+  height: 50px;
+  margin-bottom: 24px;
+}
+.button {
+  background-color: $white;
+  width: 1em;
+  text-align: center;
+  @include font($font32, normal);
+  line-height: 37px;
+  cursor: pointer;
+  border: 0;
+  padding-top: 4px;
+}
+.number {
+  all: unset;
+  width: 2.85em;
+  text-align: center;
+  @include font($font22, 300);
+  line-height: 26px;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.amount-total {
+  @include font($font28, bold);
+  line-height: 33px;
+  letter-spacing: 1.65px;
+  margin-top: 28px;
+  margin-bottom: 48px;
+}
+.button-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 175px;
+  height: 50px;
+  background-color: $black;
+  border-radius: 2px;
+  transition: 0.5s ease;
+  transition-property: background-color;
+  &:hover {
+    background-color: $gold;
+  }
+}
+.button-buy-text {
+  @include font($font22, 300);
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: $white;
+}
+.parallax-container {
+  background-image: url(../assets/img/parallax.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0 auto;
+  height: 400px;
+  width: 100%;
+}
+.tickets-parallax {
+}

@@ -67,7 +67,7 @@
                   class="card-link"
                 >
                   <img
-                    src="./assets/img/royal_palace.jpg"
+                    src="./assets/img/visiting/royal_palace.jpg"
                     alt="Royal palace"
                     class="card-image"
                   />
@@ -84,7 +84,7 @@
                   class="card-link"
                 >
                   <img
-                    src="./assets/img/denon_wing.jpg"
+                    src="./assets/img/visiting/denon_wing.jpg"
                     alt="Denon wing"
                     class="card-image"
                   />
@@ -101,7 +101,7 @@
                   class="card-link"
                 >
                   <img
-                    src="./assets/img/colonnade_perrault.jpg"
+                    src="./assets/img/visiting/colonnade_perrault.jpg"
                     alt="Colonnade Perrault"
                     class="card-image"
                   />
@@ -118,7 +118,7 @@
                   class="card-link"
                 >
                   <img
-                    src="./assets/img/greek_hall.jpg"
+                    src="./assets/img/visiting/greek_hall.jpg"
                     alt="Greek hall"
                     class="card-image"
                   />
@@ -135,7 +135,7 @@
                   class="card-link"
                 >
                   <img
-                    src="./assets/img/mona-lisa.jpg"
+                    src="./assets/img/visiting/mona-lisa.jpg"
                     alt="Mona Lisa"
                     class="card-image"
                   />
@@ -152,7 +152,7 @@
                   class="card-link"
                 >
                   <img
-                    src="./assets/img/night_palace.jpg"
+                    src="./assets/img/visiting/night_palace.jpg"
                     alt="Night Palace"
                     class="card-image"
                   />
@@ -186,7 +186,7 @@
             </div>
             <img
               class="explore-image"
-              src="./assets/img/picture_explore.jpg"
+              src="./assets/img/explore-slider/before.jpg"
               alt="Las Meninas Picture"
             />
           </div>
@@ -205,7 +205,121 @@
             <h2 class="title title-white">Art Gallery</h2>
           </div>
         </section>
-        <section class="tickets section" id="tickets"></section>
+        <section class="tickets section" id="tickets">
+          <div class="tickets-container container">
+            <h2 class="title title-gold underline-title">Buy tickets</h2>
+            <div class="tickets-content section">
+              <img
+                class="tickets-img"
+                src="./assets/img/tickets-img.jpg"
+                alt="Buy tickets image"
+              />
+              <div class="tickets-choice">
+                <div class="tickets-type">
+                  <h3 class="tickets-subtitle">Ticket Type</h3>
+                  <form>
+                    <div class="ticket-radio">
+                      <input
+                        type="radio"
+                        name="radio"
+                        id="permanent"
+                        value="1"
+                        checked
+                      />
+                      <label class="ticket-choice" for="permanent"
+                        >Permanent exhibition</label
+                      >
+                    </div>
+                    <div class="ticket-radio">
+                      <input
+                        type="radio"
+                        name="radio"
+                        id="temporary"
+                        value="2"
+                      />
+                      <label class="ticket-choice" for="temporary"
+                        >Temporary exhibition</label
+                      >
+                    </div>
+                    <div class="ticket-radio">
+                      <input
+                        type="radio"
+                        name="radio"
+                        id="combined"
+                        value="3"
+                      />
+                      <label class="ticket-choice" for="combined"
+                        >Combined Admission</label
+                      >
+                    </div>
+                  </form>
+                </div>
+                <div class="tickets-amount">
+                  <h3 class="tickets-subtitle amount">Amount</h3>
+                  <div class="ticket-block">
+                    <div class="tickets-choice-age">Basic 18+</div>
+                    <div class="button-border">
+                      <button
+                        class="button"
+                        type="button"
+                        onclick="this.nextElementSibling.stepDown()"
+                      >
+                        &ndash;
+                      </button>
+                      <input
+                        type="number"
+                        min="0"
+                        max="20"
+                        value="1"
+                        readonly
+                        class="number"
+                      />
+                      <button
+                        type="button"
+                        class="button"
+                        onclick="this.previousElementSibling.stepUp()"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="ticket-block">
+                    <div class="tickets-choice-age">Senior 65+</div>
+                    <div class="button-border">
+                      <button
+                        class="button"
+                        type="button"
+                        onclick="this.nextElementSibling.stepDown()"
+                      >
+                        &ndash;
+                      </button>
+                      <input
+                        type="number"
+                        min="0"
+                        max="20"
+                        value="1"
+                        readonly
+                        class="number"
+                      />
+                      <button
+                        class="button"
+                        type="button"
+                        onclick="this.previousElementSibling.stepUp()"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="amount-total">Total&nbsp;&euro;220</div>
+                  <a href="#" class="button-buy">
+                    <div class="button-buy-text">Buy Now</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="parallax-container"></div>
+        </section>
         <section class="contacts section" id="contacts"></section>
       </main>
       <footer class="footer container"></footer>
