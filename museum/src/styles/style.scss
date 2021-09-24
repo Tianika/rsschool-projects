@@ -460,5 +460,30 @@ input[type='number']::-webkit-inner-spin-button {
   height: 400px;
   width: 100%;
 }
-.tickets-parallax {
+
+/*----Contacts----*/
+.contacts {
 }
+.contacts-container {
+  .section {
+    @extend %flex-row;
+    align-items: start;
+  }
+}
+.contacts-content {
+}
+.contacts-title {
+  @include font($font28, 500);
+  line-height: 34px;
+  margin-bottom: 39px;
+}
+.contacts-text {
+  @include font($font22, 300);
+  line-height: 26px;
+  margin-bottom: 20px;
+}
+.contacts-map {
+  flex: 0 1 66.67%;
+}
+
+/*----Footer----*/
