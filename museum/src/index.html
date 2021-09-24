@@ -192,12 +192,43 @@
           </div>
         </section>
         <section class="video section" id="video">
-          <div class="video-container container">
+          <div class="video-container container section">
             <h2 class="title title-gold">Video journey</h2>
             <p class="video-content-text">
               Enter and visit one of the most famous museums in the world and
               enjoy masterpieces such as Mona Lisa or Hammurabi's Code
             </p>
+          </div>
+          <div class="video-player container">
+            <div class="player-container">
+              <div class="play-screen"></div>
+            </div>
+            <div class="video-control-panel">
+              <div class="play-buttons flex-container">
+                <div class="play-button back"></div>
+                <div class="play-button play"></div>
+                <div class="play-button forward"></div>
+              </div>
+              <input
+                type="range"
+                value="47"
+                min="0"
+                max="100"
+                step="1"
+                class="progress video"
+              />
+              <div class="play-button volume"></div>
+              <input
+                type="range"
+                value="41"
+                min="0"
+                max="100"
+                step="1"
+                class="progress vol"
+              />
+              <div class="play-button fullscreen"></div>
+            </div>
+            <div class="video-slider"></div>
           </div>
         </section>
         <section class="gallery section dark-section" id="gallery">
@@ -368,7 +399,7 @@
                   class="social-icon"
                 >
                   <div class="circle">
-                    <img src="./assets/svg/youtube.svg" alt="Youtube" />
+                    <img src="./assets/svg/social/youtube.svg" alt="Youtube" />
                   </div>
                 </a>
               </li>
@@ -378,7 +409,10 @@
                   class="social-icon"
                 >
                   <div class="circle">
-                    <img src="./assets/svg/instagram.svg" alt="instagram" />
+                    <img
+                      src="./assets/svg/social/instagram.svg"
+                      alt="instagram"
+                    />
                   </div>
                 </a>
               </li>
@@ -388,14 +422,17 @@
                   class="social-icon"
                 >
                   <div class="circle">
-                    <img src="./assets/svg/facebook.svg" alt="facebook" />
+                    <img
+                      src="./assets/svg/social/facebook.svg"
+                      alt="facebook"
+                    />
                   </div>
                 </a>
               </li>
               <li class="social-item">
                 <a href="http://twitter.com/museelouvre" class="social-icon">
                   <div class="circle">
-                    <img src="./assets/svg/twitter.svg" alt="twitter" />
+                    <img src="./assets/svg/social/twitter.svg" alt="twitter" />
                   </div>
                 </a>
               </li>
@@ -405,7 +442,10 @@
                   class="social-icon"
                 >
                   <div class="circle">
-                    <img src="./assets/svg/pinterest.svg" alt="pinterest" />
+                    <img
+                      src="./assets/svg/social/pinterest.svg"
+                      alt="pinterest"
+                    />
                   </div>
                 </a>
               </li>

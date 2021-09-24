@@ -309,11 +309,108 @@ $font18: 18px;
 }
 .video-container {
   @extend %flex-row;
+  padding-top: 0;
 }
 .video-content-text {
   @include font($font22, 300);
   line-height: 38px;
   flex: 0 1 50%;
+}
+//---TODO ----
+.video-player {
+}
+.player-container {
+  background-image: url(../assets/img/poster.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 629px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-screen {
+  width: 200px;
+  height: 200px;
+  background-image: url(../assets/svg/player/play.svg);
+  background-repeat: no-repeat;
+  border: 10px $white solid;
+  border-radius: 50%;
+  background-position: 67px center;
+  transition: 0.2s ease;
+  &:hover {
+    opacity: 0.75;
+    transition: 0.4s ease;
+  }
+}
+.video-control-panel {
+  @extend %flex-row;
+  background-color: $black;
+  width: 100%;
+  height: 85px;
+  padding-left: 35px;
+  padding-right: 38px;
+}
+.play-buttons {
+  @extend %flex-row;
+  align-items: center;
+  width: 172px;
+  height: 30px;
+}
+.play-button {
+  width: 40px;
+  height: 38px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: 0.2s ease;
+  &:hover {
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(188deg)
+      brightness(102%) contrast(103%);
+    transition: 0.4s ease;
+  }
+}
+.back {
+  background-image: url(../assets/svg/player/back.svg);
+}
+.play {
+  background-image: url(../assets/svg/player/play.svg);
+}
+.forward {
+  background-image: url(../assets/svg/player/forward.svg);
+}
+.volume {
+  background-image: url(../assets/svg/player/volume.svg);
+}
+.fullscreen {
+  background-image: url(../assets/svg/player/fullscreen.svg);
+}
+.progress {
+  background: linear-gradient(
+    to right,
+    $dark-red 0%,
+    $dark-red 47%,
+    #c4c4c4 47%,
+    #c4c4c4 100%
+  );
+  height: 8px;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+  .video {
+    width: 820px;
+    margin-left: 10px;
+  }
+  .vol {
+    width: 155px;
+    margin-right: 20px;
+  }
+  &::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    background: var(--white);
+  }
 }
 
 /*-----Gallery-----*/
