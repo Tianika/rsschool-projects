@@ -41,6 +41,7 @@ body {
 $bg-dark: #030303;
 $dark-red: #710707;
 $gold: #9d8665;
+$gold-hover: #7e6c51;
 $black: #000000;
 $white: #ffffff;
 $forum: 'Forum', cursive;
@@ -151,6 +152,9 @@ $font18: 18px;
     transition-property: color;
 
     &:hover {
+      color: $gold-hover;
+    }
+    &:active {
       color: $gold;
     }
   }
@@ -173,7 +177,7 @@ $font18: 18px;
   color: $white;
 }
 .welcome-title {
-  line-height: 112%;
+  line-height: 113%;
   padding-top: 150px;
   margin-bottom: 25px;
 }
@@ -196,7 +200,7 @@ $font18: 18px;
   transition-property: background-color;
 
   &:hover {
-    background-color: $gold;
+    background-color: $gold-hover;
   }
 }
 .welcome-button-text {
@@ -206,12 +210,65 @@ $font18: 18px;
 }
 .welcome-slider {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   right: 20px;
   width: 600px;
   height: 120px;
   align-self: end;
-  background-color: #fff;
+  background-color: $black;
+}
+.slider-controls {
+  @extend %flex-row;
+  width: 100%;
+  padding: 0 75px;
+}
+.slider-numbers {
+  @extend %flex-row;
+  @include font($font22, normal);
+  width: 76px;
+}
+.slider-current {
+}
+.slider-all {
+}
+.slider-index {
+  @extend %flex-row;
+  width: 180px;
+}
+.index-square {
+  width: 16px;
+  height: 16px;
+  background-color: $white;
+  cursor: pointer;
+  &.current {
+    background-color: $gold;
+  }
+  &:hover {
+    background-color: $gold-hover;
+  }
+}
+.slider-arrows {
+  @extend %flex-row;
+  width: 80px;
+}
+.slider-arrow {
+  object-fit: cover;
+  width: 30px;
+  height: 8px;
+  cursor: pointer;
+  &.left {
+    background: url(../assets/svg/slider-welcome/arrow-left.png) no-repeat
+      center;
+  }
+  &.right {
+    background: url(../assets/svg/slider-welcome/arrow-right.png) no-repeat
+      center;
+  }
+  &:hover {
+  }
 }
 
 /*-----Visiting-----*/
@@ -239,8 +296,10 @@ $font18: 18px;
 .card {
   width: 440px;
   height: 424px;
+  transition: ease 0.3s;
+  transition-property: filter;
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.85);
   }
 }
 .card-link {
@@ -250,7 +309,7 @@ $font18: 18px;
     bottom: -12px;
     left: 0;
     right: 32%;
-    transition: ease 0.3s;
+    transition: ease 0.5s;
     transition-property: right;
   }
   .underline-title:hover::after {
@@ -596,7 +655,7 @@ input[type='number']::-webkit-inner-spin-button {
   @extend %flex-row;
   flex: 0 1 50%;
 }
-.header-menu {
+.footer-menu {
   flex: 0 1 50%;
   column-gap: 150px;
   ul {
