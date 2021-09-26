@@ -66,8 +66,8 @@
                   <div class="index-square"></div>
                 </div>
                 <div class="slider-arrows">
-                  <div class="slider-arrow left"></div>
-                  <div class="slider-arrow right"></div>
+                  <button class="slider-arrow left"></button>
+                  <button class="slider-arrow right"></button>
                 </div>
               </div>
             </div>
@@ -198,15 +198,11 @@
             </p>
           </div>
           <div class="video-player container">
-            <div class="player-container">
-              <div class="play-screen"></div>
-            </div>
+            <button class="player-container">
+              <div class="player-screen"></div>
+            </button>
             <div class="video-control-panel">
-              <div class="play-buttons flex-container">
-                <div class="play-button back"></div>
-                <div class="play-button play"></div>
-                <div class="play-button forward"></div>
-              </div>
+              <button class="player-button play"></button>
               <input
                 type="range"
                 value="47"
@@ -215,7 +211,7 @@
                 step="1"
                 class="progress video"
               />
-              <div class="play-button volume"></div>
+              <button class="player-button volume"></button>
               <input
                 type="range"
                 value="41"
@@ -224,13 +220,15 @@
                 step="1"
                 class="progress vol"
               />
-              <div class="play-button fullscreen"></div>
+              <button class="player-button fullscreen"></button>
             </div>
             <div class="video-slider">
               <div class="container-video">
                 <iframe
+                  class="video-item"
+                  loading="lazy"
                   width="560"
-                  height="315"
+                  height="254"
                   src="https://www.youtube.com/embed/zp1BXPX8jcU?controls=0"
                   title="YouTube video player"
                   frameborder="0"
@@ -238,8 +236,10 @@
                   allowfullscreen
                 ></iframe>
                 <iframe
+                  class="video-item"
+                  loading="lazy"
                   width="560"
-                  height="315"
+                  height="254"
                   src="https://www.youtube.com/embed/Vi5D6FKhRmo?controls=0"
                   title="YouTube video player"
                   frameborder="0"
@@ -247,14 +247,25 @@
                   allowfullscreen
                 ></iframe>
                 <iframe
+                  class="video-item"
+                  loading="lazy"
                   width="560"
-                  height="315"
+                  height="254"
                   src="https://www.youtube.com/embed/NOhDysLnTvY?controls=0"
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
+              </div>
+              <div class="video-bullets">
+                <button class="video-arrow left"></button>
+                <div class="video-bullet current"></div>
+                <div class="video-bullet"></div>
+                <div class="video-bullet"></div>
+                <div class="video-bullet"></div>
+                <div class="video-bullet"></div>
+                <button class="video-arrow rigth"></button>
               </div>
             </div>
           </div>
