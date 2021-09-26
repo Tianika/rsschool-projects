@@ -705,3 +705,19 @@ input[type='number']::-webkit-inner-spin-button {
 }
 .copyright-author {
 }
+
+/*---google-street-view---*/
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+}
+.google-street {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
