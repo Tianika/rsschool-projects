@@ -279,6 +279,7 @@ $font18: 18px;
 
 /*-----Visiting-----*/
 .visiting {
+  padding-bottom: 25px;
 }
 .visiting-container {
 }
@@ -354,19 +355,20 @@ $font18: 18px;
 .explore-content {
   padding-right: 60px;
   .title {
-    margin-bottom: 100px;
+    margin-bottom: 103px;
   }
 }
 .explore-content-text {
   @include font($font22, 300);
   line-height: 38px;
-  padding-bottom: 25px;
+  padding-bottom: 26px;
   .yellow-text {
     color: $gold;
   }
 }
 .explore-image {
-  flex: 1 1 50%;
+  padding-top: 12px;
+  width: 50%;
 }
 
 /*------Video-----*/
@@ -375,11 +377,14 @@ $font18: 18px;
 .video-container {
   @extend %flex-row;
   padding-top: 0;
+  .title {
+    padding-left: 22px;
+  }
 }
 .video-content-text {
   @include font($font22, 300);
   line-height: 38px;
-  flex: 0 1 50%;
+  width: 50%;
 }
 //---TODO ----
 .video-player {
@@ -388,20 +393,21 @@ $font18: 18px;
   background-image: url(../assets/img/poster.jpg);
   background-size: cover;
   width: 100%;
-  height: 629px;
+  height: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.player-screen {
-  width: 200px;
-  height: 200px;
+.play-screen {
+  width: 220px;
+  height: 220px;
+  background-color: rgba(0, 0, 0, 0);
   background-image: url(../assets/svg/video-player/play-big.svg);
   background-repeat: no-repeat;
-  background-size: 45%;
+  background-size: 48%;
   border: 10px $white solid;
   border-radius: 50%;
-  background-position: 60px center;
+  background-position: 65px center;
   transition: 0.2s ease;
   &:hover {
     opacity: 0.8;
@@ -412,7 +418,8 @@ $font18: 18px;
   background-color: $black;
   width: 100%;
   height: 85px;
-  padding: 0 30px;
+  padding-left: 23px;
+  padding-right: 25px;
 }
 .player-button {
   width: 40px;
@@ -446,21 +453,28 @@ $font18: 18px;
   }
 }
 .progress {
-  background: linear-gradient(
-    to right,
-    $dark-red 0%,
-    $dark-red 47%,
-    #c4c4c4 47%,
-    #c4c4c4 100%
-  );
   height: 8px;
   outline: none;
   transition: background 450ms ease-in;
   -webkit-appearance: none;
   &.video {
+    background: linear-gradient(
+      to right,
+      $dark-red 0%,
+      $dark-red 53%,
+      #c4c4c4 53%,
+      #c4c4c4 100%
+    );
     width: 930px;
   }
   &.vol {
+    background: linear-gradient(
+      to right,
+      $dark-red 0%,
+      $dark-red 40%,
+      #c4c4c4 40%,
+      #c4c4c4 100%
+    );
     width: 155px;
   }
 }
@@ -551,13 +565,12 @@ input[type='range'] {
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  width: 100%;
   gap: 24px 36px;
   height: 2996px;
   column-count: 3;
   overflow: hidden;
-  &img {
-    width: calc(33.33% - 24px);
+  img {
+    width: calc(33.3% - 24px);
   }
 }
 
@@ -809,7 +822,7 @@ input[type='range'] {
 /*-------*/
 .tickets-container {
   .title {
-    margin-bottom: 25px;
+    margin-bottom: 27px;
   }
 }
 .tickets-content {
@@ -818,7 +831,7 @@ input[type='range'] {
   column-gap: 60px;
 }
 .tickets-img {
-  flex: 0 1 50%;
+  width: 50%;
 }
 .tickets-choice {
   @extend %flex-row;
@@ -830,11 +843,14 @@ input[type='range'] {
 .tickets-subtitle {
   @include font($font28, bold);
   line-height: 33px;
+  margin-bottom: 55px;
+  &.amount {
+    margin-bottom: 25px;
+  }
 }
 // --TODO--change radio buttons
 .ticket-radio {
-  margin-top: 50px;
-  padding-top: 5px;
+  margin-top: 30px;
 }
 .ticket-radio input[type='radio'] {
   display: none;
@@ -876,8 +892,7 @@ input[type='range'] {
 .tickets-choice-age {
   @include font($font22, 300);
   line-height: 26px;
-  margin-top: 13px;
-  margin-bottom: 13px;
+  margin-bottom: 15px;
   align-self: start;
 }
 .button-border {
@@ -886,7 +901,7 @@ input[type='range'] {
   border: 3px solid $black;
   width: 149px;
   height: 50px;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 .button {
   background-color: $white;
@@ -914,8 +929,8 @@ input[type='number']::-webkit-inner-spin-button {
   @include font($font28, bold);
   line-height: 33px;
   letter-spacing: 1.65px;
-  margin-top: 28px;
-  margin-bottom: 48px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 .button-buy {
   display: flex;
@@ -948,11 +963,15 @@ input[type='number']::-webkit-inner-spin-button {
 
 /*----Contacts----*/
 .contacts {
+  padding: 0;
 }
 .contacts-container {
   .section {
     @extend %flex-row;
     align-items: start;
+  }
+  .title {
+    margin-bottom: 30px;
   }
 }
 .contacts-content {
@@ -960,12 +979,13 @@ input[type='number']::-webkit-inner-spin-button {
 .contacts-title {
   @include font($font28, 500);
   line-height: 34px;
-  margin-bottom: 39px;
+  margin-bottom: 50px;
 }
 .contacts-text {
+  display: block;
   @include font($font22, 300);
   line-height: 26px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 .contacts-map {
   flex: 0 1 66.67%;
@@ -974,16 +994,16 @@ input[type='number']::-webkit-inner-spin-button {
 /*----Footer----*/
 .footer {
   color: $white;
-  &.section {
-    padding-bottom: 0;
-  }
 }
 .footer-container {
   @extend %flex-row;
 }
 .menu-footer {
   @extend %flex-row;
+  align-items: flex-start;
   width: calc(50% - 20px);
+  padding-top: 85px;
+  padding-bottom: 50px;
 }
 .footer-menu {
   width: 363px;
@@ -1005,6 +1025,8 @@ input[type='number']::-webkit-inner-spin-button {
 }
 .social-container {
   width: 23.6%;
+  align-self: end;
+  padding-bottom: 55px;
 }
 .social-items {
   @extend %flex-row;
@@ -1037,7 +1059,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 .copyright-container {
   @extend %flex-row;
-  padding: 50px 0;
+  padding: 50px 20px;
   @include font($font22, 200);
   line-height: 22px;
   letter-spacing: 2px;
