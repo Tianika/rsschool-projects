@@ -50,9 +50,11 @@ const buyBtnClose = document.querySelector('.buy-ticket-close')
 const ticketsForm = document.querySelector('.buy-tickets-container')
 
 buyBtn.addEventListener('click', function () {
-  ticketsForm.classList.remove('buy-tickets-disable')
+  ticketsForm.classList.remove('buy-tickets-hidden')
 })
 
 buyBtnClose.addEventListener('click', function () {
-  ticketsForm.classList.add('buy-tickets-disable')
+  ticketsForm.classList.add('buy-tickets-hidden')
 })
+
+//ripple

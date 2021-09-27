@@ -231,7 +231,6 @@
                   height="254"
                   src="https://www.youtube.com/embed/Vi5D6FKhRmo?controls=0"
                   title="YouTube video player"
-                  frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
@@ -242,7 +241,6 @@
                   height="254"
                   src="https://www.youtube.com/embed/NOhDysLnTvY?controls=0"
                   title="YouTube video player"
-                  frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
@@ -253,7 +251,6 @@
                   height="254"
                   src="https://www.youtube.com/embed/aWmJ5DgyWPI?controls=0"
                   title="YouTube video player"
-                  frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
@@ -281,7 +278,7 @@
           </div>
         </section>
         <section class="tickets section" id="tickets">
-          <div class="buy-tickets-container buy-tickets-disable">
+          <div class="buy-tickets-container buy-tickets-hidden">
             <div class="buy-ticket-close"></div>
             <div class="buy-tickets-inner container">
               <div class="buy-tickets-form">
@@ -292,20 +289,46 @@
                     Tour to Louvre
                   </h4>
                 </div>
-                <form class="form-select-tickets" action="">
-                  <input type="date" name="" id="" />
-                  <input type="time" name="" id="" />
-                  <input type="text" name="" id="" />
-                  <input type="email" name="" id="" />
-                  <input type="tel" name="" id="" />
-                  <select name="ticket-type" id="select-type">
-                    <option
-                      class="select-ticket-type"
-                      value="none"
-                      disabled
-                      selected
-                      required
-                    >
+                <form class="form-select-tickets" action="select-tickets">
+                  <input
+                    class="input-form date"
+                    type="date"
+                    name="date"
+                    id="date"
+                  />
+                  <input
+                    class="input-form time"
+                    type="time"
+                    name="time"
+                    id="time"
+                  />
+                  <input
+                    class="input-form text"
+                    type="text"
+                    name="text"
+                    id="text"
+                    placeholder="Name"
+                  />
+                  <input
+                    class="input-form email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="E-mail"
+                  />
+                  <input
+                    class="input-form tel"
+                    type="tel"
+                    name="tel"
+                    id="tel"
+                    placeholder="Phone"
+                  />
+                  <select
+                    class="input-form"
+                    name="ticket-type"
+                    id="select-type"
+                  >
+                    <option class="select-ticket-type" disabled selected>
                       Ticket Type
                     </option>
                     <option class="select-ticket-type" value="permanent">
@@ -324,21 +347,57 @@
                     </h4>
                     <div class="entry-ticket-number">
                       <div class="ticket-name">Basic 18+ (20 &euro;)</div>
-                      <input
-                        class="ticket-number"
-                        type="number"
-                        name=""
-                        id=""
-                      />
+                      <div class="button-number">
+                        <button
+                          class="button"
+                          type="button"
+                          onclick="this.nextElementSibling.stepDown()"
+                        >
+                          &ndash;
+                        </button>
+                        <input
+                          type="number"
+                          min="0"
+                          max="20"
+                          value="1"
+                          readonly
+                          class="number"
+                        />
+                        <button
+                          type="button"
+                          class="button"
+                          onclick="this.previousElementSibling.stepUp()"
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
                     <div class="entry-ticket-number">
                       <div class="ticket-name">Senior 65+ (10 &euro;)</div>
-                      <input
-                        class="ticket-number"
-                        type="number"
-                        name=""
-                        id=""
-                      />
+                      <div class="button-number">
+                        <button
+                          class="button"
+                          type="button"
+                          onclick="this.nextElementSibling.stepDown()"
+                        >
+                          &ndash;
+                        </button>
+                        <input
+                          type="number"
+                          min="0"
+                          max="20"
+                          value="1"
+                          readonly
+                          class="number"
+                        />
+                        <button
+                          type="button"
+                          class="button"
+                          onclick="this.previousElementSibling.stepUp()"
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -484,9 +543,7 @@
                     </div>
                   </div>
                   <div class="amount-total">Total&nbsp;&euro;220</div>
-                  <button href="#" class="button-buy">
-                    <div class="button-buy-text">Buy Now</div>
-                  </button>
+                  <button class="button-buy">Buy Now</button>
                 </div>
               </div>
             </div>
@@ -543,6 +600,7 @@
                 <a
                   href="https://www.youtube.com/user/louvre"
                   class="social-icon"
+                  target="_blank"
                 >
                   <div class="circle">
                     <img src="./assets/svg/social/youtube.svg" alt="Youtube" />
@@ -553,6 +611,7 @@
                 <a
                   href="https://www.instagram.com/museelouvre/"
                   class="social-icon"
+                  target="_blank"
                 >
                   <div class="circle">
                     <img
@@ -566,6 +625,7 @@
                 <a
                   href="https://www.facebook.com/museedulouvre"
                   class="social-icon"
+                  target="_blank"
                 >
                   <div class="circle">
                     <img
@@ -576,7 +636,11 @@
                 </a>
               </li>
               <li class="social-item">
-                <a href="http://twitter.com/museelouvre" class="social-icon">
+                <a
+                  href="http://twitter.com/museelouvre"
+                  class="social-icon"
+                  target="_blank"
+                >
                   <div class="circle">
                     <img src="./assets/svg/social/twitter.svg" alt="twitter" />
                   </div>
@@ -586,6 +650,7 @@
                 <a
                   href="https://www.pinterest.fr/museedulouvre/"
                   class="social-icon"
+                  target="_blank"
                 >
                   <div class="circle">
                     <img
