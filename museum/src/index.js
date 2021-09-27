@@ -1,11 +1,13 @@
 import './styles/style.scss'
 
 //video-player
-const progress = document.querySelector('.progress')
+const progress = document.querySelectorAll('.progress')
 
-progress.addEventListener('input', function () {
-  const value = this.value
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, #C4C4C4 100%)`
+progress.forEach((item) => {
+  item.addEventListener('input', function () {
+    const value = this.value
+    this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, #C4C4C4 100%)`
+  })
 })
 
 //gallery
