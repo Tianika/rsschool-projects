@@ -563,25 +563,44 @@ input[type='range'] {
 
 /*-----Tickets-----*/
 .tickets {
+  position: relative;
 }
+
 /*---booking tickets forms---*/
 .buy-tickets-container {
-  background-color: $white;
-  height: 845px;
-  padding: 90px 235px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  left: calc(50% - 740px);
+  background-color: rgba(253, 253, 253, 0.85);
+  transition: left ease 1s;
+  &.buy-tickets-disable {
+    left: -100vw;
+  }
+}
+.buy-ticket-close {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 25px;
+  height: 25px;
+  background-image: url(../assets/svg/booking/Close.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }
 .buy-tickets-inner {
   @extend %flex-row;
   width: 100%;
   height: 100%;
+  padding: 90px 235px;
 }
 .buy-tickets-form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 41.24%;
-  height: 100%;
-  background-color: rgb(230, 195, 195, 0.3);
+  background-color: rgb(209, 209, 209);
 }
 .buy-tickets-form-title {
 }
@@ -644,9 +663,10 @@ input[type='range'] {
 /*---overview---*/
 .buy-tickets-book {
   border: 1px solid $bg-dark;
-  width: 54.64%;
+  width: 51.64%;
   height: 100%;
   padding: 25px 30px;
+  background-color: $white;
 }
 .buy-tickets-overview {
   position: relative;
@@ -753,13 +773,13 @@ input[type='range'] {
 }
 .card-value-input {
   position: relative;
-  width: 100%;
+  max-width: 470px;
   height: 251px;
   margin-bottom: 25px;
 }
 .card-side-1 {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   width: 360px;
   height: 211px;
   background-image: url(../assets/img/booking/card-side-1.png);

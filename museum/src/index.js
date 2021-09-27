@@ -43,3 +43,16 @@ function randomImage() {
 }
 
 randomImage()
+
+//buy tickets
+const buyBtn = document.querySelector('.button-buy')
+const buyBtnClose = document.querySelector('.buy-ticket-close')
+const ticketsForm = document.querySelector('.buy-tickets-container')
+
+buyBtn.addEventListener('click', function () {
+  ticketsForm.classList.remove('buy-tickets-disable')
+})
+
+buyBtnClose.addEventListener('click', function () {
+  ticketsForm.classList.add('buy-tickets-disable')
+})
