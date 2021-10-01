@@ -50,10 +50,14 @@ $white: #ffffff;
 $forum: 'Forum', cursive;
 $roboto: 'Roboto', sans-serif;
 $font80: 80px;
+$font50: 50px;
 $font32: 32px;
 $font28: 28px;
+$font24: 24px;
 $font22: 22px;
+$font20: 20px;
 $font18: 18px;
+$font16: 16px;
 
 /*-----Extendes-------*/
 %flex-row {
@@ -142,8 +146,8 @@ $font18: 18px;
   text-transform: uppercase;
 }
 .header-menu {
-  max-width: 775px;
-  width: 100%;
+  width: Max(775px, 50%);
+  margin-left: 25px;
 }
 .menu {
   @extend %flex-row;
@@ -173,15 +177,16 @@ $font18: 18px;
   min-height: 810px;
   position: relative;
   background-image: url(../assets/img/bg-welcome.jpg);
-  background-position: calc(100% - 20px) calc(100% - 60px);
+  background-position: calc(100% - 20px) top;
+  background-size: 67.5%;
   background-repeat: no-repeat;
   bottom: 0;
   right: 0;
   color: $white;
 }
 .welcome-title {
-  line-height: 113%;
-  padding-top: 150px;
+  line-height: 90px;
+  padding-top: Min(11%, 150px);
   margin-bottom: 25px;
 }
 .welcome-subtitle {
@@ -196,9 +201,9 @@ $font18: 18px;
   align-items: center;
   width: 360px;
   height: 75px;
+  margin-bottom: Min(12%, 152px);
   border-radius: 10px;
   background-color: $dark-red;
-  margin-bottom: 152px;
   transition: 0.5s ease;
   transition-property: background-color;
 
@@ -279,9 +284,11 @@ $font18: 18px;
 
 /*-----Visiting-----*/
 .visiting {
-  padding-bottom: 25px;
 }
 .visiting-container {
+  .title {
+    margin-bottom: 103px;
+  }
 }
 .underline-title {
   position: relative;
@@ -296,17 +303,24 @@ $font18: 18px;
   }
 }
 .cards-container {
-  @extend %flex-row;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
   flex-wrap: wrap;
-  gap: 79px 60px;
+  row-gap: 65px;
+  column-count: 3;
+  padding-bottom: 62px;
+  margin: -75px 0;
 }
 .card {
-  width: 440px;
-  height: 424px;
+  width: 30.5%;
   transition: ease 0.3s;
   transition-property: filter;
   &:hover {
     filter: brightness(0.85);
+    .underline-title::after {
+      right: 0;
+    }
   }
 }
 .card-link {
@@ -324,7 +338,9 @@ $font18: 18px;
   }
 }
 .card-image {
-  margin: 25px 0;
+  width: 100%;
+  height: auto;
+  margin-bottom: 25px;
 }
 .card-title {
   @include font($font32, normal, $forum);
@@ -332,6 +348,7 @@ $font18: 18px;
   line-height: 35px;
   letter-spacing: 5px;
   margin-bottom: 25px;
+  white-space: nowrap;
 }
 
 .card-content {
@@ -354,6 +371,7 @@ $font18: 18px;
 }
 .explore-content {
   padding-right: 60px;
+  width: 50%;
   .title {
     margin-bottom: 103px;
   }
@@ -366,9 +384,34 @@ $font18: 18px;
     color: $gold;
   }
 }
-.explore-image {
-  padding-top: 12px;
-  width: 50%;
+.explore-slider-container {
+  position: relative;
+  margin-top: 12px;
+  width: 720px;
+  height: 700px;
+  .explore-image {
+    position: absolute;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+    .explore-img-before {
+      display: block;
+    }
+    .explore-img-after {
+      display: block;
+    }
+  }
+  .explore-slider {
+    position: absolute;
+    cursor: ew-resize;
+    left: 58%;
+    height: 100%;
+    width: 50px;
+    z-index: 9;
+    background-image: url(../assets/svg/explore-slider.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
 
 /*------Video-----*/
@@ -427,6 +470,7 @@ $font18: 18px;
   background-color: #000;
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: contain;
   transition: 0.2s ease;
   &:hover {
     filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(188deg)
@@ -546,16 +590,16 @@ input[type='range'] {
 .gallery-container {
 }
 .picture-container {
-  height: 1960px;
+  height: Clamp(1270px, 136vw, 1960px);
   overflow: hidden;
   position: relative;
   &::after {
     content: '';
     position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
     z-index: 5;
-    width: 1480px;
     height: 240px;
     background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
   }
@@ -566,7 +610,7 @@ input[type='range'] {
   justify-content: center;
   flex-wrap: wrap;
   gap: 24px 36px;
-  height: 2996px;
+  height: Clamp(1980px, 136vw, 2996px);
   column-count: 3;
   overflow: hidden;
   img {
@@ -586,9 +630,9 @@ input[type='range'] {
   z-index: 10;
   left: calc(50% - 740px);
   background-color: $white;
-  transition: left ease 1s;
+  transition: left ease 1.5s;
   &.buy-tickets-hidden {
-    left: -100vw;
+    left: -500%;
   }
 }
 .buy-ticket-close {
@@ -1165,4 +1209,213 @@ input[type='number']::-webkit-inner-spin-button {
 iframe.google-street {
   object-fit: fill;
   overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  /*welcome*/
+  .welcome-button {
+    margin-bottom: 72px;
+  }
+  .welcome-container {
+    min-height: 700px;
+  }
+}
+
+@media (max-width: 1024px) {
+  /*base*/
+  .section {
+    padding: 60px 0;
+  }
+  .title {
+    @include font($font50, normal, $forum);
+    line-height: 75px;
+    &::after {
+      bottom: -25px;
+    }
+  }
+
+  /*header*/
+  .header-menu {
+    display: none;
+  }
+  .header {
+    padding: 50px 0;
+  }
+
+  /*welcome*/
+  .welcome {
+    &.section {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  .welcome-container {
+    min-height: 585px;
+  }
+  .welcome-title {
+    line-height: 90px;
+    padding-top: 50px;
+  }
+  .welcome-subtitle {
+    @include font($font24, 300);
+    line-height: 28px;
+    margin-bottom: 50px;
+  }
+  .welcome-button {
+    width: 300px;
+    height: 60px;
+    margin-bottom: 72px;
+  }
+  .welcome-button-text {
+    @include font($font20, 300);
+    line-height: 23px;
+    letter-spacing: 2px;
+  }
+  .welcome-slider {
+    width: 700px;
+  }
+  .slider-controls {
+    padding-left: 224px;
+  }
+  .slider-numbers {
+    @include font($font20, normal);
+    line-height: 40px;
+    width: 71px;
+  }
+  .slider-index {
+    width: 160px;
+  }
+  .index-square {
+    width: 12px;
+    height: 12px;
+  }
+  /*visiting*/
+  .underline-title {
+    &::after {
+      bottom: -23px;
+    }
+  }
+  .cards-container {
+    row-gap: 48px;
+    column-count: 2;
+    justify-content: space-evenly;
+    padding-bottom: 65px;
+    margin: -80px 0;
+  }
+  .card {
+    width: 33.5%;
+  }
+  .card-link {
+    .underline-title::after {
+      bottom: -12px;
+      left: 0;
+      right: 55%;
+    }
+  }
+  .card-title {
+    font-size: $font28;
+    line-height: 31px;
+    letter-spacing: 3px;
+  }
+
+  .card-content {
+    font-size: $font20;
+    line-height: 23px;
+  }
+  .card-content-small {
+    font-size: $font16;
+    line-height: 19px;
+  }
+
+  /*Explore*/
+  .explore-container {
+    flex-direction: column;
+  }
+  .explore-content {
+    width: 100%;
+    .title {
+      margin-bottom: 83px;
+    }
+    :nth-child(4) {
+      display: none;
+    }
+  }
+  .explore-content-text {
+    font-size: $font20;
+    padding-bottom: 0;
+  }
+  .explore-slider-container {
+    align-self: center;
+    margin-top: 62px;
+  }
+  /*video*/
+  .video-container {
+    @extend %flex-row;
+    padding-top: 0;
+    padding-bottom: 40px;
+    .title {
+      padding-left: 22px;
+    }
+  }
+  .video-content-text {
+    display: none;
+    width: 100%;
+  }
+  .player-container {
+    height: 444px;
+  }
+  .play-screen {
+    width: 146px;
+    height: 146px;
+    border: 7px $white solid;
+    background-position: 45px center;
+  }
+  .video-control-panel {
+    height: 60px;
+    padding: 0 40px;
+  }
+  .player-button {
+    width: 26px;
+    height: 30px;
+  }
+  .progress {
+    height: 5px;
+    &.video {
+      width: 564px;
+    }
+    &.vol {
+      width: 143px;
+    }
+  }
+  input[type='range'] {
+    &::-webkit-slider-thumb {
+      width: 13px;
+      height: 13px;
+    }
+  }
+  .video-item {
+    height: 170px;
+  }
+  /*Gallery*/
+  .gallery.section {
+    padding-bottom: 55px;
+  }
+
+  .picture-container {
+    height: Clamp(1270px, 136vw, 1270px);
+  }
+
+  /*Tickets*/
+  .tickets-container {
+    .title {
+      margin-bottom: 20px;
+    }
+  }
+  .tickets-img {
+    width: 71%;
+    height: 440px;
+  }
+  .tickets-type {
+    display: none;
+  }
 }

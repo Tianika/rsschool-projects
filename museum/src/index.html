@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>museum</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -170,7 +174,7 @@
               <h2 class="title white-title underline-title">Picture explore</h2>
               <p class="explore-content-text">
                 Las Meninas is a 1656 painting by Diego Velázquez, the leading
-                <br />artist of the Spanish Golden Age.
+                artist of the Spanish Golden Age.
               </p>
               <p class="explore-content-text">
                 It was cleaned in 1984 to remove a
@@ -182,11 +186,23 @@
                 had been damaged in any way, but because it looked different.
               </p>
             </div>
-            <img
-              class="explore-image"
-              src="./assets/img/explore-slider/temp.jpg"
-              alt="Las Meninas Picture"
-            />
+            <div class="explore-slider-container">
+              <div class="explore-image">
+                <img
+                  class="explore-img-before"
+                  src="./assets/img/explore-slider/before.jpg"
+                  alt="Las Meninas Picture before"
+                />
+              </div>
+              <div class="explore-slider"></div>
+              <div class="explore-image explore-image-overlay">
+                <img
+                  class="explore-img-after"
+                  src="./assets/img/explore-slider/after.jpg"
+                  alt="Las Meninas Picture after"
+                />
+              </div>
+            </div>
           </div>
         </section>
         <section class="video section" id="video">
