@@ -962,8 +962,14 @@ select:not([multiple]) {
   column-gap: 60px;
 }
 .tickets-img {
+  overflow: hidden;
   width: 50%;
+  height: 550px;
 }
+.image-ticket {
+  width: 100%;
+}
+
 .tickets-choice {
   @extend %flex-row;
   align-items: start;
@@ -1027,8 +1033,7 @@ select:not([multiple]) {
   align-self: start;
 }
 .button-border {
-  width: 149px;
-  height: 50px;
+  @extend %flex-row;
   border: 3px solid $black;
   width: 149px;
   height: 50px;
@@ -1117,7 +1122,7 @@ input[type='number']::-webkit-inner-spin-button {
   margin-bottom: 25px;
 }
 .contacts-map {
-  flex: 0 1 66.67%;
+  width: 66.67%;
 }
 
 /*----Footer----*/
@@ -1406,16 +1411,88 @@ iframe.google-street {
   }
 
   /*Tickets*/
+  .tickets {
+    padding-bottom: 0;
+  }
   .tickets-container {
     .title {
       margin-bottom: 20px;
     }
   }
-  .tickets-img {
+  .ticket-img {
+    position: relative;
     width: 71%;
     height: 440px;
+    overflow: hidden;
+  }
+  .image-ticket {
+    position: absolute;
+    width: 100%;
+    height: 540px;
+    top: -50px;
+    bottom: -50px;
   }
   .tickets-type {
     display: none;
+  }
+  .tickets-amount {
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  .tickets-subtitle {
+    &.amount {
+      margin-bottom: 30px;
+    }
+  }
+  .tickets-choice-age {
+    margin-bottom: 10px;
+  }
+  .button-border {
+    width: 175px;
+    height: 50px;
+    padding: 0 5px;
+    margin-bottom: 30px;
+  }
+  .amount-total {
+    margin-top: -7px;
+    margin-bottom: 70px;
+  }
+  /*Contacts*/
+  .contacts {
+    padding-bottom: 0;
+  }
+  .contacts-container {
+    .title {
+      margin-bottom: 23px;
+    }
+  }
+  .contacts-map {
+    width: 70.53%;
+    padding-bottom: 8px;
+  }
+  .contacts-title {
+    font-size: $font24;
+    line-height: 28px;
+    margin-bottom: 35px;
+  }
+  .contacts-text {
+    font-size: $font20;
+    line-height: 23px;
+    margin-bottom: 15px;
+  }
+  /*Footer*/
+
+  .menu-footer {
+    padding-top: 65px;
+  }
+  .footer-menu {
+    width: 313px;
+    padding-left: 40px;
+    .menu {
+      column-gap: 120px;
+    }
+  }
+  .social-container {
+    width: 340px;
   }
 }
