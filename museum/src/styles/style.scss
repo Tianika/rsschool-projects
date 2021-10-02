@@ -175,26 +175,24 @@ $font16: 16px;
   padding-bottom: 0;
 }
 .welcome-container {
-  min-height: 810px;
   position: relative;
-  background-image: url(../assets/img/welcome-slider/1.jpg);
-  background-position: calc(100% - 20px) top;
-  background-size: 67.5%;
-  background-repeat: no-repeat;
-  bottom: 0;
-  right: 0;
+  min-height: 810px;
   color: $white;
 }
 .welcome-title {
+  position: relative;
   line-height: 90px;
   padding-top: Min(11%, 150px);
   margin-bottom: 25px;
+  z-index: 3;
 }
 .welcome-subtitle {
+  position: relative;
   @include font($font28, 300);
   line-height: 33px;
   letter-spacing: 2px;
   margin-bottom: 75px;
+  z-index: 3;
 }
 .welcome-button {
   display: flex;
@@ -207,7 +205,8 @@ $font16: 16px;
   background-color: $dark-red;
   transition: 0.5s ease;
   transition-property: background-color;
-
+  position: relative;
+  z-index: 3;
   &:hover {
     background-color: $gold-hover;
   }
@@ -216,6 +215,31 @@ $font16: 16px;
   @include font($font22, 300);
   line-height: 26px;
   letter-spacing: 2px;
+}
+.slider-image {
+  position: absolute;
+  top: 0;
+  bottom: 60px;
+  z-index: 0;
+  width: 67.5%;
+  right: 20px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .slider-shadow {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      #000000 -2%,
+      rgba(0, 0, 0, 0.5) 16.19%,
+      rgba(0, 0, 0, 0) 30.73%
+    );
+  }
 }
 .welcome-slider {
   position: absolute;
@@ -228,6 +252,7 @@ $font16: 16px;
   height: 120px;
   align-self: end;
   background-color: $black;
+  z-index: 3;
 }
 .slider-controls {
   @extend %flex-row;
@@ -393,8 +418,6 @@ $font16: 16px;
   .explore-image {
     position: absolute;
     overflow: hidden;
-    width: auto;
-    height: auto;
     .explore-img-before {
       display: block;
     }
@@ -408,7 +431,7 @@ $font16: 16px;
     left: 58%;
     top: 0;
     bottom: 0;
-    width: 5.5%;
+    width: 100%;
     z-index: 9;
     background-image: url(../assets/svg/explore-slider.svg);
     background-size: contain;
@@ -1278,7 +1301,7 @@ iframe.google-street {
     padding-top: 50px;
   }
   .welcome-subtitle {
-    @include font($font24, 300);
+    font-size: $font24;
     line-height: 28px;
     margin-bottom: 50px;
   }
@@ -1547,8 +1570,6 @@ iframe.google-street {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-size: Calc(100% - 40px) auto;
-    background-position: Calc(100% - 20px) 215px;
   }
   .welcome-button {
     display: none;
@@ -1561,16 +1582,30 @@ iframe.google-street {
   .welcome-subtitle {
     font-size: $font20;
     line-height: 23px;
-    margin-bottom: 95%;
+    margin-bottom: 46px;
   }
   .welcome-slider {
+    position: relative;
     width: 100%;
     height: 100px;
     left: 0;
     right: 0;
     align-self: center;
   }
-
+  .slider-image {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: Min(75vw, 546px);
+    img {
+      object-position: center center;
+      object-fit: contain;
+    }
+  }
+  .slider-shadow {
+    display: none;
+  }
   .slider-controls {
     width: 400px;
     padding: 30px 0;
@@ -1627,14 +1662,11 @@ iframe.google-street {
   }
   .explore-slider-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    height: Min(91.7vw, 700px);
   }
   .explore-image {
-    width: 100%;
-    img {
-      width: 100%;
-    }
+    height: Min(91.7vw, 700px);
+    padding-right: 20px;
   }
 
   /*video*/
@@ -1808,5 +1840,103 @@ iframe.google-street {
   }
   .copyright-container {
     padding: 40px 20px;
+  }
+}
+
+/*----------420px---------*/
+@media (max-width: 420px) {
+  /*base*/
+  .title {
+    font-size: $font28;
+    line-height: 40px;
+  }
+
+  /*header*/
+  .logo-icon {
+    width: 29px;
+    height: 16px;
+    background-size: cover;
+  }
+  .logo-title {
+    font-size: $font16;
+    line-height: 18px;
+  }
+  .header {
+    padding: 38px 0;
+  }
+
+  /*welcome*/
+  .welcome-container {
+    min-height: 540px;
+  }
+  .welcome-subtitle {
+    font-size: $font16;
+    line-height: 19px;
+    margin-bottom: 37px;
+  }
+  .welcome-slider {
+    height: 50px;
+  }
+  .slider-controls {
+    width: 230px;
+  }
+  .slider-numbers {
+    font-size: $font16;
+    width: 50px;
+  }
+  .slider-index {
+    width: 75px;
+  }
+  .index-square {
+    width: 7px;
+    height: 7px;
+  }
+  .slider-arrows {
+    width: 55px;
+  }
+  .slider-arrow {
+    width: 20px;
+    height: 8px;
+  }
+
+  /*visiting*/
+  .visiting.section {
+    padding: 41px 0;
+  }
+  .cards-container {
+    row-gap: 39px;
+    margin-bottom: -42px;
+  }
+  .card {
+    width: 73.6%;
+  }
+  .card-title {
+    font-size: $font18;
+    line-height: 20px;
+    letter-spacing: 5px;
+  }
+  .card-content {
+    font-size: $font16;
+    line-height: 19px;
+    font-weight: 200;
+    letter-spacing: 0;
+  }
+  .card-content-small {
+    font-size: $font16;
+    line-height: 19px;
+    margin-bottom: 0;
+  }
+
+  /*Explore*/
+  .explore-content {
+    padding-right: 0;
+  }
+  .explore-slider-container {
+    height: 368px;
+    width: 368px;
+  }
+  .explore-image {
+    height: 368px;
+    width: 368px;
   }
 }
