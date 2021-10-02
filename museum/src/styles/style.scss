@@ -51,6 +51,7 @@ $forum: 'Forum', cursive;
 $roboto: 'Roboto', sans-serif;
 $font80: 80px;
 $font50: 50px;
+$font40: 40px;
 $font32: 32px;
 $font28: 28px;
 $font24: 24px;
@@ -176,7 +177,7 @@ $font16: 16px;
 .welcome-container {
   min-height: 810px;
   position: relative;
-  background-image: url(../assets/img/bg-welcome.jpg);
+  background-image: url(../assets/img/welcome-slider/1.jpg);
   background-position: calc(100% - 20px) top;
   background-size: 67.5%;
   background-repeat: no-repeat;
@@ -926,7 +927,6 @@ select:not([multiple]) {
   z-index: 5;
   width: 360px;
   height: 211px;
-  background-image: url(../assets/img/booking/card-side-1.png);
 }
 .card-side-2 {
   position: absolute;
@@ -935,7 +935,6 @@ select:not([multiple]) {
   z-index: 1;
   width: 360px;
   height: 211px;
-  background-image: url(../assets/img/booking/card-side-2.png);
 }
 .button-book-container {
   display: flex;
@@ -1216,6 +1215,8 @@ iframe.google-street {
   overflow: hidden;
 }
 
+/*----------1200px---------*/
+
 @media (max-width: 1200px) {
   /*welcome*/
   .welcome-button {
@@ -1224,7 +1225,13 @@ iframe.google-street {
   .welcome-container {
     min-height: 700px;
   }
+  .card-title {
+    font-size: $font28;
+    letter-spacing: 3px;
+  }
 }
+
+/*----------1024px---------*/
 
 @media (max-width: 1024px) {
   /*base*/
@@ -1232,7 +1239,7 @@ iframe.google-street {
     padding: 60px 0;
   }
   .title {
-    @include font($font50, normal, $forum);
+    font-size: $font50;
     line-height: 75px;
     &::after {
       bottom: -25px;
@@ -1494,5 +1501,96 @@ iframe.google-street {
   }
   .social-container {
     width: 340px;
+  }
+}
+
+/*----------768px---------*/
+
+@media (max-width: 768px) {
+  /*base*/
+  .section {
+    padding: 40px 0;
+  }
+  .title {
+    font-size: $font40;
+    line-height: 60px;
+    &::after {
+      bottom: -20px;
+    }
+  }
+
+  /*header*/
+  .header {
+    padding: 43px 0 38px;
+  }
+  .logo-container {
+    align-items: flex-end;
+  }
+
+  /*welcome*/
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: Calc(100% - 40px) auto;
+    background-position: Calc(100% - 20px) 215px;
+  }
+  .welcome-button {
+    display: none;
+  }
+  .welcome-title {
+    text-align: center;
+    line-height: 60px;
+    padding-top: 0;
+  }
+  .welcome-subtitle {
+    font-size: $font20;
+    line-height: 23px;
+    margin-bottom: 95%;
+  }
+  .welcome-slider {
+    width: 100%;
+    height: 100px;
+    left: 0;
+    right: 0;
+    align-self: center;
+  }
+
+  .slider-controls {
+    width: 400px;
+    padding: 30px 0;
+  }
+
+  /*visiting*/
+  .underline-title {
+    &::after {
+      bottom: -22px;
+    }
+  }
+  .cards-container {
+    row-gap: 27px;
+  }
+  .card {
+    width: 38.5%;
+  }
+  .card-link {
+    .underline-title::after {
+      right: 45%;
+    }
+  }
+  .card-title {
+    font-size: $font22;
+    line-height: 24px;
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+  }
+  .card-content {
+    font-size: $font18;
+    line-height: 21px;
+  }
+  .card-content-small {
+    font-size: $font16;
+    line-height: 19px;
+    letter-spacing: 0;
   }
 }
