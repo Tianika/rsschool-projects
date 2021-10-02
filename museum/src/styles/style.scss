@@ -310,7 +310,7 @@ $font16: 16px;
   flex-wrap: wrap;
   row-gap: 65px;
   column-count: 3;
-  padding-bottom: 62px;
+  padding-bottom: 65px;
   margin: -75px 0;
 }
 .card {
@@ -406,8 +406,9 @@ $font16: 16px;
     position: absolute;
     cursor: ew-resize;
     left: 58%;
-    height: 100%;
-    width: 50px;
+    top: 0;
+    bottom: 0;
+    width: 5.5%;
     z-index: 9;
     background-image: url(../assets/svg/explore-slider.svg);
     background-size: contain;
@@ -432,12 +433,13 @@ $font16: 16px;
 }
 //---TODO ----
 .video-player {
+  height: 60.19%;
 }
 .player-container {
   background-image: url(../assets/img/poster.jpg);
   background-size: cover;
   width: 100%;
-  height: 650px;
+  padding: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -502,7 +504,7 @@ $font16: 16px;
   outline: none;
   transition: background 450ms ease-in;
   -webkit-appearance: none;
-  &.video {
+  &.video-progress {
     background: linear-gradient(
       to right,
       $dark-red 0%,
@@ -510,9 +512,9 @@ $font16: 16px;
       #c4c4c4 53%,
       #c4c4c4 100%
     );
-    width: 930px;
+    width: 64.58%;
   }
-  &.vol {
+  &.vol-progress {
     background: linear-gradient(
       to right,
       $dark-red 0%,
@@ -520,7 +522,7 @@ $font16: 16px;
       #c4c4c4 40%,
       #c4c4c4 100%
     );
-    width: 155px;
+    width: 10.76%;
   }
 }
 input[type='range'] {
@@ -534,12 +536,18 @@ input[type='range'] {
   }
 }
 .container-video {
+  padding: 40px 0;
+  overflow: hidden;
+}
+.video-slider-inner {
   @extend %flex-row;
   column-gap: 40px;
-  padding: 40px 0;
+  display: flex;
+  flex-wrap: nowrap;
 }
 .video-item {
   width: 33%;
+  height: 254px;
 }
 //TODO delete sign youtube
 .html5-video-player svg {
@@ -1089,6 +1097,7 @@ input[type='number']::-webkit-inner-spin-button {
   background-image: url(../assets/img/parallax.jpg);
   background-size: cover;
   background-attachment: fixed;
+  background-position: center center;
   margin: 0 auto;
   height: 400px;
   width: 100%;
@@ -1373,12 +1382,9 @@ iframe.google-street {
     display: none;
     width: 100%;
   }
-  .player-container {
-    height: 444px;
-  }
   .play-screen {
-    width: 146px;
-    height: 146px;
+    width: 148px;
+    height: 148px;
     border: 7px $white solid;
     background-position: 45px center;
   }
@@ -1392,13 +1398,14 @@ iframe.google-street {
   }
   .progress {
     height: 5px;
-    &.video {
-      width: 564px;
+    &.video-progress {
+      width: 62.32%;
     }
-    &.vol {
-      width: 143px;
+    &.vol-progress {
+      width: 15.53%;
     }
   }
+
   input[type='range'] {
     &::-webkit-slider-thumb {
       width: 13px;
@@ -1414,7 +1421,15 @@ iframe.google-street {
   }
 
   .picture-container {
-    height: Clamp(1270px, 136vw, 1270px);
+    height: Clamp(1080px, 136vw, 1270px);
+  }
+  .picture-inner-container {
+    height: Clamp(1470px, 136vw, 1980px);
+    column-count: 3;
+    overflow: hidden;
+    img {
+      width: calc(33.3% - 24px);
+    }
   }
 
   /*Tickets*/
@@ -1487,8 +1502,8 @@ iframe.google-street {
     line-height: 23px;
     margin-bottom: 15px;
   }
-  /*Footer*/
 
+  /*Footer*/
   .menu-footer {
     padding-top: 65px;
   }
@@ -1562,6 +1577,9 @@ iframe.google-street {
   }
 
   /*visiting*/
+  .visiting {
+    padding-bottom: 110px;
+  }
   .underline-title {
     &::after {
       bottom: -22px;
@@ -1592,5 +1610,203 @@ iframe.google-street {
     font-size: $font16;
     line-height: 19px;
     letter-spacing: 0;
+  }
+
+  /*Explore*/
+
+  .explore {
+    padding-bottom: 47px;
+  }
+  .explore-content {
+    p {
+      display: none;
+    }
+  }
+  .explore-content .title {
+    margin-bottom: 0;
+  }
+  .explore-slider-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .explore-image {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+
+  /*video*/
+  .video {
+    padding-top: 0;
+    padding-bottom: 80px;
+  }
+  .video-container {
+    padding-bottom: 20px;
+  }
+  .player-container {
+    padding: 17%;
+  }
+  .play-screen {
+    width: 80px;
+    height: 80px;
+    border: 3px $white solid;
+    background-position: 24px center;
+  }
+  .player-button {
+    width: 29px;
+    height: 29px;
+  }
+  .video-control-panel {
+    position: relative;
+    height: 57px;
+    padding: 0 28px;
+  }
+  .progress {
+    &.video-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+    &.vol-progress {
+      width: 73%;
+    }
+  }
+  .container-video {
+    padding: 20px 0;
+  }
+  .video-slider-inner {
+    column-gap: 20px;
+    :last-child {
+      display: none;
+    }
+  }
+  .video-item {
+    width: 50%;
+    height: 199px;
+  }
+
+  /*Gallery*/
+  .gallery {
+    &.section {
+      padding-bottom: 25px;
+    }
+  }
+  .gallery-container {
+    .title {
+      margin-bottom: 16px;
+    }
+  }
+  .picture-container {
+    height: Clamp(637px, 389vw, 1080px);
+    &:last-child {
+      padding-bottom: 100%;
+    }
+  }
+  .picture-inner-container {
+    height: Clamp(1650px, 389vw, 3500px);
+    gap: 24px 24px;
+    column-count: 2;
+    overflow: hidden;
+    img {
+      width: Calc(50% - 12px);
+    }
+  }
+
+  /*Tickets*/
+  .tickets-container {
+    .title {
+      margin-bottom: 23px;
+    }
+  }
+  .ticket-img {
+    width: 61%;
+    height: 340px;
+  }
+  .image-ticket {
+    width: 100%;
+    height: 340px;
+    top: 0;
+    bottom: 0;
+  }
+  .tickets-subtitle.amount {
+    margin-bottom: 39px;
+  }
+  .button-border {
+    margin-bottom: 25px;
+  }
+  .tickets-content {
+    align-items: start;
+    column-gap: 11px;
+  }
+  .tickets-amount {
+    padding: 0 49px;
+  }
+  .amount-total {
+    margin-top: 13px;
+    margin-bottom: 40px;
+  }
+
+  .parallax-container {
+    height: 300px;
+  }
+
+  /*Contacts*/
+  .contacts {
+    padding-top: 0;
+  }
+  .contacts-inner {
+    flex-direction: column;
+    padding-bottom: 25px;
+  }
+  .contacts-content {
+    margin-bottom: 25px;
+  }
+  .contacts-title {
+    font-size: $font20;
+    line-height: 23px;
+    margin-bottom: 40px;
+  }
+  .contacts-text {
+    font-size: $font18;
+    line-height: 21px;
+    margin-bottom: 15px;
+  }
+  .contacts-map {
+    width: 100%;
+  }
+
+  /*Footer*/
+
+  .footer {
+    position: relative;
+  }
+  .menu-footer {
+    padding-top: 50px;
+    padding-bottom: 135px;
+  }
+  .footer-menu {
+    width: 54.14%;
+    padding-left: 100px;
+
+    .menu {
+      column-gap: 185px;
+      padding-top: 10px;
+      li {
+        justify-self: end;
+        font-size: $font18;
+        line-height: 21px;
+      }
+    }
+  }
+  .social-container {
+    position: absolute;
+    bottom: 90px;
+    right: 110px;
+  }
+  .copyright-container {
+    padding: 40px 20px;
   }
 }
