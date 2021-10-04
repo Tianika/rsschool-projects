@@ -43,10 +43,145 @@
               <li><a href="#contacts">Contacts</a></li>
             </ul>
           </nav>
+          <div class="burger-icon"></div>
         </div>
       </header>
       <main class="main">
         <section class="welcome section dark-section">
+          <div class="menu-burger burger-hidden">
+            <nav class="burger-menu">
+              <ul class="burger">
+                <li>
+                  <div class="burger-link">
+                    <a href="#visiting">Visiting</a>
+                    <div class="burger-link-arrow"></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="burger-link">
+                    <a href="#explore">Explore</a>
+                    <div class="burger-link-arrow"></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="burger-link">
+                    <a href="#video">Video</a>
+                    <div class="burger-link-arrow"></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="burger-link">
+                    <a href="#gallery">Gallery</a>
+                    <div class="burger-link-arrow"></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="burger-link">
+                    <a href="#tickets">Tickets</a>
+                    <div class="burger-link-arrow"></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="burger-link">
+                    <a href="#contacts">Contacts</a>
+                    <div class="burger-link-arrow"></div>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <div class="burger-image">
+              <img
+                class="img1"
+                src="./assets/img/burger/image1.jpg"
+                alt="menu image"
+              />
+              <img
+                class="img2"
+                src="./assets/img/burger/image2.jpg"
+                alt="menu image"
+              />
+              <img
+                class="img3"
+                src="./assets/img/burger/image3.jpg"
+                alt="menu image"
+              />
+            </div>
+            <div class="burger-line"></div>
+            <div class="social-container-burger">
+              <ul class="social-items">
+                <li class="social-item">
+                  <a
+                    href="https://www.youtube.com/user/louvre"
+                    class="social-icon"
+                    target="_blank"
+                  >
+                    <div class="circle">
+                      <img
+                        src="./assets/svg/social/youtube.svg"
+                        alt="Youtube"
+                      />
+                    </div>
+                  </a>
+                </li>
+                <li class="social-item">
+                  <a
+                    href="https://www.instagram.com/museelouvre/"
+                    class="social-icon"
+                    target="_blank"
+                  >
+                    <div class="circle">
+                      <img
+                        src="./assets/svg/social/instagram.svg"
+                        alt="instagram"
+                      />
+                    </div>
+                  </a>
+                </li>
+                <li class="social-item">
+                  <a
+                    href="https://www.facebook.com/museedulouvre"
+                    class="social-icon"
+                    target="_blank"
+                  >
+                    <div class="circle">
+                      <img
+                        src="./assets/svg/social/facebook.svg"
+                        alt="facebook"
+                      />
+                    </div>
+                  </a>
+                </li>
+                <li class="social-item">
+                  <a
+                    href="http://twitter.com/museelouvre"
+                    class="social-icon"
+                    target="_blank"
+                  >
+                    <div class="circle">
+                      <img
+                        src="./assets/svg/social/twitter.svg"
+                        alt="twitter"
+                      />
+                    </div>
+                  </a>
+                </li>
+                <li class="social-item">
+                  <a
+                    href="https://www.pinterest.fr/museedulouvre/"
+                    class="social-icon"
+                    target="_blank"
+                  >
+                    <div class="circle">
+                      <img
+                        src="./assets/svg/social/pinterest.svg"
+                        alt="pinterest"
+                      />
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="welcome-container container">
             <h1 class="welcome-title title title-white">
               Welcome <br />to the louvre
@@ -315,161 +450,219 @@
           </div>
         </section>
         <section class="tickets section" id="tickets">
-          <div class="buy-tickets-container buy-tickets-hidden">
-            <div class="buy-ticket-close"></div>
-            <div class="buy-tickets-inner container">
-              <div class="buy-tickets-form">
-                <div class="buy-tickets-form-title">
-                  <div class="booking-logo"></div>
-                  <h2 class="booking-title">Booking tickets</h2>
-                  <h4 class="booking-subtitle underline-title">
-                    Tour to Louvre
-                  </h4>
-                </div>
-                <form class="form-select-tickets" action="select-tickets">
-                  <input
-                    class="input-form date"
-                    type="date"
-                    name="date"
-                    id="date"
-                  />
-                  <input
-                    class="input-form time"
-                    type="time"
-                    name="time"
-                    id="time"
-                  />
-                  <input
-                    class="input-form text"
-                    type="text"
-                    name="text"
-                    id="text"
-                    placeholder="Name"
-                  />
-                  <input
-                    class="input-form email"
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="E-mail"
-                  />
-                  <input
-                    class="input-form tel"
-                    type="tel"
-                    name="tel"
-                    id="tel"
-                    placeholder="Phone"
-                  />
-                  <select
-                    class="input-form"
-                    name="ticket-type"
-                    id="select-type"
-                  >
-                    <option class="select-ticket-type" disabled selected>
-                      Ticket Type
-                    </option>
-                    <option class="select-ticket-type" value="permanent">
-                      Permanent exhibition
-                    </option>
-                    <option class="select-ticket-type" value="temporary">
-                      Temporary exhibition
-                    </option>
-                    <option class="select-ticket-type" value="combined">
-                      Combined Admission
-                    </option>
-                  </select>
-                  <div class="entry-ticket-container">
-                    <h4 class="entry-ticket-title underline-title">
-                      Entry ticket
+          <div class="buy-tickets-overlay buy-tickets-hidden">
+            <div class="buy-tickets-container">
+              <div class="buy-tickets-inner container">
+                <div class="buy-ticket-close"></div>
+                <div class="buy-tickets-form">
+                  <div class="buy-tickets-form-title">
+                    <div class="booking-logo"></div>
+                    <h2 class="booking-title">Booking tickets</h2>
+                    <h4 class="booking-subtitle underline-title">
+                      Tour to Louvre
                     </h4>
-                    <div class="entry-ticket-number">
-                      <div class="ticket-name">Basic 18+ (20 &euro;)</div>
-                      <div class="button-number">
-                        <button
-                          class="button"
-                          type="button"
-                          onclick="this.nextElementSibling.stepDown()"
-                        >
-                          &ndash;
-                        </button>
-                        <input
-                          type="number"
-                          min="0"
-                          max="20"
-                          value="1"
-                          readonly
-                          class="number"
-                        />
-                        <button
-                          type="button"
-                          class="button"
-                          onclick="this.previousElementSibling.stepUp()"
-                        >
-                          +
-                        </button>
+                  </div>
+                  <form class="form-select-tickets" action="select-tickets">
+                    <input
+                      class="input-form date"
+                      type="date"
+                      name="date"
+                      id="date"
+                    />
+                    <input
+                      class="input-form time"
+                      type="time"
+                      name="time"
+                      id="time"
+                    />
+                    <input
+                      class="input-form text"
+                      type="text"
+                      name="text"
+                      id="text"
+                      placeholder="Name"
+                    />
+                    <input
+                      class="input-form email"
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="E-mail"
+                    />
+                    <input
+                      class="input-form tel"
+                      type="tel"
+                      name="tel"
+                      id="tel"
+                      placeholder="Phone"
+                    />
+                    <select
+                      class="input-form"
+                      name="ticket-type"
+                      id="select-type"
+                    >
+                      <option class="select-ticket-type" disabled selected>
+                        Ticket Type
+                      </option>
+                      <option class="select-ticket-type" value="permanent">
+                        Permanent exhibition
+                      </option>
+                      <option class="select-ticket-type" value="temporary">
+                        Temporary exhibition
+                      </option>
+                      <option class="select-ticket-type" value="combined">
+                        Combined Admission
+                      </option>
+                    </select>
+                    <div class="entry-ticket-container">
+                      <h4 class="entry-ticket-title underline-title">
+                        Entry ticket
+                      </h4>
+                      <div class="entry-ticket-number">
+                        <div class="ticket-name">Basic 18+ (20 &euro;)</div>
+                        <div class="button-number">
+                          <button
+                            class="button"
+                            type="button"
+                            onclick="this.nextElementSibling.stepDown()"
+                          >
+                            &ndash;
+                          </button>
+                          <input
+                            type="number"
+                            min="0"
+                            max="20"
+                            value="1"
+                            readonly
+                            class="number"
+                          />
+                          <button
+                            type="button"
+                            class="button"
+                            onclick="this.previousElementSibling.stepUp()"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div class="entry-ticket-number">
+                        <div class="ticket-name">Senior 65+ (10 &euro;)</div>
+                        <div class="button-number">
+                          <button
+                            class="button"
+                            type="button"
+                            onclick="this.nextElementSibling.stepDown()"
+                          >
+                            &ndash;
+                          </button>
+                          <input
+                            type="number"
+                            min="0"
+                            max="20"
+                            value="1"
+                            readonly
+                            class="number"
+                          />
+                          <button
+                            type="button"
+                            class="button"
+                            onclick="this.previousElementSibling.stepUp()"
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <div class="entry-ticket-number">
-                      <div class="ticket-name">Senior 65+ (10 &euro;)</div>
-                      <div class="button-number">
-                        <button
-                          class="button"
-                          type="button"
-                          onclick="this.nextElementSibling.stepDown()"
-                        >
-                          &ndash;
-                        </button>
-                        <input
-                          type="number"
-                          min="0"
-                          max="20"
-                          value="1"
-                          readonly
-                          class="number"
-                        />
-                        <button
-                          type="button"
-                          class="button"
-                          onclick="this.previousElementSibling.stepUp()"
-                        >
-                          +
-                        </button>
+                  </form>
+                </div>
+                <div class="buy-tickets-book">
+                  <div class="buy-tickets-overview">
+                    <div class="overview-title">Overview</div>
+                    <div class="overview-subtitle">Tour to Louvre</div>
+                    <div class="overview-text date">Friday, August 19</div>
+                    <div class="overview-text time">16 : 30</div>
+                    <div class="overview-text temporary">
+                      Temporary exhibition
+                    </div>
+                  </div>
+                  <div class="booking-total">
+                    <div class="booking-total-basic item">
+                      <div class="booking-total-name">Basic (20 &euro;)</div>
+                      <div class="booking-total-sum">40 &euro;</div>
+                    </div>
+                    <div class="booking-total-senior item">
+                      <div class="booking-total-name">Senior (10 &euro;)</div>
+                      <div class="booking-total-sum">20 &euro;</div>
+                    </div>
+                    <div class="underline"></div>
+                    <div class="total-amount item">
+                      <div class="total-amount-title">Total:</div>
+                      <div class="total-amount-sum">60 &euro;</div>
+                    </div>
+                  </div>
+                  <div class="card-value-input">
+                    <div class="card-side-1">
+                      <form>
+                        <div class="card card-number">
+                          <label for="card" class="input-number"
+                            >Card number</label
+                          >
+                          <input type="number" name="card" id="card" />
+                        </div>
+                        <div class="card card-date">
+                          <label for="month" class="input-month"
+                            >Expiration date</label
+                          >
+                          <div class="card-date-input">
+                            <div class="card-month">
+                              <input
+                                type="number"
+                                min="1"
+                                max="12"
+                                step="1"
+                                value="03"
+                              />
+                            </div>
+                            <div class="card-year">
+                              <input
+                                type="number"
+                                min="1900"
+                                max="2099"
+                                step="1"
+                                value="2024"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card cardholder-name">
+                          <label for="cardholder" class="input-cardholder"
+                            >Cardholder name</label
+                          >
+                          <input
+                            type="text"
+                            name="cardholder"
+                            id="cardholder"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="card-side-2">
+                      <form>
+                        <div class="card card-cvc">
+                          <label for="cvc" class="input-cvc">CVC/CVV</label>
+                          <input type="number" name="cvc" id="cvc" />
+                        </div>
+                      </form>
+                      <div class="card-side-2-text">
+                        The last <br />
+                        or 4 digits <br />on back<br />
+                        of the card
                       </div>
                     </div>
                   </div>
-                </form>
-              </div>
-              <div class="buy-tickets-book">
-                <div class="buy-tickets-overview">
-                  <div class="overview-title">Overview</div>
-                  <div class="overview-subtitle">Tour to Louvre</div>
-                  <div class="overview-text date">Friday, August 19</div>
-                  <div class="overview-text time">16 : 30</div>
-                  <div class="overview-text temporary">
-                    Temporary exhibition
+                  <div class="button-book-container">
+                    <button class="booking-tickets">Book</button>
                   </div>
-                </div>
-                <div class="booking-total">
-                  <div class="booking-total-basic item">
-                    <div class="booking-total-name">Basic (20 &euro;)</div>
-                    <div class="booking-total-sum">40 &euro;</div>
-                  </div>
-                  <div class="booking-total-senior item">
-                    <div class="booking-total-name">Senior (10 &euro;)</div>
-                    <div class="booking-total-sum">20 &euro;</div>
-                  </div>
-                  <div class="underline"></div>
-                  <div class="total-amount item">
-                    <div class="total-amount-title">Total:</div>
-                    <div class="total-amount-sum">60 &euro;</div>
-                  </div>
-                </div>
-                <div class="card-value-input">
-                  <div class="card-side-1"></div>
-                  <div class="card-side-2"></div>
-                </div>
-                <div class="button-book-container">
-                  <button class="booking-tickets">Book</button>
                 </div>
               </div>
             </div>
@@ -481,7 +674,7 @@
               <div class="ticket-img">
                 <img
                   class="image-ticket"
-                  src="./assets/img/tickets-img.jpg"
+                  src="./assets/img/tickets-img.webp"
                   alt="Buy tickets image"
                 />
               </div>
@@ -590,8 +783,8 @@
               </div>
             </div>
           </div>
-          <div class="parallax-container"></div>
         </section>
+        <div class="parallax-container"></div>
         <section class="contacts section" id="contacts">
           <div class="contacts-container container">
             <h2 class="title title-gold underline-title">Contacts</h2>
@@ -708,8 +901,19 @@
         <div class="underline"></div>
         <div class="copyright-container container">
           <div class="copyright-year">&copy; 2021</div>
-          <div class="copyright-rsschool">The Rolling Scopes School</div>
-          <div class="copyright-author">Tianika</div>
+          <div class="copyright-rsschool">
+            <a href="https://rs.school/" target="_blank"
+              >The Rolling Scopes School</a
+            >
+          </div>
+          <div class="copyright-author">
+            <a
+              href="https://github.com/Tianika"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Tianika</a
+            >
+          </div>
         </div>
       </footer>
     </div>

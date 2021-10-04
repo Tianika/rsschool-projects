@@ -59,6 +59,7 @@ $font22: 22px;
 $font20: 20px;
 $font18: 18px;
 $font16: 16px;
+$font12: 12px;
 
 /*-----Extendes-------*/
 %flex-row {
@@ -119,6 +120,7 @@ $font16: 16px;
 }
 .header-container {
   @extend %flex-row;
+  position: relative;
 }
 .logo-container {
 }
@@ -167,8 +169,35 @@ $font16: 16px;
     }
   }
 }
+.burger-icon {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  width: 32px;
+  height: 18px;
+  background-image: url(../assets/svg/burger/menu-burger.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: 0.5s ease;
+  transition-property: background-image;
+  &.close {
+    background-image: url(../assets/svg/burger/close-burger.svg);
+  }
+}
 
 /*-------Welcome--------*/
+
+.menu-burger {
+  display: none;
+}
+.burger-image {
+  display: none;
+}
+.social-container-burger {
+  display: none;
+}
+
 .welcome {
   margin-top: -1px;
   padding-top: 0;
@@ -459,7 +488,7 @@ $font16: 16px;
   height: 60.19%;
 }
 .player-container {
-  background-image: url(../assets/img/poster.jpg);
+  background-image: url(../assets/img/poster.webp);
   background-size: cover;
   width: 100%;
   padding: 15%;
@@ -656,16 +685,24 @@ input[type='range'] {
 }
 
 /*---booking tickets forms---*/
-.buy-tickets-container {
-  position: fixed;
+.buy-tickets-overlay {
+  position: absolute;
   top: 0;
-  z-index: 10;
-  left: calc(50% - 740px);
-  background-color: $white;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(141, 141, 141, 0.5);
   transition: left ease 1.5s;
   &.buy-tickets-hidden {
     left: -500%;
   }
+}
+.buy-tickets-container {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  left: calc(50% - 730px);
+  background-color: $white;
 }
 .buy-ticket-close {
   position: absolute;
@@ -726,6 +763,7 @@ input[type='range'] {
   margin-bottom: 20px;
   width: 100%;
   height: 45px;
+  position: relative;
 
   &::-webkit-input-placeholder {
     opacity: 1;
@@ -734,6 +772,7 @@ input[type='range'] {
   &.date {
     width: 47.5%;
     margin-right: 14px;
+
     &::-webkit-calendar-picker-indicator {
       color: transparent;
       opacity: 1;
@@ -778,12 +817,22 @@ input[type='range'] {
 select {
   -webkit-appearance: none;
   padding-right: 10px;
+  &.input-form::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: url(../assets/svg/booking/ballot.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    padding-left: 25px;
+  }
 }
 select:not([multiple]) {
   background: url(../assets/svg/booking/arrow.svg) no-repeat right;
   background-size: 20px;
   background-position: calc(100% - 15px);
 }
+
 .entry-ticket-container {
   padding: 10px 15px 15px;
   border: 1px solid $bg-dark;
@@ -952,12 +1001,63 @@ select:not([multiple]) {
   max-width: 470px;
   height: 241px;
   margin-bottom: 30px;
+  @include font($font12, normal);
+  line-height: 14px;
+  color: #161615;
 }
 .card-side-1 {
   position: absolute;
   z-index: 5;
   width: 360px;
   height: 211px;
+  border-radius: 5px;
+  padding: 15px 20px;
+  background-color: #bcbcbc;
+  background-image: url(../assets/svg/booking/card1-bg.svg);
+  background-position: Calc(100% - 20px) 34px;
+  background-repeat: no-repeat;
+}
+.card {
+  input {
+    height: 35px;
+    margin: 5px 0 10px;
+  }
+}
+.card-number {
+  input {
+    width: 215px;
+  }
+}
+.input-number {
+}
+.card-date {
+}
+.card-date-input {
+  display: flex;
+  column-gap: 15px;
+}
+.card-month {
+  input {
+    width: 100px;
+    padding-left: 10px;
+  }
+}
+.input-month {
+}
+.card-year {
+  input {
+    width: 100px;
+    padding-left: 10px;
+  }
+}
+.input-year {
+}
+.cardholder-name {
+  input {
+    width: 320px;
+  }
+}
+.input-cardholder {
 }
 .card-side-2 {
   position: absolute;
@@ -966,6 +1066,27 @@ select:not([multiple]) {
   z-index: 1;
   width: 360px;
   height: 211px;
+  border-radius: 5px;
+  background-image: url(../assets/img/booking/side-bg.jpg);
+}
+.card-cvc {
+  position: absolute;
+  bottom: 77px;
+  right: 20px;
+  width: 75px;
+  input {
+    width: 75px;
+    margin-top: 5px;
+  }
+  label {
+    padding-left: 7px;
+  }
+}
+
+.card-side-2-text {
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
 }
 .button-book-container {
   display: flex;
@@ -1261,6 +1382,13 @@ iframe.google-street {
     font-size: $font28;
     letter-spacing: 3px;
   }
+  /*tickets*/
+  .buy-tickets-container {
+    left: 0;
+  }
+  .buy-tickets-inner {
+    padding: 90px 40px;
+  }
 }
 
 /*----------1024px---------*/
@@ -1286,8 +1414,60 @@ iframe.google-street {
     padding: 50px 0;
   }
 
+  .burger-icon {
+    display: block;
+  }
+
   /*welcome*/
+
+  .burger-icon {
+  }
+
+  .opacity {
+    display: none;
+  }
+  .menu-burger {
+    position: absolute;
+    display: block;
+    background-color: $bg-dark;
+    color: $white;
+    width: 297px;
+    height: 585px;
+    z-index: 11;
+    left: 0;
+    top: 0;
+    transition: left ease 0.5s;
+    &.burger-hidden {
+      left: -300vw;
+    }
+  }
+  .burger-menu {
+    @include font($font20, 300);
+    line-height: 23px;
+    letter-spacing: 2px;
+    padding-top: 35px;
+    padding-left: 50px;
+  }
+  .burger {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+  }
+  .burger-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 122px;
+  }
+  .burger-link-arrow {
+    width: 12px;
+    height: 12px;
+    background-image: url(../assets/svg/burger/arrow-burger.svg);
+    background-position: center center;
+  }
+
   .welcome {
+    position: relative;
     &.section {
       padding-top: 0;
       padding-bottom: 0;
@@ -1456,6 +1636,10 @@ iframe.google-street {
   }
 
   /*Tickets*/
+
+  .buy-tickets-inner {
+    padding: 90px 30px;
+  }
   .tickets {
     padding-bottom: 0;
   }
@@ -1501,6 +1685,15 @@ iframe.google-street {
   .amount-total {
     margin-top: -7px;
     margin-bottom: 70px;
+  }
+  .card-cvc {
+    align-items: flex-end;
+    bottom: 67px;
+    right: -29px;
+    label {
+      padding-left: 0;
+      padding-right: 15px;
+    }
   }
   /*Contacts*/
   .contacts {
@@ -1566,6 +1759,45 @@ iframe.google-street {
   }
 
   /*welcome*/
+
+  .menu-burger {
+    width: 100%;
+    height: auto;
+  }
+  .burger-image {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    position: relative;
+    left: 55px;
+    margin-top: 55px;
+    margin-bottom: 35px;
+    width: Calc(100% - 110px);
+    background-color: $bg-dark;
+    .img1 {
+      max-width: 100%;
+      width: auto;
+    }
+    .img2 {
+      max-width: 50%;
+      width: auto;
+    }
+    .img3 {
+      max-width: 50%;
+      width: auto;
+    }
+  }
+  .burger-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $white;
+  }
+  .social-container-burger {
+    display: block;
+    margin: 30px auto;
+    width: 50%;
+  }
   .welcome-container {
     display: flex;
     flex-direction: column;
@@ -1796,6 +2028,59 @@ iframe.google-street {
   .parallax-container {
     height: 300px;
   }
+  /*-buy/tickets-*/
+  .buy-tickets-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 30px 40px;
+  }
+  .buy-tickets-container {
+    left: 11.5%;
+    right: 11.5%;
+    padding: 0;
+  }
+  .buy-tickets-form {
+    width: 100%;
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+  .buy-tickets-book {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 25px 15px;
+  }
+  .input-form.date {
+    width: 46.55%;
+    margin-right: 25px;
+  }
+  .booking-subtitle {
+    margin-bottom: 50px;
+  }
+  .overview-text {
+    &.date:before {
+      margin-right: 15px;
+    }
+  }
+  .total-amount {
+    padding-bottom: 15px;
+  }
+  .card-value-input {
+    max-width: 100%;
+    margin-bottom: 23px;
+  }
+  .card-side-2 {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .card-cvc {
+    display: flex;
+    flex-direction: column;
+    bottom: 60px;
+    right: 9px;
+  }
 
   /*Contacts*/
   .contacts {
@@ -1878,6 +2163,36 @@ iframe.google-street {
   }
 
   /*welcome*/
+  .burger-image {
+    flex-wrap: nowrap;
+    column-gap: 12px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    .img1 {
+      max-width: 33%;
+      width: auto;
+      order: 2;
+      width: 95px;
+      height: 95px;
+      object-fit: cover;
+    }
+    .img2 {
+      max-width: 33%;
+      width: auto;
+      order: 1;
+      object-fit: cover;
+    }
+    .img3 {
+      max-width: 33%;
+      width: auto;
+      order: 3;
+      object-fit: cover;
+    }
+  }
+  .social-container-burger {
+    margin: 24px auto;
+    width: 62%;
+  }
   .welcome-container {
     min-height: 540px;
   }
@@ -2063,6 +2378,75 @@ iframe.google-street {
   .button-buy {
     font-size: 16px;
   }
+  /*-buy/tickets-*/
+  .buy-tickets-inner {
+    padding: 80px 30px 50px;
+  }
+  .buy-tickets-container {
+    left: 0;
+    right: 0;
+  }
+  .buy-tickets-form {
+    height: auto;
+    margin-bottom: 48px;
+  }
+  .buy-tickets-book {
+    padding: 0;
+  }
+  .input-form {
+    &.date {
+      width: 100%;
+      margin-right: 0;
+    }
+    &.time {
+      width: 100%;
+    }
+  }
+  .booking-title {
+    font-size: $font32;
+    line-height: 35px;
+  }
+  .booking-subtitle {
+    margin-bottom: 50px;
+  }
+  .buy-tickets-book {
+    padding: 25px 15px;
+  }
+  .entry-ticket-title {
+    margin-bottom: 23px;
+  }
+  .buy-tickets-overview {
+    background-size: 120px 96px;
+  }
+  .card-value-input {
+    height: 443px;
+    width: 100%;
+    padding: 0;
+  }
+  .card-side-1 {
+    width: 100%;
+  }
+  .card-side-2 {
+    width: 100%;
+  }
+  .cardholder-name {
+    input {
+      width: 290px;
+    }
+  }
+  .card-cvc {
+    align-items: flex-end;
+    bottom: 56px;
+    right: 19px;
+    label {
+      padding-left: 0;
+      padding-right: 15px;
+    }
+  }
+  .card-value-input {
+    margin-bottom: 43px;
+  }
+
   /*Contacts*/
   .contacts-title {
     font-size: $font16;
@@ -2092,6 +2476,8 @@ iframe.google-street {
   }
   .footer-container {
     height: auto;
+    width: 100%;
+    max-width: 100%;
   }
   .menu-footer {
     flex-direction: column;
@@ -2101,12 +2487,15 @@ iframe.google-street {
   .footer-menu {
     padding-left: 0;
     padding-bottom: 40px;
+    width: 380px;
+    height: 68px;
     .menu {
+      display: flex;
+      flex-wrap: wrap;
+      column-count: 3;
       max-width: 380px;
       max-height: 68px;
-      column-count: 3;
-      column-gap: 95px;
-      padding-top: 10px;
+
       li {
         font-size: $font16;
         line-height: 19px;
