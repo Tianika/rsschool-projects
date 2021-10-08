@@ -453,40 +453,7 @@ $font12: 12px;
     color: $gold;
   }
 }
-// .explore-slider-container {
-//   position: relative;
-//   display: flex;
-//   z-index: 1;
-//   margin-top: 12px;
-//   width: 720px;
-//   height: 700px;
-//   overflow: hidden;
-//   .explore-image {
-//     position: absolute;
-//     display: block;
-//     overflow: hidden;
-//     .explore-img-before {
-//       display: block;
-//     }
-//     .explore-img-after {
-//       display: block;
-//     }
-//   }
-//   .explore-slider {
-//     position: absolute;
-//     cursor: ew-resize;
-//     left: 58%;
-//     top: 0;
-//     bottom: 0;
-//     width: 100%;
-//     z-index: 9;
-//     background-image: url(../assets/svg/explore-slider.svg);
-//     background-size: contain;
-//     background-repeat: no-repeat;
-//   }
-// }
-
-.slider {
+.explore-slider {
   width: 50%;
   height: 720px;
   display: flex;
@@ -495,31 +462,21 @@ $font12: 12px;
   background-size: 720px;
   position: relative;
 }
-.slider input {
+.explore-slider input {
   -webkit-appearance: none;
   width: 100%;
   z-index: 10;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
+  padding: 0;
+  background: url(../assets/svg/explore-slider.svg) no-repeat;
+  background-position: 58%;
+  box-sizing: content-box;
 }
-.slider input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 10px;
+.explore-slider input::-webkit-slider-thumb {
+  width: 1px;
   height: 720px;
-  background: none;
+  opacity: 0;
   cursor: ew-resize;
 }
-
-// .slider-input-thumb {
-//   position: absolute;
-//   left: 58%;
-//   width: 40px;
-//   height: 720px;
-//   z-index: 11;
-//   background: url(../assets/svg/explore-slider.svg) no-repeat;
-//   background-size: contain;
-// }
 
 .original-image {
   position: absolute;
@@ -651,24 +608,28 @@ input[type='range'] {
   }
 }
 .container-video {
+  position: relative;
   padding: 40px 0;
   overflow: hidden;
 }
 .video-slider-inner {
+  position: relative;
   @extend %flex-row;
-  column-gap: 40px;
-  display: flex;
+  justify-content: start;
   flex-wrap: nowrap;
+  left: -34.33%;
+  width: 100%;
+  margin: 0 -40px;
 }
+
+$x: 0%;
 .video-item {
-  width: 33%;
+  padding-left: 40px;
+  min-width: 34%;
   height: 254px;
+  transform: translateX($x);
 }
-//TODO delete sign youtube
-.html5-video-player svg {
-  display: none;
-  pointer-events: none;
-}
+
 .video-bullets {
   @extend %flex-row;
   margin: 0 auto;
@@ -685,7 +646,7 @@ input[type='range'] {
   &.left {
     -webkit-mask-image: url('../assets/svg/video-slider/arrow-left.png');
   }
-  &.rigth {
+  &.right {
     -webkit-mask-image: url('../assets/svg/video-slider/arrow-right.png');
   }
   &:hover {
@@ -1649,9 +1610,13 @@ iframe.google-street {
     font-size: $font20;
     padding-bottom: 0;
   }
-  .explore-slider-container {
+  .explore-slider {
     align-self: center;
     margin-top: 62px;
+    &input {
+      width: 100%;
+      align-self: center;
+    }
   }
   /*video*/
   .video-container {
@@ -1697,6 +1662,7 @@ iframe.google-street {
     }
   }
   .video-item {
+    min-width: 35%;
     height: 170px;
   }
   /*Gallery*/
@@ -2041,7 +2007,7 @@ iframe.google-street {
     }
   }
   .video-item {
-    width: 50%;
+    min-width: 52%;
     height: 199px;
   }
 
@@ -2389,7 +2355,7 @@ iframe.google-street {
     padding-top: 40px;
   }
   .video-item {
-    width: 47%;
+    min-width: 53%;
     height: 101px;
   }
   .video-bullets {
