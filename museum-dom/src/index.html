@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -20,8 +19,14 @@
       href="./assets/favicon.ico"
       type="image/svg+xml"
     />
+
     <link rel="stylesheet" href="./styles/normalize.css" />
     <link rel="stylesheet" href="./style.css" />
+    <!-- <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css"
+      rel="stylesheet"
+    /> -->
   </head>
   <body>
     <div class="wrapper">
@@ -209,11 +214,11 @@
                   <div class="slider-all">05</div>
                 </div>
                 <div class="slider-index">
-                  <div class="index-square current"></div>
-                  <div class="index-square"></div>
-                  <div class="index-square"></div>
-                  <div class="index-square"></div>
-                  <div class="index-square"></div>
+                  <div class="index-square index1 current"></div>
+                  <div class="index-square index2"></div>
+                  <div class="index-square index3"></div>
+                  <div class="index-square index4"></div>
+                  <div class="index-square index5"></div>
                 </div>
                 <div class="slider-arrows">
                   <button class="slider-arrow left"></button>
@@ -332,10 +337,10 @@
                 had been damaged in any way, but because it looked different.
               </p>
             </div>
-            <div class="explore-slider-container">
+            <!-- <div class="explore-slider-container">
               <div class="explore-image">
                 <img
-                  class="explore-img-before"
+                  class="explore-img"
                   src="./assets/img/explore-slider/before.jpg"
                   alt="Las Meninas Picture before"
                 />
@@ -343,11 +348,16 @@
               <div class="explore-slider"></div>
               <div class="explore-image explore-image-overlay">
                 <img
-                  class="explore-img-after"
+                  class="explore-img"
                   src="./assets/img/explore-slider/after.jpg"
                   alt="Las Meninas Picture after"
                 />
               </div>
+            </div> -->
+            <div class="slider">
+              <div class="original-image"></div>
+              <input type="range" value="58" max="100" />
+              <!-- <div class="slider-input-thumb"></div> -->
             </div>
           </div>
         </section>
@@ -808,7 +818,17 @@
                   >
                 </div>
               </div>
-              <img class="contacts-map" src="./assets/img/map.png" alt="map" />
+              <div class="contacts-map">
+                <iframe
+                  width="960px"
+                  height="620px"
+                  src="https://api.mapbox.com/styles/v1/tianika/ckugwtx9d94du18s0ui967ry6.html?title=false&access_token=pk.eyJ1IjoidGlhbmlrYSIsImEiOiJja3VnbmcycWUwdHRvMnZxZW9ibjAwM25mIn0.r_lAs0sJV68MyDoZQxd3wg&zoomwheel=false#15.84/48.861261/2.337144"
+                  title="Monochrome"
+                  style="border: none"
+                ></iframe>
+              </div>
+              <!-- <div class="contacts-map" id="map"></div> -->
+              <!-- <img class="contacts-map" src="./assets/img/map.png" alt="map" /> -->
             </div>
           </div>
         </section>

@@ -102,6 +102,8 @@ const welcomeSlides = [
 const left = document.querySelector('.slider-arrow.left')
 const right = document.querySelector('.slider-arrow.right')
 const current = document.querySelector('.slider-current')
+const bullets = document.querySelectorAll('.index-square')
+console.log(bullets)
 
 let currentSlide = 0
 let offset = 0
@@ -127,7 +129,7 @@ function changeSlideNumber(direction) {
   }
 }
 
-function addSlide() {
+function addImg() {
   const element = document.createElement('img')
 
   element.src = welcomeSlides[currentSlide]
@@ -136,7 +138,7 @@ function addSlide() {
 }
 
 function addNextSlide() {
-  let slide = addSlide()
+  let slide = addImg()
   current.innerHTML = `0${currentSlide + 1}`
 
   const imgContainer = document.querySelector('.slider-img-container')
@@ -145,7 +147,7 @@ function addNextSlide() {
 }
 
 function addPreviousSlide() {
-  let slide = addSlide()
+  let slide = addImg()
   current.innerHTML = `0${currentSlide + 1}`
 
   const imgContainer = document.querySelector('.slider-img-container')
@@ -183,14 +185,22 @@ function rightMove() {
   }, 1000)
 }
 
+function addCurrent() {
+  bullets.forEach((bullet) => {
+    bullet.classList.remove('current')
+  })
+  bullets[currentSlide].classList.add('current')
+}
+
 addNextSlide()
 
-left.addEventListener('click', (e) => {
+right.addEventListener('click', (e) => {
   e.preventDefault()
-  changeSlideNumber('left')
-  console.log('left')
 
   if (!isAnimation) {
+    changeSlideNumber('left')
+    addCurrent()
+    console.log('left')
     addNextSlide()
     isAnimation = true
 
@@ -200,12 +210,13 @@ left.addEventListener('click', (e) => {
   }
 })
 
-right.addEventListener('click', (e) => {
+left.addEventListener('click', (e) => {
   e.preventDefault()
-  changeSlideNumber('right')
-  console.log('right')
 
   if (!isAnimation) {
+    changeSlideNumber('right')
+    addCurrent()
+    console.log('right')
     addPreviousSlide()
     isAnimation = true
 
@@ -214,3 +225,67 @@ right.addEventListener('click', (e) => {
     }, 0)
   }
 })
+
+console.log(bullets)
+
+bullets.forEach((bullet) => {
+  bullet.addEventListener('click', (e, index, bullets) => {
+    e.preventDefault()
+    console.log(e.target)
+
+    i = e.target.index
+    if (i < currentSlide) {
+    }
+    if (i > currentSlide) {
+    }
+    //currentSlide = e.target.index
+  })
+})
+
+//explore
+
+let sliderInput = document.querySelector('.slider input')
+let sliderImage = document.querySelector('.original-image')
+
+sliderInput.addEventListener('input', function () {
+  sliderImage.style.width = this.value + '%'
+})
+
+//map
+// mapboxgl.accessToken =
+//   'pk.eyJ1IjoidGlhbmlrYSIsImEiOiJja3VnbmcycWUwdHRvMnZxZW9ibjAwM25mIn0.r_lAs0sJV68MyDoZQxd3wg'
+
+// const map = new mapboxgl.Map({
+//   container: 'map',
+//   style: 'mapbox://styles/mapbox/light-v10',
+//   center: [2.3364, , 48.86091],
+//   zoom: 10,
+// })
+
+// const geojson = {
+//   type: 'FeatureCollection',
+//   features: [
+//     {
+//       type: 'Feature',
+//       geometry: {
+//         type: 'Point',
+//         coordinates: [2.3333, 48.8602],
+//       },
+//       properties: {
+//         title: 'Mapbox',
+//         description: 'Greek hall',
+//       },
+//     },
+//     {
+//       type: 'Feature',
+//       geometry: {
+//         type: 'Point',
+//         coordinates: [2.3397, 48.8607],
+//       },
+//       properties: {
+//         title: 'Mapbox',
+//         description: 'Royal Palace',
+//       },
+//     },
+//   ],
+// }
