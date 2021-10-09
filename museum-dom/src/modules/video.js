@@ -1,32 +1,41 @@
-export function videoProgress() {
-  const progress = document.querySelectorAll('.progress')
+// export function videoProgress() {
+//   const progress = document.querySelectorAll('.progress')
 
-  progress.forEach((item) => {
-    item.addEventListener('input', function () {
-      const value = this.value
-      this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, #C4C4C4 100%)`
-    })
-  })
-}
+//   progress.forEach((item) => {
+//     item.addEventListener('input', function () {
+//       const value = this.value
+//       this.style.background = `linear-gradient(to right, #710707 0, #710707 ${value}, #C4C4C4 ${value}, #C4C4C4 1)`
+//     })
+//   })
+// }
 
 export function videoSlider() {
   const videoLinks = [
-    'https://www.youtube.com/embed/zp1BXPX8jcU?controls=1',
-    'https://www.youtube.com/embed/Vi5D6FKhRmo?controls=1',
-    'https://www.youtube.com/embed/NOhDysLnTvY?controls=1',
-    'https://www.youtube.com/embed/aWmJ5DgyWPI?controls=1',
-    'https://www.youtube.com/embed/2OR0OCr6uRE?controls=1',
+    './assets/video/video0.mp4',
+    './assets/video/video1.mp4',
+    './assets/video/video2.mp4',
+    './assets/video/video3.mp4',
+    './assets/video/video4.mp4',
+  ]
+
+  const posters = [
+    './assets/video/poster0.jpg',
+    './assets/video/poster1.jpg',
+    './assets/video/poster2.jpg',
+    './assets/video/poster3.jpg',
+    './assets/video/poster4.jpg',
   ]
 
   const left = document.querySelector('.video-arrow.left')
   const right = document.querySelector('.video-arrow.right')
-  const current = document.querySelector('.video-bullet.current')
+  //const current = document.querySelector('.video-bullet.current')
   const bullets = document.querySelectorAll('.video-bullet')
   const videos = document.querySelectorAll('.video-item')
   let sliderInner = document.querySelector('.video-slider-inner')
+  const player = document.querySelector('.player-video')
 
-  let width = sliderInner.getAttribute('left')
-  console.log(sliderInner)
+  // let width = sliderInner.getAttribute('left')
+  // console.log(sliderInner)
 
   let v = 0
   videos.forEach((video) => {
@@ -39,7 +48,7 @@ export function videoSlider() {
 
   function changeSlideNumber(direction) {
     if (direction === 'left') {
-      if (currentSlide + 1 === videoLinks.length) {
+      if (currentSlide + 1 === videos.length) {
         currentSlide = 0
       } else {
         currentSlide++
@@ -47,7 +56,7 @@ export function videoSlider() {
     }
     if (direction === 'right') {
       if (currentSlide - 1 === -1) {
-        currentSlide = videoLinks.length - 1
+        currentSlide = videos.length - 1
       } else {
         currentSlide--
       }
@@ -106,11 +115,18 @@ export function videoSlider() {
     bullets[currentSlide].classList.add('current')
   }
 
+  function changeVideo() {
+    player.setAttribute('src', videoLinks[currentSlide])
+    player.setAttribute('poster', posters[currentSlide])
+  }
+
   left.addEventListener('click', () => {
     if (!isAnimation) {
       isAnimation = true
+      stopVideo()
       changeSlideNumber('left')
       addCurrent()
+      changeVideo()
       leftMove()
     }
   })
@@ -118,15 +134,158 @@ export function videoSlider() {
   right.addEventListener('click', () => {
     if (!isAnimation) {
       isAnimation = true
+      stopVideo()
       changeSlideNumber('right')
       addCurrent()
+      changeVideo()
       rightMove()
     }
   })
 
-  bullets.forEach((bullet) => {
-    bullet.addEventListener('click', () => {
-      bullet.classList.toggle('current')
-    })
+  // bullets.forEach((bullet) => {
+  //   bullet.addEventListener('click', () => {
+  //     bullet.classList.toggle('current')
+  //   })
+  // })
+
+  //player
+  const playBtn = document.querySelector('.play-screen')
+  const play = document.querySelector('.player-button.play')
+  const volume = document.querySelector('.player-button.volume')
+  const volumeControl = document.querySelector('.progress.vol-progress')
+  const videoControl = document.querySelector('.progress.video-progress')
+  const fullscreen = document.querySelector('.player-button.fullscreen')
+  const fullscreenPanel = document.querySelector('.video-control-panel')
+
+  function playVideo() {
+    if (player.paused) {
+      player.play()
+      play.classList.toggle('play')
+      play.classList.toggle('pause')
+      playBtn.style.display = 'none'
+    } else {
+      player.pause()
+      play.classList.toggle('play')
+      play.classList.toggle('pause')
+      playBtn.style.display = 'block'
+    }
+  }
+
+  function stopVideo() {
+    if (!player.paused) {
+      play.classList.add('play')
+      play.classList.remove('pause')
+      playBtn.style.display = 'block'
+    }
+  }
+
+  function playerFullscreen() {
+    fullscreen.classList.toggle('fullscreen')
+    fullscreen.classList.toggle('fullscreen-exit')
+    //fullscreenPanel.classList.toggle('fullscreen-video')
+    if (player.requestFullscreen()) {
+      player.requestFullscreen()
+    } else if (player.exitFullscreen()) {
+      player.exitFullscreen()
+    }
+  }
+
+  function muteVolume() {
+    let vol = volumeControl.value
+
+    console.log(vol, player)
+    volume.classList.toggle('volume')
+    volume.classList.toggle('mute')
+    if (player.volume) {
+      player.volume = 0
+    } else {
+      player.volume = vol
+    }
+  }
+
+  playBtn.addEventListener('click', () => {
+    playVideo()
   })
+
+  play.addEventListener('click', () => {
+    playVideo()
+  })
+
+  player.addEventListener('click', () => {
+    playVideo()
+  })
+
+  volume.addEventListener('click', () => {
+    muteVolume()
+  })
+
+  volumeControl.addEventListener('input', function () {
+    player.volume = volumeControl.value
+    const value = volumeControl.value
+
+    volumeControl.style.background = `linear-gradient(90deg, #710707 0%, #710707 ${
+      value * 100
+    }%, #C4C4C4 ${value * 100}%, #C4C4C4 100%)`
+
+    if (volumeControl.value === '0') {
+      volume.classList.remove('volume')
+      volume.classList.add('mute')
+    } else {
+      volume.classList.add('volume')
+      volume.classList.remove('mute')
+    }
+  })
+
+  function changeDuratiion(time) {
+    videoControl.style.background = `linear-gradient(90deg, #710707 0%, #710707 ${time}%, #C4C4C4 ${time}%, #C4C4C4 100%)`
+  }
+
+  player.addEventListener('timeupdate', () => {
+    const time = (player.currentTime / player.duration) * 100
+    changeDuratiion(time)
+  })
+
+  videoControl.addEventListener('input', () => {
+    const time = (videoControl.value * player.duration) / 100
+    player.currentTime = time
+  })
+
+  player.addEventListener('ended', () => {
+    player.currentTime = 0
+    play.classList.add('play')
+    play.classList.remove('pause')
+    playBtn.style.display = 'block'
+  })
+
+  fullscreen.addEventListener('click', () => {
+    playerFullscreen()
+  })
+
+  document.onkeydown = function (event) {
+    console.log(event)
+
+    if (event.code === 'Space') {
+      playVideo()
+    }
+
+    if (event.code === 'KeyM') {
+      muteVolume()
+    }
+    if (event.code === 'KeyF') {
+      playerFullscreen()
+    }
+    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+      document.onkeyup = function (event) {
+        if (event.code === 'Comma') {
+          player.playbackRate -= 0.1
+          player.innerText = player.playbackRate
+          console.log(player.playbackRate)
+        }
+        if (event.code === 'Period') {
+          player.playbackRate += 0.1
+          console.log(player.playbackRate)
+        }
+      }
+    }
+  }
 }

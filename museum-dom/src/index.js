@@ -1,12 +1,12 @@
 import './styles/style.scss'
-import { videoProgress, videoSlider } from './modules/video.js'
+import { videoSlider } from './modules/video.js'
 import { randomImage } from './modules/gallery.js'
 import { openForm } from './modules/tickets.js'
 import { burgerMenu } from './modules/burger.js'
 import { welcomeSlider } from './modules/welcome.js'
 import { exploreSlider } from './modules/explore.js'
 
-videoProgress()
+//videoProgress()
 videoSlider()
 randomImage()
 openForm()
