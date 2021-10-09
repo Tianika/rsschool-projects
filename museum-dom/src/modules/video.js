@@ -18,16 +18,23 @@ export function videoSlider() {
     'https://www.youtube.com/embed/2OR0OCr6uRE?controls=1',
   ]
 
-  const videoOrder = []
-
   const left = document.querySelector('.video-arrow.left')
   const right = document.querySelector('.video-arrow.right')
   const current = document.querySelector('.video-bullet.current')
   const bullets = document.querySelectorAll('.video-bullet')
-  //const videos = document.querySelectorAll('.video-item')
+  const videos = document.querySelectorAll('.video-item')
+  let sliderInner = document.querySelector('.video-slider-inner')
+
+  let width = sliderInner.getAttribute('left')
+  console.log(sliderInner)
+
+  let v = 0
+  videos.forEach((video) => {
+    video.style.left = `${v * 34.33}%`
+    v++
+  })
 
   let currentSlide = 0
-  let offset = 0
   let isAnimation = false
 
   function changeSlideNumber(direction) {
@@ -37,7 +44,6 @@ export function videoSlider() {
       } else {
         currentSlide++
       }
-      offset = 1
     }
     if (direction === 'right') {
       if (currentSlide - 1 === -1) {
@@ -45,42 +51,82 @@ export function videoSlider() {
       } else {
         currentSlide--
       }
-      offset = -1
     }
   }
 
-  function swapeLeft(video, i) {
-    video.style.transform = `translateX${i * 100}%`
+  function leftMove() {
+    let videos = document.querySelectorAll('.video-item')
+    let slider = document.querySelector('.video-slider-inner')
+
+    let offsetTemp = 0
+
+    videos.forEach((video) => {
+      video.style.left = `${offsetTemp * 34.33 - 34.33}%`
+      offsetTemp++
+    })
+
+    let temp = videos[0]
+    temp.style.opacity = 0
+    temp.style.left = `${offsetTemp * 34.33 - 34.33}%`
+
+    setTimeout(() => {
+      slider.append(temp)
+      temp.style.opacity = 1
+      isAnimation = false
+    }, 1000)
   }
 
-  function swapeRight(video, i) {
-    video.style.left = `translateX${i * 100}%`
+  function rightMove() {
+    let videos = document.querySelectorAll('.video-item')
+    let slider = document.querySelector('.video-slider-inner')
+
+    let offsetTemp = 0
+
+    videos.forEach((video) => {
+      video.style.left = `${offsetTemp * 34.33 + 34.33}%`
+      offsetTemp++
+    })
+
+    let temp = videos[videos.length - 1]
+    temp.style.opacity = 0
+    temp.style.left = `0%`
+
+    slider.prepend(temp)
+
+    setTimeout(() => {
+      temp.style.opacity = 1
+      isAnimation = false
+    }, 1000)
   }
 
-  function swape(direction) {
-    if (direction === 'left') {
-      const videos = document.querySelectorAll('.video-item')
-      videos.forEach((video, index) => {
-        console.log(video, index)
-        swapeLeft(video, index)
-      })
-    }
-    if (direction === 'right') {
-      const videos = document.querySelectorAll('.video-item')
-      videos.forEach((video, index) => {
-        console.log(video, index)
-        swapeRight(video, index)
-      })
-    }
+  function addCurrent() {
+    bullets.forEach((bullet) => {
+      bullet.classList.remove('current')
+    })
+    bullets[currentSlide].classList.add('current')
   }
 
   left.addEventListener('click', () => {
-    console.log('left')
-    swape('left')
+    if (!isAnimation) {
+      isAnimation = true
+      changeSlideNumber('left')
+      addCurrent()
+      leftMove()
+    }
   })
 
   right.addEventListener('click', () => {
-    console.log('right')
-    swape('right')
+    if (!isAnimation) {
+      isAnimation = true
+      changeSlideNumber('right')
+      addCurrent()
+      rightMove()
+    }
+  })
+
+  bullets.forEach((bullet) => {
+    bullet.addEventListener('click', () => {
+      bullet.classList.toggle('current')
+    })
   })
 }
