@@ -25,6 +25,44 @@ export function randomImage() {
     const img = document.createElement('img')
     img.src = `${image}`
     img.alt = `galery image`
+    img.classList.add('animated')
     pictureInnerContainer.append(img)
   })
+}
+
+export function animationScroll() {
+  const animatedItems = document.querySelectorAll('.animated')
+
+  if (animatedItems.length > 0) {
+    window.addEventListener('scroll', animatedScroll)
+
+    function animatedScroll() {
+      animatedItems.forEach((item) => {
+        const itemHeight = item.offsetHeight
+        const itemOffset = offset(item).top
+        const start = 10
+
+        let point = window.innerHeight - itemHeight / start
+
+        if (itemHeight > window.innerHeight) {
+          point = window.innerHeight - window.innerHeight / start
+        }
+
+        if (pageYOffset > itemOffset - point) {
+          item.classList.add('active')
+        } else {
+          item.classList.remove('active')
+        }
+      })
+    }
+
+    function offset(item) {
+      const rect = item.getBoundingClientRect()
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+      return { top: rect.top + scrollTop }
+    }
+
+    animatedScroll()
+  }
 }
