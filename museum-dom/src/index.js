@@ -1,7 +1,7 @@
 import './styles/style.scss'
 import { videoSlider } from './modules/video.js'
 import { randomImage, animationScroll } from './modules/gallery.js'
-import { openForm } from './modules/tickets.js'
+import { openForm, calculateAmount, validationForm } from './modules/tickets.js'
 import { burgerMenu } from './modules/burger.js'
 import { welcomeSlider } from './modules/welcome.js'
 import { exploreSlider } from './modules/explore.js'
@@ -11,6 +11,8 @@ videoSlider()
 randomImage()
 animationScroll()
 openForm()
+validationForm()
+calculateAmount()
 burgerMenu()
 welcomeSlider()
 exploreSlider()

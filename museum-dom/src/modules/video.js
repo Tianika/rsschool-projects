@@ -1,14 +1,3 @@
-// export function videoProgress() {
-//   const progress = document.querySelectorAll('.progress')
-
-//   progress.forEach((item) => {
-//     item.addEventListener('input', function () {
-//       const value = this.value
-//       this.style.background = `linear-gradient(to right, #710707 0, #710707 ${value}, #C4C4C4 ${value}, #C4C4C4 1)`
-//     })
-//   })
-// }
-
 export function videoSlider() {
   const videoLinks = [
     './assets/video/video0.mp4',
@@ -149,6 +138,7 @@ export function videoSlider() {
   // })
 
   //player
+
   const playBtn = document.querySelector('.play-screen')
   const play = document.querySelector('.player-button.play')
   const volume = document.querySelector('.player-button.volume')
@@ -262,8 +252,6 @@ export function videoSlider() {
   })
 
   document.onkeydown = function (event) {
-    console.log(event)
-
     if (event.code === 'Space') {
       playVideo()
     }
