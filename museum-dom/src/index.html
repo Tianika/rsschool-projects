@@ -456,7 +456,7 @@
           </div>
         </section>
         <section class="tickets section" id="tickets">
-          <div class="buy-tickets-overlay buy-tickets-hidden">
+          <div class="buy-tickets-overlay _buy-tickets-hidden">
             <div class="buy-tickets-container">
               <div class="buy-tickets-inner container">
                 <div class="buy-ticket-close"></div>
@@ -474,13 +474,16 @@
                       type="date"
                       name="date"
                       id="date"
+                      placeholder="Date"
                     />
                     <input
                       class="input-form time"
                       type="time"
                       name="time"
                       id="time"
+                      placeholder="Time"
                     />
+
                     <input
                       class="input-form text"
                       type="text"
@@ -510,13 +513,13 @@
                       <option class="select-ticket-type" disabled selected>
                         Ticket Type
                       </option>
-                      <option class="select-ticket-type" value="permanent">
+                      <option class="select-ticket-type" value="1">
                         Permanent exhibition
                       </option>
-                      <option class="select-ticket-type" value="temporary">
+                      <option class="select-ticket-type" value="2">
                         Temporary exhibition
                       </option>
-                      <option class="select-ticket-type" value="combined">
+                      <option class="select-ticket-type" value="3">
                         Combined Admission
                       </option>
                     </select>
@@ -525,8 +528,10 @@
                         Entry ticket
                       </h4>
                       <div class="entry-ticket-number">
-                        <div class="ticket-name">Basic 18+ (20 &euro;)</div>
-                        <div class="button-number">
+                        <div class="ticket-name basic">
+                          Basic 18+ (<span>20</span> &euro;)
+                        </div>
+                        <div class="button-number basic">
                           <button
                             class="button"
                             type="button"
@@ -552,8 +557,10 @@
                         </div>
                       </div>
                       <div class="entry-ticket-number">
-                        <div class="ticket-name">Senior 65+ (10 &euro;)</div>
-                        <div class="button-number">
+                        <div class="ticket-name senior">
+                          Senior 65+ (<span>10</span> &euro;)
+                        </div>
+                        <div class="button-number senior">
                           <button
                             class="button"
                             type="button"
@@ -593,17 +600,27 @@
                   </div>
                   <div class="booking-total">
                     <div class="booking-total-basic item">
-                      <div class="booking-total-name">Basic (20 &euro;)</div>
-                      <div class="booking-total-sum">40 &euro;</div>
+                      <div class="booking-total-name basic">
+                        <div class="ticket-count">2</div>
+                        Basic (<span>20</span> &euro;)
+                      </div>
+                      <div class="booking-total-sum">
+                        <span>40</span> &euro;
+                      </div>
                     </div>
                     <div class="booking-total-senior item">
-                      <div class="booking-total-name">Senior (10 &euro;)</div>
-                      <div class="booking-total-sum">20 &euro;</div>
+                      <div class="booking-total-name senior">
+                        <div class="ticket-count">2</div>
+                        Senior (<span>10</span> &euro;)
+                      </div>
+                      <div class="booking-total-sum">
+                        <span>20</span> &euro;
+                      </div>
                     </div>
                     <div class="underline"></div>
                     <div class="total-amount item">
                       <div class="total-amount-title">Total:</div>
-                      <div class="total-amount-sum">60 &euro;</div>
+                      <div class="total-amount-sum"><span>60</span> &euro;</div>
                     </div>
                   </div>
                   <div class="card-value-input">
