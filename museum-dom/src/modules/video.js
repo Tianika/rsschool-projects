@@ -251,27 +251,38 @@ export function videoSlider() {
     playerFullscreen()
   })
 
-  document.onkeydown = function (event) {
-    if (event.code === 'Space') {
-      playVideo()
-    }
+  const playback = document.querySelector('.playback-rate')
 
-    if (event.code === 'KeyM') {
-      muteVolume()
-    }
-    if (event.code === 'KeyF') {
-      playerFullscreen()
-    }
-    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-      document.onkeyup = function (event) {
-        if (event.code === 'Comma') {
-          player.playbackRate -= 0.1
-          player.innerText = player.playbackRate
-          console.log(player.playbackRate)
-        }
-        if (event.code === 'Period') {
-          player.playbackRate += 0.1
-          console.log(player.playbackRate)
+  player.addEventListener('mouseover', hotButtons)
+
+  function hotButtons() {
+    document.onkeydown = function (event) {
+      if (event.code === 'Space') {
+        playVideo()
+      }
+
+      if (event.code === 'KeyM') {
+        muteVolume()
+      }
+      if (event.code === 'KeyF') {
+        playerFullscreen()
+      }
+      if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+        document.onkeyup = function (event) {
+          if (event.code === 'Comma') {
+            player.playbackRate -= 0.1
+            playback.innerHTML = `${player.playbackRate.toFixed(1)}x`
+            setTimeout(() => {
+              playback.innerHTML = ''
+            }, 500)
+          }
+          if (event.code === 'Period') {
+            player.playbackRate += 0.1
+            playback.innerHTML = `${player.playbackRate.toFixed(1)}x`
+            setTimeout(() => {
+              playback.innerHTML = ''
+            }, 500)
+          }
         }
       }
     }

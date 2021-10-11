@@ -103,6 +103,7 @@ export function calcAmountBooking() {
   const seniorValue = document.querySelector('.button-number.senior .number')
 
   const dateInput = document.querySelector('.input-form.date')
+  const timeInputs = document.querySelectorAll('#select-time option')
   const dateText = document.querySelector('.overview-text.date')
 
   const amounts = document.querySelectorAll('.booking-total-sum span')
@@ -215,15 +216,6 @@ export function calcAmountBooking() {
   dateInput.addEventListener('input', () => {
     addDate()
   })
-
-  // typeTicketCheck.forEach((type) => {
-  //   type.removeAttribute('selected')
-  //   type.addEventListener('input', () => {
-  //     type.setAttribute('selected', 'selected')
-  //     typeTicket = type.value
-  //     setPrice(typeTicket)
-  //   })
-  // })
 }
 
 //validation
@@ -234,6 +226,10 @@ export function validationForm() {
   const name = document.querySelector('.input-form.text')
   const email = document.querySelector('.input-form.email')
   const phone = document.querySelector('.input-form.tel')
+
+  const warnName = document.querySelector('.warning.name')
+  const warnEmail = document.querySelector('.warning.email')
+  const warnPhone = document.querySelector('.warning.tel')
 
   const now = new Date()
   const year = now.getFullYear()
@@ -247,23 +243,24 @@ export function validationForm() {
       name.value.length >= 3 && name.value.length <= 15 ? true : false
     const notLetters =
       name.value.replace(/[a-zA-Zа-яА-ЯёЁ\s]+/g, '').length === 0 ? true : false
-    console.log(notLetters)
 
-    if (nameLength && notLetters) {
+    if ((nameLength && notLetters) || name.value == 0) {
       name.classList.remove('invalid')
+      warnName.innerHTML = ''
     } else {
-      console.log('Need only letters')
+      warnName.innerHTML = 'Name must contain only letters and space'
       name.classList.add('invalid')
     }
   }
 
   function validEmail() {
-    const mail = /^[a-zA-Z-.]+@[a-z]+\.[a-z]{2,3}$/.test(email.value)
+    const mail = /^[a-zA-Z-.0-9]+@[a-z]+\.[a-z]{2,3}$/.test(email.value)
 
     if (mail || email.value == 0) {
       email.classList.remove('invalid')
+      warnEmail.innerHTML = ''
     } else {
-      console.log('Need correct email')
+      warnEmail.innerHTML = 'Email must be of the xxxx@xxx.xx format'
       email.classList.add('invalid')
     }
   }
@@ -273,11 +270,16 @@ export function validationForm() {
       phone.value
     )
 
-    if (!number || phone.value.match(/[0-9]/g).length > 10) {
-      console.log('Need correct phone number')
-      phone.classList.add('invalid')
-    } else {
+    if (
+      (number && phone.value.match(/[0-9]/g).length < 10) ||
+      phone.value.length == 0
+    ) {
       phone.classList.remove('invalid')
+      warnPhone.innerHTML = ''
+    } else {
+      phone.classList.add('invalid')
+      warnPhone.innerHTML =
+        'Need correct phone number of the 123-45-67-89 format'
     }
   }
 

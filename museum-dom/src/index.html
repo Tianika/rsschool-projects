@@ -353,6 +353,7 @@
           </div>
           <div class="video-player container">
             <div class="player-container">
+              <div class="playback-rate"></div>
               <video
                 class="player-video"
                 width="1440"
@@ -456,7 +457,7 @@
           </div>
         </section>
         <section class="tickets section" id="tickets">
-          <div class="buy-tickets-overlay _buy-tickets-hidden">
+          <div class="buy-tickets-overlay buy-tickets-hidden">
             <div class="buy-tickets-container">
               <div class="buy-tickets-inner container">
                 <div class="buy-ticket-close"></div>
@@ -482,8 +483,29 @@
                       name="time"
                       id="time"
                       placeholder="Time"
+                      list="select time"
                     />
-
+                    <datalist id="select-time">
+                      <option value="09:00"></option>
+                      <option value="09:30"></option>
+                      <option value="10:00"></option>
+                      <option value="10:30"></option>
+                      <option value="11:00"></option>
+                      <option value="11:30"></option>
+                      <option value="12:00"></option>
+                      <option value="12:30"></option>
+                      <option value="13:00"></option>
+                      <option value="13:30"></option>
+                      <option value="14:00"></option>
+                      <option value="14:30"></option>
+                      <option value="15:00"></option>
+                      <option value="15:30"></option>
+                      <option value="16:00"></option>
+                      <option value="16:30"></option>
+                      <option value="17:00"></option>
+                      <option value="17:30"></option>
+                      <option value="18:00"></option>
+                    </datalist>
                     <input
                       class="input-form text"
                       type="text"
@@ -491,6 +513,7 @@
                       id="text"
                       placeholder="Name"
                     />
+                    <label class="warning name" for="text"></label>
                     <input
                       class="input-form email"
                       type="email"
@@ -498,6 +521,7 @@
                       id="email"
                       placeholder="E-mail"
                     />
+                    <label class="warning email" for="email"></label>
                     <input
                       class="input-form tel"
                       type="tel"
@@ -505,6 +529,7 @@
                       id="tel"
                       placeholder="Phone"
                     />
+                    <label class="warning tel" for="tel"></label>
                     <select
                       class="input-form"
                       name="ticket-type"
@@ -831,13 +856,11 @@
                 <iframe
                   width="960px"
                   height="620px"
-                  src="https://api.mapbox.com/styles/v1/tianika/ckugwtx9d94du18s0ui967ry6.html?title=false&access_token=pk.eyJ1IjoidGlhbmlrYSIsImEiOiJja3VnbmcycWUwdHRvMnZxZW9ibjAwM25mIn0.r_lAs0sJV68MyDoZQxd3wg&zoomwheel=false#15.84/48.861261/2.337144"
+                  src="https://api.mapbox.com/styles/v1/tianika/ckugwtx9d94du18s0ui967ry6.html?title=false&access_token=pk.eyJ1IjoidGlhbmlrYSIsImEiOiJja3VnbmcycWUwdHRvMnZxZW9ibjAwM25mIn0.r_lAs0sJV68MyDoZQxd3wg&zoomwheel=false#15.84/48.86091/2.3364"
                   title="Monochrome"
                   style="border: none"
                 ></iframe>
               </div>
-              <!-- <div class="contacts-map" id="map"></div> -->
-              <!-- <img class="contacts-map" src="./assets/img/map.png" alt="map" /> -->
             </div>
           </div>
         </section>
