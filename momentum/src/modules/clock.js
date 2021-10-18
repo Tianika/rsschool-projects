@@ -1,13 +1,7 @@
-const timeStr = document.querySelector('.time')
-const dateStr = document.querySelector('.date')
-const welcome = document.querySelector('.greeting')
-
-function showTime(time, date) {
-  timeStr.textContent = `${time}`
-  dateStr.textContent = `${date}`
-}
-
 export function setTime() {
+  const timeStr = document.querySelector('.time')
+  const dateStr = document.querySelector('.date')
+
   let now = new Date()
   let options = {
     weekday: 'long',
@@ -17,19 +11,19 @@ export function setTime() {
   let time = now.toLocaleTimeString()
   let date = now.toLocaleDateString('en-GB', options)
 
-  showTime(time, date)
+  timeStr.textContent = `${time}`
+  dateStr.textContent = `${date}`
 }
 
 export function showGreeting() {
-  let date = new Date()
-  let hours = date.getHours()
+  const welcome = document.querySelector('.greeting')
 
-  let timeOfDay = getTimeOfDay(hours)
+  let timeOfDay = getTimeOfDay()
   welcome.innerText = `Good ${timeOfDay}`
 }
 
-export function getTimeOfDay(hours) {
+export function getTimeOfDay() {
   const TIMESOFDAY = ['night', 'morning', 'afternoon', 'evening']
 
-  return TIMESOFDAY[Math.floor(hours / 6)]
+  return TIMESOFDAY[Math.floor(new Date().getHours() / 6)]
 }
