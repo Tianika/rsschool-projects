@@ -1,8 +1,10 @@
+import './styles/owfont-regular.css'
 import './styles/style.scss'
 
 import { setTime, showGreeting, getTimeOfDay } from './modules/clock.js'
 import { setName, checkName } from './modules/personal.js'
 import * as slider from './modules/slider.js'
+import { getWeather } from './modules/weather.js'
 
 let randomNum = slider.getRandomNum()
 let timeOfDay = getTimeOfDay()
@@ -15,7 +17,6 @@ setTimeout(function show() {
 }, 1000 - new Date().getMilliseconds())
 
 showGreeting()
-//slider.changeBackground()
 
 slider.setBg(timeOfDay, randomNum)
 
