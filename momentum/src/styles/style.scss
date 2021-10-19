@@ -48,27 +48,29 @@ body {
 .play-item {
   position: relative;
   padding: 5px;
-  padding-left: 20px;
+  padding-left: 25px;
   list-style: none;
   opacity: 0.8;
   cursor: pointer;
   transition: 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    background-image: url('../assets/svg/play.svg');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    top: 2px;
+  }
 }
 
-.play-item:hover {
-  opacity: 1;
-}
-
-.play-item::before {
-  content: '\2713';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  font-weight: 900;
-}
-
-.item-active::before {
-  color: #c5b358;
+.item-active {
+  filter: invert(40%) sepia(55%) saturate(399%) hue-rotate(6deg)
+    brightness(100%) contrast(86%);
 }
 
 .player-icon,
