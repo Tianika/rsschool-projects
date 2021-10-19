@@ -10,8 +10,8 @@ const city = document.querySelector('.city')
 
 async function getWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=3f51cef83569782eeec8097b9f7266fc&units=metric`
-  const result = await fetch(url)
-  const data = await result.json()
+  const responce = await fetch(url)
+  const data = await responce.json()
 
   try {
     weatherIcon.className = 'weather-icon owf'
