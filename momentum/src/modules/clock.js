@@ -15,11 +15,27 @@ export function setTime() {
   dateStr.textContent = `${date}`
 }
 
-export function showGreeting() {
+export function showGreeting(lang) {
   const welcome = document.querySelector('.greeting')
 
   let timeOfDay = getTimeOfDay()
-  welcome.innerText = `Good ${timeOfDay},`
+
+  if (lang === 'ru') {
+    if (timeOfDay === 'night') {
+      welcome.innerText = `Доброй ночи,`
+    }
+    if (timeOfDay === 'morning') {
+      welcome.innerText = `Доброе утро,`
+    }
+    if (timeOfDay === 'afternoon') {
+      welcome.innerText = `Добрый день,`
+    }
+    if (timeOfDay === 'evening') {
+      welcome.innerText = `Добрый вечер,`
+    }
+  } else {
+    welcome.innerText = `Good ${timeOfDay},`
+  }
 }
 
 export function getTimeOfDay() {

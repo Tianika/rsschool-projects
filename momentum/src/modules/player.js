@@ -138,10 +138,10 @@ export function player(playList) {
   function changeBgInput(value) {
     return `linear-gradient(
       90deg,
-      #343434 0%,
-      #343434 ${value * 100}%,
+      #ffffff 0%,
       #ffffff ${value * 100}%,
-      #ffffff 100%
+      #ffffff7c ${value * 100}%,
+      #ffffff7c 100%
     )`
   }
 
