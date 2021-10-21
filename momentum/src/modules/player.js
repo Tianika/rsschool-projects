@@ -80,13 +80,13 @@ export function player(playList) {
     durationAudio.innerText = duration
   }
 
-  function showCurrentTimeAudio(duration) {
+  function showCurrentTimeAudio() {
     const currentTimeAudio = document.querySelector('.current-time-audio')
 
-    let time = duration.split(':')
-    let timeAudio = Number(time[0]) * 60 + Number(time[1])
-
-    console.log(timeAudio)
+    const duration = Math.floor(audio.currentTime)
+    currentTimeAudio.innerText = `${Math.floor(duration / 60)
+      .toString()
+      .padStart(2, '0')}:${(duration % 60).toString().padStart(2, '0')}`
   }
 
   playBtn.addEventListener('click', () => {
@@ -117,6 +117,7 @@ export function player(playList) {
 
   //volume
   const volumeControl = document.querySelector('.volume-input')
+  const audioControl = document.querySelector('.audio-input')
   const volumeBtn = document.querySelector('.volume-button')
 
   function muteVolume() {
@@ -135,22 +136,20 @@ export function player(playList) {
   }
 
   function changeBgInput(value) {
-    volumeControl.style.background = `linear-gradient(
+    return `linear-gradient(
       90deg,
       #343434 0%,
       #343434 ${value * 100}%,
       #ffffff ${value * 100}%,
       #ffffff 100%
     )`
-    console.log(volumeControl)
   }
 
   volumeControl.addEventListener('input', () => {
     audio.volume = volumeControl.value
     const value = audio.volume
 
-    console.log(value)
-    changeBgInput(value)
+    volumeControl.style.background = changeBgInput(value)
 
     if (volumeControl.value === '0') {
       volumeBtn.classList.remove('volume')
@@ -163,6 +162,17 @@ export function player(playList) {
 
   volumeBtn.addEventListener('click', () => {
     muteVolume()
+  })
+
+  audio.addEventListener('timeupdate', () => {
+    const time = audio.currentTime / audio.duration
+
+    audioControl.style.background = changeBgInput(time)
+    showCurrentTimeAudio()
+  })
+
+  audioControl.addEventListener('input', () => {
+    audio.currentTime = audioControl.value
   })
 }
 

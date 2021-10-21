@@ -139,7 +139,7 @@ body {
   flex-direction: column;
   width: 160px;
   opacity: 0.8;
-  padding: 10px;
+  padding: 0 10px;
   row-gap: 10px;
   input {
     -webkit-appearance: none;
@@ -161,8 +161,8 @@ body {
   background: linear-gradient(
     90deg,
     #343434 0%,
-    #343434 20%,
-    #ffffff 20%,
+    #343434 0%,
+    #ffffff 0%,
     #ffffff 100%
   );
   &::-webkit-slider-thumb {

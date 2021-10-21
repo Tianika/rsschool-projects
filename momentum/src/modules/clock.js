@@ -19,7 +19,7 @@ export function showGreeting() {
   const welcome = document.querySelector('.greeting')
 
   let timeOfDay = getTimeOfDay()
-  welcome.innerText = `Good ${timeOfDay}`
+  welcome.innerText = `Good ${timeOfDay},`
 }
 
 export function getTimeOfDay() {
