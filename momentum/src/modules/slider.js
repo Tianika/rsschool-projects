@@ -1,6 +1,3 @@
-const body = document.querySelector('body')
-const imgBg = new Image()
-
 export function getRandomNum() {
   let randomNum = Math.ceil(Math.random() * 20)
 
@@ -8,14 +5,19 @@ export function getRandomNum() {
 }
 
 export function setBg(time, number) {
-  let link = `url('https://raw.githubusercontent.com/Tianika/stage1-tasks/assets/images/${
+  const body = document.querySelector('body')
+  const imgBg = new Image()
+
+  let link = `https://raw.githubusercontent.com/Tianika/stage1-tasks/assets/images/${
     time === 'afternoon' ? 'day' : time
-  }/${number.toString().padStart(2, '0')}.jpg')`
+  }/${number.toString().padStart(2, '0')}.jpg`
 
-  body.style.backgroundImage = link
+  imgBg.src = link
 
-  // imgBg.src = link
-  // imgBg.addEventListener('load', () => ())
+  imgBg.addEventListener(
+    'load',
+    () => (body.style.backgroundImage = `url(${link})`)
+  )
 }
 
 export function getNextSlide(num) {

@@ -7,6 +7,7 @@ const weatherDescription = document.querySelector('.weather-description')
 const wind = document.querySelector('.wind')
 const humidity = document.querySelector('.humidity')
 const city = document.querySelector('.city')
+const weatherError = document.querySelector('.weather-error')
 
 async function getWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=3f51cef83569782eeec8097b9f7266fc&units=metric`
@@ -14,6 +15,7 @@ async function getWeather(city) {
   const data = await responce.json()
 
   try {
+    weatherError.textContent = ''
     weatherIcon.className = 'weather-icon owf'
     weatherIcon.classList.add(`owf-${data.weather[0].id}`)
     temperature.textContent = `${Math.round(data.main.temp)}°C`
@@ -24,9 +26,10 @@ async function getWeather(city) {
     localStorage['personalCity'] = 'Minsk'
     weatherIcon.classList = ''
     temperature.textContent = ''
-    weatherDescription.textContent = `${data.message}`
+    weatherDescription.textContent = ''
     wind.textContent = ''
     humidity.textContent = ''
+    weatherError.textContent = `${data.message}`
   }
 }
 

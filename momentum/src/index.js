@@ -4,10 +4,10 @@ import './styles/style.scss'
 import { setTime, showGreeting, getTimeOfDay } from './modules/clock.js'
 import { setName, checkName } from './modules/personal.js'
 import * as slider from './modules/slider.js'
-import { getWeather } from './modules/weather.js'
+//import { getWeather } from './modules/weather.js'
 import { getQuotes } from './modules/quotes.js'
 import playList from './modules/playList.js'
-import { addAudio, playAudio } from './modules/player.js'
+import { addAudio, player } from './modules/player.js'
 
 let randomNum = slider.getRandomNum()
 let timeOfDay = getTimeOfDay()
@@ -39,23 +39,6 @@ slidePrev.addEventListener('click', () => {
 
 quoteBtn.addEventListener('click', getQuotes)
 
-// async ??
+// player
 addAudio(playList)
-
-const tracks = document.querySelectorAll('.play-item')
-const playBtn = document.querySelector('.play')
-const prevAudioBtn = document.querySelector('.play-prev')
-const nextAudioBtn = document.querySelector('.play-next')
-
-let currentTrack = 0
-
-playBtn.addEventListener('click', () => {
-  playAudio(playList[currentTrack])
-})
-
-tracks.forEach((track, i, arr) => {
-  track.addEventListener('click', () => {
-    currentTrack = i
-    playAudio(playList[currentTrack])
-  })
-})
+player(playList)
