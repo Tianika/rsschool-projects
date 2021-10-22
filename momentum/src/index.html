@@ -71,21 +71,122 @@
       <date class="date"></date>
       <div class="greeting-container">
         <span class="greeting"></span>
-        <input class="name" type="text" placeholder="[Enter name]" />
+        <input class="name" type="text" placeholder="" />
       </div>
     </main>
     <footer class="footer">
-      <div class="settings">
-        <div class="switch-en" data-value="en">
-          <div class="lang off">RU</div>
-          <div class="lang on">EN</div>
+      <div class="settings up">
+        <div class="settings-title">Settings</div>
+        <div class="settings-content">
+          <div class="settings-left">
+            <div class="switch-en" data-value="en">
+              <div class="lang off">RU</div>
+              <div class="lang on">EN</div>
+            </div>
+            <div class="choice-image">
+              <label class="github-image" for="github">
+                GitHub<input
+                  class="image-input"
+                  type="radio"
+                  name="choice-image"
+                  id="github"
+                  checked
+              /></label>
+              <label class="flickr-image" for="flickr">
+                Flickr<input
+                  class="image-input"
+                  type="radio"
+                  name="choice-image"
+                  id="flickr"
+              /></label>
+              <label class="github-image" for="unsplash">
+                Unsplash<input
+                  class="image-input"
+                  type="radio"
+                  name="choice-image"
+                  id="unsplash"
+              /></label>
+
+              <!-- <label for=""
+                >Select color: <input type="color" name="" id="" />
+              </label> -->
+            </div>
+            <label for="keywords"
+              >Input keywords for Flickr and Unsplash:</label
+            >
+            <input class="image-keywords" type="text" name="" id="keywords" />
+          </div>
+          <div class="settings-right">
+            <label class="audio-on"
+              >Audio
+              <input
+                class="view-input"
+                type="checkbox"
+                name="audio"
+                id="audio"
+                checked
+              />
+            </label>
+            <label class="weather-on"
+              >Weather<input
+                class="view-input"
+                type="checkbox"
+                name="weather"
+                id="weather"
+                checked
+            /></label>
+            <label class="time-on"
+              >Time<input
+                class="view-input"
+                type="checkbox"
+                name="time"
+                id="time"
+                checked
+            /></label>
+            <label class="date-on"
+              >Date<input
+                class="view-input"
+                type="checkbox"
+                name="date"
+                id="date"
+                checked
+            /></label>
+            <label class="greeting-on"
+              >Greeting<input
+                class="view-input"
+                type="checkbox"
+                name="greeting"
+                id="greeting"
+                checked
+            /></label>
+            <label class="quotes-on"
+              >Quotes<input
+                class="view-input"
+                type="checkbox"
+                name="quotes"
+                id="quotes"
+                checked
+            /></label>
+            <label class="links-on"
+              >Links<input
+                class="view-input"
+                type="checkbox"
+                name="links"
+                id="links"
+                checked
+            /></label>
+          </div>
         </div>
       </div>
       <div class="setting-icon"></div>
       <button class="change-quote"></button>
-      <div>
+      <div class="quotes-content">
         <div class="quote"></div>
         <div class="author"></div>
+      </div>
+      <div class="links-container">
+        <div class="links"></div>
+        <div class="links-icon"></div>
       </div>
     </footer>
     <script type="module" src="./index.js"></script>

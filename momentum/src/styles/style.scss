@@ -25,8 +25,8 @@ body {
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
   height: 30vh;
   min-height: 220px;
@@ -36,6 +36,7 @@ body {
 .player-container {
   display: flex;
   column-gap: 10px;
+  align-self: start;
 }
 
 .player-controls {
@@ -231,6 +232,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  align-self: start;
   row-gap: 5px;
   width: 180px;
   min-height: 180px;
@@ -357,16 +359,68 @@ body {
   height: 30vh;
   min-height: 160px;
   padding: 20px;
+  overflow: hidden;
 }
 
 .settings {
-  position: absolute;
-  left: 30px;
-  bottom: 30px;
-  width: 160px;
-  height: 150px;
-  background-color: rgba(129, 129, 129, 0.5);
+  position: fixed;
+  left: 25px;
+  bottom: -100%;
+  width: 420px;
+  height: 300px;
+  background-color: rgba(61, 61, 61, 0.5);
+  padding: 10px 20px;
+  transition: bottom 500ms ease-in;
+  z-index: 3;
+  &.up {
+    bottom: 20px;
+  }
+}
+
+.settings-title {
   padding: 10px;
+  margin-bottom: 5px;
+}
+
+.settings-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings-left {
+  width: 47%;
+}
+
+.settings-right {
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+  }
+  input {
+    display: block;
+    -webkit-appearance: none;
+    cursor: pointer;
+    &::after {
+      content: '';
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      background: rgba(61, 61, 61, 0.5);
+      border: 2px solid #ffffff;
+      transition-duration: 500ms;
+    }
+    &:checked::after {
+      background: #ffffff;
+      box-shadow: inset 0 0 3px 0 #999999;
+    }
+  }
 }
 
 .switch-en {
@@ -378,7 +432,7 @@ body {
   height: 30px;
   border-radius: 5px;
   border: 2px solid #ffffff;
-  background: #ffffff86;
+  background: rgba(61, 61, 61, 0.5);
   opacity: 0.9;
   cursor: pointer;
   transition-duration: 500ms;
@@ -392,14 +446,13 @@ body {
     left: 1px;
     border-radius: 5px;
     background: #ffffff;
-    opacity: 0.8;
     box-shadow: inset 0 0 3px 0 #999999;
     transition-duration: 500ms;
     z-index: 1;
   }
 }
 .switch-ru {
-  background: #ffffff86;
+  background: rgba(61, 61, 61, 0.5);
   &::after {
     left: 50%;
   }
@@ -417,7 +470,81 @@ body {
   opacity: 0;
 }
 
+.choice-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+  height: 110px;
+  padding: 10px;
+  label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+  }
+  .image-input {
+    display: block;
+    -webkit-appearance: none;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      background: rgba(61, 61, 61, 0.5);
+      border: 2px solid #ffffff;
+      transition-duration: 500ms;
+    }
+    &:checked::after {
+      background: #ffffff;
+      box-shadow: inset 0 0 3px 0 #999999;
+    }
+  }
+}
+
+.image-keywords {
+  font-size: 14px;
+}
+
+.github-image {
+}
+.flickr-image {
+}
+.unsplash-image {
+}
+
+.audio-on {
+}
+.weather-on {
+}
+.time-on {
+}
+.date-on {
+}
+.greeting-on {
+}
+.quotes-on {
+}
+
 .setting-icon {
+  position: fixed;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  left: 35px;
+  bottom: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+  background: url('../assets/svg/settings.svg') no-repeat;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
 }
 
 .change-quote {
@@ -427,10 +554,42 @@ body {
 
 .quote {
   min-height: 32px;
+  max-width: 50vw;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .author {
   min-height: 20px;
+}
+
+.links {
+  position: absolute;
+  z-index: 3;
+}
+
+.links-icon {
+  position: absolute;
+  z-index: 3;
+  width: 35px;
+  height: 35px;
+  right: 35px;
+  bottom: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+  background: url('../assets/svg/link.svg') no-repeat;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
 
 @media (max-width: 768px) {

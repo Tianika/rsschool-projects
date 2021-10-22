@@ -19,6 +19,7 @@ export function player(playList) {
 
   const audio = new Audio()
   let isPlay = false
+  audio.volume = 0.2
 
   function playAudio() {
     tracks.forEach((track) => {

@@ -1,4 +1,4 @@
-export function setTime() {
+export function setTime(lang) {
   const timeStr = document.querySelector('.time')
   const dateStr = document.querySelector('.date')
 
@@ -9,7 +9,7 @@ export function setTime() {
     day: 'numeric',
   }
   let time = now.toLocaleTimeString()
-  let date = now.toLocaleDateString('en-GB', options)
+  let date = now.toLocaleDateString(`${lang}-${lang}`, options)
 
   timeStr.textContent = `${time}`
   dateStr.textContent = `${date}`
