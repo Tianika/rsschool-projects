@@ -11,6 +11,11 @@
   -webkit-user-select: none;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 body {
   min-width: 480px;
   min-height: 100vh;
@@ -20,6 +25,7 @@ body {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
+  background-size: 100% 100%;
   background-position: center center;
   transition: background-image 1s ease-in-out;
 }
@@ -169,6 +175,12 @@ body {
   );
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
+    position: relative;
+    width: 1px;
+    height: 1px;
+    left: 0;
+    border-radius: 50%;
+    background: #ffffff;
   }
 }
 
@@ -368,7 +380,7 @@ body {
   left: 25px;
   bottom: -100%;
   width: 420px;
-  height: 300px;
+  height: 320px;
   background-color: rgba(61, 61, 61, 0.5);
   padding: 10px 20px;
   transition: bottom 500ms ease-in;
@@ -510,6 +522,11 @@ body {
   font-size: 14px;
 }
 
+.label-keywords {
+  display: block;
+  margin-bottom: 5px;
+}
+
 .github-image {
 }
 .flickr-image {
@@ -564,18 +581,55 @@ body {
   min-height: 20px;
 }
 
-.links {
-  position: absolute;
+.links-container {
+  position: fixed;
+  right: 20px;
+  bottom: -100%;
   z-index: 3;
+  width: 250px;
+  min-height: 200px;
+  padding: 20px;
+  padding-bottom: 50px;
+  background-color: rgba(61, 61, 61, 0.5);
+  text-align: left;
+  transition: bottom 500ms ease-in;
+  &.up {
+    bottom: 20px;
+  }
+}
+
+.link-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.link-style {
+  padding: 5px;
+  &::before {
+    content: '-';
+    margin-right: 10px;
+  }
+}
+
+.link-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.link-button {
+  width: 45%;
+  padding: 5px;
+  text-transform: uppercase;
 }
 
 .links-icon {
-  position: absolute;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
   z-index: 3;
   width: 35px;
   height: 35px;
-  right: 35px;
-  bottom: 25px;
   cursor: pointer;
   opacity: 0.8;
   background: url('../assets/svg/link.svg') no-repeat;

@@ -40,7 +40,6 @@ export function player(playList) {
       showCurrentTrack(playList[trackNum].title)
       showDurationAudio(playList[trackNum].duration)
       showCurrentTimeAudio(playList[trackNum].duration)
-      //   console.log(audio.currentTime)
     } else {
       audio.pause()
       isPlay = false
@@ -114,6 +113,12 @@ export function player(playList) {
   audio.addEventListener('ended', () => {
     trackNum = playNext(trackNum)
     playAudio()
+  })
+
+  const audioInput = document.querySelector('.audio-input')
+
+  audioInput.addEventListener('change', () => {
+    audio.currentTime = audioInput.value
   })
 
   //volume

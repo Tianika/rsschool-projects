@@ -13,6 +13,8 @@ import * as slider from './modules/slider.js'
 import { getQuotes } from './modules/quotes.js'
 import playList from './modules/playList.js'
 import { addAudio, player } from './modules/player.js'
+import { addLinksToPage } from './modules/links.js'
+import { translate } from './modules/translate.js'
 
 let randomNum = slider.getRandomNum()
 let timeOfDay = getTimeOfDay()
@@ -28,7 +30,7 @@ setTimeout(function show() {
 
 showGreeting(localStorage['appLanguage'] || 'en')
 //getWeather(localStorage['appLanguage'] || 'en')
-translateSettings(localStorage['appLanguage'] || 'en')
+translate(localStorage['appLanguage'] || 'en')
 
 slider.setBg(timeOfDay, randomNum)
 
@@ -87,11 +89,12 @@ switchLang.addEventListener('click', () => {
   })
 
   localStorage['appLanguage'] = switchLang.dataset.value
+
   showGreeting(localStorage['appLanguage'] || 'en')
   getQuotes(localStorage['appLanguage'] || 'en')
   // getWeather(localStorage['appLanguage'] || 'en')
   checkName(localStorage['appLanguage'] || 'en')
-  translateSettings(localStorage['appLanguage'] || 'en')
+  translate(localStorage['appLanguage'] || 'en')
 })
 
 //settings
@@ -108,4 +111,14 @@ settingsInputs.forEach((input) => {
   input.addEventListener('change', () => {
     changeDisplayBlock(input)
   })
+})
+
+//links
+const linkBtn = document.querySelector('.links-icon')
+const links = document.querySelector('.links-container')
+
+addLinksToPage()
+
+linkBtn.addEventListener('click', () => {
+  links.classList.toggle('up')
 })
