@@ -20,6 +20,7 @@ body {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
+  background-position: center center;
   transition: background-image 1s ease-in-out;
 }
 
@@ -85,8 +86,8 @@ body {
 }
 
 .item-active {
-  filter: invert(40%) sepia(55%) saturate(399%) hue-rotate(6deg)
-    brightness(100%) contrast(86%);
+  filter: invert(20%) sepia(80%) saturate(500%) hue-rotate(64deg)
+    brightness(104%) contrast(97%);
 }
 
 .player-icon,

@@ -51,7 +51,7 @@
       </div>
 
       <div class="weather">
-        <input type="text" class="city" placeholder="[Enter city]" />
+        <input type="text" class="city" placeholder="" />
         <i class="weather-icon owf"></i>
         <div class="weather-error"></div>
         <div class="description-container">
@@ -76,7 +76,7 @@
     </main>
     <footer class="footer">
       <div class="settings up">
-        <div class="settings-title">Settings</div>
+        <div class="settings-title"></div>
         <div class="settings-content">
           <div class="settings-left">
             <div class="switch-en" data-value="en">
@@ -85,7 +85,8 @@
             </div>
             <div class="choice-image">
               <label class="github-image" for="github">
-                GitHub<input
+                GitHub
+                <input
                   class="image-input"
                   type="radio"
                   name="choice-image"
@@ -99,26 +100,21 @@
                   name="choice-image"
                   id="flickr"
               /></label>
-              <label class="github-image" for="unsplash">
-                Unsplash<input
+              <label class="unsplash-image" for="unsplash">
+                Unsplash
+                <input
                   class="image-input"
                   type="radio"
                   name="choice-image"
                   id="unsplash"
               /></label>
-
-              <!-- <label for=""
-                >Select color: <input type="color" name="" id="" />
-              </label> -->
             </div>
-            <label for="keywords"
-              >Input keywords for Flickr and Unsplash:</label
-            >
+            <label class="label-keywords" for="keywords"> </label>
             <input class="image-keywords" type="text" name="" id="keywords" />
           </div>
           <div class="settings-right">
             <label class="audio-on"
-              >Audio
+              ><span>Audio</span>
               <input
                 class="view-input"
                 type="checkbox"
@@ -127,48 +123,54 @@
                 checked
               />
             </label>
-            <label class="weather-on"
-              >Weather<input
+            <label class="weather-on">
+              <span>Weather</span>
+              <input
                 class="view-input"
                 type="checkbox"
                 name="weather"
                 id="weather"
                 checked
             /></label>
-            <label class="time-on"
-              >Time<input
+            <label class="time-on">
+              <span>Time</span>
+              <input
                 class="view-input"
                 type="checkbox"
                 name="time"
                 id="time"
                 checked
             /></label>
-            <label class="date-on"
-              >Date<input
+            <label class="date-on">
+              <span>Date</span>
+              <input
                 class="view-input"
                 type="checkbox"
                 name="date"
                 id="date"
                 checked
             /></label>
-            <label class="greeting-on"
-              >Greeting<input
+            <label class="greeting-on">
+              <span>Greeting</span>
+              <input
                 class="view-input"
                 type="checkbox"
                 name="greeting"
                 id="greeting"
                 checked
             /></label>
-            <label class="quotes-on"
-              >Quotes<input
+            <label class="quotes-on">
+              <span>Quotes</span>
+              <input
                 class="view-input"
                 type="checkbox"
                 name="quotes"
                 id="quotes"
                 checked
             /></label>
-            <label class="links-on"
-              >Links<input
+            <label class="links-on">
+              <span>Links</span>
+              <input
                 class="view-input"
                 type="checkbox"
                 name="links"

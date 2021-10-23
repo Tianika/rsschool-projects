@@ -6,12 +6,11 @@ const temperature = document.querySelector('.temperature')
 const weatherDescription = document.querySelector('.weather-description')
 const wind = document.querySelector('.wind')
 const humidity = document.querySelector('.humidity')
-const city = document.querySelector('.city')
+const cityStr = document.querySelector('.city')
 const weatherError = document.querySelector('.weather-error')
 
 export async function getWeather(lang) {
   let city = localStorage['personalCity'] || 'Minsk'
-  console.log(city)
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=3f51cef83569782eeec8097b9f7266fc&units=metric`
   const responce = await fetch(url)
@@ -19,9 +18,11 @@ export async function getWeather(lang) {
 
   try {
     if (lang === 'ru') {
+      cityStr.placeholder = 'Введите город'
       wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`
       humidity.textContent = `Влажность: ${data.main.humidity}%`
     } else {
+      cityStr.placeholder = 'Enter city'
       wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`
       humidity.textContent = `Humidity: ${data.main.humidity}%`
     }
@@ -32,7 +33,12 @@ export async function getWeather(lang) {
     temperature.textContent = `${Math.round(data.main.temp)}°C`
     weatherDescription.textContent = data.weather[0].description
   } catch (err) {
-    localStorage['personalCity'] = 'Minsk'
+    if (lang === 'ru') {
+      localStorage['personalCity'] = 'Минск'
+    } else {
+      localStorage['personalCity'] = 'Minsk'
+    }
+
     weatherIcon.classList = ''
     temperature.textContent = ''
     weatherDescription.textContent = ''
@@ -42,9 +48,9 @@ export async function getWeather(lang) {
   }
 }
 
-city.value = localStorage['personalCity'] || 'Minsk'
+cityStr.value = localStorage['personalCity'] || 'Minsk'
 
-city.addEventListener('change', () => {
-  localStorage['personalCity'] = city.value
+cityStr.addEventListener('change', () => {
+  localStorage['personalCity'] = cityStr.value
   getWeather(localStorage['appLanguage'] || 'en')
 })
