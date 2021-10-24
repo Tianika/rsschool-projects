@@ -59,11 +59,20 @@ slidePrev.addEventListener('click', () => {
 //images
 
 const sourcesImg = document.querySelectorAll('.image-input')
+const imageTag = document.querySelector('.image-keywords')
+
+localStorage['imageKeyword'] = 'nature'
+imageTag.value = 'nature'
 
 sourcesImg.forEach((source) => {
   source.addEventListener('click', () => {
     slider.setBg(timeOfDay, randomNum)
   })
+})
+
+imageTag.addEventListener('change', () => {
+  localStorage['imageKeyword'] = imageTag.value
+  slider.setBg(timeOfDay, randomNum)
 })
 
 //quotes
