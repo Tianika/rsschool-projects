@@ -54,3 +54,19 @@ export function changeDisplayBlock(input) {
     linksIcon.classList.toggle('invisible')
   }
 }
+
+export function getSettings() {
+  const inputs = document.querySelectorAll('.view-input')
+  const CHECK =
+    [true, true, true, true, true, true, true] || localStorage['saveSettings']
+
+  inputs.forEach((input, i, arr) => {
+    if (CHECK[i]) {
+      input.setAttribute('checked', 'checked')
+    } else {
+      input.removeAttribute('checked')
+    }
+  })
+}
+
+export function saveSettings() {}

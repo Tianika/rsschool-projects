@@ -28,7 +28,7 @@ function translateSettings(lang) {
 
   if (lang === 'ru') {
     settingsTitle.textContent = 'Настройки:'
-    keywordsLabel.textContent = 'Ключевые слова для Flickr и Unsplash:'
+    keywordsLabel.textContent = 'Ключевое слово для Flickr и Unsplash:'
     audioLabel.textContent = 'Аудио'
     weatherLabel.textContent = 'Погода'
     timeLabel.textContent = 'Время'
@@ -39,7 +39,7 @@ function translateSettings(lang) {
   }
   if (lang === 'en') {
     settingsTitle.textContent = 'Settings:'
-    keywordsLabel.textContent = 'Кeywords for Flickr and Unsplash:'
+    keywordsLabel.textContent = 'Keyword for Flickr and Unsplash:'
     audioLabel.textContent = 'Audio'
     weatherLabel.textContent = 'Weather'
     timeLabel.textContent = 'Time'

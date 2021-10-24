@@ -6,7 +6,8 @@ import {
   setName,
   checkName,
   changeDisplayBlock,
-  translateSettings,
+  getSettings,
+  saveSettings,
 } from './modules/personal.js'
 import * as slider from './modules/slider.js'
 //import { getWeather } from './modules/weather.js'
@@ -18,28 +19,34 @@ import { translate } from './modules/translate.js'
 
 let randomNum = slider.getRandomNum()
 let timeOfDay = getTimeOfDay()
-const slideNext = document.querySelector('.slide-next')
-const slidePrev = document.querySelector('.slide-prev')
+
 const quoteBtn = document.querySelector('.change-quote')
 
 //set start values
 setTimeout(function show() {
   setTime(localStorage['appLanguage'] || 'en')
+  showGreeting(localStorage['appLanguage'] || 'en')
   setTimeout(show, 1000)
 }, 1000 - new Date().getMilliseconds())
 
-showGreeting(localStorage['appLanguage'] || 'en')
-//getWeather(localStorage['appLanguage'] || 'en')
-translate(localStorage['appLanguage'] || 'en')
-
-slider.setBg(timeOfDay, randomNum)
-
 window.addEventListener('load', () => {
   checkName(localStorage['appLanguage'] || 'en')
+  setTime(localStorage['appLanguage'] || 'en')
+  showGreeting(localStorage['appLanguage'] || 'en')
+  //getWeather(localStorage['appLanguage'] || 'en')
+  translate(localStorage['appLanguage'] || 'en')
+  slider.setBg(timeOfDay, randomNum)
+  getSettings()
 })
-window.addEventListener('beforeunload', setName)
+window.addEventListener('beforeunload', () => {
+  setName()
+  saveSettings()
+})
 
 //slider
+const slideNext = document.querySelector('.slide-next')
+const slidePrev = document.querySelector('.slide-prev')
+
 slideNext.addEventListener('click', () => {
   randomNum = slider.getNextSlide(randomNum)
   slider.setBg(timeOfDay, randomNum)
@@ -47,6 +54,16 @@ slideNext.addEventListener('click', () => {
 slidePrev.addEventListener('click', () => {
   randomNum = slider.getPrevSlide(randomNum)
   slider.setBg(timeOfDay, randomNum)
+})
+
+//images
+
+const sourcesImg = document.querySelectorAll('.image-input')
+
+sourcesImg.forEach((source) => {
+  source.addEventListener('click', () => {
+    slider.setBg(timeOfDay, randomNum)
+  })
 })
 
 //quotes
