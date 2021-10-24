@@ -2,16 +2,22 @@ function translateLinks(lang) {
   const linkTitle = document.querySelector('.link-title')
   const addBtn = document.querySelector('.add-link')
   const removeBtn = document.querySelector('.remove-link')
+  const linkName = document.querySelector('.link-name')
+  const linkDescr = document.querySelector('.link-describe')
 
   if (lang === 'ru') {
     linkTitle.innerText = 'Ссылки:'
     addBtn.innerText = 'Добавить'
     removeBtn.innerText = 'Удалить'
+    linkName.innerText = 'Название:'
+    linkDescr.innerText = 'Ссылка:'
   }
   if (lang === 'en') {
     linkTitle.innerText = 'Links:'
     addBtn.innerText = 'Add'
     removeBtn.innerText = 'Remove'
+    linkName.innerText = 'Title:'
+    linkDescr.innerText = 'Link:'
   }
 }
 
