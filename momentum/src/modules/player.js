@@ -186,5 +186,3 @@ export function player(playList) {
     audio.currentTime = audioControl.value
   })
 }
-
-//TODO плей при клике по списку с первого раза

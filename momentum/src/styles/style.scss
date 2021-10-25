@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Arial-MT';
-  src: url('../assets/fonts/Arial-MT.woff'); /* Путь к файлу со шрифтом */
+  src: url('../assets/fonts/Arial-MT.woff');
 }
 
 * {
@@ -354,7 +354,7 @@ body {
 
 .greeting-container {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   justify-content: stretch;
   align-items: center;
   min-height: 48px;
@@ -367,6 +367,7 @@ body {
   flex: 1;
   padding: 10px;
   text-align: right;
+  white-space: nowrap;
 }
 
 .name {
@@ -387,7 +388,6 @@ body {
 }
 
 .footer {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -551,26 +551,6 @@ body {
   margin-bottom: 5px;
 }
 
-.github-image {
-}
-.flickr-image {
-}
-.unsplash-image {
-}
-
-.audio-on {
-}
-.weather-on {
-}
-.time-on {
-}
-.date-on {
-}
-.greeting-on {
-}
-.quotes-on {
-}
-
 .setting-icon {
   position: fixed;
   z-index: 3;
@@ -688,6 +668,26 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    background-size: auto 100%;
+  }
+
+  .player {
+    max-width: 50%;
+  }
+  .weather {
+    max-width: 40%;
+  }
+
+  .player-controls {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .player-buttons {
+    margin-bottom: 10px;
+  }
+
   .time {
     min-height: 80px;
     font-size: 72px;
@@ -704,6 +704,69 @@ body {
 
   .name {
     font-size: 32px;
+    padding: 5px;
+  }
+
+  .settings,
+  .links-container {
+    background-color: rgba(61, 61, 61, 0.8);
+  }
+}
+
+@media (max-width: 568px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    font-size: 14px;
+    background-size: auto 100%;
+  }
+  .header {
+    height: auto;
+  }
+  .main {
+    height: auto;
+  }
+  .footer {
+    height: auto;
+  }
+
+  .settings {
+    width: 320px;
+    padding: 10px;
+  }
+
+  .image-keywords {
+    width: 100%;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 768px) {
+  main {
+    min-height: auto;
+  }
+
+  footer {
+    min-height: 100px;
+    height: 100px;
+    padding-top: 0;
+  }
+
+  .time {
+    min-height: 60px;
+    font-size: 60px;
+  }
+
+  .greeting-container,
+  .name {
+    min-height: 36px;
+    font-size: 30px;
+  }
+
+  .greeting {
     padding: 5px;
   }
 }
