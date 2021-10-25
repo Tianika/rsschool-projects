@@ -6,7 +6,7 @@ export async function getQuotes(lang) {
   const quote = document.querySelector('.quote')
   const author = document.querySelector('.author')
 
-  const quotes = `../assets/json/quotes-${lang}.json`
+  const quotes = `../momentum/assets/json/quotes-${lang}.json`
   const responce = await fetch(quotes)
   const data = await responce.json()
 
