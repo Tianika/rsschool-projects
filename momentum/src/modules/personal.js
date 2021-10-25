@@ -17,7 +17,7 @@ export function checkName(lang) {
 }
 
 export function changeDisplayBlock(input) {
-  const player = document.querySelector('.player-container')
+  const player = document.querySelector('.player')
   const weather = document.querySelector('.weather')
   const time = document.querySelector('.time')
   const date = document.querySelector('.date')
