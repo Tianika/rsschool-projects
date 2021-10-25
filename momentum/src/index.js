@@ -10,7 +10,7 @@ import {
   saveSettings,
 } from './modules/personal.js'
 import * as slider from './modules/slider.js'
-//import { getWeather } from './modules/weather.js'
+import { getWeather } from './modules/weather.js'
 import { getQuotes } from './modules/quotes.js'
 import playList from './modules/playList.js'
 import { addAudio, player } from './modules/player.js'
@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
   checkName(localStorage['appLanguage'] || 'en')
   setTime(localStorage['appLanguage'] || 'en')
   showGreeting(localStorage['appLanguage'] || 'en')
-  //getWeather(localStorage['appLanguage'] || 'en')
+  getWeather(localStorage['appLanguage'] || 'en')
   translate(localStorage['appLanguage'] || 'en')
   slider.setBg(timeOfDay, randomNum)
   getSettings()
@@ -118,7 +118,7 @@ switchLang.addEventListener('click', () => {
 
   showGreeting(localStorage['appLanguage'] || 'en')
   getQuotes(localStorage['appLanguage'] || 'en')
-  // getWeather(localStorage['appLanguage'] || 'en')
+  getWeather(localStorage['appLanguage'] || 'en')
   checkName(localStorage['appLanguage'] || 'en')
   translate(localStorage['appLanguage'] || 'en')
 })
@@ -160,8 +160,10 @@ removeLinks.addEventListener('click', () => {
 console.log(`
 Good ${timeOfDay}!
 
+Самооценка 150 / 150
+
 Небольшие замечания по проекту:
-- в блоке настроек все работает. но при перезагрузке сохраняется только выбранный язык
-- изображения с Flickr грузятся очень медленно, иногда не загружаются вообще
+- в блоке настроек все работает, но при перезагрузке сохраняется только выбранный язык
+- изображения с Flickr грузятся очень медленно, иногда нужно перезагрузить страницу и попробовать снова
 - для удаления ссылки из списка нужно ввести ее название и нажать удалить
 `)

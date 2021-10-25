@@ -10,32 +10,13 @@
   </head>
   <body>
     <header class="header">
-      <div class="player-container">
-        <div class="player">
-          <div class="player-controls">
+      <div class="player">
+        <div class="player-controls">
+          <div class="player-buttons">
             <button class="play-prev player-icon"></button>
             <button class="play player-icon"></button>
             <button class="play-next player-icon"></button>
           </div>
-          <ul class="play-list"></ul>
-        </div>
-        <div class="audio-control-container">
-          <div class="current-track-name"></div>
-
-          <input
-            class="audio-input"
-            value="0"
-            min="0"
-            max="100"
-            step="1"
-            type="range"
-          />
-          <div class="time-audio">
-            <div class="current-time-audio">00:00</div>
-            <div>&nbsp;/&nbsp;</div>
-            <div class="duration-audio">00:00</div>
-          </div>
-
           <div class="volume-container">
             <button class="volume-button volume"></button>
             <input
@@ -48,8 +29,21 @@
             />
           </div>
         </div>
+        <div class="current-track-name"></div>
+        <div class="time-audio">
+          <div class="current-time-audio">00:00</div>
+          <input
+            class="audio-input"
+            value="0"
+            min="0"
+            max="100"
+            step="1"
+            type="range"
+          />
+          <div class="duration-audio">00:00</div>
+        </div>
+        <ul class="play-list"></ul>
       </div>
-
       <div class="weather">
         <input type="text" class="city" placeholder="" />
         <i class="weather-icon owf"></i>
@@ -75,7 +69,7 @@
       </div>
     </main>
     <footer class="footer">
-      <div class="settings up">
+      <div class="settings">
         <div class="settings-title"></div>
         <div class="settings-content">
           <div class="settings-left">
@@ -167,7 +161,7 @@
         <div class="quote"></div>
         <div class="author"></div>
       </div>
-      <div class="links-container up">
+      <div class="links-container">
         <div class="link-title"></div>
         <div class="links"></div>
         <div class="link-enter">

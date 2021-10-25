@@ -3,8 +3,14 @@ export function addAudio(playList) {
 
   playList.forEach((item) => {
     const li = document.createElement('li')
+    const p = document.createElement('p')
+    const div = document.createElement('div')
     li.classList.add('play-item')
-    li.textContent = `${item['title']}`
+    div.classList.add('play-time')
+    div.textContent = item.duration
+    p.textContent = `${item['title']}`
+    li.append(p)
+    li.append(div)
     playListContainer.append(li)
   })
 }
@@ -31,7 +37,6 @@ export function player(playList) {
 
     if (!isPlay) {
       audio.src = playList[trackNum].src
-      audio.currentTime = 0
       audio.play()
       tracks[trackNum].classList.add('item-active')
       tracks[trackNum].classList.add('item-pause')

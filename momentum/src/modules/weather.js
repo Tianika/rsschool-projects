@@ -10,6 +10,14 @@ const cityStr = document.querySelector('.city')
 const weatherError = document.querySelector('.weather-error')
 
 export async function getWeather(lang) {
+  if (!localStorage['personalCity']) {
+    if (lang === 'ru') {
+      cityStr.value = 'Минск'
+    } else {
+      cityStr.value = 'Minsk'
+    }
+  }
+
   let city = localStorage['personalCity'] || 'Minsk'
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=3f51cef83569782eeec8097b9f7266fc&units=metric`
@@ -33,12 +41,6 @@ export async function getWeather(lang) {
     temperature.textContent = `${Math.round(data.main.temp)}°C`
     weatherDescription.textContent = data.weather[0].description
   } catch (err) {
-    if (lang === 'ru') {
-      localStorage['personalCity'] = 'Минск'
-    } else {
-      localStorage['personalCity'] = 'Minsk'
-    }
-
     weatherIcon.classList = ''
     temperature.textContent = ''
     weatherDescription.textContent = ''

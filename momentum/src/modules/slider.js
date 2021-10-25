@@ -10,9 +10,9 @@ export async function setBg(time, number) {
   const body = document.querySelector('body')
   const sources = document.querySelectorAll('.image-input')
   let imageSource = 'github'
-  let link = `https://raw.githubusercontent.com/Tianika/stage1-tasks/assets/images/${
-    time === 'afternoon' ? 'day' : time
-  }/${number.toString().padStart(2, '0')}.jpg`
+  let link = `https://raw.githubusercontent.com/Tianika/stage1-tasks/assets/images/${time}/${number
+    .toString()
+    .padStart(2, '0')}.jpg`
 
   const imgBg = new Image()
 
@@ -23,9 +23,9 @@ export async function setBg(time, number) {
   })
 
   if (imageSource === 'github') {
-    link = `https://raw.githubusercontent.com/Tianika/stage1-tasks/assets/images/${
-      time === 'afternoon' ? 'day' : time
-    }/${number.toString().padStart(2, '0')}.jpg`
+    link = `https://raw.githubusercontent.com/Tianika/stage1-tasks/assets/images/${time}/${number
+      .toString()
+      .padStart(2, '0')}.jpg`
   }
   if (imageSource === 'flickr') {
     link = await getLinkFlickr(time)
