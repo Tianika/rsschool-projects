@@ -1,8 +1,6 @@
 import './styles/owfont-regular.css'
 import './styles/style.scss'
 
-import * as quotesEn from './assets/json/quotes-en.json'
-import * as quotesRu from './assets/json/quotes-ru.json'
 import { setTime, showGreeting, getTimeOfDay } from './modules/clock.js'
 import {
   setName,
