@@ -1,0 +1,231 @@
+@font-face {
+  font-family: 'GilroyMedium';
+  src: url(../assets/fonts/gilroy-medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'GilroyBold';
+  src: url(../assets/fonts/gilroy-bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Gilroy Regular Italic';
+  src: url(../assets/fonts/gilroy-regularitalic.ttf);
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Gilroy SemiBold';
+  src: url(../assets/fonts/gilroy-semibold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Gilroy Regular';
+  src: url(../assets/fonts/gilroy-regular.ttf);
+  font-weight: 400;
+}
+
+/*-------------reset------------*/
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  height: 100%;
+  line-height: 1;
+  scroll-behavior: smooth;
+}
+button {
+  cursor: pointer;
+}
+
+body {
+  color: white;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/*-------------variables------------*/
+
+$black: #010101;
+//$generalColor: #ffbca2;
+$generalColor: #14f500;
+//$rightColor: #3dda69;
+$rightColor: #12db00;
+//$errorColor: #ff7e7e;
+$errorColor: #f5260c;
+$white: #ffffff;
+
+/*-------------base------------*/
+
+.root {
+  display: flex;
+  background: rgba($black, $alpha: 0.9) url(../assets/img/full/120full.jpg)
+    no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: overlay;
+  min-height: 100%;
+}
+
+.main-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-family: GilroyMedium;
+  font-size: Max(16px, 2vh);
+  line-height: Max(20px, 2.1vh);
+  div {
+    display: flex;
+    padding: 40px;
+
+    transition: color 500ms ease-in;
+    &:not(:last-child):hover {
+      color: rgba($generalColor, 0.8);
+      cursor: pointer;
+    }
+  }
+  .logo-rsschool {
+    margin-right: auto;
+
+    a {
+      display: block;
+      background: url(../assets/img/rs_school_js.png) no-repeat;
+      background-size: contain;
+      background-position: center center;
+      width: 85px;
+      height: 30px;
+      transition: filter 500ms ease-in-out;
+      &:hover {
+        filter: invert(37%) sepia(47%) saturate(4563%) hue-rotate(77deg)
+          brightness(80%) contrast(117%);
+      }
+    }
+  }
+  .app-developer {
+  }
+  .app-year {
+  }
+}
+
+/*-------------first-screen------------*/
+
+.first-screen {
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 40%;
+  }
+}
+
+.settings-button {
+  display: flex;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  padding: 40px;
+  background: url(../assets/svg/settings.svg) no-repeat;
+  background-position: center center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 1s ease-in;
+  &:hover {
+    transform: rotate(1turn);
+  }
+}
+
+.title {
+  font-family: GilroyBold;
+  font-size: Min(130px, 20vh);
+  line-height: Min(160px, 22vh);
+  margin: 20px auto;
+  span {
+    color: $generalColor;
+  }
+}
+
+.main-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: Max(50%, 50vh);
+  font-family: GilroyMedium;
+  font-size: 22px;
+  line-height: 22px;
+  div {
+    width: Max(290px, 30%);
+    margin: 10px;
+    border: 2px solid $white;
+    padding: 20px;
+    text-align: center;
+    background-color: $black;
+    box-shadow: rgba($white, 0.5) 5px 5px 5px;
+    cursor: pointer;
+    transition: all 300ms ease-in;
+
+    &:hover {
+      color: rgba($generalColor, 0.8);
+      box-shadow: rgba($white, 0.5) 1px 1px 5px;
+      border: 2px solid rgba($generalColor, 0.5);
+    }
+  }
+}
+
+/*-------------1024------------*/
+
+@media (max-width: 1024px) {
+  .main-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
