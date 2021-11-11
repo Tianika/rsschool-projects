@@ -41,6 +41,7 @@
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 ul,
 ol,
@@ -93,8 +94,7 @@ $white: #ffffff;
 
 .root {
   display: flex;
-  background: rgba($black, $alpha: 0.9) url(../assets/img/full/120full.jpg)
-    no-repeat;
+  background: rgba($black, 0.85) url(../assets/img/full/170full.jpg) no-repeat;
   background-size: cover;
   background-position: center center;
   background-blend-mode: overlay;
@@ -110,11 +110,14 @@ $white: #ffffff;
 
 .header {
   display: flex;
+  align-items: center;
+  margin: Clamp(30px, 4vw, 50px);
 }
 
 .main {
   display: flex;
   flex-direction: column;
+  margin: 0 Clamp(30px, 4vw, 50px);
 }
 
 .footer {
@@ -122,16 +125,18 @@ $white: #ffffff;
   justify-content: end;
   align-items: center;
   font-family: GilroyMedium;
-  font-size: Max(16px, 2vh);
-  line-height: Max(20px, 2.1vh);
+  font-size: 16px;
+  line-height: 16px;
+  margin: 0 Clamp(30px, 4vw, 50px);
   div {
     display: flex;
-    padding: 40px;
-
+    padding: Clamp(10px, 4vw, 30px) 0;
     transition: color 500ms ease-in;
+    &:nth-child(2) {
+      margin-right: 30px;
+    }
     &:not(:last-child):hover {
       color: rgba($generalColor, 0.8);
-      cursor: pointer;
     }
   }
   .logo-rsschool {
@@ -139,12 +144,13 @@ $white: #ffffff;
 
     a {
       display: block;
-      background: url(../assets/img/rs_school_js.png) no-repeat;
+      background: url(https://rs.school/images/rs_school_js.svg) no-repeat;
       background-size: contain;
       background-position: center center;
       width: 85px;
       height: 30px;
       transition: filter 500ms ease-in-out;
+      filter: invert(1);
       &:hover {
         filter: invert(37%) sepia(47%) saturate(4563%) hue-rotate(77deg)
           brightness(80%) contrast(117%);
@@ -155,6 +161,40 @@ $white: #ffffff;
   }
   .app-year {
   }
+}
+
+.button-general {
+  font-family: GilroyMedium;
+  font-size: 22px;
+  line-height: 22px;
+  width: 290px;
+  margin: 10px;
+  border: 2px solid $white;
+  padding: 20px;
+  text-align: center;
+  color: $white;
+  background-color: $black;
+  box-shadow: rgba($white, 0.5) 5px 5px 5px;
+  transition: all 300ms ease-in;
+  &:hover {
+    color: rgba($generalColor, 0.8);
+    box-shadow: rgba($white, 0.5) 1px 1px 5px;
+    border: 2px solid rgba($generalColor, 0.5);
+  }
+}
+
+.arrow {
+  background: url('../assets/svg/arrow.svg') no-repeat;
+  background-position: center center;
+  width: 35px;
+  height: 35px;
+}
+
+.close {
+  background: url('../assets/svg/close.svg') no-repeat;
+  background-position: center center;
+  width: 35px;
+  height: 35px;
 }
 
 /*-------------first-screen------------*/
@@ -171,23 +211,22 @@ $white: #ffffff;
 .settings-button {
   display: flex;
   margin-left: auto;
-  width: 40px;
-  height: 40px;
-  padding: 40px;
+  width: Clamp(30px, 4vw, 50px);
+  height: Clamp(30px, 4vw, 50px);
   background: url(../assets/svg/settings.svg) no-repeat;
   background-position: center center;
+  background-size: 100% 100%;
   border-radius: 50%;
-  cursor: pointer;
-  transition: transform 1s ease-in;
+  transition: transform 0.5s ease-in;
   &:hover {
-    transform: rotate(1turn);
+    transform: rotate(0.5turn);
   }
 }
 
 .title {
   font-family: GilroyBold;
-  font-size: Min(130px, 20vh);
-  line-height: Min(160px, 22vh);
+  font-size: Clamp(60px, 13vw, 130px);
+  line-height: Clamp(72px, 15vw, 160px);
   margin: 20px auto;
   span {
     color: $generalColor;
@@ -198,29 +237,23 @@ $white: #ffffff;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: Max(50%, 50vh);
-  font-family: GilroyMedium;
-  font-size: 22px;
-  line-height: 22px;
-  div {
-    width: Max(290px, 30%);
-    margin: 10px;
-    border: 2px solid $white;
-    padding: 20px;
-    text-align: center;
-    background-color: $black;
-    box-shadow: rgba($white, 0.5) 5px 5px 5px;
-    cursor: pointer;
-    transition: all 300ms ease-in;
-
-    &:hover {
-      color: rgba($generalColor, 0.8);
-      box-shadow: rgba($white, 0.5) 1px 1px 5px;
-      border: 2px solid rgba($generalColor, 0.5);
-    }
-  }
+  width: Min(640px, 50vw);
 }
 
+/*-------------first-screen------------*/
+
+.settings {
+}
+
+.settings-header {
+}
+
+.settings-title {
+  font-family: GilroyMedium;
+  font-size: 22px;
+  line-height: 28px;
+  margin-right: auto;
+}
 /*-------------1024------------*/
 
 @media (max-width: 1024px) {
@@ -228,4 +261,8 @@ $white: #ffffff;
     flex-direction: column;
     align-items: center;
   }
+}
+
+.hide {
+  display: none;
 }

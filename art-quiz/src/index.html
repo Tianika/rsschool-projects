@@ -13,15 +13,52 @@
   </head>
   <body>
     <div class="root">
-      <div class="main-screen first-screen">
+      <div class="main-screen first-screen hide">
         <header class="header">
-          <div class="settings-button"></div>
+          <button class="settings-button"></button>
         </header>
         <main class="main">
           <div class="title"><span>Art</span> Quiz</div>
           <div class="main-buttons">
-            <div class="button-artist">Artist quiz</div>
-            <div class="button-pictures">Pictures quiz</div>
+            <button class="button-general button-artist">Artist quiz</button>
+            <button class="button-general button-pictures">
+              Pictures quiz
+            </button>
+          </div>
+        </main>
+        <footer class="footer">
+          <div class="logo-rsschool">
+            <a href="https://rs.school/js/" target="_blank"></a>
+          </div>
+          <div class="app-developer">
+            <a href="https://github.com/Tianika" target="_blank">Tianika</a>
+          </div>
+          <div class="app-year">2021</div>
+        </footer>
+      </div>
+      <div class="main-screen settings">
+        <header class="header settings-header">
+          <button class="arrow"></button>
+          <div class="settings-title">Setting</div>
+          <button class="close"></button>
+        </header>
+        <main class="main">
+          <label for="volume" class="volume">Volume</label>
+          <input type="range" name="volume" id="volume" />
+          <label for="time-game" class="time-game">Time game</label>
+          <input type="checkbox" name="time-game" id="time-game" />
+          <label for="time-choice" class="time-choice">Time game</label>
+          <input
+            type="number"
+            name="time-choice"
+            id="time-choice"
+            min="5"
+            max="30"
+            step="5"
+          />
+          <div class="settings-buttons">
+            <button class="button-general button-artist">Default</button>
+            <button class="button-general button-pictures">Save</button>
           </div>
         </main>
         <footer class="footer">
