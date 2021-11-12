@@ -19,7 +19,7 @@
         </header>
         <main class="main">
           <div class="title"><span>Art</span> Quiz</div>
-          <div class="main-buttons">
+          <div class="buttons main-buttons">
             <button class="button-general button-artist">Artist quiz</button>
             <button class="button-general button-pictures">
               Pictures quiz
@@ -38,25 +38,66 @@
       </div>
       <div class="main-screen settings">
         <header class="header settings-header">
-          <button class="arrow"></button>
+          <button class="close-button arrow"></button>
           <div class="settings-title">Setting</div>
-          <button class="close"></button>
+          <button class="close-button close"></button>
         </header>
-        <main class="main">
-          <label for="volume" class="volume">Volume</label>
-          <input type="range" name="volume" id="volume" />
-          <label for="time-game" class="time-game">Time game</label>
-          <input type="checkbox" name="time-game" id="time-game" />
-          <label for="time-choice" class="time-choice">Time game</label>
-          <input
-            type="number"
-            name="time-choice"
-            id="time-choice"
-            min="5"
-            max="30"
-            step="5"
-          />
-          <div class="settings-buttons">
+        <main class="main settings-main">
+          <div class="settings-inputs">
+            <label for="volume" class="volume"
+              >Volume
+              <input type="range" name="volume" id="volume" />
+            </label>
+            <label for="sounds" class="sounds"
+              >Sounds
+              <input
+                class="switch-on switch-off"
+                type="checkbox"
+                name="sounds"
+                id="sounds"
+              />
+            </label>
+
+            <label for="time-game" class="time-game"
+              >Time game
+              <input
+                class="switch-on switch-off"
+                type="checkbox"
+                name="time-game"
+                id="time-game"
+              />
+            </label>
+
+            <label for="time-choice" class="time-choice"
+              >Time to answer
+              <div class="choice-time-buttons">
+                <button
+                  class="button-general small"
+                  type="button"
+                  onclick="this.nextElementSibling.stepDown()"
+                >
+                  &ndash;
+                </button>
+                <input
+                  type="number"
+                  name="time-choice"
+                  id="time-choice"
+                  min="5"
+                  max="40"
+                  value="30"
+                  step="5"
+                />
+                <button
+                  type="button"
+                  class="button-general small"
+                  onclick="this.previousElementSibling.stepUp()"
+                >
+                  +
+                </button>
+              </div>
+            </label>
+          </div>
+          <div class="buttons settings-buttons">
             <button class="button-general button-artist">Default</button>
             <button class="button-general button-pictures">Save</button>
           </div>

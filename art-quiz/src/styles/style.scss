@@ -90,7 +90,7 @@ $rightColor: #12db00;
 $errorColor: #f5260c;
 $white: #ffffff;
 
-/*-------------base------------*/
+/*-------------general------------*/
 
 .root {
   display: flex;
@@ -163,7 +163,15 @@ $white: #ffffff;
   }
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: Min(640px, 50vw);
+}
+
 .button-general {
+  position: relative;
   font-family: GilroyMedium;
   font-size: 22px;
   line-height: 22px;
@@ -176,25 +184,36 @@ $white: #ffffff;
   background-color: $black;
   box-shadow: rgba($white, 0.5) 5px 5px 5px;
   transition: all 300ms ease-in;
+  &.small {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+  }
   &:hover {
+    transform: translateY(4px);
     color: rgba($generalColor, 0.8);
     box-shadow: rgba($white, 0.5) 1px 1px 5px;
     border: 2px solid rgba($generalColor, 0.5);
   }
 }
 
-.arrow {
-  background: url('../assets/svg/arrow.svg') no-repeat;
+.close-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
   background-position: center center;
   width: 35px;
   height: 35px;
-}
-
-.close {
-  background: url('../assets/svg/close.svg') no-repeat;
-  background-position: center center;
-  width: 35px;
-  height: 35px;
+  transition: filter 300ms ease-in;
+  &:hover {
+    filter: invert(37%) sepia(47%) saturate(4563%) hue-rotate(77deg)
+      brightness(80%) contrast(117%);
+  }
+  &.arrow {
+    background-image: url('../assets/svg/arrow.svg');
+  }
+  &.close {
+    background-image: url('../assets/svg/close.svg');
+  }
 }
 
 /*-------------first-screen------------*/
@@ -234,13 +253,9 @@ $white: #ffffff;
 }
 
 .main-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: Min(640px, 50vw);
 }
 
-/*-------------first-screen------------*/
+/*-------------settings------------*/
 
 .settings {
 }
@@ -254,10 +269,148 @@ $white: #ffffff;
   line-height: 28px;
   margin-right: auto;
 }
+
+.settings-main {
+  justify-content: space-around;
+  align-items: center;
+  height: 60%;
+}
+
+.settings-inputs {
+  display: flex;
+  flex-direction: column;
+  font-family: GilroyBold;
+  font-size: 28px;
+  width: Min(70%, 640px);
+  margin: 10px auto;
+  label {
+    display: block;
+
+    input {
+      display: block;
+      margin-top: 15px;
+    }
+    &:first-child {
+      margin-bottom: Clamp(40px, 8vw, 50px);
+    }
+    &:not(:first-child) {
+      margin-bottom: Clamp(25px, 8vw, 35px);
+    }
+  }
+}
+
+.volume {
+  input {
+    position: relative;
+    -webkit-appearance: none;
+    width: 40%;
+    height: 5px;
+    outline: none;
+    background: linear-gradient(
+      90deg,
+      $generalColor 0%,
+      $generalColor 30%,
+      $white 30%,
+      $white 100%
+    );
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      left: 29%;
+      top: -3px;
+      border-radius: 50%;
+      background: $generalColor;
+    }
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      top: 20px;
+    }
+    &::before {
+      background-image: url('../assets/svg/mute.svg');
+    }
+    &::after {
+      right: 0;
+      background-image: url('../assets/svg/volume.svg');
+    }
+  }
+}
+
+.sounds {
+  width: 50%;
+  display: flex;
+}
+
+.switch-on {
+  display: inline-block;
+  -webkit-appearance: none;
+  position: relative;
+  width: 100px;
+  height: 24px;
+  outline: 2px solid #ffffff;
+  box-shadow: rgba($white, 0.5) 3px 3px 5px;
+  background: $white;
+  transition: all 300ms ease-in;
+  cursor: pointer;
+  z-index: 0;
+  &::after {
+    position: absolute;
+    content: '';
+    height: 24px;
+    width: 60px;
+    top: 0;
+    left: 40px;
+    background: $generalColor;
+    box-shadow: inset 0 0 3px 0 #999999;
+    transition: all 300ms ease-in;
+    z-index: 1;
+  }
+  &:hover {
+    outline: 2px solid rgba($generalColor, 0.8);
+  }
+}
+.switch-off {
+  background: $white;
+  &::after {
+    left: 0;
+    background: #e5e5e5;
+  }
+}
+
+.time-choice {
+}
+
+.choice-time-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+
+  #time-choice {
+    margin-top: 0;
+    text-align: center;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /*-------------1024------------*/
 
 @media (max-width: 1024px) {
-  .main-buttons {
+  .buttons {
     flex-direction: column;
     align-items: center;
   }
