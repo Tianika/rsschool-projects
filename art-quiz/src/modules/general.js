@@ -6,3 +6,11 @@ export function shuffle(arr) {
     ])
   }
 }
+
+export function randomNumber(number) {
+  return Math.floor(Math.random() * number)
+}
+
+export function changeBgImage(element, number) {
+  element.style.backgroundImage = `url(../assets/img/full/${number}full.jpg)`
+}
