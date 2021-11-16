@@ -1,6 +1,5 @@
-export let Footer = {
-  render: async () => {
-    return /*html*/ ` 
+export const Footer = () => {
+  let component = ` 
       <footer class="footer">
         <div class="logo-rsschool">
           <a href="https://rs.school/js/" target="_blank"></a>
@@ -11,8 +10,6 @@ export let Footer = {
         <div class="app-year">2021</div>
       </footer>
   `
-  },
-  afterrender: () => {},
+  return component
 }
-
 export default Footer

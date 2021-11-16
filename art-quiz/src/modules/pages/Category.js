@@ -6,12 +6,10 @@ class Category {
     this.quiz = nameQuiz
   }
 
-  async run() {
-    let footer = await Footer.render()
-    console.log(Footer)
-    let page = {
-      render: async () => {
-        return /*html*/ `
+  run() {
+    let footer = Footer()
+
+    let page = `
         <div class="main-screen select-categories">
         <header class="header select-header">
           <div class="title">
@@ -51,10 +49,8 @@ class Category {
         </main>
         ${footer}
         `
-      },
-      after_render: async () => {},
-    }
-    this.container.innerHTML = await page.render()
+
+    this.container.innerHTML = page
   }
 }
 

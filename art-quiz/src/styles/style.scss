@@ -101,18 +101,6 @@ $white: #ffffff;
   padding: Clamp(30px, 4vw, 50px);
 }
 
-// .general-container {
-//   display: flex;
-//   position: relative;
-//   left: 0;
-//   min-width: 100%;
-//   min-height: 100%;
-//   transition: left 0.5s ease-in;
-//   &.animation {
-//     left: -120%;
-//   }
-// }
-
 main {
   max-width: 1440px;
   margin: 0 auto;

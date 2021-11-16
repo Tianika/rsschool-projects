@@ -41,6 +41,12 @@ body.addEventListener('click', (event) => {
   if (event.target.classList.contains('button-pictures')) {
     categoryPicture.run()
   }
+  if (event.target.classList.contains('category-button')) {
+    // возврат к выбранной категории
+  }
+  if (event.target.classList.contains('timer-pictures')) {
+    // добавить обработчик
+  }
 })
 
 window.addEventListener('hashchange', console.log('hash'))

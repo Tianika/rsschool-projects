@@ -5,12 +5,10 @@ class Home {
     this.container = document.querySelector('.root')
   }
 
-  async run() {
-    let footer = await Footer.render()
-    console.log(Footer)
-    let page = {
-      render: async () => {
-        return /*html*/ `
+  run() {
+    let footer = Footer()
+
+    let page = `
       <div class="main-screen first-screen">
         <header class="header">
           <button class="settings-button" href="#settings"></button>
@@ -27,11 +25,8 @@ class Home {
         ${footer}
       </div>
         `
-      },
-      after_render: async () => {},
-    }
-    this.container.innerHTML = await page.render()
+
+    this.container.innerHTML = page
   }
 }
-
 export default Home

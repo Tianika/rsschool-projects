@@ -5,12 +5,10 @@ class Settings {
     this.container = document.querySelector('.root')
   }
 
-  async run() {
-    let footer = await Footer.render()
-    console.log(Footer)
-    let page = {
-      render: async () => {
-        return /*html*/ `
+  run() {
+    let footer = Footer()
+
+    let page = `
         <div class="main-screen settings">
         <header class="header settings-header">
           <button class="close-button arrow"></button>
@@ -80,10 +78,8 @@ class Settings {
         ${footer}
       </div>
         `
-      },
-      after_render: async () => {},
-    }
-    this.container.innerHTML = await page.render()
+
+    this.container.innerHTML = page
   }
 }
 
