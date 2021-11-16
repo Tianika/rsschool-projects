@@ -6,6 +6,7 @@ import { shuffle, randomNumber, changeBgImage } from './modules/general.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
+import ArtistQuestion from './modules/pages/ArtistQuestion.js'
 
 // const routes = {
 //   '/': Home,
@@ -23,6 +24,7 @@ const home = new Home()
 const settings = new Settings()
 const categoryArtist = new Category('Artist quiz')
 const categoryPicture = new Category('Pictures quiz')
+const artistQuestion = new ArtistQuestion()
 
 home.run()
 
@@ -46,6 +48,9 @@ body.addEventListener('click', (event) => {
   }
   if (event.target.classList.contains('timer-pictures')) {
     // добавить обработчик
+  }
+  if (event.target.classList.contains('card-image')) {
+    artistQuestion.run()
   }
 })
 

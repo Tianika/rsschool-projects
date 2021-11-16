@@ -99,6 +99,13 @@ $white: #ffffff;
   background-blend-mode: overlay;
   min-height: 100%;
   padding: Clamp(30px, 4vw, 50px);
+  @media (max-width: 1024px) {
+    padding: Clamp(20px, 3vw, 30px);
+  }
+
+  @media (max-width: 720px) {
+    padding: 15px;
+  }
 }
 
 main {
@@ -558,7 +565,6 @@ input::-webkit-inner-spin-button {
   }
   .card-categories {
     height: 240px;
-    background-color: #fff;
   }
 }
 
@@ -571,6 +577,121 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.hide {
+/*-------------select-categories------------*/
+
+.select-categorie {
+}
+
+.header {
+  .title {
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+}
+
+.title-small {
   display: none;
+  .color-name {
+    position: relative;
+    z-index: 2;
+    color: $generalColor;
+  }
+  @media (max-width: 720px) {
+    display: block;
+    margin-right: 15px;
+    font-size: 46px;
+    letter-spacing: -12px;
+  }
+}
+
+.select-buttons-container {
+}
+
+.timer-button {
+}
+
+.category-button {
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 90vw;
+  padding: 10px 0;
+
+  @media (max-width: 1024px) {
+    margin-top: 60px;
+    width: 85vw;
+  }
+}
+
+.question-title {
+  font-family: GilroyBold;
+  font-size: 28px;
+}
+
+.question-artist-image {
+  align-self: center;
+  height: 100%;
+  width: 95vw;
+  margin: 20px 0;
+  border-radius: 10px;
+  background-image: url(../assets/img/full/160full.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  @media (max-width: 1440px) {
+  }
+
+  @media (max-width: 1024px) {
+  }
+
+  @media (max-width: 720px) {
+  }
+}
+
+.question-artist-answers {
+  display: grid;
+  grid-template-columns: repeat(2, 350px);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 300px);
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(1, 320px);
+    grid-column-gap: 0;
+  }
+}
+
+.artist-answer {
+  font-family: GilroyMedium;
+  font-size: 22px;
+  color: $white;
+  background-color: $black;
+  border: $white solid 2px;
+  text-align: center;
+  padding: 15px;
+  &:hover {
+    box-shadow: $white 0 0 10px;
+  }
+  &.right-answer {
+    border: $rightColor solid 2px;
+    color: $rightColor;
+    box-shadow: $rightColor 0 0 10px;
+  }
+  &.error-answer {
+    border: $errorColor solid 2px;
+    color: $errorColor;
+    box-shadow: $errorColor 0 0 10px;
+  }
+  @media (max-width: 720px) {
+    padding: 10px;
+  }
 }
