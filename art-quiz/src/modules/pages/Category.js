@@ -1,3 +1,4 @@
+import Card from '../components/Card'
 import { Footer } from '../components/Footer'
 
 class Category {
@@ -6,7 +7,7 @@ class Category {
     this.quiz = nameQuiz
   }
 
-  run() {
+  run(category) {
     let footer = Footer()
 
     let page = `
@@ -23,34 +24,25 @@ class Category {
           <button class="settings-button"></button>
         </header>
         <main class="main categories-container">
-          <div class="card-categories">
-            <div class="card-title">
-              <div class="card-subtitle">01</div>
-              <div class="card-score">5 / 10</div>
-            </div>
-            <img
-              class="card-image"
-              src="./assets/img/img/0.jpg"
-              alt="card image"
-            />
-            <div class="card-score-button up">Score</div>
-          </div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-          <div class="card-categories"></div>
-        </main>
+            
+          </main>
         ${footer}
         `
 
     this.container.innerHTML = page
+
+    this.createCards(category)
+  }
+
+  createCards(category) {
+    const main = document.querySelector('.categories-container')
+
+    for (let i = 0; i < 12; i++) {
+      const card = new Card(i, 0, i)
+      const innerMain = card.renderCard(category)
+
+      main.innerHTML += innerMain
+    }
   }
 }
 

@@ -525,6 +525,9 @@ input::-webkit-inner-spin-button {
 
 .card-score {
   transition: all 0.3s linear;
+  &.hide {
+    display: none;
+  }
 }
 
 .card-image {
@@ -532,6 +535,9 @@ input::-webkit-inner-spin-button {
   object-fit: cover;
   width: 100%;
   bottom: 0;
+  &.no-play {
+    filter: grayscale(1);
+  }
 }
 
 .card-score-button {
@@ -637,20 +643,23 @@ input::-webkit-inner-spin-button {
 .question-artist-image {
   align-self: center;
   height: 100%;
-  width: 95vw;
+  width: 60vw;
   margin: 20px 0;
   border-radius: 10px;
-  background-image: url(../assets/img/full/160full.jpg);
+  background-image: url(../assets/img/full/210full.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   @media (max-width: 1440px) {
+    width: 70vw;
   }
 
   @media (max-width: 1024px) {
+    width: 80vw;
   }
 
   @media (max-width: 720px) {
+    width: 90vw;
   }
 }
 

@@ -7,6 +7,7 @@ import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
 import ArtistQuestion from './modules/pages/ArtistQuestion.js'
+import Person from './modules/Person.js'
 
 // const routes = {
 //   '/': Home,
@@ -26,6 +27,8 @@ const categoryArtist = new Category('Artist quiz')
 const categoryPicture = new Category('Pictures quiz')
 const artistQuestion = new ArtistQuestion()
 
+const person = new Person()
+
 home.run()
 
 const body = document.querySelector('body')
@@ -33,15 +36,18 @@ const body = document.querySelector('body')
 body.addEventListener('click', (event) => {
   if (event.target.classList.contains('home-button')) {
     home.run()
+    person.currentPage
   }
   if (event.target.classList.contains('settings-button')) {
     settings.run()
   }
   if (event.target.classList.contains('button-artist')) {
-    categoryArtist.run()
+    categoryArtist.run('artist')
+    person.currentPage = 'artist'
   }
   if (event.target.classList.contains('button-pictures')) {
-    categoryPicture.run()
+    categoryPicture.run('picture')
+    person.currentPage = 'picture'
   }
   if (event.target.classList.contains('category-button')) {
     // возврат к выбранной категории
@@ -51,6 +57,9 @@ body.addEventListener('click', (event) => {
   }
   if (event.target.classList.contains('card-image')) {
     artistQuestion.run()
+  }
+  if (event.target.classList.contains('card-score-button')) {
+    //страница score
   }
 })
 
