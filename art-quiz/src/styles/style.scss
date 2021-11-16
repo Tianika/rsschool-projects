@@ -641,7 +641,9 @@ input::-webkit-inner-spin-button {
 }
 
 .question-artist-image {
-  align-self: center;
+  display: flex;
+  justify-content: center;
+
   height: 100%;
   width: 60vw;
   margin: 20px 0;
@@ -660,6 +662,27 @@ input::-webkit-inner-spin-button {
 
   @media (max-width: 720px) {
     width: 90vw;
+  }
+}
+
+.bullet-container {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+}
+
+.answer-bullet {
+  width: 14px;
+  height: 14px;
+  margin: 5px;
+  border: $white solid 2px;
+  border-radius: 50%;
+  background-color: $black;
+  &.right {
+    background-color: $rightColor;
+  }
+  &.error {
+    background-color: $errorColor;
   }
 }
 

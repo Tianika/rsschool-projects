@@ -27,6 +27,9 @@ const categoryArtist = new Category('Artist quiz')
 const categoryPicture = new Category('Pictures quiz')
 const artistQuestion = new ArtistQuestion()
 
+const unicArtists = new Set()
+images.map((image) => unicArtists.add(image.author))
+
 const person = new Person()
 
 home.run()
