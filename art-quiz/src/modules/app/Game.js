@@ -1,4 +1,5 @@
 import images from './images'
+import QuestionAboutArtist from '../pages/QuestionAboutArtist'
 import { Bullet } from '../components/Bullet'
 import { AnswerBtnForArtist } from '../components/AnswerBtnForArtist'
 import AnswerWindow from '../components/AnswerWindow'
@@ -6,23 +7,42 @@ import { QuestionImage } from '../components/QuestionImage'
 import { shuffle, randomNumber } from './general'
 
 export class Game {
-  constructor(round) {
+  constructor(round, typeGame) {
     this.questionNumber = 0
     this.round = round
+    this.typeGame = typeGame
     this.beginSlice = round * 10 + this.questionNumber
     this.images = images.slice(this.beginSlice, this.beginSlice + 10)
     this.rounds = []
-    this.answers = new Set()
+    this.answers = []
     this.bullets = ['', '', '', '', '', '', '', '', '', '']
   }
 
   start() {
+    console.log('run')
     this.run()
+
+    const root = document.querySelector('.root')
+
+    root.addEventListener('click', (event) => {
+      if (event.target.classList.contains('button-next')) {
+        root.innerHTML = ''
+        if (this.questionNumber === 10) {
+          console.log('end round')
+          return
+        }
+        this.run()
+      }
+    })
   }
 
   run() {
-    console.log('run')
-    console.log(this.images)
+    const questionAboutArtist = new QuestionAboutArtist()
+    if (this.typeGame === 'artist') {
+      questionAboutArtist.run()
+    }
+
+    //console.log(this.images)
     //добавляем буллеты
     this.addBullets()
 
@@ -33,37 +53,40 @@ export class Game {
 
     //добавляем ответы
     this.rightAnswer = this.question.author
-    this.answers.add(this.rightAnswer)
+    this.answers.push(this.rightAnswer)
     this.addAnswersToArtists()
 
     //слушаем клик
     const answersContainer = document.querySelector('.question-artist-answers')
+    const root = document.querySelector('.root')
 
     answersContainer.addEventListener('click', (event) => {
       if (event.target.classList.contains('answer')) {
-        //создаем окно ответа
-        const answer = new AnswerWindow(this.question)
-        answer.renderAnswer()
-        answersContainer.innerHTML += answer.renderAnswer()
-
         //добавляем стили для правильного-неправильного ответа
-        const modalImage = document.querySelector('.modal-answer-image')
-
-        console.log(event.target.classList)
-
         if (event.target.dataset.right === 'right') {
           event.target.classList.add('right-answer')
-          modalImage.classList.add('right-answer')
           this.bullets[this.questionNumber] = 'right'
         } else if (event.target.dataset.right === 'error') {
           event.target.classList.add('error-answer')
-          modalImage.classList.add('error-answer')
           this.bullets[this.questionNumber] = 'error'
         }
 
-        modalImage.backgroundImage = `url('../assets/img/img/${this.question.imageNum}.jpg')`
+        //создаем окно ответа
+        const answer = new AnswerWindow(this.question)
+        root.innerHTML += answer.renderAnswer()
+        const modalImage = document.querySelector('.modal-answer-image')
+        modalImage.style.backgroundImage = `url('../assets/img/img/${this.question.imageNum}.jpg')`
+
+        if (event.target.dataset.right === 'right') {
+          modalImage.classList.add('right-answer')
+        } else if (event.target.dataset.right === 'error') {
+          modalImage.classList.add('error-answer')
+        }
+
         this.questionNumber++
+        this.answers = []
         console.log(this.bullets)
+        console.log(this.questionNumber)
       }
     })
   }
@@ -81,11 +104,15 @@ export class Game {
   addAnswersToArtists() {
     const container = document.querySelector('.question-artist-answers')
 
-    while (this.answers.size < 4) {
-      this.answers.add(images[randomNumber(images.length)].author)
+    while (this.answers.length < 4) {
+      let author = images[randomNumber(images.length)].author
+
+      if (!this.answers.includes(author)) {
+        this.answers.push(author)
+      }
     }
 
-    this.answers = shuffle([...this.answers])
+    this.answers = shuffle(this.answers)
     this.answers.forEach((answer) => {
       container.innerHTML += new AnswerBtnForArtist(
         answer,

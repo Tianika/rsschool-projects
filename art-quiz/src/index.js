@@ -7,10 +7,9 @@ import { randomNumber, changeBgImage } from './modules/app/general.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
-import ArtistQuestion from './modules/pages/ArtistQuestion.js'
+import QuestionAboutArtist from './modules/pages/QuestionAboutArtist.js'
 import Person from './modules/app/Person.js'
 import { Game } from './modules/app/Game'
-import AnswerWindow from './modules/components/AnswerWindow'
 
 // const routes = {
 //   '/': Home,
@@ -28,7 +27,6 @@ const home = new Home()
 const settings = new Settings()
 const categoryArtist = new Category('Artist quiz')
 const categoryPicture = new Category('Pictures quiz')
-const artistQuestion = new ArtistQuestion()
 
 const unicArtists = new Set()
 images.map((image) => unicArtists.add(image.author))
@@ -69,21 +67,15 @@ body.addEventListener('click', (event) => {
     // добавить обработчик
   }
   if (event.target.classList.contains('card-image')) {
-    if (person.currentPage === 'artist') {
-      artistQuestion.run()
-    }
-
     let round = event.target.dataset.image
     console.log(round)
-    const game = new Game(round)
+    let typeGame = person.currentPage === 'artist' ? 'artist' : 'picture'
+
+    const game = new Game(round, typeGame)
     game.start()
   }
   if (event.target.classList.contains('card-score-button')) {
     // добавить обработчик
-  }
-
-  if (event.target.classList.contains('button-next')) {
-    game.run()
   }
 })
 

@@ -1,7 +1,7 @@
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
-class ArtistQuestion {
+class QuestionAboutArtist {
   constructor() {
     this.container = document.querySelector('.root')
   }
@@ -29,4 +29,4 @@ class ArtistQuestion {
     this.container.innerHTML = page
   }
 }
-export default ArtistQuestion
+export default QuestionAboutArtist
