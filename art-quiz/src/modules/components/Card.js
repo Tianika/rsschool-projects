@@ -23,7 +23,9 @@ class Card {
                 src="./assets/img/img/${10 * this.number}.jpg"
                 alt="card image"
               />
-              <div class="card-score-button up">Score</div>
+              <div class="card-score-button up" data-card="${
+                this.number
+              }">Score</div>
             </div>
   `
     return component

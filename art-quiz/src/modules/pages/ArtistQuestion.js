@@ -1,6 +1,7 @@
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Bullet } from '../components/Bullet'
+import { QuestionImage } from '../components/QuestionImage'
 
 class ArtistQuestion {
   constructor() {
@@ -32,6 +33,8 @@ class ArtistQuestion {
 
     this.container.innerHTML = page
     this.addBullets()
+    let questionImage = new QuestionImage(0)
+    questionImage.renderQuestion()
   }
 
   addBullets() {
