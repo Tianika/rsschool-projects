@@ -1,10 +1,9 @@
 class Card {
-  constructor(subtitle, score, number) {
+  constructor(subtitle, number) {
     this.subtitle = (subtitle + 1).toString().padStart(2, '0')
-    this.score = score.toString().padStart(2, '0')
     this.number = number
-    this.hide = 'hide'
-    this.play = 'no-play'
+    this.hide = 'card-score hide'
+    this.play = 'card-image no-play'
   }
 
   renderCard(category) {
@@ -12,14 +11,24 @@ class Card {
       this.number = this.number + 12
     }
 
+    if (localStorage['resultsArtQuiz']) {
+      const resultQuiz = JSON.parse(localStorage['resultsArtQuiz'])[this.number]
+
+      if (resultQuiz) {
+        this.hide = resultQuiz.hide
+        this.play = resultQuiz.play
+        this.score = resultQuiz.score
+      }
+    }
+
     let component = ` 
             <div class="card-categories">
               <div class="card-title">
                 <div class="card-subtitle">${this.subtitle}</div>
-                <div class="card-score ${this.hide}">${this.score} / 10</div>
+                <div class="${this.hide}">${this.score} / 10</div>
               </div>
               <img
-                class="card-image ${this.play}"
+                class="${this.play}"
                 src="./assets/img/img/${10 * this.number}.jpg"
                 alt="card image"
                 data-image="${this.number}"

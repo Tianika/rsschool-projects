@@ -28,9 +28,6 @@ const settings = new Settings()
 const categoryArtist = new Category('Artist quiz')
 const categoryPicture = new Category('Pictures quiz')
 
-const unicArtists = new Set()
-images.map((image) => unicArtists.add(image.author))
-
 const person = new Person()
 
 home.run()
@@ -56,6 +53,15 @@ body.addEventListener('click', (event) => {
     person.currentPage = 'picture'
   }
   if (event.target.classList.contains('category-button')) {
+    if (person.currentPage === 'artist') {
+      categoryArtist.run('artist')
+    }
+    if (person.currentPage === 'picture') {
+      categoryPicture.run('picture')
+    }
+  }
+  if (event.target.classList.contains('next-quiz-button')) {
+    console.log('next quiz')
     if (person.currentPage === 'artist') {
       categoryArtist.run('artist')
     }

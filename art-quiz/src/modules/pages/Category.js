@@ -38,7 +38,7 @@ class Category {
     const main = document.querySelector('.categories-container')
 
     for (let i = 0; i < 12; i++) {
-      const card = new Card(i, 0, i)
+      const card = new Card(i, i)
       const innerMain = card.renderCard(category)
 
       main.innerHTML += innerMain

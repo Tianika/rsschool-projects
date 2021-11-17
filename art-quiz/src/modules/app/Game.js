@@ -3,6 +3,7 @@ import QuestionAboutArtist from '../pages/QuestionAboutArtist'
 import { Bullet } from '../components/Bullet'
 import { AnswerBtnForArtist } from '../components/AnswerBtnForArtist'
 import AnswerWindow from '../components/AnswerWindow'
+import ResultWindow from '../components/ResultWindow'
 import { QuestionImage } from '../components/QuestionImage'
 import { shuffle, randomNumber } from './general'
 
@@ -10,6 +11,7 @@ export class Game {
   constructor(round, typeGame) {
     this.questionNumber = 0
     this.round = round
+    this.score = 0
     this.typeGame = typeGame
     this.beginSlice = round * 10 + this.questionNumber
     this.images = images.slice(this.beginSlice, this.beginSlice + 10)
@@ -28,7 +30,10 @@ export class Game {
       if (event.target.classList.contains('button-next')) {
         root.innerHTML = ''
         if (this.questionNumber === 10) {
-          console.log('end round')
+          this.endRound()
+          const result = new ResultWindow()
+          root.innerHTML += result.render()
+
           return
         }
         this.run()
@@ -66,6 +71,7 @@ export class Game {
         if (event.target.dataset.right === 'right') {
           event.target.classList.add('right-answer')
           this.bullets[this.questionNumber] = 'right'
+          this.score++
         } else if (event.target.dataset.right === 'error') {
           event.target.classList.add('error-answer')
           this.bullets[this.questionNumber] = 'error'
@@ -119,5 +125,19 @@ export class Game {
         this.rightAnswer
       ).renderAnswer()
     })
+  }
+
+  endRound() {
+    const resultForSave = {}
+    resultForSave['score'] = this.score
+    resultForSave['hide'] = 'card-score'
+    resultForSave['play'] = 'card-image'
+    resultForSave['images'] = [...this.bullets]
+
+    const arrayResults = JSON.parse(localStorage['resultsArtQuiz'])
+    arrayResults[this.round] = resultForSave
+    localStorage['resultsArtQuiz'] = JSON.stringify(arrayResults)
+
+    console.log(localStorage['resultsArtQuiz'])
   }
 }
