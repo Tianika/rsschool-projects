@@ -22,6 +22,7 @@ class Card {
                 class="card-image ${this.play}"
                 src="./assets/img/img/${10 * this.number}.jpg"
                 alt="card image"
+                data-image="${this.number}"
               />
               <div class="card-score-button up" data-card="${
                 this.number

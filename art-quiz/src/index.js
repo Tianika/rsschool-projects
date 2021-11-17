@@ -3,13 +3,14 @@ import './styles/style.scss'
 
 import images from './modules/app/images.js'
 //import { handlers, classesForHandlers } from './modules/app/handlers'
-import { shuffle, randomNumber, changeBgImage } from './modules/app/general.js'
+import { randomNumber, changeBgImage } from './modules/app/general.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
 import ArtistQuestion from './modules/pages/ArtistQuestion.js'
 import Person from './modules/app/Person.js'
 import { Game } from './modules/app/Game'
+import AnswerWindow from './modules/components/AnswerWindow'
 
 // const routes = {
 //   '/': Home,
@@ -72,11 +73,17 @@ body.addEventListener('click', (event) => {
       artistQuestion.run()
     }
 
-    const game = new Game(0)
-    game.run(0)
+    let round = event.target.dataset.image
+    console.log(round)
+    const game = new Game(round)
+    game.start()
   }
   if (event.target.classList.contains('card-score-button')) {
     // добавить обработчик
+  }
+
+  if (event.target.classList.contains('button-next')) {
+    game.run()
   }
 })
 

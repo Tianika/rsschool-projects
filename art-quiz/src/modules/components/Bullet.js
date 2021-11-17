@@ -1,14 +1,9 @@
 export class Bullet {
-  constructor(number) {
-    this.number = number
-    this.isRight = ''
+  constructor(isRight) {
+    this.isRight = isRight
   }
 
-  renderBullet(isRight) {
-    if (isRight) {
-      this.isRight = isRight
-    }
-
+  renderBullet() {
     let component = ` 
     <div class="answer-bullet ${this.isRight}"></div>
   `

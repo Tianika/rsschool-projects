@@ -11,20 +11,20 @@
 }
 
 @font-face {
-  font-family: 'Gilroy Regular Italic';
+  font-family: 'GilroyRegularItalic';
   src: url(../assets/fonts/gilroy-regularitalic.ttf);
   font-style: italic;
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Gilroy SemiBold';
+  font-family: 'GilroySemiBold';
   src: url(../assets/fonts/gilroy-semibold.ttf);
   font-weight: 600;
 }
 
 @font-face {
-  font-family: 'Gilroy Regular';
+  font-family: 'GilroyRegular';
   src: url(../assets/fonts/gilroy-regular.ttf);
   font-weight: 400;
 }
@@ -92,6 +92,7 @@ $white: #ffffff;
 /*-------------general------------*/
 
 .root {
+  position: relative;
   display: flex;
   background: rgba($black, 0.85) url(../assets/img/full/170full.jpg) no-repeat;
   background-size: cover;
@@ -726,4 +727,60 @@ input::-webkit-inner-spin-button {
   @media (max-width: 720px) {
     padding: 10px;
   }
+}
+
+.modal-answer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($black, 0.5);
+}
+
+.modal-answer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  width: 520px;
+  height: 670px;
+  padding: 20px;
+  background-color: $black;
+}
+
+.modal-answer-image {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: $white solid 2px;
+  box-shadow: $white 0px 0px 20px;
+  background-image: url('../assets/img/img/105.jpg');
+  &.right-answer {
+    border: $rightColor solid 2px;
+    box-shadow: $rightColor 0px 0px 20px;
+  }
+  &.error-answer {
+    border: $errorColor solid 2px;
+    box-shadow: $errorColor 0px 0px 20px;
+  }
+}
+
+.modal-answer-name {
+  font-family: GilroyMedium;
+  font-size: 32px;
+  padding: 10px;
+}
+
+.modal-answer-describe {
+  font-family: GilroyRegularItalic;
+  font-size: 22px;
+  padding: 10px;
+}
+
+.button-next {
 }
