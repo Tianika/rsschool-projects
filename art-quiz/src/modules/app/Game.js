@@ -3,7 +3,8 @@ import QuestionAboutArtist from '../pages/QuestionAboutArtist'
 import { Bullet } from '../components/Bullet'
 import { AnswerBtnForArtist } from '../components/AnswerBtnForArtist'
 import AnswerWindow from '../components/AnswerWindow'
-import ResultWindow from '../components/ResultWindow'
+import ResultWindow from '../pages/ResultWindow'
+import GrandResultWindow from '../pages/GrandResultWindow'
 import { QuestionImage } from '../components/QuestionImage'
 import { shuffle, randomNumber } from './general'
 
@@ -31,9 +32,17 @@ export class Game {
         root.innerHTML = ''
         if (this.questionNumber === 10) {
           this.endRound()
-          const result = new ResultWindow()
-          root.innerHTML += result.render()
 
+          if (this.score === 10) {
+            const result = new GrandResultWindow()
+            root.innerHTML += result.render()
+          } else {
+            const result = new ResultWindow()
+            root.innerHTML += result.render()
+          }
+
+          const resultScore = document.querySelector('.modal-result-score')
+          resultScore.innerText = this.score
           return
         }
         this.run()
@@ -47,7 +56,6 @@ export class Game {
       questionAboutArtist.run()
     }
 
-    //console.log(this.images)
     //добавляем буллеты
     this.addBullets()
 
@@ -111,7 +119,7 @@ export class Game {
     const container = document.querySelector('.question-artist-answers')
 
     while (this.answers.length < 4) {
-      let author = images[randomNumber(images.length)].author
+      let author = images[randomNumber(images.length - 1)].author
 
       if (!this.answers.includes(author)) {
         this.answers.push(author)
@@ -135,9 +143,8 @@ export class Game {
     resultForSave['images'] = [...this.bullets]
 
     const arrayResults = JSON.parse(localStorage['resultsArtQuiz'])
+
     arrayResults[this.round] = resultForSave
     localStorage['resultsArtQuiz'] = JSON.stringify(arrayResults)
-
-    console.log(localStorage['resultsArtQuiz'])
   }
 }

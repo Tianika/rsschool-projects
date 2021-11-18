@@ -32,6 +32,12 @@ const person = new Person()
 
 home.run()
 
+if (!localStorage['resultsArtQuiz']) {
+  const arr = new Array(24)
+
+  localStorage['resultsArtQuiz'] = JSON.stringify(arr)
+}
+
 const body = document.querySelector('body')
 
 body.addEventListener('click', (event) => {
