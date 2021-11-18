@@ -1,7 +1,9 @@
 import images from './images'
 import QuestionAboutArtist from '../pages/QuestionAboutArtist'
+import QuestionAboutPicture from '../pages/QuestionAboutPicture'
 import { Bullet } from '../components/Bullet'
 import { AnswerBtnForArtist } from '../components/AnswerBtnForArtist'
+import AnswerImages from '../components/AnswerImages'
 import AnswerWindow from '../components/AnswerWindow'
 import ResultWindow from '../pages/ResultWindow'
 import GrandResultWindow from '../pages/GrandResultWindow'
@@ -29,10 +31,7 @@ export class Game {
 
     root.addEventListener('click', (event) => {
       if (event.target.classList.contains('button-next')) {
-        root.innerHTML = ''
         if (this.questionNumber === 10) {
-          this.endRound()
-
           if (this.score === 10) {
             const result = new GrandResultWindow()
             root.innerHTML += result.render()
@@ -40,6 +39,8 @@ export class Game {
             const result = new ResultWindow()
             root.innerHTML += result.render()
           }
+
+          this.endRound()
 
           const resultScore = document.querySelector('.modal-result-score')
           resultScore.innerText = this.score
@@ -51,26 +52,49 @@ export class Game {
   }
 
   run() {
-    const questionAboutArtist = new QuestionAboutArtist()
+    let answersContainer = ''
+
+    // ---------- artist quiz
     if (this.typeGame === 'artist') {
+      const questionAboutArtist = new QuestionAboutArtist()
       questionAboutArtist.run()
+
+      //добавляем картину
+      this.question = this.images[this.questionNumber]
+      const questionImage = new QuestionImage(this.question.imageNum)
+      questionImage.renderQuestion()
+
+      //добавляем ответы
+      this.rightAnswer = this.question.author
+      this.answers.push(this.rightAnswer)
+      this.addAnswersToArtists()
+
+      answersContainer = document.querySelector('.question-artist-answers')
     }
 
+    // -------------picture quiz
+    if (this.typeGame === 'picture') {
+      const questionAboutPicture = new QuestionAboutPicture()
+      questionAboutPicture.run()
+
+      this.question = this.images[this.questionNumber]
+      this.rightAnswer = this.question.author
+      document.querySelector('.question-author').innerText = this.rightAnswer
+
+      // добавляем 4 картины для ответов
+      this.answers.push([this.rightAnswer, this.question.imageNum])
+
+      this.addAnswersToPictures()
+      console.log(this.answers)
+
+      answersContainer = document.querySelector('.question-picture-answers')
+    }
+
+    // ------------общее
     //добавляем буллеты
     this.addBullets()
 
-    //добавляем картину
-    this.question = this.images[this.questionNumber]
-    const questionImage = new QuestionImage(this.question.imageNum)
-    questionImage.renderQuestion()
-
-    //добавляем ответы
-    this.rightAnswer = this.question.author
-    this.answers.push(this.rightAnswer)
-    this.addAnswersToArtists()
-
     //слушаем клик
-    const answersContainer = document.querySelector('.question-artist-answers')
     const root = document.querySelector('.root')
 
     answersContainer.addEventListener('click', (event) => {
@@ -99,8 +123,6 @@ export class Game {
 
         this.questionNumber++
         this.answers = []
-        console.log(this.bullets)
-        console.log(this.questionNumber)
       }
     })
   }
@@ -132,6 +154,22 @@ export class Game {
         answer,
         this.rightAnswer
       ).renderAnswer()
+    })
+  }
+
+  addAnswersToPictures() {
+    while (this.answers.length < 4) {
+      let image = images[randomNumber(images.length - 1)]
+
+      if (this.answers[0][0] !== image.author) {
+        this.answers.push([image.author, image.imageNum])
+      }
+    }
+
+    this.answers = shuffle(this.answers)
+
+    this.answers.forEach((answer, i, arr) => {
+      new AnswerImages(answer[0], this.rightAnswer).renderAnswer(i, answer[1])
     })
   }
 

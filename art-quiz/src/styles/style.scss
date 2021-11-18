@@ -81,11 +81,8 @@ body {
 /*-------------variables------------*/
 
 $black: #010101;
-//$generalColor: #ffbca2;
 $generalColor: #14f500;
-//$rightColor: #3dda69;
 $rightColor: #12db00;
-//$errorColor: #ff7e7e;
 $errorColor: #f5260c;
 $white: #ffffff;
 
@@ -217,7 +214,7 @@ main {
   &:hover {
     transform: translateY(4px);
     color: rgba($generalColor, 0.8);
-    box-shadow: rgba($white, 0.5) 1px 1px 5px;
+    box-shadow: rgba($generalColor, 0.5) 1px 1px 5px;
     border: 2px solid rgba($generalColor, 0.5);
   }
 }
@@ -522,6 +519,7 @@ input::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-between;
   padding: 7px;
+  cursor: default;
 }
 
 .card-score {
@@ -636,6 +634,9 @@ input::-webkit-inner-spin-button {
   height: 100%;
   width: 90vw;
   padding: 10px 0;
+  &.picture {
+    justify-content: center;
+  }
 
   @media (max-width: 1024px) {
     margin-top: 60px;
@@ -674,6 +675,9 @@ input::-webkit-inner-spin-button {
   display: flex;
   justify-content: center;
   align-self: flex-end;
+  &.pictures-quiz {
+    align-self: center;
+  }
 }
 
 .answer-bullet {
@@ -733,6 +737,44 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.question-picture-answers {
+  display: grid;
+  grid-template-columns: repeat(2, 48%);
+  grid-template-rows: repeat(2, 48%);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  height: 80%;
+  width: 80%;
+  padding: 10px;
+  margin-top: 20px;
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(1, 90%);
+    grid-template-rows: repeat(4, 25%);
+  }
+}
+
+.answer-picture {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: auto;
+  background-color: $black;
+  border: $white solid 2px;
+  &:hover {
+    box-shadow: $white 0 0 10px;
+  }
+  &.right-answer {
+    border: $rightColor solid 2px;
+    box-shadow: $rightColor 0 0 10px;
+  }
+  &.error-answer {
+    border: $errorColor solid 2px;
+    box-shadow: $errorColor 0 0 10px;
+  }
+}
+
 /*-------------modal-windows------------*/
 
 .modal-answer {
@@ -783,12 +825,14 @@ input::-webkit-inner-spin-button {
   font-family: GilroyMedium;
   font-size: 32px;
   padding: 10px;
+  text-align: center;
 }
 
 .modal-answer-describe {
   font-family: GilroyRegularItalic;
   font-size: 22px;
   padding: 10px;
+  text-align: center;
 }
 
 .button-next {

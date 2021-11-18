@@ -2,12 +2,10 @@ import './styles/normalize.css'
 import './styles/style.scss'
 
 import images from './modules/app/images.js'
-//import { handlers, classesForHandlers } from './modules/app/handlers'
 import { randomNumber, changeBgImage } from './modules/app/general.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
-import QuestionAboutArtist from './modules/pages/QuestionAboutArtist.js'
 import Person from './modules/app/Person.js'
 import { Game } from './modules/app/Game'
 
