@@ -32,18 +32,25 @@ export class Game {
     root.addEventListener('click', (event) => {
       if (event.target.classList.contains('button-next')) {
         if (this.questionNumber === 10) {
-          if (this.score === 10) {
-            const result = new GrandResultWindow()
-            root.innerHTML += result.render()
-          } else {
+          document.querySelector('.modal-answer').remove()
+
+          // if (this.score === 0) {
+          //   //добавить окно для результата 0 баллов
+          //   const result = 'Try again'
+          //   root.innerHTML += result
+          // } else
+          if (this.score < 10) {
             const result = new ResultWindow()
+            root.innerHTML += result.render()
+          } else if (this.score === 10) {
+            const result = new GrandResultWindow()
             root.innerHTML += result.render()
           }
 
-          this.endRound()
-
           const resultScore = document.querySelector('.modal-result-score')
-          resultScore.innerText = this.score
+          resultScore.innerHTML = this.score
+
+          this.saveResults()
           return
         }
         this.run()
@@ -104,6 +111,7 @@ export class Game {
           event.target.classList.add('right-answer')
           this.bullets[this.questionNumber] = 'right'
           this.score++
+          console.log(this.score)
         } else if (event.target.dataset.right === 'error') {
           event.target.classList.add('error-answer')
           this.bullets[this.questionNumber] = 'error'
@@ -173,11 +181,11 @@ export class Game {
     })
   }
 
-  endRound() {
+  saveResults() {
     const resultForSave = {}
     resultForSave['score'] = this.score
     resultForSave['hide'] = 'card-score'
-    resultForSave['play'] = 'card-image'
+    resultForSave['play'] = 'play'
     resultForSave['images'] = [...this.bullets]
 
     const arrayResults = JSON.parse(localStorage['resultsArtQuiz'])
@@ -186,3 +194,5 @@ export class Game {
     localStorage['resultsArtQuiz'] = JSON.stringify(arrayResults)
   }
 }
+
+export default Game

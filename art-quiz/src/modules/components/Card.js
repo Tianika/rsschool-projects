@@ -3,7 +3,7 @@ class Card {
     this.subtitle = (subtitle + 1).toString().padStart(2, '0')
     this.number = number
     this.hide = 'card-score hide'
-    this.play = 'card-image no-play'
+    this.play = 'no-play'
   }
 
   renderCard(category) {
@@ -22,13 +22,13 @@ class Card {
     }
 
     let component = ` 
-            <div class="card-categories">
+            <div class="card-categories ${this.play}">
               <div class="card-title">
                 <div class="card-subtitle">${this.subtitle}</div>
                 <div class="${this.hide}">${this.score} / 10</div>
               </div>
               <img
-                class="${this.play}"
+                class="card-image ${this.play}"
                 src="./assets/img/img/${10 * this.number}.jpg"
                 alt="card image"
                 data-image="${this.number}"

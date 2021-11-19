@@ -7,7 +7,8 @@ import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
 import Person from './modules/app/Person.js'
-import { Game } from './modules/app/Game'
+import Game from './modules/app/Game.js'
+import Score from './modules/pages/Score.js'
 
 // const routes = {
 //   '/': Home,
