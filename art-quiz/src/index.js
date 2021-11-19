@@ -3,6 +3,7 @@ import './styles/style.scss'
 
 import images from './modules/app/images.js'
 import { randomNumber, changeBgImage } from './modules/app/general.js'
+import { changeVolume, OnOffSound, OnOffTime } from './modules/app/settings.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
@@ -46,17 +47,37 @@ body.addEventListener('click', (event) => {
     home.run()
     person.currentPage = 'home'
   }
+
   if (event.target.classList.contains('settings-button')) {
     settings.run()
+    changeVolume()
+    OnOffSound()
+    OnOffTime()
   }
+
+  if (event.target.classList.contains('close-button')) {
+    console.log(person.currentPage)
+    if (person.currentPage === 'home') {
+      home.run()
+    }
+    if (person.currentPage === 'artist') {
+      categoryArtist.run('artist')
+    }
+    if (person.currentPage === 'picture') {
+      categoryPicture.run('picture')
+    }
+  }
+
   if (event.target.classList.contains('button-artist')) {
     categoryArtist.run('artist')
     person.currentPage = 'artist'
   }
+
   if (event.target.classList.contains('button-pictures')) {
     categoryPicture.run('picture')
     person.currentPage = 'picture'
   }
+
   if (event.target.classList.contains('category-button')) {
     if (person.currentPage === 'artist') {
       categoryArtist.run('artist')
@@ -65,8 +86,8 @@ body.addEventListener('click', (event) => {
       categoryPicture.run('picture')
     }
   }
+
   if (event.target.classList.contains('next-quiz-button')) {
-    console.log('next quiz')
     if (person.currentPage === 'artist') {
       categoryArtist.run('artist')
     }
@@ -74,9 +95,11 @@ body.addEventListener('click', (event) => {
       categoryPicture.run('picture')
     }
   }
+
   if (event.target.classList.contains('timer-pictures')) {
     // добавить обработчик
   }
+
   if (event.target.classList.contains('card-image')) {
     let round = event.target.dataset.image
     let typeGame = person.currentPage === 'artist' ? 'artist' : 'picture'
@@ -84,10 +107,12 @@ body.addEventListener('click', (event) => {
     const game = new Game(round, typeGame)
     game.start()
   }
+
   if (event.target.classList.contains('card-score-button')) {
     const scorePage = new Score(event.target.dataset.card)
     scorePage.createPage()
   }
+
   if (event.target.classList.contains('card-score-image')) {
     const scoreImages = document.querySelectorAll('.card-score-info')
 

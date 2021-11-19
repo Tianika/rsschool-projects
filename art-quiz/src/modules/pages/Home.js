@@ -11,7 +11,7 @@ class Home {
     let page = `
       <div class="main-screen first-screen">
         <header class="header">
-          <button class="settings-button" href="#settings"></button>
+          <button class="settings-button"></button>
         </header>
         <main class="main">
           <div class="title"><span class="color-name">Art</span> Quiz</div>

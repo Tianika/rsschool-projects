@@ -19,12 +19,12 @@ class Settings {
           <div class="settings-inputs">
             <label for="volume" class="volume"
               >Volume
-              <input type="range" name="volume" id="volume" />
+              <input class="volume-input" type="range" name="volume" id="volume" />
             </label>
             <label for="sounds" class="sounds"
               >Sounds
               <input
-                class="switch-on switch-off"
+                class="sound-switch switch-on switch-off"
                 type="checkbox"
                 name="sounds"
                 id="sounds"
@@ -34,7 +34,7 @@ class Settings {
             <label for="time-game" class="time-game"
               >Time game
               <input
-                class="switch-on switch-off"
+                class="time-switch switch-on switch-off"
                 type="checkbox"
                 name="time-game"
                 id="time-game"
@@ -45,7 +45,7 @@ class Settings {
               >Time to answer
               <div class="choice-time-buttons">
                 <button
-                  class="button-general small"
+                  class="button-general small-button"
                   type="button"
                   onclick="this.nextElementSibling.stepDown()"
                 >
@@ -62,7 +62,7 @@ class Settings {
                 />
                 <button
                   type="button"
-                  class="button-general small"
+                  class="button-general small-button"
                   onclick="this.previousElementSibling.stepUp()"
                 >
                   +
@@ -70,7 +70,7 @@ class Settings {
               </div>
             </label>
           </div>
-          <div class="buttons settings-buttons">
+          <div class="buttons settings-buttons-container">
             <button class="button-general default-settings">Default</button>
             <button class="button-general save-settings">Save</button>
           </div>
