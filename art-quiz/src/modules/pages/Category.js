@@ -17,6 +17,7 @@ class Category {
             <span class="color-name">Art</span> Quiz <br />
             <span class="category-name">${this.quiz}</span>
           </div>
+          <div class="title-small"><span class="color-name">A</span>Q</div>
           <div class="buttons buttons-header">
             <button class="button-general button-header home-button">Home</button>
             

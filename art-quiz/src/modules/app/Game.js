@@ -18,7 +18,7 @@ export class Game {
     this.typeGame = typeGame
     this.beginSlice = round * 10 + this.questionNumber
     this.images = images.slice(this.beginSlice, this.beginSlice + 10)
-    this.rounds = []
+    this.roundResult = []
     this.answers = []
     this.bullets = ['', '', '', '', '', '', '', '', '', '']
   }
@@ -127,8 +127,10 @@ export class Game {
 
         if (event.target.dataset.right === 'right') {
           modalImage.classList.add('right-answer')
+          this.roundResult.push('right')
         } else if (event.target.dataset.right === 'error') {
           modalImage.classList.add('error-answer')
+          this.roundResult.push('error')
         }
 
         this.questionNumber++
@@ -189,6 +191,7 @@ export class Game {
     resultForSave['hide'] = 'card-score'
     resultForSave['play'] = 'play'
     resultForSave['images'] = [...this.bullets]
+    resultForSave['roundResult'] = [...this.roundResult]
 
     const arrayResults = JSON.parse(localStorage['resultsArtQuiz'])
 

@@ -89,7 +89,14 @@ body.addEventListener('click', (event) => {
     scorePage.createPage()
   }
   if (event.target.classList.contains('card-score-image')) {
-    //document.querySelector('.card-score-info').classList.toggle('up')
+    const scoreImages = document.querySelectorAll('.card-score-info')
+
+    scoreImages.forEach((img) => {
+      if (event.target.nextElementSibling !== img) {
+        img.classList.remove('up')
+      }
+    })
+    event.target.nextElementSibling.classList.toggle('up')
   }
 })
 

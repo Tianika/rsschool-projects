@@ -6,10 +6,15 @@ class Score {
     this.container = document.querySelector('.root')
     this.quiz = Number(number)
     this.title = this.quiz < 12 ? this.quiz + 1 : (this.quiz % 12) + 1
+    this.arrayOfResults = JSON.parse(localStorage['resultsArtQuiz'])[number][
+      'roundResult'
+    ]
   }
 
   createPage() {
     let footer = Footer()
+
+    console.log(this.arrayOfResults)
 
     let page = `
         <div class="main-screen select-categories">
@@ -18,6 +23,7 @@ class Score {
             <span class="color-name">Art</span> Quiz <br />
             <span class="category-name">Score</span>
           </div>
+          <div class="title-small"><span class="color-name">A</span>Q</div>
           <div class="buttons buttons-header">
             <button class="button-general button-header home-button">Home</button>
             <button class="button-general button-header category-button">Categories</button>
@@ -39,7 +45,12 @@ class Score {
     const main = document.querySelector('.score-container')
 
     for (let i = 0; i < 10; i++) {
-      const card = new CardScore(this.quiz, i, this.title)
+      const card = new CardScore(
+        this.quiz,
+        i,
+        this.title,
+        this.arrayOfResults[i]
+      )
       const innerMain = card.renderCard()
 
       main.innerHTML += innerMain
