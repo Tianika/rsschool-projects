@@ -31,14 +31,11 @@ export class Game {
 
     root.addEventListener('click', (event) => {
       if (event.target.classList.contains('button-next')) {
+        this.saveResults()
+
         if (this.questionNumber === 10) {
           document.querySelector('.modal-answer').remove()
 
-          // if (this.score === 0) {
-          //   //добавить окно для результата 0 баллов
-          //   const result = 'Try again'
-          //   root.innerHTML += result
-          // } else
           if (this.score < 10) {
             const result = new ResultWindow()
             root.innerHTML += result.render()
@@ -47,10 +44,15 @@ export class Game {
             root.innerHTML += result.render()
           }
 
+          // if (this.score === 0) {
+          //   //добавить окно для результата 0 баллов
+          //   const result = 'Try again'
+          //   root.innerHTML += result
+          // } else
+
           const resultScore = document.querySelector('.modal-result-score')
           resultScore.innerHTML = this.score
 
-          this.saveResults()
           return
         }
         this.run()

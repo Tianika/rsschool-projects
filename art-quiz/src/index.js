@@ -79,14 +79,17 @@ body.addEventListener('click', (event) => {
   }
   if (event.target.classList.contains('card-image')) {
     let round = event.target.dataset.image
-    console.log(round)
     let typeGame = person.currentPage === 'artist' ? 'artist' : 'picture'
 
     const game = new Game(round, typeGame)
     game.start()
   }
   if (event.target.classList.contains('card-score-button')) {
-    // добавить обработчик
+    const scorePage = new Score(event.target.dataset.card)
+    scorePage.createPage()
+  }
+  if (event.target.classList.contains('card-score-image')) {
+    //document.querySelector('.card-score-info').classList.toggle('up')
   }
 })
 
