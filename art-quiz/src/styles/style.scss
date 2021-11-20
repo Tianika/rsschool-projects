@@ -91,7 +91,7 @@ $white: #ffffff;
 .root {
   position: relative;
   display: flex;
-  background: rgba($black, 0.85) url(../assets/img/full/170full.jpg) no-repeat;
+  background: rgba($black, 0.85) no-repeat;
   background-size: cover;
   background-position: center center;
   background-blend-mode: overlay;
@@ -378,6 +378,7 @@ main {
       background-size: contain;
       background-position: center center;
       top: 10px;
+      cursor: default;
     }
     &::before {
       background-image: url('../assets/svg/mute.svg');
@@ -818,7 +819,7 @@ input::-webkit-inner-spin-button {
   grid-row-gap: 40px;
   width: 100%;
   height: auto;
-  padding-bottom: 20px;
+  padding: 20px 0;
   @media (max-width: 1440px) {
     grid-template-columns: repeat(4, 200px);
   }

@@ -9,6 +9,7 @@ import ResultWindow from '../pages/ResultWindow'
 import GrandResultWindow from '../pages/GrandResultWindow'
 import { QuestionImage } from '../components/QuestionImage'
 import { shuffle, randomNumber } from './general'
+import Sound from './Sound'
 
 export class Game {
   constructor(round, typeGame) {
@@ -25,23 +26,31 @@ export class Game {
 
   start() {
     console.log('run')
+    this.sound = new Sound()
+
     this.run()
 
     const root = document.querySelector('.root')
 
     root.addEventListener('click', (event) => {
       if (event.target.classList.contains('button-next')) {
-        this.saveResults()
+        this.sound.playSound('button-sound')
 
         if (this.questionNumber === 10) {
-          document.querySelector('.modal-answer').remove()
+          this.saveResults()
+
+          if (document.querySelector('.modal-answer')) {
+            document.querySelector('.modal-answer').remove()
+          }
 
           if (this.score < 10) {
             const result = new ResultWindow()
             root.innerHTML += result.render()
+            this.sound.playSound('win-sound')
           } else if (this.score === 10) {
             const result = new GrandResultWindow()
             root.innerHTML += result.render()
+            this.sound.playSound('grand-win')
           }
 
           // if (this.score === 0) {
@@ -53,6 +62,7 @@ export class Game {
           const resultScore = document.querySelector('.modal-result-score')
           resultScore.innerHTML = this.score
 
+          delete this.sound
           return
         }
         this.run()
@@ -113,10 +123,12 @@ export class Game {
           event.target.classList.add('right-answer')
           this.bullets[this.questionNumber] = 'right'
           this.score++
+          this.sound.playSound('right-answer')
           console.log(this.score)
         } else if (event.target.dataset.right === 'error') {
           event.target.classList.add('error-answer')
           this.bullets[this.questionNumber] = 'error'
+          this.sound.playSound('error-answer')
         }
 
         //создаем окно ответа

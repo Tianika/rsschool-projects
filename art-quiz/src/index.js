@@ -10,6 +10,7 @@ import Category from './modules/pages/Category.js'
 import Person from './modules/app/Person.js'
 import Game from './modules/app/Game.js'
 import Score from './modules/pages/Score.js'
+import Sound from './modules/app/Sound.js'
 
 // const routes = {
 //   '/': Home,
@@ -32,6 +33,8 @@ const person = new Person()
 
 home.run()
 
+const sound = new Sound()
+
 if (!localStorage['resultsArtQuiz']) {
   const arr = new Array(24)
 
@@ -45,6 +48,7 @@ body.addEventListener('click', (event) => {
 
   if (event.target.classList.contains('home-button')) {
     home.run()
+    sound.playSound('button-sound')
     person.currentPage = 'home'
   }
 
@@ -53,10 +57,12 @@ body.addEventListener('click', (event) => {
     changeVolume()
     OnOffSound()
     OnOffTime()
+    sound.playSound('button-sound')
   }
 
   if (event.target.classList.contains('close-button')) {
-    console.log(person.currentPage)
+    sound.playSound('button-sound')
+
     if (person.currentPage === 'home') {
       home.run()
     }
@@ -69,16 +75,20 @@ body.addEventListener('click', (event) => {
   }
 
   if (event.target.classList.contains('button-artist')) {
+    sound.playSound('button-sound')
     categoryArtist.run('artist')
     person.currentPage = 'artist'
   }
 
   if (event.target.classList.contains('button-pictures')) {
+    sound.playSound('button-sound')
     categoryPicture.run('picture')
     person.currentPage = 'picture'
   }
 
   if (event.target.classList.contains('category-button')) {
+    sound.playSound('button-sound')
+
     if (person.currentPage === 'artist') {
       categoryArtist.run('artist')
     }
@@ -88,6 +98,8 @@ body.addEventListener('click', (event) => {
   }
 
   if (event.target.classList.contains('next-quiz-button')) {
+    sound.playSound('button-sound')
+
     if (person.currentPage === 'artist') {
       categoryArtist.run('artist')
     }
@@ -97,6 +109,7 @@ body.addEventListener('click', (event) => {
   }
 
   if (event.target.classList.contains('timer-pictures')) {
+    sound.playSound('button-sound')
     // добавить обработчик
   }
 
@@ -105,16 +118,19 @@ body.addEventListener('click', (event) => {
     let typeGame = person.currentPage === 'artist' ? 'artist' : 'picture'
 
     const game = new Game(round, typeGame)
+    sound.playSound('button-sound')
     game.start()
   }
 
   if (event.target.classList.contains('card-score-button')) {
     const scorePage = new Score(event.target.dataset.card)
+    sound.playSound('button-sound')
     scorePage.createPage()
   }
 
   if (event.target.classList.contains('card-score-image')) {
     const scoreImages = document.querySelectorAll('.card-score-info')
+    sound.playSound('button-sound')
 
     scoreImages.forEach((img) => {
       if (event.target.nextElementSibling !== img) {
