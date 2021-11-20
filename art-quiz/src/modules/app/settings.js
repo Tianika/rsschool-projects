@@ -1,12 +1,12 @@
-const audio = new Audio()
-
 export function changeVolume() {
   const volume = document.querySelector('.volume-input')
 
-  volume.addEventListener('input', () => {
+  volume.addEventListener('change', () => {
     let volumeLevel = volume.value
+    sound.playSound('button-sound')
+    sound.changeVolume(volumeLevel)
     console.log(volumeLevel)
-    volume.style.background = changeBgInputVolume(volumeLevel)
+    volume.background = changeBgInputVolume(volumeLevel)
   })
 
   function changeBgInputVolume(value) {
@@ -25,6 +25,8 @@ export function OnOffSound() {
 
   soundSwitch.addEventListener('click', () => {
     soundSwitch.classList.toggle('switch-off')
+    playSound('button-sound')
+    sound.muted
   })
 }
 
@@ -33,5 +35,6 @@ export function OnOffTime() {
 
   timeSwitch.addEventListener('click', () => {
     timeSwitch.classList.toggle('switch-off')
+    playSound('button-sound')
   })
 }

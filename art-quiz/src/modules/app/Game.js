@@ -10,6 +10,7 @@ import ResultWindow from '../pages/ResultWindow'
 import GrandResultWindow from '../pages/GrandResultWindow'
 import { QuestionImage } from '../components/QuestionImage'
 import { shuffle, randomNumber } from './general'
+import { playSound } from './sound'
 
 export class Game {
   constructor(round, typeGame) {
@@ -24,14 +25,14 @@ export class Game {
     this.bullets = ['', '', '', '', '', '', '', '', '', '']
   }
 
-  start(sound) {
-    this.run(sound)
+  start() {
+    this.run()
 
     const root = document.querySelector('.root')
 
     root.addEventListener('click', (event) => {
       if (event.target.classList.contains('button-next')) {
-        sound.playSound('button-sound')
+        playSound('button-sound')
 
         if (this.questionNumber === 10) {
           this.saveResults()
@@ -43,27 +44,27 @@ export class Game {
           if (this.score === 0) {
             const result = new GameOverWindow()
             root.innerHTML += result.render()
-            sound.playSound('game-lost')
+            playSound('game-lost')
           } else if (this.score < 10) {
             const result = new ResultWindow()
             root.innerHTML += result.render()
             const resultScore = document.querySelector('.modal-result-score')
             resultScore.innerHTML = this.score
-            sound.playSound('win-sound')
+            playSound('win-sound')
           } else if (this.score === 10) {
             const result = new GrandResultWindow()
             root.innerHTML += result.render()
-            sound.playSound('grand-win')
+            playSound('grand-win')
           }
-
+          this.questionNumber = 0
           return
         }
-        this.run(sound)
+        this.run()
       }
     })
   }
 
-  run(sound) {
+  run() {
     let answersContainer = ''
 
     // ---------- artist quiz
@@ -114,11 +115,11 @@ export class Game {
           event.target.classList.add('right-answer')
           this.bullets[this.questionNumber] = 'right'
           this.score++
-          sound.playSound('right-answer')
+          playSound('right-answer')
         } else if (event.target.dataset.right === 'error') {
           event.target.classList.add('error-answer')
           this.bullets[this.questionNumber] = 'error'
-          sound.playSound('error-answer')
+          playSound('error-answer')
         }
 
         //создаем окно ответа
