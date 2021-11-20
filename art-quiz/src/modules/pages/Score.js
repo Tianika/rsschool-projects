@@ -14,8 +14,6 @@ class Score {
   createPage() {
     let footer = Footer()
 
-    console.log(this.arrayOfResults)
-
     let page = `
         <div class="main-screen select-categories">
         <header class="header select-header">

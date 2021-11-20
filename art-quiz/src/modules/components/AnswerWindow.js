@@ -6,8 +6,6 @@ export class AnswerWindow {
   }
 
   renderAnswer() {
-    console.log(this.author, this.name, this.year)
-
     let component = ` 
     <div class="modal-answer">
         <div class="modal-answer-container">

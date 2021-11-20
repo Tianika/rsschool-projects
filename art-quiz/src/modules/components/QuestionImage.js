@@ -3,10 +3,19 @@ export class QuestionImage {
     this.number = number
   }
 
-  renderQuestion() {
+  async renderQuestion() {
     const container = document.querySelector('.question-artist-image')
 
-    container.style.backgroundImage = `url(../assets/img/full/${this.number}full.jpg)`
+    let link = `https://raw.githubusercontent.com/Tianika/image-data/master/full/${this.number}full.jpg`
+
+    const imgBg = new Image()
+
+    imgBg.src = await link
+
+    imgBg.addEventListener(
+      'load',
+      () => (container.style.backgroundImage = `url(${link})`)
+    )
   }
 }
 export default QuestionImage

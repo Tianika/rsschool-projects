@@ -4,14 +4,25 @@ export class AnswerImages {
     this.rightName = rightName
   }
 
-  renderAnswer(i, imageNum) {
+  async renderAnswer(i, imageNum) {
     this.name === this.rightName
       ? (this.isRight = 'right')
       : (this.isRight = 'error')
 
     const images = document.querySelectorAll('.answer-picture')
     const img = images[i]
-    img.style.backgroundImage = `url(../assets/img/img/${imageNum}.jpg)`
+
+    let link = `https://raw.githubusercontent.com/Tianika/image-data/master/img/${imageNum}.jpg`
+
+    const imgBg = new Image()
+
+    imgBg.src = await link
+
+    imgBg.addEventListener(
+      'load',
+      () => (img.style.backgroundImage = `url(${link})`)
+    )
+
     img.dataset.right = this.isRight
   }
 }

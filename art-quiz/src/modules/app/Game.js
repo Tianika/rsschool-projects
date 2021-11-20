@@ -25,8 +25,6 @@ export class Game {
   }
 
   start(sound) {
-    console.log('run')
-
     this.run(sound)
 
     const root = document.querySelector('.root')
@@ -117,7 +115,6 @@ export class Game {
           this.bullets[this.questionNumber] = 'right'
           this.score++
           sound.playSound('right-answer')
-          console.log(this.score)
         } else if (event.target.dataset.right === 'error') {
           event.target.classList.add('error-answer')
           this.bullets[this.questionNumber] = 'error'

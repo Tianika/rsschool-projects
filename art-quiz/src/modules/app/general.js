@@ -7,6 +7,15 @@ export function randomNumber(number) {
   return Math.floor(Math.random() * number)
 }
 
-export function changeBgImage(element, number) {
-  element.style.backgroundImage = `url(../assets/img/full/${number}full.jpg)`
+export async function changeBgImage(element, number) {
+  let link = `https://raw.githubusercontent.com/Tianika/image-data/master/full/${number}full.jpg`
+
+  const imgBg = new Image()
+
+  imgBg.src = await link
+
+  imgBg.addEventListener(
+    'load',
+    () => (element.style.backgroundImage = `url(${link})`)
+  )
 }
