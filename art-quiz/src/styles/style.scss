@@ -1047,6 +1047,30 @@ input::-webkit-inner-spin-button {
   padding: 10px;
 }
 
+.game-over-logo {
+  margin: 10px;
+  width: 80%;
+  height: 30%;
+  background-image: url('../assets/svg/game-over.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.game-over-title {
+  font-family: GilroyBold;
+  font-size: 62px;
+  line-height: 90px;
+  padding: 10px;
+}
+
+.game-over-subtitle {
+  font-family: GilroyRegular;
+  font-size: 42px;
+  line-height: 50px;
+  padding: 10px;
+}
+
 @media (max-width: 720px) {
   .modal-answer-logo {
     margin: 15px;

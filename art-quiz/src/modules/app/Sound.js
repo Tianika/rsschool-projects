@@ -1,6 +1,6 @@
 export class Sound {
   constructor() {
-    this.sound = new Audio()
+    this.sound = document.querySelector('.audio')
     this.sounds = {
       'button-sound': './assets/sounds/zvuk-button.mp3',
       'right-answer': './assets/sounds/zvuk-pravilnogo-otveta.mp3',
@@ -8,11 +8,18 @@ export class Sound {
       'time-out': './assets/sounds/chasyi-obratnogo-otscheta.mp3',
       'win-sound': './assets/sounds/game-won.mp3',
       'grand-win': './assets/sounds/grand-pobeda-melodiya.mp3',
+      'game-lost': './assets/sounds/game-lost.mp3',
     }
   }
-  playSound(type) {
+  async playSound(type) {
     this.sound.src = this.sounds[type]
-    this.sound.play()
+    const playPromise = this.sound.play()
+
+    if (playPromise !== null) {
+      playPromise.catch(() => {
+        this.sound.play()
+      })
+    }
   }
 }
 
