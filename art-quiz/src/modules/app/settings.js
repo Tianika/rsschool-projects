@@ -1,10 +1,10 @@
-export function changeVolume() {
+export function changeVolumeBg() {
   const volume = document.querySelector('.volume-input')
 
   volume.addEventListener('change', () => {
     let volumeLevel = volume.value
-    sound.playSound('button-sound')
-    sound.changeVolume(volumeLevel)
+    playSound('button-sound')
+    changeVolume(volumeLevel)
     console.log(volumeLevel)
     volume.background = changeBgInputVolume(volumeLevel)
   })

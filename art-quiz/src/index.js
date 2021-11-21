@@ -3,7 +3,11 @@ import './styles/style.scss'
 
 import images from './modules/app/images.js'
 import { randomNumber, changeBgImage } from './modules/app/general.js'
-import { changeVolume, OnOffSound, OnOffTime } from './modules/app/settings.js'
+import {
+  changeVolumeBg,
+  OnOffSound,
+  OnOffTime,
+} from './modules/app/settings.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
 import Category from './modules/pages/Category.js'
@@ -16,28 +20,22 @@ try {
   const root = document.querySelector('.root')
 
   let randomPictureNum = randomNumber(images.length)
-
   changeBgImage(root, randomPictureNum)
 
   const home = new Home()
-
-  const categoryArtist = new Category('Artist quiz')
-  const categoryPicture = new Category('Pictures quiz')
+  home.run()
 
   const person = new Person()
 
-  home.run()
-
   if (!localStorage['resultsArtQuiz']) {
     const arr = new Array(24)
-
     localStorage['resultsArtQuiz'] = JSON.stringify(arr)
   }
 
   const body = document.querySelector('body')
 
   body.addEventListener('click', (event) => {
-    console.log(event.target)
+    //console.log(event.target)
 
     if (event.target.classList.contains('home-button')) {
       home.run()
@@ -48,7 +46,7 @@ try {
     if (event.target.classList.contains('settings-button')) {
       const settings = new Settings()
       settings.run()
-      changeVolume()
+      changeVolumeBg()
       OnOffSound()
       OnOffTime()
       playSound('button-sound')
@@ -60,45 +58,43 @@ try {
       if (person.currentPage === 'home') {
         home.run()
       }
-      if (person.currentPage === 'artist') {
-        categoryArtist.run('artist')
-      }
-      if (person.currentPage === 'picture') {
-        categoryPicture.run('picture')
+      if (person.currentPage === 'artist' || person.currentPage === 'picture') {
+        const category = new Category(person.currentPage)
+        category.run()
       }
     }
 
     if (event.target.classList.contains('button-artist')) {
       playSound('button-sound')
-      categoryArtist.run('artist')
       person.currentPage = 'artist'
+
+      const category = new Category(person.currentPage)
+      category.run()
     }
 
     if (event.target.classList.contains('button-pictures')) {
       playSound('button-sound')
-      categoryPicture.run('picture')
       person.currentPage = 'picture'
+
+      const category = new Category(person.currentPage)
+      category.run()
     }
 
     if (event.target.classList.contains('category-button')) {
       playSound('button-sound')
 
-      if (person.currentPage === 'artist') {
-        categoryArtist.run('artist')
-      }
-      if (person.currentPage === 'picture') {
-        categoryPicture.run('picture')
+      if (person.currentPage === 'artist' || person.currentPage === 'picture') {
+        const category = new Category(person.currentPage)
+        category.run()
       }
     }
 
     if (event.target.classList.contains('next-quiz-button')) {
       playSound('button-sound')
 
-      if (person.currentPage === 'artist') {
-        categoryArtist.run('artist')
-      }
-      if (person.currentPage === 'picture') {
-        categoryPicture.run('picture')
+      if (person.currentPage === 'artist' || person.currentPage === 'picture') {
+        const category = new Category(person.currentPage)
+        category.run()
       }
     }
 
@@ -111,20 +107,24 @@ try {
       let round = event.target.dataset.image
       let typeGame = person.currentPage === 'artist' ? 'artist' : 'picture'
 
-      const game = new Game(round, typeGame)
       playSound('button-sound')
+
+      const game = new Game(round, typeGame)
+      console.log('game ', game)
       game.start()
     }
 
     if (event.target.classList.contains('card-score-button')) {
-      const scorePage = new Score(event.target.dataset.card)
       playSound('button-sound')
+
+      const scorePage = new Score(event.target.dataset.card)
       scorePage.createPage()
     }
 
     if (event.target.classList.contains('card-score-image')) {
-      const scoreImages = document.querySelectorAll('.card-score-info')
       playSound('button-sound')
+
+      const scoreImages = document.querySelectorAll('.card-score-info')
 
       scoreImages.forEach((img) => {
         if (event.target.nextElementSibling !== img) {

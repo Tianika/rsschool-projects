@@ -20,6 +20,6 @@ export async function playSound(type) {
   }
 }
 
-export function changeVolume(level) {
-  this.sound.volume = level / 100
+export function changeVolume(audio, level) {
+  audio.volume = level / 100
 }

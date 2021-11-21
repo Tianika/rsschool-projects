@@ -15,53 +15,53 @@ import { playSound } from './sound'
 export class Game {
   constructor(round, typeGame) {
     this.questionNumber = 0
-    this.round = round
     this.score = 0
-    this.typeGame = typeGame
-    this.beginSlice = round * 10 + this.questionNumber
-    this.images = images.slice(this.beginSlice, this.beginSlice + 10)
     this.roundResult = []
     this.answers = []
     this.bullets = ['', '', '', '', '', '', '', '', '', '']
+    this.round = round
+    this.typeGame = typeGame
+    this.beginSlice = round * 10 + this.questionNumber
+    this.images = images.slice(this.beginSlice, this.beginSlice + 10)
   }
 
   start() {
     this.run()
 
-    const root = document.querySelector('.root')
+    // const root = document.querySelector('.root')
 
-    root.addEventListener('click', (event) => {
-      if (event.target.classList.contains('button-next')) {
-        playSound('button-sound')
+    // root.addEventListener('click', (event) => {
+    //   if (event.target.classList.contains('button-next')) {
+    //     playSound('button-sound')
 
-        if (this.questionNumber === 10) {
-          this.saveResults()
+    //     if (this.questionNumber === 10) {
+    //       this.saveResults()
 
-          if (document.querySelector('.modal-answer')) {
-            document.querySelector('.modal-answer').remove()
-          }
+    //       if (document.querySelector('.modal-answer')) {
+    //         document.querySelector('.modal-answer').remove()
+    //       }
 
-          if (this.score === 0) {
-            const result = new GameOverWindow()
-            root.innerHTML += result.render()
-            playSound('game-lost')
-          } else if (this.score < 10) {
-            const result = new ResultWindow()
-            root.innerHTML += result.render()
-            const resultScore = document.querySelector('.modal-result-score')
-            resultScore.innerHTML = this.score
-            playSound('win-sound')
-          } else if (this.score === 10) {
-            const result = new GrandResultWindow()
-            root.innerHTML += result.render()
-            playSound('grand-win')
-          }
-          this.questionNumber = 0
-          return
-        }
-        this.run()
-      }
-    })
+    //       if (this.score === 0) {
+    //         const result = new GameOverWindow()
+    //         root.innerHTML += result.render()
+    //         playSound('game-lost')
+    //       } else if (this.score < 10) {
+    //         const result = new ResultWindow()
+    //         root.innerHTML += result.render()
+    //         const resultScore = document.querySelector('.modal-result-score')
+    //         resultScore.innerHTML = this.score
+    //         playSound('win-sound')
+    //       } else if (this.score === 10) {
+    //         const result = new GrandResultWindow()
+    //         root.innerHTML += result.render()
+    //         playSound('grand-win')
+    //       }
+    //       console.log(this)
+    //       return
+    //     }
+    //     this.run()
+    //   }
+    // })
   }
 
   run() {
@@ -138,6 +138,41 @@ export class Game {
 
         this.questionNumber++
         this.answers = []
+
+        const nextBtn = document.querySelector('.button-next')
+
+        nextBtn.addEventListener('click', () => {
+          playSound('button-sound')
+
+          if (this.questionNumber === 10) {
+            this.saveResults()
+
+            if (document.querySelector('.modal-answer')) {
+              document.querySelector('.modal-answer').remove()
+            }
+
+            const mainScreen = document.querySelector('.main-screen')
+
+            if (this.score === 0) {
+              const result = new GameOverWindow()
+              mainScreen.insertAdjacentHTML('afterEnd', result.render())
+              playSound('game-lost')
+            } else if (this.score < 10) {
+              const result = new ResultWindow()
+              mainScreen.insertAdjacentHTML('afterEnd', result.render())
+              const resultScore = document.querySelector('.modal-result-score')
+              resultScore.innerHTML = this.score
+              playSound('win-sound')
+            } else if (this.score === 10) {
+              const result = new GrandResultWindow()
+              mainScreen.insertAdjacentHTML('afterEnd', result.render())
+              playSound('grand-win')
+            }
+            console.log(this)
+            return
+          }
+          this.run()
+        })
       }
     })
   }

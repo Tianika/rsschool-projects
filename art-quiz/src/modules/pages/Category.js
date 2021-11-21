@@ -2,12 +2,13 @@ import Card from '../components/Card'
 import { Footer } from '../components/Footer'
 
 class Category {
-  constructor(nameQuiz) {
+  constructor(category) {
     this.container = document.querySelector('.root')
-    this.quiz = nameQuiz
+    this.category = category
+    this.quiz = category === 'artist' ? 'Artist quiz' : 'Pictures quiz'
   }
 
-  run(category) {
+  run() {
     let footer = Footer()
 
     let page = `
@@ -32,7 +33,7 @@ class Category {
 
     this.container.innerHTML = page
 
-    this.createCards(category)
+    this.createCards(this.category)
   }
 
   createCards(category) {
