@@ -13,18 +13,18 @@ export async function playSound(type) {
   audio.src = sounds[type]
 
   if (localStorage['levelSoundArtQuiz']) {
-    audio.volume = localStorage['levelSoundArtQuiz']
+    audio.volume = Number(localStorage['levelSoundArtQuiz'])
   }
 
-  const playPromise = audio.play()
+  if (localStorage.soundMute === 'switch-off') {
+    audio.pause()
+  } else {
+    const playPromise = audio.play()
 
-  if (playPromise !== null) {
-    playPromise.catch(() => {
-      audio.play()
-    })
+    if (playPromise !== null) {
+      playPromise.catch(() => {
+        audio.play()
+      })
+    }
   }
-}
-
-export function changeVolume(level) {
-  localStorage['levelSoundArtQuiz'] = level / 100
 }

@@ -24,7 +24,7 @@ class Settings {
             <label for="sounds" class="sounds"
               >Sounds
               <input
-                class="sound-switch switch-on"
+                class="sound-switch switch-on ${localStorage['soundMute']}"
                 type="checkbox"
                 name="sounds"
                 id="sounds"
@@ -72,7 +72,6 @@ class Settings {
           </div>
           <div class="buttons settings-buttons-container">
             <button class="button-general default-settings">Default</button>
-            <button class="button-general save-settings">Save</button>
           </div>
         </main>
         ${footer}
