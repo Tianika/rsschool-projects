@@ -344,7 +344,7 @@ main {
     position: relative;
     -webkit-appearance: none;
     width: 50%;
-    height: 5px;
+    height: 7px;
     outline: none;
     cursor: pointer;
     background: linear-gradient(
@@ -360,8 +360,8 @@ main {
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       position: absolute;
-      width: 13px;
-      height: 13px;
+      width: 0px;
+      height: 0px;
       left: 29%;
       top: -4px;
       border-radius: 50%;

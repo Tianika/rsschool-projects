@@ -24,7 +24,7 @@ class Settings {
             <label for="sounds" class="sounds"
               >Sounds
               <input
-                class="sound-switch switch-on switch-off"
+                class="sound-switch switch-on"
                 type="checkbox"
                 name="sounds"
                 id="sounds"
@@ -45,13 +45,13 @@ class Settings {
               >Time to answer
               <div class="choice-time-buttons">
                 <button
-                  class="button-general small-button"
+                  class="button-general small-button left"
                   type="button"
-                  onclick="this.nextElementSibling.stepDown()"
                 >
                   &ndash;
                 </button>
                 <input
+                  class="time-input"
                   type="number"
                   name="time-choice"
                   id="time-choice"
@@ -59,11 +59,11 @@ class Settings {
                   max="30"
                   value="20"
                   step="5"
+                  readonly 
                 />
                 <button
                   type="button"
-                  class="button-general small-button"
-                  onclick="this.previousElementSibling.stepUp()"
+                  class="button-general small-button right"
                 >
                   +
                 </button>

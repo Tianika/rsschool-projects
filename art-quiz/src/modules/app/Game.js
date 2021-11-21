@@ -27,41 +27,6 @@ export class Game {
 
   start() {
     this.run()
-
-    // const root = document.querySelector('.root')
-
-    // root.addEventListener('click', (event) => {
-    //   if (event.target.classList.contains('button-next')) {
-    //     playSound('button-sound')
-
-    //     if (this.questionNumber === 10) {
-    //       this.saveResults()
-
-    //       if (document.querySelector('.modal-answer')) {
-    //         document.querySelector('.modal-answer').remove()
-    //       }
-
-    //       if (this.score === 0) {
-    //         const result = new GameOverWindow()
-    //         root.innerHTML += result.render()
-    //         playSound('game-lost')
-    //       } else if (this.score < 10) {
-    //         const result = new ResultWindow()
-    //         root.innerHTML += result.render()
-    //         const resultScore = document.querySelector('.modal-result-score')
-    //         resultScore.innerHTML = this.score
-    //         playSound('win-sound')
-    //       } else if (this.score === 10) {
-    //         const result = new GrandResultWindow()
-    //         root.innerHTML += result.render()
-    //         playSound('grand-win')
-    //       }
-    //       console.log(this)
-    //       return
-    //     }
-    //     this.run()
-    //   }
-    // })
   }
 
   run() {
@@ -126,7 +91,7 @@ export class Game {
         const answer = new AnswerWindow(this.question)
         root.innerHTML += answer.renderAnswer()
         const modalImage = document.querySelector('.modal-answer-image')
-        modalImage.style.backgroundImage = `url('../assets/img/img/${this.question.imageNum}.jpg')`
+        modalImage.style.backgroundImage = `url('./assets/img/img/${this.question.imageNum}.jpg')`
 
         if (event.target.dataset.right === 'right') {
           modalImage.classList.add('right-answer')

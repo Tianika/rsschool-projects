@@ -7,6 +7,8 @@ import {
   changeVolumeBg,
   OnOffSound,
   OnOffTime,
+  changeTime,
+  defaultSettings,
 } from './modules/app/settings.js'
 import Home from './modules/pages/Home.js'
 import Settings from './modules/pages/Settings.js'
@@ -14,13 +16,14 @@ import Category from './modules/pages/Category.js'
 import Person from './modules/app/Person.js'
 import Game from './modules/app/Game.js'
 import Score from './modules/pages/Score.js'
-import { playSound } from './modules/app/sound.js'
+import { playSound, changeVolume } from './modules/app/sound.js'
 
 try {
   const root = document.querySelector('.root')
 
   let randomPictureNum = randomNumber(images.length)
   changeBgImage(root, randomPictureNum)
+  localStorage['levelSoundArtQuiz'] = 0.3
 
   const home = new Home()
   home.run()
@@ -35,8 +38,6 @@ try {
   const body = document.querySelector('body')
 
   body.addEventListener('click', (event) => {
-    //console.log(event.target)
-
     if (event.target.classList.contains('home-button')) {
       home.run()
       playSound('button-sound')
@@ -49,6 +50,7 @@ try {
       changeVolumeBg()
       OnOffSound()
       OnOffTime()
+      changeTime()
       playSound('button-sound')
     }
 
@@ -140,6 +142,7 @@ try {
 
     if (event.target.classList.contains('default-settings')) {
       playSound('button-sound')
+      defaultSettings()
     }
 
     if (event.target.classList.contains('save-settings')) {
@@ -147,8 +150,8 @@ try {
     }
   })
 
-  window.addEventListener('hashchange', console.log('hash'))
-  window.addEventListener('load', console.log('load'))
+  // window.addEventListener('hashchange', console.log('hash'))
+  // window.addEventListener('load', console.log('load'))
 } catch (err) {
   console.log('Error:', err)
 }

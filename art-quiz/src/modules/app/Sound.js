@@ -11,6 +11,11 @@ export async function playSound(type) {
 
   const audio = new Audio()
   audio.src = sounds[type]
+
+  if (localStorage['levelSoundArtQuiz']) {
+    audio.volume = localStorage['levelSoundArtQuiz']
+  }
+
   const playPromise = audio.play()
 
   if (playPromise !== null) {
@@ -20,6 +25,6 @@ export async function playSound(type) {
   }
 }
 
-export function changeVolume(audio, level) {
-  audio.volume = level / 100
+export function changeVolume(level) {
+  localStorage['levelSoundArtQuiz'] = level / 100
 }
