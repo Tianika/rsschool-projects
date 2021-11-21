@@ -46,12 +46,12 @@ try {
     if (event.target.classList.contains('settings-button')) {
       const settings = new Settings()
       settings.run()
+
+      playSound('button-sound')
+      loadSettings()
       OnOffSound()
       OnOffTime()
       changeTime()
-      playSound('button-sound')
-
-      loadSettings()
     }
 
     if (event.target.classList.contains('close-button')) {

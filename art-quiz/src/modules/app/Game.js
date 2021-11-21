@@ -23,6 +23,8 @@ export class Game {
     this.typeGame = typeGame
     this.beginSlice = round * 10 + this.questionNumber
     this.images = images.slice(this.beginSlice, this.beginSlice + 10)
+    this.pauseGame = 2
+    this.time = localStorage.roundDuration
   }
 
   start() {
@@ -69,6 +71,30 @@ export class Game {
     // ------------общее
     //добавляем буллеты
     this.addBullets()
+
+    //timer
+    const timer = document.querySelector('.timer-button')
+
+    if (localStorage.timerOnOff === 'switch-off') {
+      timer.style.display = 'none'
+    }
+
+    if (localStorage.timerOnOff === '') {
+      let time = localStorage.roundDuration
+      setInterval(() => {
+        timer.innerText = `00:${time.toString().padStart(2, '0')}`
+        time--
+        // if (time === 2) {
+        //   playSound('time-out')
+        // }
+        if (time === -1) {
+          playSound('error-answer')
+          this.questionNumber++
+          this.answers = []
+          this.run()
+        }
+      }, 1000)
+    }
 
     //слушаем клик
     const root = document.querySelector('.root')

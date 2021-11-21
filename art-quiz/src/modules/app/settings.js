@@ -43,6 +43,12 @@ export function OnOffTime() {
   timeSwitch.addEventListener('click', () => {
     timeSwitch.classList.toggle('switch-off')
     playSound('button-sound')
+
+    if (timeSwitch.classList.contains('switch-off')) {
+      localStorage.timerOnOff = 'switch-off'
+    } else {
+      localStorage.timerOnOff = ''
+    }
   })
 }
 
@@ -67,6 +73,10 @@ export function loadSettings() {
     localStorage.soundMute = ''
   }
 
+  if (!localStorage['timerOnOff']) {
+    localStorage['timerOnOff'] = 'switch-off'
+  }
+
   changeVolumeBg()
 
   const volume = document.querySelector('.volume-input')
@@ -76,18 +86,32 @@ export function loadSettings() {
 
   const time = document.querySelector('.time-input')
   time.value = localStorage['roundDuration']
+
+  const timeSwitch = document.querySelector('.time-switch')
+  if (localStorage['timerOnOff'] === '') {
+    timeSwitch.classList.remove('switch-off')
+  } else {
+    timeSwitch.classList.add('switch-off')
+  }
 }
 
 export function defaultSettings() {
   const time = document.querySelector('.time-input')
   const volumeInput = document.querySelector('.volume-input')
   const soundSwitch = document.querySelector('.sound-switch')
+  const gameSwitch = document.querySelector('.time-switch')
 
   time.value = 20
   volumeInput.volume = 0.3
-  localStorage.soundMute = ''
 
+  localStorage.soundMute = ''
   soundSwitch.classList.remove('switch-off')
+
+  localStorage['timerOnOff'] = 'switch-off'
+  if (!gameSwitch.classList.contains('switch-off')) {
+    gameSwitch.classList.add('switch-off')
+  }
+
   localStorage['levelSoundArtQuiz'] = volumeInput.volume
   volumeInput.style.background = `linear-gradient(
     90deg,

@@ -12,7 +12,7 @@ class Settings {
         <div class="main-screen settings">
         <header class="header settings-header">
           <button class="close-button arrow"></button>
-          <div class="settings-title">Setting</div>
+          <div class="settings-title">Settings</div>
           <button class="close-button close"></button>
         </header>
         <main class="main settings-main">
@@ -34,7 +34,7 @@ class Settings {
             <label for="time-game" class="time-game"
               >Time game
               <input
-                class="time-switch switch-on switch-off"
+                class="time-switch switch-on ${localStorage['timerOnOff']}"
                 type="checkbox"
                 name="time-game"
                 id="time-game"
