@@ -1,9 +1,10 @@
 import { playSound } from './sound'
-import { Answer } from './Answer'
+import AnswerWindow from '../components/AnswerWindow'
 
 export class Timer {
-  constructor() {
+  constructor(game) {
     this.interval = null
+    this.game = game
   }
 
   timerOn() {
@@ -19,6 +20,19 @@ export class Timer {
         playSound('error-answer')
         timerBtn.innerText = 'Error'
         this.timerOff()
+
+        this.game.bullets[this.game.questionNumber] = 'error'
+
+        const root = document.querySelector('.root')
+        const answer = new AnswerWindow(this.game.question)
+        root.innerHTML += answer.renderAnswer()
+        const modalImage = document.querySelector('.modal-answer-image')
+        modalImage.style.backgroundImage = `url('./assets/img/img/${this.game.question.imageNum}.jpg')`
+        modalImage.classList.add('error-answer')
+        this.game.roundResult.push('error')
+        this.game.questionNumber++
+        this.game.answers = []
+        this.game.listerNextBtn()
       }
     }
 

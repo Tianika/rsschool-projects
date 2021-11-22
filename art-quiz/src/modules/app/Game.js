@@ -85,7 +85,7 @@ export class Game {
 
     //таймер включен
     if (localStorage.timerOnOff === ' ') {
-      const timer = new Timer()
+      const timer = new Timer(this)
       timer.timerOn()
 
       const answer = new Answer(this)
@@ -136,6 +136,43 @@ export class Game {
 
     this.answers.forEach((answer, i, arr) => {
       new AnswerImages(answer[0], this.rightAnswer).renderAnswer(i, answer[1])
+    })
+  }
+
+  listerNextBtn() {
+    const nextBtn = document.querySelector('.button-next')
+
+    nextBtn.addEventListener('click', () => {
+      playSound('button-sound')
+
+      if (this.questionNumber === 10) {
+        this.saveResults()
+
+        if (document.querySelector('.modal-answer')) {
+          document.querySelector('.modal-answer').remove()
+        }
+
+        const mainScreen = document.querySelector('.main-screen')
+
+        if (this.score === 0) {
+          const result = new GameOverWindow()
+          mainScreen.insertAdjacentHTML('afterEnd', result.render())
+          playSound('game-lost')
+        } else if (this.score < 10) {
+          const result = new ResultWindow()
+          mainScreen.insertAdjacentHTML('afterEnd', result.render())
+          const resultScore = document.querySelector('.modal-result-score')
+          resultScore.innerHTML = this.score
+          playSound('win-sound')
+        } else if (this.score === 10) {
+          const result = new GrandResultWindow()
+          mainScreen.insertAdjacentHTML('afterEnd', result.render())
+          playSound('grand-win')
+        }
+        console.log(this)
+        return
+      }
+      this.run()
     })
   }
 
