@@ -47,7 +47,7 @@ export function OnOffTime() {
     if (timeSwitch.classList.contains('switch-off')) {
       localStorage.timerOnOff = 'switch-off'
     } else {
-      localStorage.timerOnOff = ''
+      localStorage.timerOnOff = ' '
     }
   })
 }
@@ -73,10 +73,6 @@ export function loadSettings() {
     localStorage.soundMute = ''
   }
 
-  if (!localStorage['timerOnOff']) {
-    localStorage['timerOnOff'] = 'switch-off'
-  }
-
   changeVolumeBg()
 
   const volume = document.querySelector('.volume-input')
@@ -88,7 +84,7 @@ export function loadSettings() {
   time.value = localStorage['roundDuration']
 
   const timeSwitch = document.querySelector('.time-switch')
-  if (localStorage['timerOnOff'] === '') {
+  if (localStorage['timerOnOff'] === ' ') {
     timeSwitch.classList.remove('switch-off')
   } else {
     timeSwitch.classList.add('switch-off')
@@ -102,6 +98,8 @@ export function defaultSettings() {
   const gameSwitch = document.querySelector('.time-switch')
 
   time.value = 20
+  localStorage['roundDuration'] = 20
+
   volumeInput.volume = 0.3
 
   localStorage.soundMute = ''

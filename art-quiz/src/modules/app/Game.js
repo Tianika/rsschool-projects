@@ -11,6 +11,8 @@ import GrandResultWindow from '../pages/GrandResultWindow'
 import { QuestionImage } from '../components/QuestionImage'
 import { shuffle, randomNumber } from './general'
 import { playSound } from './sound'
+import { Timer } from './Timer'
+import { Answer } from './Answer'
 
 export class Game {
   constructor(round, typeGame) {
@@ -32,8 +34,6 @@ export class Game {
   }
 
   run() {
-    let answersContainer = ''
-
     // ---------- artist quiz
     if (this.typeGame === 'artist') {
       const questionAboutArtist = new QuestionAboutArtist()
@@ -49,7 +49,7 @@ export class Game {
       this.answers.push(this.rightAnswer)
       this.addAnswersToArtists()
 
-      answersContainer = document.querySelector('.question-artist-answers')
+      this.answersContainer = document.querySelector('.question-artist-answers')
     }
 
     // -------------picture quiz
@@ -65,7 +65,9 @@ export class Game {
       this.answers.push([this.rightAnswer, this.question.imageNum])
       this.addAnswersToPictures()
 
-      answersContainer = document.querySelector('.question-picture-answers')
+      this.answersContainer = document.querySelector(
+        '.question-picture-answers'
+      )
     }
 
     // ------------общее
@@ -73,99 +75,23 @@ export class Game {
     this.addBullets()
 
     //timer
-    const timer = document.querySelector('.timer-button')
 
     if (localStorage.timerOnOff === 'switch-off') {
-      timer.style.display = 'none'
+      const timerBtn = document.querySelector('.timer-button')
+      timerBtn.style.display = 'none'
+
+      const answer = new Answer(this)
+      answer.listenAnswer()
     }
 
-    if (localStorage.timerOnOff === '') {
-      let time = localStorage.roundDuration
-      setInterval(() => {
-        timer.innerText = `00:${time.toString().padStart(2, '0')}`
-        time--
-        // if (time === 2) {
-        //   playSound('time-out')
-        // }
-        if (time === -1) {
-          playSound('error-answer')
-          this.questionNumber++
-          this.answers = []
-          this.run()
-        }
-      }, 1000)
+    if (localStorage.timerOnOff === ' ') {
+      const timer = new Timer()
+      timer.timerOn()
+
+      console.log(this)
+      const answer = new Answer(this)
+      answer.listenAnswer(timer)
     }
-
-    //слушаем клик
-    const root = document.querySelector('.root')
-
-    answersContainer.addEventListener('click', (event) => {
-      if (event.target.classList.contains('answer')) {
-        //добавляем стили для правильного-неправильного ответа
-        if (event.target.dataset.right === 'right') {
-          event.target.classList.add('right-answer')
-          this.bullets[this.questionNumber] = 'right'
-          this.score++
-          playSound('right-answer')
-        } else if (event.target.dataset.right === 'error') {
-          event.target.classList.add('error-answer')
-          this.bullets[this.questionNumber] = 'error'
-          playSound('error-answer')
-        }
-
-        //создаем окно ответа
-        const answer = new AnswerWindow(this.question)
-        root.innerHTML += answer.renderAnswer()
-        const modalImage = document.querySelector('.modal-answer-image')
-        modalImage.style.backgroundImage = `url('./assets/img/img/${this.question.imageNum}.jpg')`
-
-        if (event.target.dataset.right === 'right') {
-          modalImage.classList.add('right-answer')
-          this.roundResult.push('right')
-        } else if (event.target.dataset.right === 'error') {
-          modalImage.classList.add('error-answer')
-          this.roundResult.push('error')
-        }
-
-        this.questionNumber++
-        this.answers = []
-
-        const nextBtn = document.querySelector('.button-next')
-
-        nextBtn.addEventListener('click', () => {
-          playSound('button-sound')
-
-          if (this.questionNumber === 10) {
-            this.saveResults()
-
-            if (document.querySelector('.modal-answer')) {
-              document.querySelector('.modal-answer').remove()
-            }
-
-            const mainScreen = document.querySelector('.main-screen')
-
-            if (this.score === 0) {
-              const result = new GameOverWindow()
-              mainScreen.insertAdjacentHTML('afterEnd', result.render())
-              playSound('game-lost')
-            } else if (this.score < 10) {
-              const result = new ResultWindow()
-              mainScreen.insertAdjacentHTML('afterEnd', result.render())
-              const resultScore = document.querySelector('.modal-result-score')
-              resultScore.innerHTML = this.score
-              playSound('win-sound')
-            } else if (this.score === 10) {
-              const result = new GrandResultWindow()
-              mainScreen.insertAdjacentHTML('afterEnd', result.render())
-              playSound('grand-win')
-            }
-            console.log(this)
-            return
-          }
-          this.run()
-        })
-      }
-    })
   }
 
   addBullets() {
@@ -213,6 +139,27 @@ export class Game {
       new AnswerImages(answer[0], this.rightAnswer).renderAnswer(i, answer[1])
     })
   }
+
+  // createAnswerWindow(eventTarget) {
+  //   //создаем окно ответа
+  //   const root = document.querySelector('.root')
+
+  //   const answer = new AnswerWindow(this.question)
+  //   root.innerHTML += answer.renderAnswer()
+  //   const modalImage = document.querySelector('.modal-answer-image')
+  //   modalImage.style.backgroundImage = `url('./assets/img/img/${this.question.imageNum}.jpg')`
+
+  //   if (eventTarget.dataset.right === 'right') {
+  //     modalImage.classList.add('right-answer')
+  //     this.roundResult.push('right')
+  //   } else if (eventTarget.dataset.right === 'error') {
+  //     modalImage.classList.add('error-answer')
+  //     this.roundResult.push('error')
+  //   }
+
+  //   this.questionNumber++
+  //   this.answers = []
+  // }
 
   saveResults() {
     const resultForSave = {}

@@ -27,6 +27,10 @@ try {
   const home = new Home()
   home.run()
 
+  if (!localStorage['timerOnOff']) {
+    localStorage['timerOnOff'] = 'switch-off'
+  }
+
   const person = new Person()
 
   if (!localStorage['resultsArtQuiz']) {
