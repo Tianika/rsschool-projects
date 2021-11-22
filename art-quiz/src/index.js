@@ -31,6 +31,10 @@ try {
     localStorage['timerOnOff'] = 'switch-off'
   }
 
+  if (!localStorage['roundDuration']) {
+    localStorage['roundDuration'] = 20
+  }
+
   const person = new Person()
 
   if (!localStorage['resultsArtQuiz']) {
@@ -116,7 +120,6 @@ try {
       playSound('button-sound')
 
       const game = new Game(round, typeGame)
-      console.log('game ', game)
       game.start()
     }
 

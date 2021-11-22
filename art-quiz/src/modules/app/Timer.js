@@ -5,6 +5,7 @@ export class Timer {
   constructor(game) {
     this.interval = null
     this.game = game
+    this.isEnable = true
   }
 
   timerOn() {
@@ -17,22 +18,24 @@ export class Timer {
       time--
 
       if (time === -1) {
-        playSound('error-answer')
-        timerBtn.innerText = 'Error'
+        timerBtn.innerText = `Time's up`
         this.timerOff()
 
-        this.game.bullets[this.game.questionNumber] = 'error'
+        if (this.isEnable) {
+          playSound('error-answer')
+          this.game.bullets[this.game.questionNumber] = 'error'
 
-        const root = document.querySelector('.root')
-        const answer = new AnswerWindow(this.game.question)
-        root.innerHTML += answer.renderAnswer()
-        const modalImage = document.querySelector('.modal-answer-image')
-        modalImage.style.backgroundImage = `url('./assets/img/img/${this.game.question.imageNum}.jpg')`
-        modalImage.classList.add('error-answer')
-        this.game.roundResult.push('error')
-        this.game.questionNumber++
-        this.game.answers = []
-        this.game.listerNextBtn()
+          const root = document.querySelector('.root')
+          const answer = new AnswerWindow(this.game.question)
+          root.innerHTML += answer.renderAnswer()
+          const modalImage = document.querySelector('.modal-answer-image')
+          modalImage.style.backgroundImage = `url('./assets/img/img/${this.game.question.imageNum}.jpg')`
+          modalImage.classList.add('error-answer')
+          this.game.roundResult.push('error')
+          this.game.questionNumber++
+          this.game.answers = []
+          this.game.listerNextBtn()
+        }
       }
     }
 

@@ -88,6 +88,22 @@ export class Game {
       const timer = new Timer(this)
       timer.timerOn()
 
+      //слушаем кнопки, прерывающие игру
+      const homeBtn = document.querySelector('.home-button')
+      const categoryBtn = document.querySelector('.category-button')
+      const settingsBtn = document.querySelector('.settings-button')
+
+      homeBtn.addEventListener('click', () => {
+        timer.isEnable = false
+      })
+      categoryBtn.addEventListener('click', () => {
+        timer.isEnable = false
+      })
+      settingsBtn.addEventListener('click', () => {
+        timer.isEnable = false
+      })
+
+      //слушаем ответ
       const answer = new Answer(this)
       answer.listenAnswer(timer)
     }
@@ -169,7 +185,7 @@ export class Game {
           mainScreen.insertAdjacentHTML('afterEnd', result.render())
           playSound('grand-win')
         }
-        console.log(this)
+
         return
       }
       this.run()
