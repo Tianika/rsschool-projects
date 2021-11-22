@@ -1,4 +1,5 @@
 import { playSound } from './sound'
+import { Answer } from './Answer'
 
 export class Timer {
   constructor() {
@@ -16,9 +17,8 @@ export class Timer {
 
       if (time === -1) {
         playSound('error-answer')
-
-        clearInterval(this.interval)
-        this.interval = null
+        timerBtn.innerText = 'Error'
+        this.timerOff()
       }
     }
 
@@ -28,7 +28,7 @@ export class Timer {
   }
 
   timerOff() {
-    console.log('stop')
     clearInterval(this.interval)
+    this.interval = null
   }
 }

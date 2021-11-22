@@ -74,8 +74,7 @@ export class Game {
     //добавляем буллеты
     this.addBullets()
 
-    //timer
-
+    //таймер выключен
     if (localStorage.timerOnOff === 'switch-off') {
       const timerBtn = document.querySelector('.timer-button')
       timerBtn.style.display = 'none'
@@ -84,11 +83,11 @@ export class Game {
       answer.listenAnswer()
     }
 
+    //таймер включен
     if (localStorage.timerOnOff === ' ') {
       const timer = new Timer()
       timer.timerOn()
 
-      console.log(this)
       const answer = new Answer(this)
       answer.listenAnswer(timer)
     }
@@ -139,27 +138,6 @@ export class Game {
       new AnswerImages(answer[0], this.rightAnswer).renderAnswer(i, answer[1])
     })
   }
-
-  // createAnswerWindow(eventTarget) {
-  //   //создаем окно ответа
-  //   const root = document.querySelector('.root')
-
-  //   const answer = new AnswerWindow(this.question)
-  //   root.innerHTML += answer.renderAnswer()
-  //   const modalImage = document.querySelector('.modal-answer-image')
-  //   modalImage.style.backgroundImage = `url('./assets/img/img/${this.question.imageNum}.jpg')`
-
-  //   if (eventTarget.dataset.right === 'right') {
-  //     modalImage.classList.add('right-answer')
-  //     this.roundResult.push('right')
-  //   } else if (eventTarget.dataset.right === 'error') {
-  //     modalImage.classList.add('error-answer')
-  //     this.roundResult.push('error')
-  //   }
-
-  //   this.questionNumber++
-  //   this.answers = []
-  // }
 
   saveResults() {
     const resultForSave = {}

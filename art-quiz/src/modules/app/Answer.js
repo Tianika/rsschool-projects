@@ -17,7 +17,7 @@ export class Answer {
         //останавливаем таймер, если игра на время
         if (timer) {
           timer.timerOff()
-          console.log(timer)
+          console.log('timerOff')
         }
 
         //добавляем стили для правильного-неправильного ответа
@@ -34,40 +34,7 @@ export class Answer {
 
         this.createAnswerWindow(event.target)
 
-        const nextBtn = document.querySelector('.button-next')
-
-        nextBtn.addEventListener('click', () => {
-          playSound('button-sound')
-
-          if (this.game.questionNumber === 10) {
-            this.game.saveResults()
-
-            if (document.querySelector('.modal-answer')) {
-              document.querySelector('.modal-answer').remove()
-            }
-
-            const mainScreen = document.querySelector('.main-screen')
-
-            if (this.game.score === 0) {
-              const result = new GameOverWindow()
-              mainScreen.insertAdjacentHTML('afterEnd', result.render())
-              playSound('game-lost')
-            } else if (this.game.score < 10) {
-              const result = new ResultWindow()
-              mainScreen.insertAdjacentHTML('afterEnd', result.render())
-              const resultScore = document.querySelector('.modal-result-score')
-              resultScore.innerHTML = this.game.score
-              playSound('win-sound')
-            } else if (this.game.score === 10) {
-              const result = new GrandResultWindow()
-              mainScreen.insertAdjacentHTML('afterEnd', result.render())
-              playSound('grand-win')
-            }
-            console.log(this.game)
-            return
-          }
-          this.game.run()
-        })
+        this.listerNextBtn()
       }
     })
   }
@@ -91,5 +58,42 @@ export class Answer {
 
     this.game.questionNumber++
     this.game.answers = []
+  }
+
+  listerNextBtn() {
+    const nextBtn = document.querySelector('.button-next')
+
+    nextBtn.addEventListener('click', () => {
+      playSound('button-sound')
+
+      if (this.game.questionNumber === 10) {
+        this.game.saveResults()
+
+        if (document.querySelector('.modal-answer')) {
+          document.querySelector('.modal-answer').remove()
+        }
+
+        const mainScreen = document.querySelector('.main-screen')
+
+        if (this.game.score === 0) {
+          const result = new GameOverWindow()
+          mainScreen.insertAdjacentHTML('afterEnd', result.render())
+          playSound('game-lost')
+        } else if (this.game.score < 10) {
+          const result = new ResultWindow()
+          mainScreen.insertAdjacentHTML('afterEnd', result.render())
+          const resultScore = document.querySelector('.modal-result-score')
+          resultScore.innerHTML = this.game.score
+          playSound('win-sound')
+        } else if (this.game.score === 10) {
+          const result = new GrandResultWindow()
+          mainScreen.insertAdjacentHTML('afterEnd', result.render())
+          playSound('grand-win')
+        }
+        console.log(this.game)
+        return
+      }
+      this.game.run()
+    })
   }
 }
