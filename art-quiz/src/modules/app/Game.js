@@ -29,11 +29,11 @@ export class Game {
     this.time = localStorage.roundDuration
   }
 
-  start() {
-    this.run()
+  run() {
+    this.runRound()
   }
 
-  run() {
+  runRound() {
     // ---------- artist quiz
     if (this.typeGame === 'artist') {
       const questionAboutArtist = new QuestionAboutArtist()
@@ -188,7 +188,7 @@ export class Game {
 
         return
       }
-      this.run()
+      this.runRound()
     })
   }
 

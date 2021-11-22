@@ -2,7 +2,11 @@ import './styles/normalize.css'
 import './styles/style.scss'
 
 import images from './modules/app/images.js'
-import { randomNumber, changeBgImage } from './modules/app/general.js'
+import {
+  randomNumber,
+  changeBgImage,
+  pageChangeAnimation,
+} from './modules/app/general.js'
 import {
   OnOffSound,
   OnOffTime,
@@ -20,6 +24,8 @@ import { playSound } from './modules/app/sound.js'
 
 try {
   const root = document.querySelector('.root')
+  const body = document.querySelector('body')
+  const person = new Person()
 
   let randomPictureNum = randomNumber(images.length)
   changeBgImage(root, randomPictureNum)
@@ -35,42 +41,41 @@ try {
     localStorage['roundDuration'] = 20
   }
 
-  const person = new Person()
-
   if (!localStorage['resultsArtQuiz']) {
     const arr = new Array(24)
     localStorage['resultsArtQuiz'] = JSON.stringify(arr)
   }
 
-  const body = document.querySelector('body')
-
   body.addEventListener('click', (event) => {
     if (event.target.classList.contains('home-button')) {
-      home.run()
+      pageChangeAnimation(home)
+
       playSound('button-sound')
       person.currentPage = 'home'
     }
 
     if (event.target.classList.contains('settings-button')) {
       const settings = new Settings()
-      settings.run()
-
+      pageChangeAnimation(settings)
       playSound('button-sound')
-      loadSettings()
-      OnOffSound()
-      OnOffTime()
-      changeTime()
+
+      setTimeout(() => {
+        loadSettings()
+        OnOffSound()
+        OnOffTime()
+        changeTime()
+      }, 1000)
     }
 
     if (event.target.classList.contains('close-button')) {
       playSound('button-sound')
 
       if (person.currentPage === 'home') {
-        home.run()
+        pageChangeAnimation(home)
       }
       if (person.currentPage === 'artist' || person.currentPage === 'picture') {
         const category = new Category(person.currentPage)
-        category.run()
+        pageChangeAnimation(category)
       }
     }
 
@@ -79,7 +84,7 @@ try {
       person.currentPage = 'artist'
 
       const category = new Category(person.currentPage)
-      category.run()
+      pageChangeAnimation(category)
     }
 
     if (event.target.classList.contains('button-pictures')) {
@@ -87,7 +92,7 @@ try {
       person.currentPage = 'picture'
 
       const category = new Category(person.currentPage)
-      category.run()
+      pageChangeAnimation(category)
     }
 
     if (event.target.classList.contains('category-button')) {
@@ -95,7 +100,7 @@ try {
 
       if (person.currentPage === 'artist' || person.currentPage === 'picture') {
         const category = new Category(person.currentPage)
-        category.run()
+        pageChangeAnimation(category)
       }
     }
 
@@ -104,13 +109,8 @@ try {
 
       if (person.currentPage === 'artist' || person.currentPage === 'picture') {
         const category = new Category(person.currentPage)
-        category.run()
+        pageChangeAnimation(category)
       }
-    }
-
-    if (event.target.classList.contains('timer-pictures')) {
-      playSound('button-sound')
-      // добавить обработчик
     }
 
     if (event.target.classList.contains('card-image')) {
@@ -120,14 +120,14 @@ try {
       playSound('button-sound')
 
       const game = new Game(round, typeGame)
-      game.start()
+      pageChangeAnimation(game)
     }
 
     if (event.target.classList.contains('card-score-button')) {
       playSound('button-sound')
 
       const scorePage = new Score(event.target.dataset.card)
-      scorePage.createPage()
+      pageChangeAnimation(scorePage)
     }
 
     if (event.target.classList.contains('card-score-image')) {

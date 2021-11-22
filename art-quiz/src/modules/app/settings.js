@@ -1,7 +1,7 @@
 import { playSound } from './sound'
 
-export function changeVolumeBg() {
-  const volume = document.querySelector('.volume-input')
+export async function changeVolumeBg() {
+  const volume = await document.querySelector('.volume-input')
 
   volume.addEventListener('change', () => {
     let volumeLevel = volume.value / 100

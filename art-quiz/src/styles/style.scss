@@ -74,8 +74,8 @@ button {
 
 body {
   color: white;
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 /*-------------variables------------*/
@@ -88,6 +88,13 @@ $white: #ffffff;
 
 /*-------------general------------*/
 
+body {
+  background: $black;
+  background-size: auto auto;
+  background-position: center center;
+  background-size: cover;
+}
+
 .root {
   position: relative;
   display: flex;
@@ -97,6 +104,12 @@ $white: #ffffff;
   background-blend-mode: overlay;
   min-height: 100%;
   padding: Clamp(30px, 4vw, 50px);
+  opacity: 1;
+  transition: opacity ease-in 0.35s;
+  &.animated {
+    opacity: 0;
+  }
+
   @media (max-width: 1024px) {
     padding: Clamp(20px, 3vw, 30px);
   }
@@ -179,10 +192,6 @@ main {
           brightness(80%) contrast(117%);
       }
     }
-  }
-  .app-developer {
-  }
-  .app-year {
   }
 }
 
@@ -295,13 +304,6 @@ main {
 }
 
 /*-------------settings------------*/
-
-.settings {
-}
-
-.settings-header {
-}
-
 .settings-title {
   font-family: GilroyMedium;
   font-size: 22px;
@@ -435,9 +437,6 @@ main {
     flex-direction: column;
     align-items: center;
   }
-}
-
-.time-choice {
 }
 
 .choice-time-buttons {
@@ -625,9 +624,6 @@ input::-webkit-inner-spin-button {
 
 /*-------------select-categories------------*/
 
-.select-categorie {
-}
-
 .header {
   .title {
     @media (max-width: 720px) {
@@ -651,30 +647,21 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.select-buttons-container {
-}
-
-.timer-button {
-}
-
-.category-button {
-}
-
 .question-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  width: 90vw;
+  width: 100%;
   padding: 10px 0;
   &.picture {
-    justify-content: center;
+    justify-content: start;
   }
 
   @media (max-width: 1024px) {
     margin-top: 60px;
-    width: 85vw;
+    width: 100%;
   }
 }
 
@@ -776,6 +763,11 @@ input::-webkit-inner-spin-button {
   @media (max-width: 720px) {
     font-size: 18px;
     padding: 10px;
+  }
+  @media (max-width: 520px) {
+    border: $white solid 1px;
+    font-size: 16px;
+    padding: 5px;
   }
 }
 
@@ -1005,9 +997,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.button-next {
-}
-
 .modal-answer-logo {
   margin: 20px;
   width: 200px;
@@ -1035,12 +1024,6 @@ input::-webkit-inner-spin-button {
 
 .modal-buttons {
   width: 90%;
-}
-
-.home-button {
-}
-
-.next-quiz-button {
 }
 
 .modal-answer-grand-logo {

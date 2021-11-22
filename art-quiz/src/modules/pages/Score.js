@@ -11,7 +11,7 @@ class Score {
     ]
   }
 
-  createPage() {
+  run() {
     let footer = Footer()
 
     let page = `
