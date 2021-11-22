@@ -1,5 +1,6 @@
 import { playSound } from './sound'
 import AnswerWindow from '../components/AnswerWindow'
+import { modalAnimation } from './general'
 
 export class Timer {
   constructor(game) {
@@ -34,6 +35,10 @@ export class Timer {
           this.game.roundResult.push('error')
           this.game.questionNumber++
           this.game.answers = []
+
+          //анимация
+          modalAnimation()
+
           this.game.listerNextBtn()
         }
       }

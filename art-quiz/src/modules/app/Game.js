@@ -4,7 +4,6 @@ import QuestionAboutPicture from '../pages/QuestionAboutPicture'
 import { Bullet } from '../components/Bullet'
 import { AnswerBtnForArtist } from '../components/AnswerBtnForArtist'
 import AnswerImages from '../components/AnswerImages'
-import AnswerWindow from '../components/AnswerWindow'
 import GameOverWindow from '../pages/GameOverWindow'
 import ResultWindow from '../pages/ResultWindow'
 import GrandResultWindow from '../pages/GrandResultWindow'
@@ -13,6 +12,7 @@ import { shuffle, randomNumber } from './general'
 import { playSound } from './sound'
 import { Timer } from './Timer'
 import { Answer } from './Answer'
+import { pageChangeAnimation } from './general'
 
 export class Game {
   constructor(round, typeGame) {

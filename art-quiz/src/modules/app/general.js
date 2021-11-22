@@ -29,8 +29,18 @@ export function pageChangeAnimation(page) {
   }, 0)
   setTimeout(() => {
     page.run()
-  }, 400)
+  }, 300)
   setTimeout(() => {
     root.classList.remove('animated')
+  }, 600)
+}
+
+export function modalAnimation() {
+  const modal = document.querySelector('.modal-answer')
+  const modalContainer = document.querySelector('.modal-answer-container')
+
+  setTimeout(() => {
+    modal.classList.remove('animated')
+    modalContainer.classList.remove('animated')
   }, 800)
 }

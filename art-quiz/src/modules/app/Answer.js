@@ -1,5 +1,6 @@
 import { playSound } from './sound'
 import AnswerWindow from '../components/AnswerWindow'
+import { modalAnimation } from './general'
 
 export class Answer {
   constructor(game) {
@@ -52,5 +53,8 @@ export class Answer {
 
     this.game.questionNumber++
     this.game.answers = []
+
+    //анимация
+    modalAnimation()
   }
 }

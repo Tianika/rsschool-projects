@@ -7,8 +7,8 @@ export class AnswerWindow {
 
   renderAnswer() {
     let component = ` 
-    <div class="modal-answer">
-        <div class="modal-answer-container">
+    <div class="modal-answer animated">
+        <div class="modal-answer-container animated">
           <div class="modal-answer-image"></div>
           <div class="modal-answer-name">${this.name}</div>
           <div class="modal-answer-describe">${this.author}, ${this.year}</div>
