@@ -1,11 +1,22 @@
 import './sources.css';
 
+interface NewsSoures {
+    category: string;
+    country: string;
+    description: string;
+    id: string;
+    language: string;
+    name: string;
+    url: string;
+}
+
 class Sources {
-    draw(data) {
+    draw(data: Array<NewsSoures>) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp');
+        const sourceItemTemp: HTMLElement | null = document.querySelector('#sourceItemTemp');
 
         data.forEach((item) => {
+            if (!sourceItemTemp) return;
             const sourceClone = sourceItemTemp.content.cloneNode(true);
 
             sourceClone.querySelector('.source__item-name').textContent = item.name;
@@ -14,7 +25,9 @@ class Sources {
             fragment.append(sourceClone);
         });
 
-        document.querySelector('.sources').append(fragment);
+        const sources = document.querySelector('.sources');
+        if (!sources) return;
+        sources.append(fragment);
     }
 }
 
