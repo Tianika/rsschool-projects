@@ -1,16 +1,7 @@
 import './news.css';
-interface NewsArr {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: { id: string; name: string };
-    title: string;
-    url: string;
-    urlToImage: string;
-}
+import { INews } from '../../interfaces';
 class News {
-    draw(data: Array<NewsArr>): void {
+    draw(data: Array<INews>): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();

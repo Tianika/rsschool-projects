@@ -1,17 +1,8 @@
 import './sources.css';
-
-interface NewsSoures {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-}
+import { ISources } from '../../interfaces';
 
 class Sources {
-    draw(data: Array<NewsSoures>): void {
+    draw(data: Array<ISources>): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 
