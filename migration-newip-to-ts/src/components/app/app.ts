@@ -1,6 +1,5 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { INewsData, IGetSources } from '../interfaces';
 
 class App {
     controller: AppController;
@@ -12,14 +11,16 @@ class App {
     }
 
     start() {
-        let sources: HTMLElement | null = document.querySelector('.sources');
-
-        if (sources) {
-            sources.addEventListener('click', (e) =>
-                this.controller.getNews(e, (data: INewsData) => this.view.drawNews(data))
-            );
-            this.controller.getSources((data) => this.view.drawSources(data));
-        }
+        (document.querySelector('.sources') as HTMLElement).addEventListener('click', (e) =>
+            this.controller.getNews(e, (data) => {
+                if (!data) return;
+                this.view.drawNews(data);
+            })
+        );
+        this.controller.getSources((data) => {
+            if (!data) return;
+            this.view.drawSources(data);
+        });
     }
 }
 

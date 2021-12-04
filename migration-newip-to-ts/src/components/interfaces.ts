@@ -23,7 +23,7 @@ export type Source = { id: string; name: string };
 
 export interface INewsData {
     articles: Array<INews>;
-    status: 'string';
+    status: string;
     totalResults: number;
 }
 
@@ -33,9 +33,3 @@ export interface IGetSources {
 }
 
 export type ApiKey = { apiKey: string };
-
-export interface IResponce {
-    ok: string;
-    status: number;
-    statusText: string;
-}

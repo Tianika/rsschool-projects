@@ -1,4 +1,4 @@
-import { IResponce, ApiKey } from '../interfaces';
+import { ApiKey, IGetSources } from '../interfaces';
 class Loader {
     baseLink: string;
     options: ApiKey;
@@ -10,14 +10,14 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: { endpoint: string; options?: { sources: string } | {} },
-        callback = () => {
+        callback = (): void => {
             console.error('No callback for GET response');
         }
     ) {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: IResponce): IResponce {
+    errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -28,7 +28,9 @@ class Loader {
     }
 
     makeUrl(options: {}, endpoint: string): string {
-        const urlOptions = { ...this.options, ...options };
+        const urlOptions: { apiKey: string; sources?: string } = { ...this.options, ...options };
+        console.log(this.options, options);
+        console.log(Object.keys(urlOptions));
 
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -36,10 +38,12 @@ class Loader {
             url += `${key}=${urlOptions[key]}&`;
         });
 
+        console.log(url);
+
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback, options = {}) {
+    load(method: string, endpoint: string, callback: (data?: IGetSources) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
