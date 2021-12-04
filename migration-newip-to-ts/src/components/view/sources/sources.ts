@@ -11,7 +11,7 @@ interface NewsSoures {
 }
 
 class Sources {
-    draw(data: Array<NewsSoures>) {
+    draw(data: Array<NewsSoures>): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 

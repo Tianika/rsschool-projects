@@ -10,7 +10,7 @@ interface NewsArr {
     urlToImage: string;
 }
 class News {
-    draw(data: Array<NewsArr>) {
+    draw(data: Array<NewsArr>): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
