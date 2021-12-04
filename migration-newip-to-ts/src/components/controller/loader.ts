@@ -28,17 +28,12 @@ class Loader {
     }
 
     makeUrl(options: {}, endpoint: string): string {
-        const urlOptions: { apiKey: string; sources?: string } = { ...this.options, ...options };
-        console.log(this.options, options);
-        console.log(Object.keys(urlOptions));
-
+        const urlOptions: {} = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key) => {
+        (Object.keys(urlOptions) as Array<keyof typeof urlOptions>).forEach((key) => {
             url += `${key}=${urlOptions[key]}&`;
         });
-
-        console.log(url);
 
         return url.slice(0, -1);
     }
