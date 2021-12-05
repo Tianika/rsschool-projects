@@ -44,3 +44,9 @@ footer .copyright:before {
 .copyright-container > div {
     padding: 0 5px;
 }
+.copyright-container > div a:visited {
+    color: #444;
+}
+.copyright-container > div a:hover {
+    color: #555;
+}
