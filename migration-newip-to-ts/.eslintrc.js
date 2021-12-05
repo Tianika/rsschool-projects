@@ -15,6 +15,6 @@ module.exports = {
         'no-debugger': 'off',
         'no-console': 0,
         'class-methods-use-this': 'off',
-        'no-explicit-any': true,
+        '@typescript-eslint/no-explicit-any': 'error',
     },
 };

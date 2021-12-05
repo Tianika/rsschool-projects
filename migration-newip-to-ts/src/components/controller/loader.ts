@@ -9,7 +9,7 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: { sources: string } | {} },
+        { endpoint, options = {} }: { endpoint: string; options?: { sources: string } | Record<string, unknown> },
         callback = (): void => {
             console.error('No callback for GET response');
         }
@@ -27,8 +27,8 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: {}, endpoint: string): string {
-        const urlOptions: {} = { ...this.options, ...options };
+    makeUrl(options: Record<string, unknown>, endpoint: string): string {
+        const urlOptions: Record<string, unknown> = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         (Object.keys(urlOptions) as Array<keyof typeof urlOptions>).forEach((key) => {
