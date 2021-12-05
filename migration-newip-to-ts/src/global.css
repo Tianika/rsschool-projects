@@ -18,11 +18,14 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
-footer .copyright {
+footer .copyright,
+.copyright-container {
     font-size: 14px;
     color: #333;
     text-align: center;
+    padding: 5px;
 }
 footer .copyright a {
     color: #444;
@@ -32,4 +35,12 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
+    margin-right: 5px;
+}
+.copyright-container {
+    display: flex;
+    justify-content: space-between;
+}
+.copyright-container > div {
+    padding: 0 5px;
 }
