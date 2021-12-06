@@ -4,6 +4,22 @@ body {
     font-family: sans-serif;
 }
 
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #30c5ff #0f1113;
+}
+
+*::-webkit-scrollbar {
+    height: auto;
+    width: auto;
+}
+*::-webkit-scrollbar-track {
+    background: #0f1113;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #30c5ff;
+}
+
 header {
     padding: 10px 30px;
 }
