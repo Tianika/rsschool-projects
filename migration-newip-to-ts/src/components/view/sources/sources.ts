@@ -3,15 +3,38 @@ import { ISources } from '../../interfaces';
 
 class Sources {
     draw(data: Array<ISources>): void {
-        const fragment = document.createDocumentFragment();
-        const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
+        const fragmentL = document.createDocumentFragment();
+        const letterItemTemp: HTMLTemplateElement | null = document.querySelector('#letterItemTemp');
 
-        console.log(data);
-        let setLetters = new Set();
+        let setLetters: Set<string> = new Set();
         data.forEach((item) => {
             setLetters.add(item.id[0].toUpperCase());
         });
-        console.log(setLetters);
+
+        let letterArr: Array<string> = [...setLetters];
+
+        letterArr.forEach((item) => {
+            if (!letterItemTemp) return;
+            const letterClone = letterItemTemp.content.cloneNode(true) as HTMLTemplateElement;
+
+            if (!letterClone) return;
+            (letterClone.querySelector('.letter__item-name') as HTMLElement).textContent = item;
+
+            const letterItem = letterClone.querySelector('.letter__item') as HTMLElement;
+            letterItem.setAttribute('data-letter-id', item);
+            letterItem.addEventListener('click', (e) => {
+                console.log(e);
+            });
+
+            fragmentL.append(letterClone);
+        });
+
+        const letters = document.querySelector('.letters');
+        if (!letters) return;
+        letters.append(fragmentL);
+
+        const fragment = document.createDocumentFragment();
+        const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 
         data.forEach((item) => {
             if (!sourceItemTemp) return;
@@ -19,7 +42,13 @@ class Sources {
 
             if (!sourceClone) return;
             (sourceClone.querySelector('.source__item-name') as HTMLElement).textContent = item.name;
-            (sourceClone.querySelector('.source__item') as HTMLElement).setAttribute('data-source-id', item.id);
+
+            const sourceItem = sourceClone.querySelector('.source__item') as HTMLElement;
+            sourceItem.setAttribute('data-source-id', item.id);
+
+            if (item.name[0].toUpperCase() !== 'A') {
+                sourceItem.classList.add('hide');
+            }
 
             fragment.append(sourceClone);
         });

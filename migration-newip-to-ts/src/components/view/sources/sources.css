@@ -1,14 +1,21 @@
-.sources {
+.sources,
+.letters {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 120px;
+    height: 140px;
     overflow: auto;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
 }
 
-.source__item {
+.letters {
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.source__item,
+.letter__item {
     background: none;
     border: 2px solid #30c5ff;
     font: inherit;
@@ -20,15 +27,44 @@
     cursor: pointer;
 }
 
+.letter__item {
+    padding: 0.5em 1em;
+}
+
 .source__item:hover,
-.source__item:focus {
+.source__item:focus,
+.letter__item:hover,
+.letter__item:focus {
     border-color: #3fcc59;
     color: #69db7e;
     box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
     transform: translateY(-0.25em);
 }
 
-.source__item-name {
+.source__item-name,
+.letter__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+.hide {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .sources,
+    .letters {
+        height: 120px;
+        font-size: 0.8em;
+    }
+    .letters {
+        height: 80px;
+    }
+    .letter__item {
+        padding: 0.4em 0.8em;
+    }
+    .source__item {
+        margin: 0.4em;
+        padding: 0.7em 1.4em;
+    }
 }
