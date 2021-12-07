@@ -23,7 +23,6 @@ class Sources {
             const letterItem = letterClone.querySelector('.letter__item') as HTMLElement;
             letterItem.setAttribute('data-letter-id', item);
             letterItem.addEventListener('click', (e) => {
-                console.log(letterItem.getAttribute('data-letter-id'));
                 const letter = letterItem.getAttribute('data-letter-id');
 
                 const sourcesArr = document.querySelectorAll('.source__item');
