@@ -23,7 +23,17 @@ class Sources {
             const letterItem = letterClone.querySelector('.letter__item') as HTMLElement;
             letterItem.setAttribute('data-letter-id', item);
             letterItem.addEventListener('click', (e) => {
-                console.log(e);
+                console.log(letterItem.getAttribute('data-letter-id'));
+                const letter = letterItem.getAttribute('data-letter-id');
+
+                const sourcesArr = document.querySelectorAll('.source__item');
+                sourcesArr.forEach((source) => {
+                    source.classList.add('hide');
+
+                    if (source.classList.contains(`${letter}`)) {
+                        source.classList.remove('hide');
+                    }
+                });
             });
 
             fragmentL.append(letterClone);
@@ -45,6 +55,7 @@ class Sources {
 
             const sourceItem = sourceClone.querySelector('.source__item') as HTMLElement;
             sourceItem.setAttribute('data-source-id', item.id);
+            sourceItem.classList.add(`${item.name[0].toUpperCase()}`);
 
             if (item.name[0].toUpperCase() !== 'A') {
                 sourceItem.classList.add('hide');
