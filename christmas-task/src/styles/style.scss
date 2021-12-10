@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Neucha';
+  src: url(../assets/fonts/Neucha-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Steppe';
+  src: url(../assets/fonts/Steppe.ttf);
+  font-weight: 400;
+}
+
 /*-------------reset------------*/
 *,
 *::before,
@@ -50,7 +62,7 @@ body {
 /*-------------variables------------*/
 $dark-green: #152228;
 
-/*-------------main page------------*/
+/*-------------header - footer------------*/
 .root {
   min-height: 100%;
   width: 100%;
@@ -68,6 +80,7 @@ $dark-green: #152228;
   width: 100%;
   height: 50px;
   background-color: $dark-green;
+  font-family: Neucha;
   .container {
     display: flex;
     align-items: center;
@@ -76,6 +89,11 @@ $dark-green: #152228;
 
 .header {
   height: 70px;
+  font-size: 26px;
+}
+
+.footer {
+  font-size: 18px;
 }
 
 .link-main-container {
@@ -144,4 +162,50 @@ $dark-green: #152228;
 .copyright-year,
 .copyright-author {
   margin-right: 10px;
+}
+
+/*-------------main toys------------*/
+.settings-container {
+}
+
+.toys-container {
+  display: grid;
+  min-height: Max(Calc(100% - 120px), content);
+  gap: 10px;
+  grid-template-columns: repeat(5, 260px);
+  justify-content: space-between;
+  padding: 50px 0;
+}
+
+.toy-card {
+  display: flex;
+  flex-wrap: wrap;
+  height: 250px;
+  background-color: rgba($dark-green, 0.7);
+  align-content: start;
+  padding: 5px;
+  .toy-card-title {
+    width: 250px;
+    text-align: center;
+    font-family: Neucha;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 2;
+    margin-bottom: 10px;
+  }
+  .toy-card-image {
+    width: 90px;
+    padding: 10px;
+    object-fit: contain;
+  }
+  .toy-card-describe {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+    font-family: Neucha;
+    font-size: 18px;
+    .describe-content {
+      padding: 5px 0;
+    }
+  }
 }
