@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link href="./assets/favicon.ico" rel="shortcut icon" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <title>Christmas task</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="root"></div>
-</body>
+  </head>
+  <body>
+    <div class="root">
+      <header class="header">
+        <div class="container">
+          <div class="link-main-container">
+            <a href="#" class="link-main"></a>
+          </div>
+          <div class="link-toys-container">
+            <a href="#" class="link-toys">Игрушки</a>
+          </div>
+          <div class="link-trees-container">
+            <a href="#" class="link-trees">Ёлка</a>
+          </div>
+          <div class="search-field">
+            <input
+              class="search-input"
+              name="search"
+              placeholder="Введите название"
+              type="text"
+            />
+            <div class="toys-count-container">
+              <div class="toys-count">0</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="container">main</div>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="copyright-year">&copy; 2021</div>
+          <div class="copyright-author">
+            <a href="https://github.com/Tianika" target="_blank">Tianika</a>
+          </div>
+          <div class="copyright-rsschool">
+            <a href="https://rs.school/" target="_blank"></a>
+          </div>
+        </div>
+      </footer>
+      <script type="module" src="./index.ts"></script>
+    </div>
+  </body>
 </html>

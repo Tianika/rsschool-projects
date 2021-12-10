@@ -46,3 +46,102 @@ body {
   min-height: 100vh;
   min-width: 100vw;
 }
+
+/*-------------variables------------*/
+$dark-green: #152228;
+
+/*-------------main page------------*/
+.root {
+  min-height: 100%;
+  width: 100%;
+}
+
+.container {
+  max-width: 1480px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.header,
+.footer {
+  width: 100%;
+  height: 50px;
+  background-color: $dark-green;
+  .container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.header {
+  height: 70px;
+}
+
+.link-main-container {
+  width: 60px;
+  height: 60px;
+  background: url('../assets/svg/tree.svg') no-repeat;
+  background-size: contain;
+  background-position: center center;
+  .link-main {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin-right: 25px;
+  }
+}
+
+.link-toys,
+.link-trees {
+  text-transform: uppercase;
+  margin-right: 25px;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-input {
+  margin-left: auto;
+  height: 25px;
+}
+
+.toys-count-container {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: end;
+  margin-left: 25px;
+}
+
+.main {
+  height: Calc(100% - 120px);
+  width: 100%;
+  background: url(../assets/bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center center;
+  .container {
+    height: Calc(100% - 120px);
+  }
+}
+
+.copyright-rsschool {
+  display: block;
+  width: 150px;
+  height: 47px;
+  background: url('../assets/svg/rs-school-logo.svg') no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.copyright-year,
+.copyright-author {
+  margin-right: 10px;
+}
