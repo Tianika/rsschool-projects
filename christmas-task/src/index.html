@@ -39,10 +39,55 @@
       </header>
       <main class="main">
         <div class="container">
-          <div class="settings-container"></div>
+          <div class="settings-container">
+            <div class="settings-toy">
+              <h3 class="title shape-title">Форма</h3>
+              <div class="shape-choice">
+                <input type="checkbox" class="shape-choice-item">
+                <input type="checkbox" class="shape-choice-item">
+                <input type="checkbox" class="shape-choice-item">
+                <input type="checkbox" class="shape-choice-item">
+                <input type="checkbox" class="shape-choice-item">
+                <input type="checkbox" class="shape-choice-item">
+              </div>
+              <h3 class="title color-title">Цвет</h3>
+              <div class="color-choice">
+                <input type="checkbox" class="color-choice-item">
+                <input type="checkbox" class="color-choice-item">
+                <input type="checkbox" class="color-choice-item">
+                <input type="checkbox" class="color-choice-item">
+                <input type="checkbox" class="color-choice-item">
+              </div>
+              <h3 class="title size-title">Размер</h3>
+              <div class="size-choice">
+                <input type="checkbox" class="size-choice-item">
+                <input type="checkbox" class="size-choice-item">
+                <input type="checkbox" class="size-choice-item">
+              </div>
+              <h3 class="title favorite-title">Только любимые</h3>
+              <div class="favorite-choice">
+                <input type="checkbox" class="favorite-choice-item">
+              </div>
+            </div>
+            <div class="settings-toy">
+              <h3 class="title count-title">Количество экземпляров</h3>
+              <div id="count-slider"></div>
+              <h3 class="title year-title">Год приобретения</h3>
+              <div id="year-slider"></div>
+              <h3 class="title sort-title">Сортировка</h3>
+              <select class="sort-choice">
+                <option class="sort-choice-item">По-умолчанию</option>
+                <option class="sort-choice-item">От "А" до "Я"</option>
+                <option class="sort-choice-item">От "Я" до "А"</option>
+                <option class="sort-choice-item">Сначала новые</option>
+                <option class="sort-choice-item">Сначала старые</option>
+              </select>
+              <button class="reset-filter-button">Сбросить фильтры</button>
+            </div>
+          </div>
           <div class="toys-container">
             <div class="toy-card">
-              <div class="toy-card-title">Большой шар с рисунком</div>
+              <h4 class="toy-card-title">Большой шар с рисунком</h4>
               <img class="toy-card-image" src="./assets/ball/1.png" alt="ball image"></img>
               <div class="toy-card-describe">
                 <div class="describe-content">Количество: 2</div>
