@@ -139,6 +139,10 @@ a {
 .search-input {
   margin-left: auto;
   height: 25px;
+  font-size: 20px;
+  &:focus {
+    border: $middle-color 3px solid;
+  }
 }
 
 .toys-count-container {
@@ -234,8 +238,9 @@ a {
       display: inline-block;
       width: 25px;
       height: 25px;
+      border-radius: 3px;
       border: 2px solid $white;
-      transition: all 0.5s ease-in;
+      transition: all 0.3s ease-in;
     }
 
     &::after {
@@ -249,7 +254,7 @@ a {
       border-left: 2px solid $light-color;
       border-bottom: 2px solid $light-color;
       transform: rotate(-45deg);
-      transition: all 0.5s ease-in;
+      transition: all 0.3s ease-in;
     }
   }
 }
@@ -285,17 +290,48 @@ a {
   }
 }
 
+.counts {
+  height: 30px;
+  width: 35px;
+  text-align: left;
+}
+
 .count-title {
 }
-.count-slider {
-  height: 20px;
+
+#count-slider {
+  height: 15px;
   width: 300px;
 }
+
+.count-slider-container,
+.year-slider-container {
+  display: flex;
+  justify-content: space-between;
+  width: 420px;
+}
+
 .year-title {
 }
-.year-slider {
-  height: 20px;
+#year-slider {
+  height: 15px;
+  width: 300px;
 }
+
+.noUi-connect {
+  background: $light-color !important;
+}
+
+.noUi-handle {
+  width: 25px !important;
+  height: 25px !important;
+  cursor: pointer !important;
+  &::after,
+  &::before {
+    display: none !important;
+  }
+}
+
 .sort-title {
 }
 .sort-choice {
