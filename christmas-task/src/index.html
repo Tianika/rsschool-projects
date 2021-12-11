@@ -96,23 +96,7 @@
             </div>
           </div>
           <div class="toys-container">
-            <div class="toy-card">
-              <h4 class="toy-card-title">Большой шар с рисунком</h4>
-              <img class="toy-card-image" src="./assets/ball/1.png" alt="ball image"></img>
-              <div class="toy-card-describe">
-                <div class="describe-content">Количество: 2</div>
-                <div class="describe-content">Год покупки: 1960</div>
-                <div class="describe-content">Форма: шар</div>
-                <div class="describe-content">Цвет: желтый</div>
-                <div class="describe-content">Размер: большой</div>
-                <div class="describe-content">Любимая: нет</div>
-              </div>
-            </div>
-            <div class="toy-card"></div>
-            <div class="toy-card"></div>
-            <div class="toy-card"></div>
-            <div class="toy-card"></div>
-            <div class="toy-card"></div>
+                       
           </div>
         </div>
       </main>
@@ -129,5 +113,19 @@
       </footer>
       <script type="module" src="./index.ts"></script>
     </div>
+    <template id="toyCardTemp">
+      <div class="toy-card">
+        <h4 class="toy-card-title">Большой шар с рисунком</h4>
+        <img class="toy-card-image" src="./assets/toys/1.png" alt="ball image"></img>
+        <div class="toy-card-describe">
+          <div class="describe-content count">Количество: 2</div>
+          <div class="describe-content year">Год покупки: 1960</div>
+          <div class="describe-content shape">Форма: шар</div>
+          <div class="describe-content color">Цвет: желтый</div>
+          <div class="describe-content size">Размер: большой</div>
+          <div class="describe-content favorite">Любимая: нет</div>
+        </div>
+      </div>
+    </template>
   </body>
 </html>
