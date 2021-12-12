@@ -1,5 +1,6 @@
 import './sources.css';
 import { ISources } from '../../interfaces';
+import { LETTER_FOR_DEFAULT_VIEW } from '../../constants';
 
 class Sources {
     draw(data: Array<ISources>): void {
@@ -13,11 +14,13 @@ class Sources {
 
         let letterArr: Array<string> = [...setLetters];
 
-        letterArr.forEach((item) => {
+        letterArr.forEach((item): void => {
             if (!letterItemTemp) return;
+
             const letterClone = letterItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (!letterClone) return;
+
             (letterClone.querySelector('.letter__item-name') as HTMLElement).textContent = item;
 
             const letterItem = letterClone.querySelector('.letter__item') as HTMLElement;
@@ -40,6 +43,7 @@ class Sources {
 
         const letters = document.querySelector('.letters');
         if (!letters) return;
+
         letters.append(fragmentL);
 
         const fragment = document.createDocumentFragment();
@@ -47,16 +51,18 @@ class Sources {
 
         data.forEach((item) => {
             if (!sourceItemTemp) return;
+
             const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (!sourceClone) return;
+
             (sourceClone.querySelector('.source__item-name') as HTMLElement).textContent = item.name;
 
             const sourceItem = sourceClone.querySelector('.source__item') as HTMLElement;
             sourceItem.setAttribute('data-source-id', item.id);
             sourceItem.classList.add(`${item.name[0].toUpperCase()}`);
 
-            if (item.name[0].toUpperCase() !== 'A') {
+            if (item.name[0].toUpperCase() !== LETTER_FOR_DEFAULT_VIEW) {
                 sourceItem.classList.add('hide');
             }
 
@@ -65,6 +71,7 @@ class Sources {
 
         const sources = document.querySelector('.sources');
         if (!sources) return;
+
         sources.append(fragment);
     }
 }

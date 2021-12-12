@@ -1,4 +1,6 @@
-import { ApiKey, IGetSources } from '../interfaces';
+import { ApiKey, IGetSources, IGetResp, Options, GetRespCallback, LoadParams } from '../interfaces';
+import { defaultErrorInfo } from '../utils';
+
 class Loader {
     baseLink: string;
     options: ApiKey;
@@ -9,37 +11,41 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: { sources: string } | Record<string, unknown> },
-        callback = (): void => {
-            console.error('No callback for GET response');
-        }
+        { endpoint, options = {} }: IGetResp,
+        callback: GetRespCallback = defaultErrorInfo
     ) {
-        this.load('GET', endpoint, callback, options);
+        this.load({method: 'GET', endpoint, callback, options});
     }
 
     errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === 401 || res.status === 404){
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+            }
+                
             throw Error(res.statusText);
         }
 
         return res;
     }
 
-    makeUrl(options: Record<string, unknown>, endpoint: string): string {
-        const urlOptions: Record<string, unknown> = { ...this.options, ...options };
+    makeUrl( options: Options, endpoint: string): string {
+        const urlOptions: Options = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
-        (Object.keys(urlOptions) as Array<keyof typeof urlOptions>).forEach((key) => {
+        const urlOptionsKeys = Object.keys(urlOptions) as Array<keyof typeof urlOptions>
+
+        urlOptionsKeys.forEach((key): void => {
             url += `${key}=${urlOptions[key]}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (data?: IGetSources) => void, options = {}) {
-        fetch(this.makeUrl(options, endpoint), { method })
+    load({method, endpoint, callback, options = {}}: LoadParams): void {
+        const url = this.makeUrl(options, endpoint);
+
+        fetch(url, { method })
             .then(this.errorHandler)
             .then((res) => res.json())
             .then((data) => callback(data))

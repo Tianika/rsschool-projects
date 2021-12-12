@@ -37,3 +37,19 @@ export type ApiKey = { apiKey: string };
 export type CallbackType<T> = (data?: T) => void
 
 export type SourceId = string | null
+
+export type Options = Record<string, unknown>
+
+export interface IGetResp { 
+    endpoint: string; 
+    options?: { sources: string } | Options
+ }
+
+export type GetRespCallback = () => void
+
+export type LoadParams = {
+    method: string;
+    endpoint: string;
+    callback: CallbackType<IGetSources>;
+    options: Options
+}

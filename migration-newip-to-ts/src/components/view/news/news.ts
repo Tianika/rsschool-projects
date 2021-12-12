@@ -1,5 +1,7 @@
 import './news.css';
 import { INews } from '../../interfaces';
+import { LINK_NEWS_PLACEHOLDER } from '../../constants';
+
 class News {
     draw(data: Array<INews>): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
@@ -7,14 +9,15 @@ class News {
         const fragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
 
-        news.forEach((item, idx) => {
+        news.forEach((item, idx): void => {
             if (!newsItemTemp) return;
+
             const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (idx % 2) (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');
 
             (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
+                item.urlToImage || LINK_NEWS_PLACEHOLDER
             })`;
             (newsClone.querySelector('.news__meta-author') as HTMLElement).textContent =
                 item.author || item.source.name;
