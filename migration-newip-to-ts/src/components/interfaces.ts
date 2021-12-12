@@ -33,3 +33,7 @@ export interface IGetSources {
 }
 
 export type ApiKey = { apiKey: string };
+
+export type CallbackType<T> = (data?: T) => void
+
+export type SourceId = string | null
