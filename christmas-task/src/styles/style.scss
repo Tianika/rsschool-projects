@@ -57,7 +57,7 @@ button {
 body {
   color: white;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
 }
 
 /*-------------variables------------*/
@@ -193,7 +193,7 @@ a {
 }
 
 .settings-toy {
-  width: 48%;
+  width: 46%;
   padding: 10px;
   font-family: Neucha;
   > .title {
@@ -348,16 +348,26 @@ a {
   gap: 10px;
   grid-template-columns: repeat(5, 260px);
   justify-content: space-between;
-  padding: 30px 0;
+  padding: 20px 0;
 }
 
 .toy-card {
   display: flex;
   flex-wrap: wrap;
   height: 250px;
-  background-color: rgba($shadow-color, 0.6);
+  background-color: rgba($shadow-color, 0.8);
   align-content: start;
   padding: 5px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: $light-color 0 0 20px;
+  }
+  &.favorite-toy {
+    background-color: rgba($compl-color, 0.8);
+    &:hover {
+      box-shadow: invert($middle-color) 0 0 20px;
+    }
+  }
   .toy-card-title {
     width: 250px;
     text-align: center;

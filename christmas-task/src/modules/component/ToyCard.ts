@@ -1,37 +1,71 @@
+import { dataToys } from '../interfaces'
 export class ToyCard {
-  draw(data: []): void {
+  draw(data: Array<dataToys>): void {
     const fragment = document.createDocumentFragment()
     const toyCardTemp: HTMLTemplateElement | null =
       document.querySelector('#toyCardTemp')
+    let count = 0
 
     data.forEach((element) => {
       if (!toyCardTemp) return
-      const newsClone = toyCardTemp.content.cloneNode(true)
+      const newsClone = toyCardTemp.content.cloneNode(true) as HTMLElement
 
-      console.log(newsClone)
+      const cardTitle = newsClone.querySelector(
+        '.toy-card-title'
+      ) as HTMLElement
+      cardTitle.textContent = element.name
 
-      newsClone.querySelector('.toy-card-title').textContent = element.name
-      newsClone.querySelector(
-        '.toy-card-image'
-      ).src = `./assets/toys/${element.num}.png`
-      newsClone.querySelector(
+      const toyImage = newsClone.querySelector('.toy-card-image') as HTMLElement
+      toyImage.src = `./assets/toys/${element.num}.png`
+
+      const toyCount = newsClone.querySelector(
         '.describe-content.count'
-      ).textContent = `Количество: ${element.count}`
-      newsClone.querySelector(
+      ) as HTMLElement
+      toyCount.textContent = `Количество: ${element.count}`
+
+      const toyYear = newsClone.querySelector(
         '.describe-content.year'
-      ).textContent = `Год покупки: ${element.year}`
-      newsClone.querySelector(
+      ) as HTMLElement
+      toyYear.textContent = `Год покупки: ${element.year}`
+
+      const toyShape = newsClone.querySelector(
         '.describe-content.shape'
-      ).textContent = `Форма: ${element.shape}`
-      newsClone.querySelector(
+      ) as HTMLElement
+      toyShape.textContent = `Форма: ${element.shape}`
+
+      const toyColor = newsClone.querySelector(
         '.describe-content.color'
-      ).textContent = `Цвет: ${element.color}`
-      newsClone.querySelector(
+      ) as HTMLElement
+      toyColor.textContent = `Цвет: ${element.color}`
+
+      const toySize = newsClone.querySelector(
         '.describe-content.size'
-      ).textContent = `Размер: ${element.size}`
-      newsClone.querySelector(
+      ) as HTMLElement
+      toySize.textContent = `Размер: ${element.size}`
+
+      const toyFavorite = newsClone.querySelector(
         '.describe-content.favorite'
-      ).textContent = `Любимая: ${element.favorite ? 'Да' : 'Нет'}`
+      ) as HTMLElement
+      toyFavorite.textContent = `Любимая: ${element.favorite ? 'Да' : 'Нет'}`
+
+      const cardToy = newsClone.querySelector('.toy-card') as HTMLElement
+
+      if (element.favorite) {
+        count++
+        cardToy.classList.add('favorite-toy')
+      }
+
+      cardToy.addEventListener('click', (): void => {
+        cardToy.classList.toggle('favorite-toy')
+        if (cardToy.classList.contains('favorite-toy')) {
+          count++
+        } else {
+          count--
+        }
+
+        const toysCount = document.querySelector('.toys-count') as HTMLElement
+        toysCount.textContent = count.toString()
+      })
 
       fragment.append(newsClone)
     })
@@ -43,5 +77,14 @@ export class ToyCard {
 
     toyContainer.innerHTML = ''
     toyContainer.appendChild(fragment)
+
+    // toyContainer.addEventListener('click', (e: Event): void => {
+    //   if (e.target.classList.contains('toy-card')) {
+    //     e.target.classList.toggle('favorite-toy')
+    //   }
+    // })
+
+    const toysCount = document.querySelector('.toys-count') as HTMLElement
+    toysCount.textContent = count.toString()
   }
 }

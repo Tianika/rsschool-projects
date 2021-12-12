@@ -8,7 +8,6 @@ export class App {
     settingsView.draw()
 
     const toyCards: ToyCard = new ToyCard()
-    console.log(data)
     toyCards.draw(data)
   }
 }

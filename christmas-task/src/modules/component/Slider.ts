@@ -34,10 +34,10 @@ export class Slider {
     const yearSlider = document.querySelector('#year-slider') as HTMLElement
     if (yearSlider) {
       noUiSlider.create(yearSlider, {
-        start: [1950, 2020],
+        start: [1940, 2020],
         connect: true,
         range: {
-          min: 1950,
+          min: 1940,
           max: 2020,
         },
         step: 10,

@@ -1,4 +1,6 @@
-const data = [
+import { dataToys } from '../interfaces'
+
+const data: Array<dataToys> = [
   {
     num: '1',
     name: 'Большой шар с рисунком',
@@ -599,6 +601,6 @@ const data = [
     size: 'средний',
     favorite: true,
   },
-];
+]
 
-export default data;
+export default data
