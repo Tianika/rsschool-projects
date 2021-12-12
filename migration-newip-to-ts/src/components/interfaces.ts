@@ -53,3 +53,9 @@ export type LoadParams = {
     callback: CallbackType<IGetSources>;
     options: Options
 }
+
+export enum Statuses{
+    UnauthorizedError = 401,
+    PageNotFound = 404
+
+}

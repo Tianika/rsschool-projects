@@ -1,4 +1,4 @@
-import { ApiKey, IGetSources, IGetResp, Options, GetRespCallback, LoadParams } from '../interfaces';
+import { ApiKey, IGetResp, Options, GetRespCallback, LoadParams, Statuses } from '../interfaces';
 import { defaultErrorInfo } from '../utils';
 
 class Loader {
@@ -19,7 +19,7 @@ class Loader {
 
     errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404){
+            if (res.status === Statuses.UnauthorizedError || res.status === Statuses.PageNotFound){
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             }
                 
