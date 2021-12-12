@@ -15,7 +15,9 @@ export class ToyCard {
       ) as HTMLElement
       cardTitle.textContent = element.name
 
-      const toyImage = newsClone.querySelector('.toy-card-image') as HTMLElement
+      const toyImage = newsClone.querySelector(
+        '.toy-card-image'
+      ) as HTMLImageElement
       toyImage.src = `./assets/toys/${element.num}.png`
 
       const toyCount = newsClone.querySelector(

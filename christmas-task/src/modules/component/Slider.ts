@@ -3,7 +3,9 @@ import 'nouislider/dist/nouislider.css'
 
 export class Slider {
   draw(): void {
-    const countSlider = document.querySelector('#count-slider') as HTMLElement
+    const countSlider = document.querySelector(
+      '#count-slider'
+    ) as noUiSlider.target
     if (countSlider) {
       noUiSlider.create(countSlider, {
         start: [1, 12],
@@ -20,18 +22,28 @@ export class Slider {
         document.querySelector('.count-slider-max'),
       ]
 
-      countSlider.noUiSlider.on(
-        'update',
-        (values: Array<string>, handle: number) => {
-          if (countDivs[0] && countDivs[1]) {
-            countDivs[0].innerHTML = values[0].split('.')[0]
-            countDivs[1].innerHTML = values[1].split('.')[0]
+      if (countSlider.noUiSlider) {
+        countSlider.noUiSlider.on(
+          'update',
+          (values: Array<string | number>, handle: number) => {
+            if (countDivs[0] && countDivs[1]) {
+              countDivs[0].innerHTML = parseInt(
+                values[0].toString(),
+                10
+              ).toString()
+              countDivs[1].innerHTML = parseInt(
+                values[1].toString(),
+                10
+              ).toString()
+            }
           }
-        }
-      )
+        )
+      }
     }
 
-    const yearSlider = document.querySelector('#year-slider') as HTMLElement
+    const yearSlider = document.querySelector(
+      '#year-slider'
+    ) as noUiSlider.target
     if (yearSlider) {
       noUiSlider.create(yearSlider, {
         start: [1940, 2020],
@@ -49,14 +61,22 @@ export class Slider {
       document.querySelector('.year-slider-max'),
     ]
 
-    yearSlider.noUiSlider.on(
-      'update',
-      (values: Array<string>, handle: number) => {
-        if (yearDivs[0] && yearDivs[1]) {
-          yearDivs[0].innerHTML = values[0].split('.')[0]
-          yearDivs[1].innerHTML = values[1].split('.')[0]
+    if (yearSlider.noUiSlider) {
+      yearSlider.noUiSlider.on(
+        'update',
+        (values: Array<string | number>, handle: number) => {
+          if (yearDivs[0] && yearDivs[1]) {
+            yearDivs[0].innerHTML = parseInt(
+              values[0].toString(),
+              10
+            ).toString()
+            yearDivs[1].innerHTML = parseInt(
+              values[1].toString(),
+              10
+            ).toString()
+          }
         }
-      }
-    )
+      )
+    }
   }
 }

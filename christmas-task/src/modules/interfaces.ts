@@ -8,3 +8,11 @@ export interface dataToys {
   size: string
   favorite: boolean
 }
+
+// export declare module noUiSlider {
+//   interface noUiSlider {}
+
+//   interface Instance extends HTMLElement {
+//     noUiSlider: noUiSlider
+//   }
+// }
