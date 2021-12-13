@@ -160,10 +160,11 @@ a {
 .main {
   height: Calc(100% - 120px);
   width: 100%;
-  background: rgba($dark-color, 0.95) url('../assets/bg.jpg') no-repeat;
-  background-size: cover;
+  background: rgba($dark-color, 0.9) url('../assets/bg.jpg') no-repeat;
+  background-size: 100% 100%;
   background-position: center center;
   background-blend-mode: multiply;
+  background-attachment: fixed;
   .container {
     height: Calc(100% - 120px);
     padding-top: 20px;
