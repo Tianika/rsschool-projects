@@ -49,5 +49,16 @@ export class Settings {
       const toyCard = new ToyCard()
       toyCard.draw(sortData)
     })
+
+    const defaultButton = document.querySelector(
+      '.default-settings-button'
+    ) as HTMLButtonElement
+
+    defaultButton.addEventListener('click', (): void => {
+      localStorage.dataForChristmasGame = JSON.stringify(data)
+
+      const toyCard = new ToyCard()
+      toyCard.draw(JSON.parse(localStorage.dataForChristmasGame))
+    })
   }
 }

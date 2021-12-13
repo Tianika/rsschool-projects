@@ -1,7 +1,7 @@
 import { dataToys } from '../interfaces'
 
 export function sortingFromFirstLetter(data: Array<dataToys>): Array<dataToys> {
-  data.sort((prev, next): number => {
+  data.sort((prev, next): any => {
     if (prev.name < next.name) return -1
     if (prev.name < next.name) return 1
   })
@@ -10,7 +10,7 @@ export function sortingFromFirstLetter(data: Array<dataToys>): Array<dataToys> {
 }
 
 export function sortingFromLastLetter(data: Array<dataToys>): Array<dataToys> {
-  data.sort((prev, next): number => {
+  data.sort((prev, next): any => {
     if (prev.name > next.name) return -1
     if (prev.name > next.name) return 1
   })

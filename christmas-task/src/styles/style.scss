@@ -157,6 +157,17 @@ a {
   margin-left: 25px;
 }
 
+.toys-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-color: $middle-color;
+}
+
 .main {
   height: Calc(100% - 120px);
   width: 100%;
@@ -264,6 +275,7 @@ a {
     }
   }
 }
+
 .favorite-choice-item {
   position: relative;
   width: 25px;
@@ -338,14 +350,49 @@ a {
   }
 }
 
+.noUi-touch-area {
+  background-color: $light-color;
+  border: 1px solid $white;
+}
+
+.noUi-base {
+  background-color: rgba($dark-color, 0.9);
+  border: 1px solid $white;
+}
+
 .sort-title {
 }
-.sort-choice {
+
+.sort-choice,
+.reset-filter-button,
+.default-settings-button {
+  text-align: center;
+  font-size: 18px;
+  line-height: 22px;
+  color: $white;
+  background-color: $middle-color;
+  border-radius: 3px;
+  border: 1px solid $white;
 }
+
+.sort-choice {
+  display: block;
+  width: 200px;
+  height: 24px;
+}
+
 .sort-choice-item {
 }
-.reset-filter-button {
-  margin-top: 20px;
+.reset-filter-button,
+.default-settings-button {
+  display: inline-block;
+  margin-top: 30px;
+  margin-right: 15px;
+  height: 40px;
+  width: 200px;
+}
+
+.default-settings-button {
 }
 
 .toys-container {
