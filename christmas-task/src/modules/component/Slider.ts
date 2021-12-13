@@ -6,6 +6,7 @@ export class Slider {
     const countSlider = document.querySelector(
       '#count-slider'
     ) as noUiSlider.target
+
     if (countSlider) {
       noUiSlider.create(countSlider, {
         start: [1, 12],
@@ -44,6 +45,7 @@ export class Slider {
     const yearSlider = document.querySelector(
       '#year-slider'
     ) as noUiSlider.target
+
     if (yearSlider) {
       noUiSlider.create(yearSlider, {
         start: [1940, 2020],

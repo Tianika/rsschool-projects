@@ -58,6 +58,7 @@ body {
   color: white;
   min-height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 /*-------------variables------------*/
@@ -82,7 +83,7 @@ a {
 
 .container {
   max-width: 1480px;
-  width: 100%;
+  width: fit-content;
   padding: 0 20px;
   margin: 0 auto;
 }
@@ -96,6 +97,7 @@ a {
   .container {
     display: flex;
     align-items: center;
+    width: 100%;
   }
 }
 
@@ -158,9 +160,10 @@ a {
 .main {
   height: Calc(100% - 120px);
   width: 100%;
-  background: url(../assets/bg.jpg) no-repeat;
+  background: rgba($dark-color, 0.95) url('../assets/bg.jpg') no-repeat;
   background-size: cover;
   background-position: center center;
+  background-blend-mode: multiply;
   .container {
     height: Calc(100% - 120px);
     padding-top: 20px;
@@ -189,7 +192,9 @@ a {
   justify-content: space-between;
   width: 100%;
   height: auto;
-  background-color: rgba($dark-color, 0.8);
+  background-color: rgba($dark-color, 0.9);
+  border: 1px solid $white;
+  border-radius: 5px;
 }
 
 .settings-toy {
@@ -345,25 +350,29 @@ a {
 .toys-container {
   display: grid;
   min-height: Max(Calc(100% - 120px), content);
-  gap: 10px;
+  gap: 20px;
   grid-template-columns: repeat(5, 260px);
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 25px 0;
 }
 
 .toy-card {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   height: 250px;
-  background-color: rgba($shadow-color, 0.8);
+  background-color: rgba($shadow-color, 0.9);
+  border: 1px solid $white;
+  border-radius: 5px;
   align-content: start;
   padding: 5px;
+  overflow: hidden;
   cursor: pointer;
   &:hover {
     box-shadow: $light-color 0 0 20px;
   }
   &.favorite-toy {
-    background-color: rgba($compl-color, 0.8);
+    background-color: rgba($compl-color, 0.9);
     &:hover {
       box-shadow: invert($middle-color) 0 0 20px;
     }
@@ -391,5 +400,26 @@ a {
     .describe-content {
       padding: 5px 0;
     }
+  }
+}
+
+.toy-card-warning {
+  position: absolute;
+  font-family: Neucha;
+  font-size: 22px;
+  width: 260px;
+  height: 70px;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 3px;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  transition: all 0.5s ease-in;
+  color: $compl-color;
+  background-color: $white;
+  &.hide {
+    bottom: -71px;
+    opacity: 0;
   }
 }

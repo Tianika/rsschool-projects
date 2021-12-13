@@ -8,6 +8,7 @@ export class ToyCard {
 
     data.forEach((element) => {
       if (!toyCardTemp) return
+
       const newsClone = toyCardTemp.content.cloneNode(true) as HTMLElement
 
       const cardTitle = newsClone.querySelector(
@@ -58,15 +59,29 @@ export class ToyCard {
       }
 
       cardToy.addEventListener('click', (): void => {
-        cardToy.classList.toggle('favorite-toy')
-        if (cardToy.classList.contains('favorite-toy')) {
-          count++
-        } else {
-          count--
-        }
+        if (count === 20 && !cardToy.classList.contains('favorite-toy')) {
+          const warning = cardToy.querySelector(
+            '.toy-card-warning'
+          ) as HTMLDivElement
 
-        const toysCount = document.querySelector('.toys-count') as HTMLElement
-        toysCount.textContent = count.toString()
+          warning.classList.remove('hide')
+          setTimeout(() => {
+            warning.classList.add('hide')
+          }, 1500)
+        } else {
+          cardToy.classList.toggle('favorite-toy')
+
+          if (cardToy.classList.contains('favorite-toy')) {
+            toyFavorite.textContent = `Любимая: Да`
+            count++
+          } else {
+            toyFavorite.textContent = `Любимая: Нет`
+            count--
+          }
+
+          const toysCount = document.querySelector('.toys-count') as HTMLElement
+          toysCount.textContent = count.toString()
+        }
       })
 
       fragment.append(newsClone)
