@@ -23,7 +23,7 @@ export class Settings {
     ) as HTMLSelectElement
 
     selectSortType?.addEventListener('change', function () {
-      let index = this.selectedIndex
+      const index = this.selectedIndex
       let sortData = JSON.parse(JSON.stringify(data))
 
       switch (index) {

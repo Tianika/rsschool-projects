@@ -8,7 +8,16 @@ export class App {
     if (!localStorage?.dataForChristmasGame) {
       localStorage.dataForChristmasGame = JSON.stringify(data)
     }
-    let gameData: Array<dataToys> = JSON.parse(
+
+    if (!localStorage?.favoriteToysForChristmasGame) {
+      localStorage.favoriteToysForChristmasGame = JSON.stringify(
+        data.filter((item) => item.favorite)
+      )
+    }
+
+    console.log(localStorage.favoriteToysForChristmasGame)
+
+    const gameData: Array<dataToys> = JSON.parse(
       localStorage.dataForChristmasGame
     )
 
