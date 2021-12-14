@@ -1,12 +1,8 @@
 import { Slider } from './Slider'
-import {
-  sortingFromFirstLetter,
-  sortingFromLastLetter,
-  newOnesFirst,
-  oldOnesFirst,
-} from '../utils/sort'
+import { sortAscend, sortDescend } from '../utils/sort'
 import data from '../data/data'
 import { ToyCard } from './ToyCard'
+import { sortTypes } from '../utils/constants'
 
 export class Settings {
   slider: Slider
@@ -50,30 +46,24 @@ export class Settings {
 
     selectSortType?.addEventListener('change', function () {
       const index = this.selectedIndex
-      let sortData = JSON.parse(JSON.stringify(data))
 
       switch (index) {
         case 0:
-          sortData = data
+          sortDescend(sortTypes.default)
           break
         case 1:
-          sortData = sortingFromFirstLetter(sortData)
+          sortDescend(sortTypes.sortFromLetters)
           break
         case 2:
-          sortData = sortingFromLastLetter(sortData)
+          sortAscend(sortTypes.sortFromLetters)
           break
         case 3:
-          sortData = newOnesFirst(sortData)
+          sortAscend(sortTypes.sortFromYear)
           break
         case 4:
-          sortData = oldOnesFirst(sortData)
+          sortDescend(sortTypes.sortFromYear)
           break
       }
-
-      localStorage.dataForChristmasGame = JSON.stringify(sortData)
-
-      const toyCard = new ToyCard()
-      toyCard.draw(sortData)
     })
 
     const defaultButton = document.querySelector(

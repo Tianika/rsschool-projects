@@ -53,6 +53,9 @@ export class ToyCard {
 
       const cardToy = newsClone.querySelector('.toy-card') as HTMLElement
 
+      cardToy.setAttribute('data-num', element.num)
+      cardToy.setAttribute('data-name', element.name)
+      cardToy.setAttribute('data-year', element.year)
       cardToy.setAttribute('data-favorite', element.favorite.toString())
 
       if (element.favorite) {
