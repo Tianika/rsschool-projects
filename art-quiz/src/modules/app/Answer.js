@@ -1,6 +1,7 @@
 import { playSound } from './sound'
-import { AnswerWindow } from '../components/AnswerWindow'
+import { AnswerWindow } from '../components'
 import { modalAnimation } from './general'
+import { ANSWER, SOUNDS } from '../../utils/constants'
 
 export class Answer {
   constructor(game) {
@@ -17,15 +18,15 @@ export class Answer {
         }
 
         //добавляем стили для правильного-неправильного ответа
-        if (event.target.dataset.right === 'right') {
+        if (event.target.dataset.right === ANSWER.right) {
           event.target.classList.add('right-answer')
-          this.game.bullets[this.game.questionNumber] = 'right'
+          this.game.bullets[this.game.questionNumber] = ANSWER.right
           this.game.score++
-          playSound('right-answer')
-        } else if (event.target.dataset.right === 'error') {
+          playSound(SOUNDS.soundRightAnswer)
+        } else if (event.target.dataset.right === ANSWER.error) {
           event.target.classList.add('error-answer')
-          this.game.bullets[this.game.questionNumber] = 'error'
-          playSound('error-answer')
+          this.game.bullets[this.game.questionNumber] = ANSWER.error
+          playSound(SOUNDS.soundErrorAnswer)
         }
 
         this.createAnswerWindow(event.target)
@@ -43,12 +44,12 @@ export class Answer {
     const modalImage = document.querySelector('.modal-answer-image')
     modalImage.style.backgroundImage = `url('./assets/img/img/${this.game.question.imageNum}.jpg')`
 
-    if (eventTarget.dataset.right === 'right') {
+    if (eventTarget.dataset.right === ANSWER.right) {
       modalImage.classList.add('right-answer')
-      this.game.roundResult.push('right')
-    } else if (eventTarget.dataset.right === 'error') {
+      this.game.roundResult.push(ANSWER.right)
+    } else if (eventTarget.dataset.right === ANSWER.error) {
       modalImage.classList.add('error-answer')
-      this.game.roundResult.push('error')
+      this.game.roundResult.push(ANSWER.error)
     }
 
     this.game.questionNumber++

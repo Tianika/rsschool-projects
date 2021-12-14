@@ -1,7 +1,9 @@
+import { START_VALUES, PAGES } from '../../utils/constants'
+
 export class Person {
   constructor() {
-    this.soundLevel = 30
-    this.currentPage = 'home'
+    this.soundLevel = START_VALUES.soundLevel
+    this.currentPage = PAGES.home
   }
 
   saveCurrentPage(pageName) {

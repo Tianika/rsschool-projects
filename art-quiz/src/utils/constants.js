@@ -7,6 +7,11 @@ export const DEFAULT_ROUND_DURATION = 20
 
 export const SOUNDS = {
   soundBtn: 'button-sound',
+  soundRightAnswer: 'right-answer',
+  soundErrorAnswer: 'error-answer',
+  gameLost: 'game-lost',
+  soundWin: 'win-sound',
+  grandWin: 'grand-win',
 }
 
 export const BUTTONS = {
@@ -28,4 +33,30 @@ export const PAGES = {
   home: 'home',
   artist: 'artist',
   picture: 'picture',
+}
+
+export const ANSWER = {
+  right: 'right',
+  error: 'error',
+  length: 4,
+}
+
+export const START_VALUES = {
+  startQuestionNum: 0,
+  startScoreNum: 0,
+  defaultRoundResult: [],
+  defaultAnswer: [],
+  defaultBullets: ['', '', '', '', '', '', '', '', '', ''],
+  questionsPerRound: 10,
+  soundLevel: 30,
+}
+
+export const TYPE_GAME = {
+  artist: 'artist',
+  picture: 'picture',
+}
+
+export const SAVE_RESULT = {
+  cardScore: 'card-score',
+  play: 'play',
 }

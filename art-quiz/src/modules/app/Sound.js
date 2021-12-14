@@ -1,11 +1,13 @@
+import { SOUNDS, TIMER_ON_OFF } from '../../utils/constants'
+
 export async function playSound(type) {
   const sounds = {
-    'button-sound': './assets/sounds/zvuk-button.mp3',
-    'right-answer': './assets/sounds/zvuk-pravilnogo-otveta.mp3',
-    'error-answer': './assets/sounds/zvuk-nevernogo-otveta.mp3',
-    'win-sound': './assets/sounds/game-won.mp3',
-    'grand-win': './assets/sounds/grand-pobeda-melodiya.mp3',
-    'game-lost': './assets/sounds/game-lost.mp3',
+    [SOUNDS.soundBtn]: './assets/sounds/zvuk-button.mp3',
+    [SOUNDS.soundRightAnswer]: './assets/sounds/zvuk-pravilnogo-otveta.mp3',
+    [SOUNDS.soundErrorAnswer]: './assets/sounds/zvuk-nevernogo-otveta.mp3',
+    [SOUNDS.soundWin]: './assets/sounds/game-won.mp3',
+    [SOUNDS.grandWin]: './assets/sounds/grand-pobeda-melodiya.mp3',
+    [SOUNDS.grandWin]: './assets/sounds/game-lost.mp3',
   }
 
   const audio = new Audio()
@@ -15,7 +17,7 @@ export async function playSound(type) {
     audio.volume = Number(localStorage['levelSoundArtQuiz'])
   }
 
-  if (localStorage.soundMute === 'switch-off') {
+  if (localStorage.soundMute === TIMER_ON_OFF.off) {
     audio.pause()
   } else {
     const playPromise = audio.play()

@@ -16,19 +16,30 @@ import { shuffle, randomNumber } from './general'
 import { playSound } from './sound'
 import { Timer } from './Timer'
 import { Answer } from './Answer'
+import {
+  START_VALUES,
+  TYPE_GAME,
+  TIMER_ON_OFF,
+  ANSWER,
+  SOUNDS,
+  SAVE_RESULT,
+} from '../../utils/constants'
 
 export class Game {
   constructor(round, typeGame) {
-    this.questionNumber = 0
-    this.score = 0
-    this.roundResult = []
-    this.answers = []
-    this.bullets = ['', '', '', '', '', '', '', '', '', '']
+    this.questionNumber = START_VALUES.startQuestionNum
+    this.score = START_VALUES.startScoreNum
+    this.roundResult = START_VALUES.defaultRoundResult
+    this.answers = START_VALUES.defaultAnswer
+    this.bullets = START_VALUES.defaultBullets
     this.round = round
     this.typeGame = typeGame
-    this.beginSlice = round * 10 + this.questionNumber
-    this.images = images.slice(this.beginSlice, this.beginSlice + 10)
-    this.pauseGame = 2
+    this.beginSlice =
+      round * START_VALUES.questionsPerRound + this.questionNumber
+    this.images = images.slice(
+      this.beginSlice,
+      this.beginSlice + START_VALUES.questionsPerRound
+    )
     this.time = localStorage.roundDuration
   }
 
@@ -38,7 +49,7 @@ export class Game {
 
   runRound() {
     // ---------- artist quiz
-    if (this.typeGame === 'artist') {
+    if (this.typeGame === TYPE_GAME.artist) {
       const questionAboutArtist = new QuestionAboutArtist()
       questionAboutArtist.run()
 
@@ -56,7 +67,7 @@ export class Game {
     }
 
     // -------------picture quiz
-    if (this.typeGame === 'picture') {
+    if (this.typeGame === TYPE_GAME.picture) {
       const questionAboutPicture = new QuestionAboutPicture()
       questionAboutPicture.run()
 
@@ -78,7 +89,7 @@ export class Game {
     this.addBullets()
 
     //таймер выключен
-    if (localStorage.timerOnOff === 'switch-off') {
+    if (localStorage.timerOnOff === TIMER_ON_OFF.off) {
       const timerBtn = document.querySelector('.timer-button')
       timerBtn.style.display = 'none'
 
@@ -87,7 +98,7 @@ export class Game {
     }
 
     //таймер включен
-    if (localStorage.timerOnOff === ' ') {
+    if (localStorage.timerOnOff === TIMER_ON_OFF.on) {
       const timer = new Timer(this)
       timer.timerOn()
 
@@ -125,7 +136,7 @@ export class Game {
   addAnswersToArtists() {
     const container = document.querySelector('.question-artist-answers')
 
-    while (this.answers.length < 4) {
+    while (this.answers.length < ANSWER.length) {
       let author = images[randomNumber(images.length - 1)].author
 
       if (!this.answers.includes(author)) {
@@ -135,15 +146,14 @@ export class Game {
 
     this.answers = shuffle(this.answers)
     this.answers.forEach((answer) => {
-      container.innerHTML += new AnswerBtnForArtist(
-        answer,
-        this.rightAnswer
-      ).renderAnswer()
+      const newAnswer = new AnswerBtnForArtist(answer, this.rightAnswer)
+      const renderedAnswer = newAnswer.renderAnswer()
+      container.innerHTML += renderedAnswer
     })
   }
 
   addAnswersToPictures() {
-    while (this.answers.length < 4) {
+    while (this.answers.length < ANSWER.length) {
       let image = images[randomNumber(images.length - 1)]
 
       if (this.answers[0][0] !== image.author) {
@@ -162,9 +172,9 @@ export class Game {
     const nextBtn = document.querySelector('.button-next')
 
     nextBtn.addEventListener('click', () => {
-      playSound('button-sound')
+      playSound(SOUNDS.soundBtn)
 
-      if (this.questionNumber === 10) {
+      if (this.questionNumber === START_VALUES.questionsPerRound) {
         this.saveResults()
 
         if (document.querySelector('.modal-answer')) {
@@ -173,20 +183,20 @@ export class Game {
 
         const mainScreen = document.querySelector('.main-screen')
 
-        if (this.score === 0) {
+        if (this.score === START_VALUES.startScoreNum) {
           const result = new GameOverWindow()
           mainScreen.insertAdjacentHTML('afterEnd', result.render())
-          playSound('game-lost')
-        } else if (this.score < 10) {
+          playSound(SOUNDS.gameLost)
+        } else if (this.score < START_VALUES.questionsPerRound) {
           const result = new ResultWindow()
           mainScreen.insertAdjacentHTML('afterEnd', result.render())
           const resultScore = document.querySelector('.modal-result-score')
           resultScore.innerHTML = this.score
-          playSound('win-sound')
-        } else if (this.score === 10) {
+          playSound(SOUNDS.soundWin)
+        } else if (this.score === START_VALUES.questionsPerRound) {
           const result = new GrandResultWindow()
           mainScreen.insertAdjacentHTML('afterEnd', result.render())
-          playSound('grand-win')
+          playSound(SOUNDS.grandWin)
         }
 
         return
@@ -198,8 +208,8 @@ export class Game {
   saveResults() {
     const resultForSave = {}
     resultForSave['score'] = this.score
-    resultForSave['hide'] = 'card-score'
-    resultForSave['play'] = 'play'
+    resultForSave['hide'] = SAVE_RESULT.cardScore
+    resultForSave['play'] = SAVE_RESULT.play
     resultForSave['images'] = [...this.bullets]
     resultForSave['roundResult'] = [...this.roundResult]
 
