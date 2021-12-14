@@ -71,10 +71,10 @@ export class Settings {
     ) as HTMLButtonElement
 
     defaultButton.addEventListener('click', (): void => {
-      localStorage.dataForChristmasGame = JSON.stringify(data)
+      //localStorage.dataForChristmasGame = JSON.stringify(data)
 
       const toyCard = new ToyCard()
-      toyCard.draw(JSON.parse(localStorage.dataForChristmasGame))
+      toyCard.draw(data)
     })
   }
 }

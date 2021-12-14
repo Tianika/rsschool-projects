@@ -1,7 +1,9 @@
 import { sortTypes } from './constants'
 
-function insertElement(firstElem, secondElem) {
-  return secondElem.parentNode.insertBefore(firstElem, secondElem.nextSibling)
+function insertElement(firstElem: Element, secondElem) {
+  if (secondElem) {
+    return secondElem.parentNode.insertBefore(firstElem, secondElem.nextSibling)
+  }
 }
 
 function getAttrForSort(typeSort: string, item): string | number {

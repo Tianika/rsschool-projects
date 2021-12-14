@@ -218,15 +218,9 @@ a {
     line-height: 32px;
     padding-top: 10px;
   }
-  input[type='checkbox'] {
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
-  }
 }
+
 .shape-title {
-}
-.shape-choice {
 }
 .shape-choice-item {
 }
@@ -238,10 +232,119 @@ a {
 }
 .size-title {
 }
-.size-choice {
+
+.size-choice,
+.shape-choice {
+  display: flex;
 }
-.size-choice-item {
+
+.checkbox-item {
+  position: relative;
+  padding-right: 10px;
+
+  label {
+    position: absolute;
+    left: 0;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      background-image: url('../assets/svg/ball.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      transition: all 0.3s ease-in;
+    }
+  }
 }
+
+.checkbox,
+.favorite-choice-item {
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ball-choice-item {
+  width: 40px;
+  height: 40px;
+  ~ label::before {
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/svg/ball.svg');
+  }
+}
+
+.bell-choice-item {
+  width: 40px;
+  height: 40px;
+  ~ label::before {
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/svg/bell.svg');
+  }
+}
+
+.cone-choice-item {
+  width: 40px;
+  height: 40px;
+  ~ label::before {
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/svg/cone.svg');
+  }
+}
+
+.snowflake-choice-item {
+  width: 40px;
+  height: 40px;
+  ~ label::before {
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/svg/snowflake.svg');
+  }
+}
+
+.toy-choice-item {
+  width: 40px;
+  height: 40px;
+  ~ label::before {
+    width: 40px;
+    height: 40px;
+    background-image: url('../assets/svg/toy.svg');
+  }
+}
+
+.small-choice-item {
+  width: 30px;
+  height: 30px;
+  ~ label::before {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.middle-choice-item {
+  width: 35px;
+  height: 35px;
+  ~ label::before {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.big-choice-item {
+  width: 40px;
+  height: 40px;
+  ~ label::before {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .favorite-title {
 }
 .favorite-choice {
@@ -276,15 +379,6 @@ a {
   }
 }
 
-.favorite-choice-item {
-  position: relative;
-  width: 25px;
-  height: 25px;
-  z-index: 5;
-  opacity: 0;
-  cursor: pointer;
-}
-
 .favorite-choice-item + label::after {
   left: 13px;
   bottom: 15px;
@@ -316,6 +410,8 @@ a {
 
 .count-title {
 }
+
+//ui-slider
 
 #count-slider {
   height: 15px;
