@@ -1,18 +1,21 @@
 import images from './images'
-import QuestionAboutArtist from '../pages/QuestionAboutArtist'
-import QuestionAboutPicture from '../pages/QuestionAboutPicture'
-import { Bullet } from '../components/Bullet'
-import { AnswerBtnForArtist } from '../components/AnswerBtnForArtist'
-import AnswerImages from '../components/AnswerImages'
-import GameOverWindow from '../pages/GameOverWindow'
-import ResultWindow from '../pages/ResultWindow'
-import GrandResultWindow from '../pages/GrandResultWindow'
-import { QuestionImage } from '../components/QuestionImage'
+import {
+  QuestionAboutArtist,
+  QuestionAboutPicture,
+  GameOverWindow,
+  ResultWindow,
+  GrandResultWindow,
+} from '../pages'
+import {
+  Bullet,
+  AnswerBtnForArtist,
+  AnswerImages,
+  QuestionImage,
+} from '../components'
 import { shuffle, randomNumber } from './general'
 import { playSound } from './sound'
 import { Timer } from './Timer'
 import { Answer } from './Answer'
-import { pageChangeAnimation } from './general'
 
 export class Game {
   constructor(round, typeGame) {

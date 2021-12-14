@@ -1,5 +1,4 @@
-import CardScore from '../components/CardScore'
-import { Footer } from '../components/Footer'
+import { CardScore, Footer } from '../components'
 
 class Score {
   constructor(number) {

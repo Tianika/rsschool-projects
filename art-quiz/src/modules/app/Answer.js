@@ -1,5 +1,5 @@
 import { playSound } from './sound'
-import AnswerWindow from '../components/AnswerWindow'
+import { AnswerWindow } from '../components/AnswerWindow'
 import { modalAnimation } from './general'
 
 export class Answer {
