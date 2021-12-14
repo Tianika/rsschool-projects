@@ -1,4 +1,4 @@
-import { dataToys } from '../interfaces'
+import { dataToys } from '../utils/interfaces'
 
 const data: Array<dataToys> = [
   {

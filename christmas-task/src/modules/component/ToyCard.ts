@@ -1,4 +1,4 @@
-import { dataToys } from '../interfaces'
+import { dataToys } from '../utils/interfaces'
 export class ToyCard {
   draw(data: Array<dataToys>): void {
     const fragment = document.createDocumentFragment()
@@ -53,6 +53,8 @@ export class ToyCard {
 
       const cardToy = newsClone.querySelector('.toy-card') as HTMLElement
 
+      cardToy.setAttribute('data-favorite', element.favorite.toString())
+
       if (element.favorite) {
         count++
         cardToy.classList.add('favorite-toy')
@@ -72,9 +74,11 @@ export class ToyCard {
           cardToy.classList.toggle('favorite-toy')
 
           if (cardToy.classList.contains('favorite-toy')) {
+            cardToy.setAttribute('data-favorite', 'true')
             toyFavorite.textContent = `Любимая: Да`
             count++
           } else {
+            cardToy.setAttribute('data-favorite', 'false')
             toyFavorite.textContent = `Любимая: Нет`
             count--
           }
@@ -94,12 +98,6 @@ export class ToyCard {
 
     toyContainer.innerHTML = ''
     toyContainer.appendChild(fragment)
-
-    // toyContainer.addEventListener('click', (e: Event): void => {
-    //   if (e.target.classList.contains('toy-card')) {
-    //     e.target.classList.toggle('favorite-toy')
-    //   }
-    // })
 
     const toysCount = document.querySelector('.toys-count') as HTMLElement
     toysCount.textContent = count.toString()

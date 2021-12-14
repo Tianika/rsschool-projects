@@ -395,13 +395,18 @@ a {
 .default-settings-button {
 }
 
+/*----toys---*/
+
 .toys-container {
-  display: grid;
+  display: inline-grid;
   min-height: Max(Calc(100% - 120px), content);
   gap: 20px;
   grid-template-columns: repeat(5, 260px);
   justify-content: space-between;
   padding: 25px 0;
+}
+
+@keyframes hiddenCard {
 }
 
 .toy-card {
@@ -416,15 +421,32 @@ a {
   padding: 5px;
   overflow: hidden;
   cursor: pointer;
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.5s ease-in;
+
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  &.remove {
+    display: none;
+  }
+
   &:hover {
     box-shadow: $light-color 0 0 20px;
   }
+
   &.favorite-toy {
     background-color: rgba($compl-color, 0.9);
     &:hover {
       box-shadow: invert($middle-color) 0 0 20px;
     }
   }
+
   .toy-card-title {
     width: 250px;
     text-align: center;
@@ -434,11 +456,13 @@ a {
     line-height: 2;
     margin-bottom: 10px;
   }
+
   .toy-card-image {
     width: 90px;
     padding: 10px;
     object-fit: contain;
   }
+
   .toy-card-describe {
     display: flex;
     flex-direction: column;

@@ -1,4 +1,4 @@
-import { dataToys } from '../interfaces'
+import { dataToys } from './interfaces'
 
 export function sortingFromFirstLetter(data: Array<dataToys>): Array<dataToys> {
   data.sort((prev, next): any => {

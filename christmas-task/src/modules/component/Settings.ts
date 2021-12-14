@@ -4,7 +4,7 @@ import {
   sortingFromLastLetter,
   newOnesFirst,
   oldOnesFirst,
-} from '../app/sort'
+} from '../utils/sort'
 import data from '../data/data'
 import { ToyCard } from './ToyCard'
 
@@ -17,6 +17,32 @@ export class Settings {
 
   draw(): void {
     if (this.slider) this.slider.draw()
+
+    const favoriteChoice = document.querySelector(
+      '.favorite-choice-item'
+    ) as HTMLInputElement
+
+    favoriteChoice.addEventListener('change', () => {
+      const toyCards = document.querySelectorAll('.toy-card')
+
+      if (favoriteChoice.checked) {
+        toyCards.forEach((card, index) => {
+          if (card.getAttribute('data-favorite') == 'false') {
+            card.classList.add('hidden')
+            setTimeout(() => {
+              card.classList.add('remove')
+            }, 330)
+          }
+        })
+      } else {
+        toyCards.forEach((card) => {
+          card.classList.remove('remove')
+          setTimeout(() => {
+            card.classList.remove('hidden')
+          }, 330)
+        })
+      }
+    })
 
     const selectSortType = document.querySelector(
       '.sort-choice'
