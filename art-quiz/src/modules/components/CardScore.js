@@ -1,14 +1,17 @@
-import images from '../app/images'
+import { START_VALUES } from '../../utils/constants'
+import { getImages } from '../../utils/getImages'
 
 class CardScore {
   constructor(category, number, title, result) {
     this.title = title
-    this.cardNumber = category * 10 + number
-    this.info = images[this.cardNumber]
+    this.cardNumber = category * START_VALUES.questionsPerRound + number
     this.result = result
   }
 
-  renderCard() {
+  async renderCard() {
+    const images = await getImages()
+    this.info = await images[this.cardNumber]
+
     const formattedTitle = this.title.toString().padStart(2, '0')
 
     const component = ` 
@@ -28,4 +31,5 @@ class CardScore {
     return component
   }
 }
+
 export default CardScore

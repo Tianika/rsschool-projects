@@ -1,4 +1,3 @@
-import images from './images'
 import {
   QuestionAboutArtist,
   QuestionAboutPicture,
@@ -24,6 +23,7 @@ import {
   SOUNDS,
   SAVE_RESULT,
 } from '../../utils/constants'
+import { getImages } from '../../utils/getImages'
 
 export class Game {
   constructor(round, typeGame) {
@@ -36,14 +36,19 @@ export class Game {
     this.typeGame = typeGame
     this.beginSlice =
       round * START_VALUES.questionsPerRound + this.questionNumber
+
+    this.time = localStorage.roundDuration
+  }
+
+  async run() {
+    const images = await getImages()
+
+    this.imagesArr = images
     this.images = images.slice(
       this.beginSlice,
       this.beginSlice + START_VALUES.questionsPerRound
     )
-    this.time = localStorage.roundDuration
-  }
 
-  run() {
     this.runRound()
   }
 
@@ -137,7 +142,8 @@ export class Game {
     const container = document.querySelector('.question-artist-answers')
 
     while (this.answers.length < ANSWER.length) {
-      let author = images[randomNumber(images.length - 1)].author
+      let author =
+        this.imagesArr[randomNumber(this.imagesArr.length - 1)].author
 
       if (!this.answers.includes(author)) {
         this.answers.push(author)
@@ -154,7 +160,7 @@ export class Game {
 
   addAnswersToPictures() {
     while (this.answers.length < ANSWER.length) {
-      let image = images[randomNumber(images.length - 1)]
+      let image = this.imagesArr[randomNumber(this.imagesArr.length - 1)]
 
       if (this.answers[0][0] !== image.author) {
         this.answers.push([image.author, image.imageNum])
@@ -213,10 +219,10 @@ export class Game {
     resultForSave['images'] = [...this.bullets]
     resultForSave['roundResult'] = [...this.roundResult]
 
-    const arrayResults = JSON.parse(localStorage['resultsArtQuiz'])
+    const arrayResults = JSON.parse(localStorage.resultsArtQuiz)
 
     arrayResults[this.round] = resultForSave
-    localStorage['resultsArtQuiz'] = JSON.stringify(arrayResults)
+    localStorage.resultsArtQuiz = JSON.stringify(arrayResults)
   }
 }
 

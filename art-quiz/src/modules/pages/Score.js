@@ -42,7 +42,7 @@ class Score {
     this.createCards()
   }
 
-  createCards() {
+  async createCards() {
     const main = document.querySelector('.score-container')
 
     for (let i = 0; i < 10; i++) {
@@ -52,7 +52,8 @@ class Score {
         this.title,
         this.arrayOfResults[i]
       )
-      const innerMain = card.renderCard()
+
+      const innerMain = await card.renderCard()
 
       main.innerHTML += innerMain
     }

@@ -1,4 +1,3 @@
-import images from './images'
 import { randomNumber, changeBgImage, pageChangeAnimation } from './general'
 import {
   OnOffSound,
@@ -18,10 +17,13 @@ import {
   SOUNDS,
   PAGES,
 } from '../../utils/constants'
+import { getImages } from '../../utils/getImages'
 
 export class App {
-  start() {
+  async start() {
     try {
+      const images = await getImages()
+
       const root = document.querySelector('.root')
       const body = document.querySelector('body')
       const person = new Person()

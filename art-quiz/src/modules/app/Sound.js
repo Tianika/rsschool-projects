@@ -2,12 +2,12 @@ import { SOUNDS, TIMER_ON_OFF } from '../../utils/constants'
 
 export async function playSound(type) {
   const sounds = {
-    [SOUNDS.soundBtn]: './assets/sounds/zvuk-button.mp3',
-    [SOUNDS.soundRightAnswer]: './assets/sounds/zvuk-pravilnogo-otveta.mp3',
-    [SOUNDS.soundErrorAnswer]: './assets/sounds/zvuk-nevernogo-otveta.mp3',
-    [SOUNDS.soundWin]: './assets/sounds/game-won.mp3',
-    [SOUNDS.grandWin]: './assets/sounds/grand-pobeda-melodiya.mp3',
-    [SOUNDS.grandWin]: './assets/sounds/game-lost.mp3',
+    [SOUNDS.soundBtn]: ['./assets/sounds/zvuk-button.mp3'],
+    [SOUNDS.soundRightAnswer]: ['./assets/sounds/zvuk-pravilnogo-otveta.mp3'],
+    [SOUNDS.soundErrorAnswer]: ['./assets/sounds/zvuk-nevernogo-otveta.mp3'],
+    [SOUNDS.soundWin]: ['./assets/sounds/game-won.mp3'],
+    [SOUNDS.grandWin]: ['./assets/sounds/grand-pobeda-melodiya.mp3'],
+    [SOUNDS.gameLost]: ['./assets/sounds/game-lost.mp3'],
   }
 
   const audio = new Audio()

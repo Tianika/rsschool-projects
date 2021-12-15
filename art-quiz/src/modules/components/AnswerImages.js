@@ -6,7 +6,7 @@ export class AnswerImages {
     this.rightName = rightName
   }
 
-  async renderAnswer(i, imageNum) {
+  renderAnswer(i, imageNum) {
     this.name === this.rightName
       ? (this.isRight = ANSWER.right)
       : (this.isRight = ANSWER.error)
@@ -18,7 +18,7 @@ export class AnswerImages {
 
     const imgBg = new Image()
 
-    imgBg.src = await link
+    imgBg.src = link
 
     imgBg.addEventListener(
       'load',
