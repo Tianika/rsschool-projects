@@ -1,18 +1,16 @@
-import { START_VALUES } from '../../utils/constants'
-import { getImages } from '../../utils/getImages'
+import { START_VALUES } from '../../utils/constants';
+import images from '../../assets/data/images.json';
 
 class CardScore {
   constructor(category, number, title, result) {
-    this.title = title
-    this.cardNumber = category * START_VALUES.questionsPerRound + number
-    this.result = result
+    this.title = title;
+    this.cardNumber = category * START_VALUES.questionsPerRound + number;
+    this.result = result;
+    this.info = images[this.cardNumber];
   }
 
   async renderCard() {
-    const images = await getImages()
-    this.info = await images[this.cardNumber]
-
-    const formattedTitle = this.title.toString().padStart(2, '0')
+    const formattedTitle = this.title.toString().padStart(2, '0');
 
     const component = ` 
     <div class="card-score ${this.result}">
@@ -27,9 +25,9 @@ class CardScore {
         <div class="score-info-author">${this.info.author}, ${this.info.year}</div>
       </div>
   </div>
-  `
-    return component
+  `;
+    return component;
   }
 }
 
-export default CardScore
+export default CardScore;

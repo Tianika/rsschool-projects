@@ -1,14 +1,14 @@
-import { Card, Footer } from '../components'
+import { Card, Footer } from '../components';
 
 class Category {
   constructor(category) {
-    this.container = document.querySelector('.root')
-    this.category = category
-    this.quiz = category === 'artist' ? 'Artist quiz' : 'Pictures quiz'
+    this.container = document.querySelector('.root');
+    this.category = category;
+    this.quiz = category === 'artist' ? 'Artist quiz' : 'Pictures quiz';
   }
 
   run() {
-    const footer = Footer()
+    const footer = Footer();
 
     const page = `
         <div class="main-screen select-categories">
@@ -28,23 +28,23 @@ class Category {
             
           </main>
         ${footer}
-        `
+        `;
 
-    this.container.innerHTML = page
+    this.container.innerHTML = page;
 
-    this.createCards(this.category)
+    this.createCards(this.category);
   }
 
   createCards(category) {
-    const main = document.querySelector('.categories-container')
+    const main = document.querySelector('.categories-container');
 
     for (let i = 0; i < 12; i++) {
-      const card = new Card(i, i)
-      const innerMain = card.renderCard(category)
+      const card = new Card(i, i);
+      const innerMain = card.renderCard(category);
 
-      main.innerHTML += innerMain
+      main.innerHTML += innerMain;
     }
   }
 }
 
-export default Category
+export default Category;

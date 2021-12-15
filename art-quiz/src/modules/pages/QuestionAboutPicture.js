@@ -1,13 +1,13 @@
-import { Header, Footer } from '../components'
+import { Header, Footer } from '../components';
 
 class QuestionAboutPicture {
   constructor() {
-    this.container = document.querySelector('.root')
+    this.container = document.querySelector('.root');
   }
 
   run() {
-    const footer = Footer()
-    const header = Header()
+    const footer = Footer();
+    const header = Header();
 
     const page = `
     <div class="main-screen select-categories">
@@ -25,10 +25,10 @@ class QuestionAboutPicture {
           <div class="bullet-container pictures-quiz"></div>
         </main>
     ${footer}
-        `
+        `;
 
-    this.container.innerHTML = page
+    this.container.innerHTML = page;
   }
 }
 
-export default QuestionAboutPicture
+export default QuestionAboutPicture;

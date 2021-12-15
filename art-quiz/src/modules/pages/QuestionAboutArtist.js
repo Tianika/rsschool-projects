@@ -1,13 +1,13 @@
-import { Header, Footer } from '../components'
+import { Header, Footer } from '../components';
 
 class QuestionAboutArtist {
   constructor() {
-    this.container = document.querySelector('.root')
+    this.container = document.querySelector('.root');
   }
 
   run() {
-    const footer = Footer()
-    const header = Header()
+    const footer = Footer();
+    const header = Header();
 
     const page = `
     <div class="main-screen select-categories">
@@ -22,10 +22,10 @@ class QuestionAboutArtist {
        </div>
      </main>
     ${footer}
-    `
+    `;
 
-    this.container.innerHTML = page
+    this.container.innerHTML = page;
   }
 }
 
-export default QuestionAboutArtist
+export default QuestionAboutArtist;

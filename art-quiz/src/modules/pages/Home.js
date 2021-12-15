@@ -1,12 +1,12 @@
-import { Footer } from '../components'
+import { Footer } from '../components';
 
 class Home {
   constructor() {
-    this.container = document.querySelector('.root')
+    this.container = document.querySelector('.root');
   }
 
   run() {
-    const footer = Footer()
+    const footer = Footer();
 
     const page = `
       <div class="main-screen first-screen">
@@ -24,9 +24,9 @@ class Home {
         </main>
         ${footer}
       </div>
-        `
+        `;
 
-    this.container.innerHTML = page
+    this.container.innerHTML = page;
   }
 }
-export default Home
+export default Home;

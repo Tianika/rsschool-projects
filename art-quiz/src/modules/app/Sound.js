@@ -1,4 +1,4 @@
-import { SOUNDS, TIMER_ON_OFF } from '../../utils/constants'
+import { SOUNDS, TIMER_ON_OFF } from '../../utils/constants';
 
 export async function playSound(type) {
   const sounds = {
@@ -8,24 +8,24 @@ export async function playSound(type) {
     [SOUNDS.soundWin]: ['./assets/sounds/game-won.mp3'],
     [SOUNDS.grandWin]: ['./assets/sounds/grand-pobeda-melodiya.mp3'],
     [SOUNDS.gameLost]: ['./assets/sounds/game-lost.mp3'],
-  }
+  };
 
-  const audio = new Audio()
-  audio.src = sounds[type]
+  const audio = new Audio();
+  audio.src = sounds[type];
 
   if (localStorage['levelSoundArtQuiz']) {
-    audio.volume = Number(localStorage['levelSoundArtQuiz'])
+    audio.volume = Number(localStorage['levelSoundArtQuiz']);
   }
 
   if (localStorage.soundMute === TIMER_ON_OFF.off) {
-    audio.pause()
+    audio.pause();
   } else {
-    const playPromise = audio.play()
+    const playPromise = audio.play();
 
     if (playPromise !== null) {
       playPromise.catch(() => {
-        audio.play()
-      })
+        audio.play();
+      });
     }
   }
 }

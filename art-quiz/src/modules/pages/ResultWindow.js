@@ -16,9 +16,9 @@ export class ResultWindow {
           </div>
         </div>
       </div>
-  `
-    return component
+  `;
+    return component;
   }
 }
 
-export default ResultWindow
+export default ResultWindow;

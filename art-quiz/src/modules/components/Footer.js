@@ -9,7 +9,7 @@ export const Footer = () => {
         </div>
         <div class="app-year">2021</div>
       </footer>
-  `
-  return component
-}
-export default Footer
+  `;
+  return component;
+};
+export default Footer;

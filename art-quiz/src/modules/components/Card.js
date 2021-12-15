@@ -1,25 +1,25 @@
-import { PAGES, START_VALUES, SAVE_RESULT } from '../../utils/constants'
+import { PAGES, START_VALUES, SAVE_RESULT } from '../../utils/constants';
 
 class Card {
   constructor(subtitle, number) {
-    this.subtitle = (subtitle + 1).toString().padStart(2, '0')
-    this.number = number
-    this.hide = SAVE_RESULT.cardScoreHide
-    this.play = SAVE_RESULT.noPlay
+    this.subtitle = (subtitle + 1).toString().padStart(2, '0');
+    this.number = number;
+    this.hide = SAVE_RESULT.cardScoreHide;
+    this.play = SAVE_RESULT.noPlay;
   }
 
   renderCard(category) {
     if (category === PAGES.picture) {
-      this.number = this.number + START_VALUES.numberOfRounds
+      this.number = this.number + START_VALUES.numberOfRounds;
     }
 
     if (localStorage.resultsArtQuiz) {
-      const resultQuiz = JSON.parse(localStorage.resultsArtQuiz)[this.number]
+      const resultQuiz = JSON.parse(localStorage.resultsArtQuiz)[this.number];
 
       if (resultQuiz) {
-        this.hide = resultQuiz.hide
-        this.play = resultQuiz.play
-        this.score = resultQuiz.score
+        this.hide = resultQuiz.hide;
+        this.play = resultQuiz.play;
+        this.score = resultQuiz.score;
       }
     }
 
@@ -39,8 +39,8 @@ class Card {
                 this.number
               }">Score</div>
             </div>
-  `
-    return component
+  `;
+    return component;
   }
 }
-export default Card
+export default Card;

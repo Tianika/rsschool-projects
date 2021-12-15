@@ -1,12 +1,12 @@
-import { Footer } from '../components'
+import { Footer } from '../components';
 
 class Settings {
   constructor() {
-    this.container = document.querySelector('.root')
+    this.container = document.querySelector('.root');
   }
 
   run() {
-    const footer = Footer()
+    const footer = Footer();
 
     const page = `
         <div class="main-screen settings">
@@ -76,10 +76,10 @@ class Settings {
         </main>
         ${footer}
       </div>
-        `
+        `;
 
-    this.container.innerHTML = page
+    this.container.innerHTML = page;
   }
 }
 
-export default Settings
+export default Settings;

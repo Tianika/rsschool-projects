@@ -1,8 +1,8 @@
 export class AnswerWindow {
   constructor(answer) {
-    this.author = answer.author
-    this.name = answer.name
-    this.year = answer.year
+    this.author = answer.author;
+    this.name = answer.name;
+    this.year = answer.year;
   }
 
   renderAnswer() {
@@ -15,8 +15,8 @@ export class AnswerWindow {
           <button class="button-general button-next">Next</button>
         </div>
       </div>
-  `
-    return component
+  `;
+    return component;
   }
 }
-export default AnswerWindow
+export default AnswerWindow;

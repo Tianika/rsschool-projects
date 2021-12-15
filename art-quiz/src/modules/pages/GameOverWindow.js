@@ -14,8 +14,8 @@ export class GameOverWindow {
           </div>
         </div>
       </div>
-  `
-    return component
+  `;
+    return component;
   }
 }
-export default GameOverWindow
+export default GameOverWindow;

@@ -16,7 +16,7 @@ export const Header = () => {
           </div>
           <button class="settings-button"></button>
         </header>
-  `
-  return component
-}
-export default Header
+  `;
+  return component;
+};
+export default Header;

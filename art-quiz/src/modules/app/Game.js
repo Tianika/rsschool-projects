@@ -4,17 +4,17 @@ import {
   GameOverWindow,
   ResultWindow,
   GrandResultWindow,
-} from '../pages'
+} from '../pages';
 import {
   Bullet,
   AnswerBtnForArtist,
   AnswerImages,
   QuestionImage,
-} from '../components'
-import { shuffle, randomNumber } from './general'
-import { playSound } from './sound'
-import { Timer } from './Timer'
-import { Answer } from './Answer'
+} from '../components';
+import { shuffle, randomNumber } from './general';
+import { playSound } from './sound';
+import { Timer } from './Timer';
+import { Answer } from './Answer';
 import {
   START_VALUES,
   TYPE_GAME,
@@ -22,208 +22,205 @@ import {
   ANSWER,
   SOUNDS,
   SAVE_RESULT,
-} from '../../utils/constants'
-import { getImages } from '../../utils/getImages'
+} from '../../utils/constants';
+import images from '../../assets/data/images.json';
 
 export class Game {
   constructor(round, typeGame) {
-    this.questionNumber = START_VALUES.startQuestionNum
-    this.score = START_VALUES.startScoreNum
-    this.roundResult = START_VALUES.defaultRoundResult
-    this.answers = START_VALUES.defaultAnswer
-    this.bullets = START_VALUES.defaultBullets
-    this.round = round
-    this.typeGame = typeGame
+    this.questionNumber = START_VALUES.startQuestionNum;
+    this.score = START_VALUES.startScoreNum;
+    this.roundResult = [];
+    this.answers = [];
+    this.bullets = ['', '', '', '', '', '', '', '', '', ''];
+    this.round = round;
+    this.typeGame = typeGame;
     this.beginSlice =
-      round * START_VALUES.questionsPerRound + this.questionNumber
+      round * START_VALUES.questionsPerRound + this.questionNumber;
 
-    this.time = localStorage.roundDuration
-  }
-
-  async run() {
-    const images = await getImages()
-
-    this.imagesArr = images
+    this.time = localStorage.roundDuration;
     this.images = images.slice(
       this.beginSlice,
       this.beginSlice + START_VALUES.questionsPerRound
-    )
+    );
+  }
 
-    this.runRound()
+  async run() {
+    this.runRound();
   }
 
   runRound() {
     // ---------- artist quiz
     if (this.typeGame === TYPE_GAME.artist) {
-      const questionAboutArtist = new QuestionAboutArtist()
-      questionAboutArtist.run()
+      const questionAboutArtist = new QuestionAboutArtist();
+      questionAboutArtist.run();
 
       //добавляем картину
-      this.question = this.images[this.questionNumber]
-      const questionImage = new QuestionImage(this.question.imageNum)
-      questionImage.renderQuestion()
+      this.question = this.images[this.questionNumber];
+      const questionImage = new QuestionImage(this.question.imageNum);
+      questionImage.renderQuestion();
 
       //добавляем ответы
-      this.rightAnswer = this.question.author
-      this.answers.push(this.rightAnswer)
-      this.addAnswersToArtists()
+      this.rightAnswer = this.question.author;
+      this.answers.push(this.rightAnswer);
+      this.addAnswersToArtists();
 
-      this.answersContainer = document.querySelector('.question-artist-answers')
+      this.answersContainer = document.querySelector(
+        '.question-artist-answers'
+      );
     }
 
     // -------------picture quiz
     if (this.typeGame === TYPE_GAME.picture) {
-      const questionAboutPicture = new QuestionAboutPicture()
-      questionAboutPicture.run()
+      const questionAboutPicture = new QuestionAboutPicture();
+      questionAboutPicture.run();
 
-      this.question = this.images[this.questionNumber]
-      this.rightAnswer = this.question.author
-      document.querySelector('.question-author').innerText = this.rightAnswer
+      this.question = this.images[this.questionNumber];
+      this.rightAnswer = this.question.author;
+      document.querySelector('.question-author').innerText = this.rightAnswer;
 
       // добавляем 4 картины для ответов
-      this.answers.push([this.rightAnswer, this.question.imageNum])
-      this.addAnswersToPictures()
+      this.answers.push([this.rightAnswer, this.question.imageNum]);
+      this.addAnswersToPictures();
 
       this.answersContainer = document.querySelector(
         '.question-picture-answers'
-      )
+      );
     }
 
     // ------------общее
     //добавляем буллеты
-    this.addBullets()
+    this.addBullets();
 
     //таймер выключен
     if (localStorage.timerOnOff === TIMER_ON_OFF.off) {
-      const timerBtn = document.querySelector('.timer-button')
-      timerBtn.style.display = 'none'
+      const timerBtn = document.querySelector('.timer-button');
+      timerBtn.style.display = 'none';
 
-      const answer = new Answer(this)
-      answer.listenAnswer()
+      const answer = new Answer(this);
+      answer.listenAnswer();
     }
 
     //таймер включен
     if (localStorage.timerOnOff === TIMER_ON_OFF.on) {
-      const timer = new Timer(this)
-      timer.timerOn()
+      const timer = new Timer(this);
+      timer.timerOn();
 
       //слушаем кнопки, прерывающие игру
-      const homeBtn = document.querySelector('.home-button')
-      const categoryBtn = document.querySelector('.category-button')
-      const settingsBtn = document.querySelector('.settings-button')
+      const homeBtn = document.querySelector('.home-button');
+      const categoryBtn = document.querySelector('.category-button');
+      const settingsBtn = document.querySelector('.settings-button');
 
       homeBtn.addEventListener('click', () => {
-        timer.isEnable = false
-      })
+        timer.isEnable = false;
+      });
       categoryBtn.addEventListener('click', () => {
-        timer.isEnable = false
-      })
+        timer.isEnable = false;
+      });
       settingsBtn.addEventListener('click', () => {
-        timer.isEnable = false
-      })
+        timer.isEnable = false;
+      });
 
       //слушаем ответ
-      const answer = new Answer(this)
-      answer.listenAnswer(timer)
+      const answer = new Answer(this);
+      answer.listenAnswer(timer);
     }
   }
 
   addBullets() {
-    const container = document.querySelector('.bullet-container')
+    const container = document.querySelector('.bullet-container');
 
     for (let i = 0; i < 10; i++) {
-      const bullet = new Bullet(this.bullets[i])
+      const bullet = new Bullet(this.bullets[i]);
 
-      container.innerHTML += bullet.renderBullet()
+      container.innerHTML += bullet.renderBullet();
     }
   }
 
   addAnswersToArtists() {
-    const container = document.querySelector('.question-artist-answers')
+    const container = document.querySelector('.question-artist-answers');
 
     while (this.answers.length < ANSWER.length) {
-      let author =
-        this.imagesArr[randomNumber(this.imagesArr.length - 1)].author
+      let author = images[randomNumber(images.length - 1)].author;
 
       if (!this.answers.includes(author)) {
-        this.answers.push(author)
+        this.answers.push(author);
       }
     }
 
-    this.answers = shuffle(this.answers)
+    this.answers = shuffle(this.answers);
     this.answers.forEach((answer) => {
-      const newAnswer = new AnswerBtnForArtist(answer, this.rightAnswer)
-      const renderedAnswer = newAnswer.renderAnswer()
-      container.innerHTML += renderedAnswer
-    })
+      const newAnswer = new AnswerBtnForArtist(answer, this.rightAnswer);
+      const renderedAnswer = newAnswer.renderAnswer();
+      container.innerHTML += renderedAnswer;
+    });
   }
 
   addAnswersToPictures() {
     while (this.answers.length < ANSWER.length) {
-      let image = this.imagesArr[randomNumber(this.imagesArr.length - 1)]
+      let image = images[randomNumber(images.length - 1)];
 
       if (this.answers[0][0] !== image.author) {
-        this.answers.push([image.author, image.imageNum])
+        this.answers.push([image.author, image.imageNum]);
       }
     }
 
-    this.answers = shuffle(this.answers)
+    this.answers = shuffle(this.answers);
 
     this.answers.forEach((answer, i, arr) => {
-      new AnswerImages(answer[0], this.rightAnswer).renderAnswer(i, answer[1])
-    })
+      new AnswerImages(answer[0], this.rightAnswer).renderAnswer(i, answer[1]);
+    });
   }
 
   listerNextBtn() {
-    const nextBtn = document.querySelector('.button-next')
+    const nextBtn = document.querySelector('.button-next');
 
     nextBtn.addEventListener('click', () => {
-      playSound(SOUNDS.soundBtn)
+      playSound(SOUNDS.soundBtn);
 
       if (this.questionNumber === START_VALUES.questionsPerRound) {
-        this.saveResults()
+        this.saveResults();
 
         if (document.querySelector('.modal-answer')) {
-          document.querySelector('.modal-answer').remove()
+          document.querySelector('.modal-answer').remove();
         }
 
-        const mainScreen = document.querySelector('.main-screen')
+        const mainScreen = document.querySelector('.main-screen');
 
         if (this.score === START_VALUES.startScoreNum) {
-          const result = new GameOverWindow()
-          mainScreen.insertAdjacentHTML('afterEnd', result.render())
-          playSound(SOUNDS.gameLost)
+          const result = new GameOverWindow();
+          mainScreen.insertAdjacentHTML('afterEnd', result.render());
+          playSound(SOUNDS.gameLost);
         } else if (this.score < START_VALUES.questionsPerRound) {
-          const result = new ResultWindow()
-          mainScreen.insertAdjacentHTML('afterEnd', result.render())
-          const resultScore = document.querySelector('.modal-result-score')
-          resultScore.innerHTML = this.score
-          playSound(SOUNDS.soundWin)
+          const result = new ResultWindow();
+          mainScreen.insertAdjacentHTML('afterEnd', result.render());
+          const resultScore = document.querySelector('.modal-result-score');
+          resultScore.innerHTML = this.score;
+          playSound(SOUNDS.soundWin);
         } else if (this.score === START_VALUES.questionsPerRound) {
-          const result = new GrandResultWindow()
-          mainScreen.insertAdjacentHTML('afterEnd', result.render())
-          playSound(SOUNDS.grandWin)
+          const result = new GrandResultWindow();
+          mainScreen.insertAdjacentHTML('afterEnd', result.render());
+          playSound(SOUNDS.grandWin);
         }
 
-        return
+        return;
       }
-      this.runRound()
-    })
+      this.runRound();
+    });
   }
 
   saveResults() {
-    const resultForSave = {}
-    resultForSave['score'] = this.score
-    resultForSave['hide'] = SAVE_RESULT.cardScore
-    resultForSave['play'] = SAVE_RESULT.play
-    resultForSave['images'] = [...this.bullets]
-    resultForSave['roundResult'] = [...this.roundResult]
+    const resultForSave = {};
+    resultForSave['score'] = this.score;
+    resultForSave['hide'] = SAVE_RESULT.cardScore;
+    resultForSave['play'] = SAVE_RESULT.play;
+    resultForSave['images'] = [...this.bullets];
+    resultForSave['roundResult'] = [...this.roundResult];
 
-    const arrayResults = JSON.parse(localStorage.resultsArtQuiz)
+    const arrayResults = JSON.parse(localStorage.resultsArtQuiz);
 
-    arrayResults[this.round] = resultForSave
-    localStorage.resultsArtQuiz = JSON.stringify(arrayResults)
+    arrayResults[this.round] = resultForSave;
+    localStorage.resultsArtQuiz = JSON.stringify(arrayResults);
   }
 }
 
-export default Game
+export default Game;

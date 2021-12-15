@@ -1,21 +1,21 @@
-import { CardScore, Footer } from '../components'
-import { START_VALUES } from '../../utils/constants'
+import { CardScore, Footer } from '../components';
+import { START_VALUES } from '../../utils/constants';
 
 class Score {
   constructor(number) {
-    this.container = document.querySelector('.root')
-    this.quiz = Number(number)
+    this.container = document.querySelector('.root');
+    this.quiz = Number(number);
     this.title =
       this.quiz < START_VALUES.numberOfRounds
         ? this.quiz + START_VALUES.shiftByOne
-        : (this.quiz % START_VALUES.numberOfRounds) + START_VALUES.shiftByOne
+        : (this.quiz % START_VALUES.numberOfRounds) + START_VALUES.shiftByOne;
     this.arrayOfResults = JSON.parse(localStorage.resultsArtQuiz)[number][
       'roundResult'
-    ]
+    ];
   }
 
   run() {
-    const footer = Footer()
+    const footer = Footer();
 
     const page = `
         <div class="main-screen select-categories">
@@ -35,15 +35,15 @@ class Score {
           
         </main>
         ${footer}
-        `
+        `;
 
-    this.container.innerHTML = page
+    this.container.innerHTML = page;
 
-    this.createCards()
+    this.createCards();
   }
 
   async createCards() {
-    const main = document.querySelector('.score-container')
+    const main = document.querySelector('.score-container');
 
     for (let i = 0; i < 10; i++) {
       const card = new CardScore(
@@ -51,13 +51,13 @@ class Score {
         i,
         this.title,
         this.arrayOfResults[i]
-      )
+      );
 
-      const innerMain = await card.renderCard()
+      const innerMain = await card.renderCard();
 
-      main.innerHTML += innerMain
+      main.innerHTML += innerMain;
     }
   }
 }
 
-export default Score
+export default Score;

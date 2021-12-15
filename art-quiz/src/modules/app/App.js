@@ -1,168 +1,166 @@
-import { randomNumber, changeBgImage, pageChangeAnimation } from './general'
+import { randomNumber, changeBgImage, pageChangeAnimation } from './general';
 import {
   OnOffSound,
   OnOffTime,
   changeTime,
   defaultSettings,
   loadSettings,
-} from './settings.js'
-import { Home, Settings, Category, Score } from '../pages'
-import Person from './Person.js'
-import Game from './Game.js'
-import { playSound } from './sound.js'
+} from './settings.js';
+import { Home, Settings, Category, Score } from '../pages';
+import Person from './Person.js';
+import Game from './Game.js';
+import { playSound } from './sound.js';
 import {
   TIMER_ON_OFF,
   DEFAULT_ROUND_DURATION,
   BUTTONS,
   SOUNDS,
   PAGES,
-} from '../../utils/constants'
-import { getImages } from '../../utils/getImages'
+} from '../../utils/constants';
+import images from '../../assets/data/images.json';
 
 export class App {
-  async start() {
+  start() {
     try {
-      const images = await getImages()
+      const root = document.querySelector('.root');
+      const body = document.querySelector('body');
+      const person = new Person();
 
-      const root = document.querySelector('.root')
-      const body = document.querySelector('body')
-      const person = new Person()
+      const randomPictureNum = randomNumber(images.length);
+      changeBgImage(root, randomPictureNum);
 
-      const randomPictureNum = randomNumber(images.length)
-      changeBgImage(root, randomPictureNum)
-
-      const home = new Home()
-      home.run()
+      const home = new Home();
+      home.run();
 
       if (!localStorage['timerOnOff']) {
-        localStorage['timerOnOff'] = TIMER_ON_OFF.off
+        localStorage['timerOnOff'] = TIMER_ON_OFF.off;
       }
 
       if (!localStorage['roundDuration']) {
-        localStorage['roundDuration'] = DEFAULT_ROUND_DURATION
+        localStorage['roundDuration'] = DEFAULT_ROUND_DURATION;
       }
 
       if (!localStorage['resultsArtQuiz']) {
-        const arr = new Array(24)
-        localStorage['resultsArtQuiz'] = JSON.stringify(arr)
+        const arr = new Array(24);
+        localStorage['resultsArtQuiz'] = JSON.stringify(arr);
       }
 
       body.addEventListener('click', (event) => {
         if (event.target.classList.contains(BUTTONS.homeBtn)) {
-          pageChangeAnimation(home)
+          pageChangeAnimation(home);
 
-          playSound(SOUNDS.soundBtn)
-          person.currentPage = PAGES.home
+          playSound(SOUNDS.soundBtn);
+          person.currentPage = PAGES.home;
         }
 
         if (event.target.classList.contains(BUTTONS.settingsBtn)) {
-          const settings = new Settings()
-          pageChangeAnimation(settings)
-          playSound(SOUNDS.soundBtn)
+          const settings = new Settings();
+          pageChangeAnimation(settings);
+          playSound(SOUNDS.soundBtn);
 
           setTimeout(() => {
-            loadSettings()
-            OnOffSound()
-            OnOffTime()
-            changeTime()
-          }, 1000)
+            loadSettings();
+            OnOffSound();
+            OnOffTime();
+            changeTime();
+          }, 1000);
         }
 
         if (event.target.classList.contains(BUTTONS.closeBtn)) {
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
 
           if (person.currentPage === PAGES.home) {
-            pageChangeAnimation(home)
+            pageChangeAnimation(home);
           }
           if (
             person.currentPage === PAGES.artist ||
             person.currentPage === PAGES.picture
           ) {
-            const category = new Category(person.currentPage)
-            pageChangeAnimation(category)
+            const category = new Category(person.currentPage);
+            pageChangeAnimation(category);
           }
         }
 
         if (event.target.classList.contains(BUTTONS.artistBtn)) {
-          playSound(SOUNDS.soundBtn)
-          person.currentPage = PAGES.artist
+          playSound(SOUNDS.soundBtn);
+          person.currentPage = PAGES.artist;
 
-          const category = new Category(person.currentPage)
-          pageChangeAnimation(category)
+          const category = new Category(person.currentPage);
+          pageChangeAnimation(category);
         }
 
         if (event.target.classList.contains(BUTTONS.picturesBtn)) {
-          playSound(SOUNDS.soundBtn)
-          person.currentPage = PAGES.picture
+          playSound(SOUNDS.soundBtn);
+          person.currentPage = PAGES.picture;
 
-          const category = new Category(person.currentPage)
-          pageChangeAnimation(category)
+          const category = new Category(person.currentPage);
+          pageChangeAnimation(category);
         }
 
         if (event.target.classList.contains(BUTTONS.categoryBtn)) {
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
 
           if (
             person.currentPage === PAGES.artist ||
             person.currentPage === PAGES.picture
           ) {
-            const category = new Category(person.currentPage)
-            pageChangeAnimation(category)
+            const category = new Category(person.currentPage);
+            pageChangeAnimation(category);
           }
         }
 
         if (event.target.classList.contains(BUTTONS.nextQuizBtn)) {
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
 
           if (
             person.currentPage === PAGES.artist ||
             person.currentPage === PAGES.picture
           ) {
-            const category = new Category(person.currentPage)
-            pageChangeAnimation(category)
+            const category = new Category(person.currentPage);
+            pageChangeAnimation(category);
           }
         }
 
         if (event.target.classList.contains(BUTTONS.cardImage)) {
-          let round = event.target.dataset.image
+          let round = event.target.dataset.image;
           let typeGame =
-            person.currentPage === PAGES.artist ? PAGES.artist : PAGES.picture
+            person.currentPage === PAGES.artist ? PAGES.artist : PAGES.picture;
 
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
 
-          const game = new Game(round, typeGame)
-          pageChangeAnimation(game)
+          const game = new Game(round, typeGame);
+          pageChangeAnimation(game);
         }
 
         if (event.target.classList.contains(BUTTONS.cardScoreBtn)) {
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
 
-          const scorePage = new Score(event.target.dataset.card)
-          pageChangeAnimation(scorePage)
+          const scorePage = new Score(event.target.dataset.card);
+          pageChangeAnimation(scorePage);
         }
 
         if (event.target.classList.contains(BUTTONS.cardScoreImg)) {
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
 
-          const scoreImages = document.querySelectorAll('.card-score-info')
+          const scoreImages = document.querySelectorAll('.card-score-info');
 
           scoreImages.forEach((img) => {
             if (event.target.nextElementSibling !== img) {
-              img.classList.remove('up')
+              img.classList.remove('up');
             }
-          })
-          event.target.nextElementSibling.classList.toggle('up')
+          });
+          event.target.nextElementSibling.classList.toggle('up');
         }
 
         if (event.target.classList.contains(BUTTONS.smallBtn)) {
-          playSound(SOUNDS.soundBtn)
+          playSound(SOUNDS.soundBtn);
         }
 
         if (event.target.classList.contains(BUTTONS.defaultBtn)) {
-          playSound(SOUNDS.soundBtn)
-          defaultSettings()
+          playSound(SOUNDS.soundBtn);
+          defaultSettings();
         }
-      })
+      });
 
       console.log(`
     Стартовая страница и навигация +20
@@ -179,10 +177,10 @@ export class App {
     - оформление
     - адаптив кнопок score под тач
   
-    `)
+    `);
     } catch (err) {
-      console.error('Error:', err)
+      console.error('Error:', err);
     }
   }
 }
-export default App
+export default App;
