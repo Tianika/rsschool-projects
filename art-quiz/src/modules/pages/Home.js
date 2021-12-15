@@ -6,9 +6,9 @@ class Home {
   }
 
   run() {
-    let footer = Footer()
+    const footer = Footer()
 
-    let page = `
+    const page = `
       <div class="main-screen first-screen">
         <header class="header">
           <button class="settings-button"></button>

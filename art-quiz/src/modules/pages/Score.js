@@ -1,19 +1,23 @@
 import { CardScore, Footer } from '../components'
+import { START_VALUES } from '../../utils/constants'
 
 class Score {
   constructor(number) {
     this.container = document.querySelector('.root')
     this.quiz = Number(number)
-    this.title = this.quiz < 12 ? this.quiz + 1 : (this.quiz % 12) + 1
-    this.arrayOfResults = JSON.parse(localStorage['resultsArtQuiz'])[number][
+    this.title =
+      this.quiz < START_VALUES.numberOfRounds
+        ? this.quiz + START_VALUES.shiftByOne
+        : (this.quiz % START_VALUES.numberOfRounds) + START_VALUES.shiftByOne
+    this.arrayOfResults = JSON.parse(localStorage.resultsArtQuiz)[number][
       'roundResult'
     ]
   }
 
   run() {
-    let footer = Footer()
+    const footer = Footer()
 
-    let page = `
+    const page = `
         <div class="main-screen select-categories">
         <header class="header select-header">
           <div class="title">

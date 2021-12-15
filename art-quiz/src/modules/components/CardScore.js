@@ -9,11 +9,11 @@ class CardScore {
   }
 
   renderCard() {
-    let component = ` 
+    const formattedTitle = this.title.toString().padStart(2, '0')
+
+    const component = ` 
     <div class="card-score ${this.result}">
-      <div class="card-score-title">${this.title
-        .toString()
-        .padStart(2, '0')}</div>
+      <div class="card-score-title">${formattedTitle}</div>
       <img
         class="card-score-image ${this.result}"
         src="./assets/img/img/${this.info.imageNum}.jpg"
@@ -21,9 +21,7 @@ class CardScore {
       />
       <div class="card-score-info">
         <div class="score-info-name">${this.info.name}</div>
-        <div class="score-info-author">${this.info.author}, ${
-      this.info.year
-    }</div>
+        <div class="score-info-author">${this.info.author}, ${this.info.year}</div>
       </div>
   </div>
   `

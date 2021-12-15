@@ -4,7 +4,7 @@ export class Bullet {
   }
 
   renderBullet() {
-    let component = ` 
+    const component = ` 
     <div class="answer-bullet ${this.isRight}"></div>
   `
     return component

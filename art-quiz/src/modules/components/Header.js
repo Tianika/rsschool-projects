@@ -1,5 +1,5 @@
 export const Header = () => {
-  let component = ` 
+  const component = ` 
         <header class="header select-header">
         <div class="title"><span class="color-name">Art</span> Quiz</div>
         <div class="title-small"><span class="color-name">A</span>Q</div>

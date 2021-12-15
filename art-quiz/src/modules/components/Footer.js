@@ -1,5 +1,5 @@
 export const Footer = () => {
-  let component = ` 
+  const component = ` 
       <footer class="footer">
         <div class="logo-rsschool">
           <a href="https://rs.school/js/" target="_blank"></a>

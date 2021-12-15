@@ -1,18 +1,20 @@
+import { PAGES, START_VALUES, SAVE_RESULT } from '../../utils/constants'
+
 class Card {
   constructor(subtitle, number) {
     this.subtitle = (subtitle + 1).toString().padStart(2, '0')
     this.number = number
-    this.hide = 'card-score hide'
-    this.play = 'no-play'
+    this.hide = SAVE_RESULT.cardScoreHide
+    this.play = SAVE_RESULT.noPlay
   }
 
   renderCard(category) {
-    if (category === 'picture') {
-      this.number = this.number + 12
+    if (category === PAGES.picture) {
+      this.number = this.number + START_VALUES.numberOfRounds
     }
 
-    if (localStorage['resultsArtQuiz']) {
-      const resultQuiz = JSON.parse(localStorage['resultsArtQuiz'])[this.number]
+    if (localStorage.resultsArtQuiz) {
+      const resultQuiz = JSON.parse(localStorage.resultsArtQuiz)[this.number]
 
       if (resultQuiz) {
         this.hide = resultQuiz.hide
@@ -21,7 +23,7 @@ class Card {
       }
     }
 
-    let component = ` 
+    const component = ` 
             <div class="card-categories ${this.play}">
               <div class="card-title">
                 <div class="card-subtitle">${this.subtitle}</div>

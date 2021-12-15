@@ -2,7 +2,7 @@ export class ResultWindow {
   constructor() {}
 
   render() {
-    let component = ` 
+    const component = ` 
     <div class="modal-answer">
         <div class="modal-answer-container">
           <div class="modal-answer-logo"></div>
@@ -20,4 +20,5 @@ export class ResultWindow {
     return component
   }
 }
+
 export default ResultWindow

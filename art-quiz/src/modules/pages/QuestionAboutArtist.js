@@ -6,10 +6,10 @@ class QuestionAboutArtist {
   }
 
   run() {
-    let footer = Footer()
-    let header = Header()
+    const footer = Footer()
+    const header = Header()
 
-    let page = `
+    const page = `
     <div class="main-screen select-categories">
     ${header}
     <main class="main question-container">
@@ -17,15 +17,15 @@ class QuestionAboutArtist {
        <div class="question-artist-image">
         <div class="bullet-container">               
         </div>
-       </div>
+      </div>
        <div class="question-artist-answers">
-          
        </div>
      </main>
     ${footer}
-        `
+    `
 
     this.container.innerHTML = page
   }
 }
+
 export default QuestionAboutArtist

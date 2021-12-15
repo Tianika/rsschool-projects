@@ -6,9 +6,9 @@ class Settings {
   }
 
   run() {
-    let footer = Footer()
+    const footer = Footer()
 
-    let page = `
+    const page = `
         <div class="main-screen settings">
         <header class="header settings-header">
           <button class="close-button arrow"></button>

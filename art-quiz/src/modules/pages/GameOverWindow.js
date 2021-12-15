@@ -2,7 +2,7 @@ export class GameOverWindow {
   constructor() {}
 
   render() {
-    let component = ` 
+    const component = ` 
     <div class="modal-answer">
         <div class="modal-answer-container">
           <div class="game-over-logo"></div>

@@ -1,3 +1,5 @@
+import { ANSWER } from '../../utils/constants'
+
 export class AnswerBtnForArtist {
   constructor(name, rightName) {
     this.name = name
@@ -6,10 +8,10 @@ export class AnswerBtnForArtist {
 
   renderAnswer() {
     this.name === this.rightName
-      ? (this.isRight = 'right')
-      : (this.isRight = 'error')
+      ? (this.isRight = ANSWER.right)
+      : (this.isRight = ANSWER.error)
 
-    let component = ` 
+    const component = ` 
     <button class="answer artist-answer" data-right=${this.isRight}>${this.name}</button>
   `
     return component

@@ -1,6 +1,7 @@
+import { DELAYS } from '../../utils/constants'
+
 export function shuffle(arr) {
-  arr.sort(() => Math.random() - 0.5)
-  return arr
+  return arr.sort(() => Math.random() - 0.5)
 }
 
 export function randomNumber(number) {
@@ -26,13 +27,13 @@ export function pageChangeAnimation(page) {
 
   setTimeout(() => {
     root.classList.add('animated')
-  }, 0)
+  }, DELAYS.delayStartAnim)
   setTimeout(() => {
     page.run()
-  }, 300)
+  }, DELAYS.delayDrawPage)
   setTimeout(() => {
     root.classList.remove('animated')
-  }, 600)
+  }, DELAYS.delayFinishAnim)
 }
 
 export function modalAnimation() {
@@ -42,5 +43,5 @@ export function modalAnimation() {
   setTimeout(() => {
     modal.classList.remove('animated')
     modalContainer.classList.remove('animated')
-  }, 800)
+  }, DELAYS.delayModalAnim)
 }

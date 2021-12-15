@@ -6,10 +6,10 @@ class QuestionAboutPicture {
   }
 
   run() {
-    let footer = Footer()
-    let header = Header()
+    const footer = Footer()
+    const header = Header()
 
-    let page = `
+    const page = `
     <div class="main-screen select-categories">
     ${header}
     <main class="main question-container picture">
@@ -30,4 +30,5 @@ class QuestionAboutPicture {
     this.container.innerHTML = page
   }
 }
+
 export default QuestionAboutPicture

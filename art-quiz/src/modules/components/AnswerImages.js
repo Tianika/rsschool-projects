@@ -1,3 +1,5 @@
+import { ANSWER } from '../../utils/constants'
+
 export class AnswerImages {
   constructor(name, rightName) {
     this.name = name
@@ -6,8 +8,8 @@ export class AnswerImages {
 
   async renderAnswer(i, imageNum) {
     this.name === this.rightName
-      ? (this.isRight = 'right')
-      : (this.isRight = 'error')
+      ? (this.isRight = ANSWER.right)
+      : (this.isRight = ANSWER.error)
 
     const images = document.querySelectorAll('.answer-picture')
     const img = images[i]

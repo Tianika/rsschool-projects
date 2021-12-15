@@ -8,9 +8,9 @@ class Category {
   }
 
   run() {
-    let footer = Footer()
+    const footer = Footer()
 
-    let page = `
+    const page = `
         <div class="main-screen select-categories">
         <header class="header select-header">
           <div class="title">

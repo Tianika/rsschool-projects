@@ -6,7 +6,7 @@ export class AnswerWindow {
   }
 
   renderAnswer() {
-    let component = ` 
+    const component = ` 
     <div class="modal-answer animated">
         <div class="modal-answer-container animated">
           <div class="modal-answer-image"></div>

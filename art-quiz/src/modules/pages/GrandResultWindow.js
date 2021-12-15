@@ -2,7 +2,7 @@ export class GrandResultWindow {
   constructor() {}
 
   render() {
-    let component = ` 
+    const component = ` 
     <div class="modal-answer">
         <div class="modal-answer-container">
           <div class="modal-answer-grand-logo"></div>

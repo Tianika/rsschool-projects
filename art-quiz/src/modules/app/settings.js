@@ -1,12 +1,20 @@
 import { playSound } from './sound'
+import {
+  TRANSFER_PERCENT,
+  TIMER_ON_OFF,
+  SOUNDS,
+  SOUNDS_SWITCH,
+  DEFAULT_ROUND_DURATION,
+  START_VALUES,
+} from '../../utils/constants'
 
 export async function changeVolumeBg() {
   const volume = await document.querySelector('.volume-input')
 
   volume.addEventListener('change', () => {
-    let volumeLevel = volume.value / 100
-    localStorage['levelSoundArtQuiz'] = volumeLevel
-    playSound('button-sound')
+    let volumeLevel = volume.value / TRANSFER_PERCENT
+    localStorage.levelSoundArtQuiz = volumeLevel
+    playSound(SOUNDS.soundBtn)
 
     volume.style.background = changeBgInputVolume(volumeLevel)
   })
@@ -27,12 +35,12 @@ export function OnOffSound() {
 
   soundSwitch.addEventListener('click', () => {
     soundSwitch.classList.toggle('switch-off')
-    playSound('button-sound')
+    playSound(SOUNDS.soundBtn)
 
     if (soundSwitch.classList.contains('switch-off')) {
-      localStorage.soundMute = 'switch-off'
+      localStorage.soundMute = SOUNDS_SWITCH.off
     } else {
-      localStorage.soundMute = ''
+      localStorage.soundMute = SOUNDS_SWITCH.on
     }
   })
 }
@@ -42,12 +50,12 @@ export function OnOffTime() {
 
   timeSwitch.addEventListener('click', () => {
     timeSwitch.classList.toggle('switch-off')
-    playSound('button-sound')
+    playSound(SOUNDS.soundBtn)
 
     if (timeSwitch.classList.contains('switch-off')) {
-      localStorage.timerOnOff = 'switch-off'
+      localStorage.timerOnOff = TIMER_ON_OFF.off
     } else {
-      localStorage.timerOnOff = ' '
+      localStorage.timerOnOff = TIMER_ON_OFF.on
     }
   })
 }
@@ -59,32 +67,30 @@ export function changeTime() {
 
   leftBtn.addEventListener('click', () => {
     leftBtn.nextElementSibling.stepDown()
-    localStorage['roundDuration'] = time.value
+    localStorage.roundDuration = time.value
   })
 
   rightBtn.addEventListener('click', () => {
     rightBtn.previousElementSibling.stepUp()
-    localStorage['roundDuration'] = time.value
+    localStorage.roundDuration = time.value
   })
 }
 
 export function loadSettings() {
   if (!localStorage.soundMute) {
-    localStorage.soundMute = ''
+    localStorage.soundMute = SOUNDS_SWITCH.on
   }
 
   changeVolumeBg()
 
   const volume = document.querySelector('.volume-input')
-  volume.style.background = changeBgInputVolume(
-    localStorage['levelSoundArtQuiz']
-  )
+  volume.style.background = changeBgInputVolume(localStorage.levelSoundArtQuiz)
 
   const time = document.querySelector('.time-input')
-  time.value = localStorage['roundDuration']
+  time.value = localStorage.roundDuration
 
   const timeSwitch = document.querySelector('.time-switch')
-  if (localStorage['timerOnOff'] === ' ') {
+  if (localStorage.timerOnOff === TIMER_ON_OFF.on) {
     timeSwitch.classList.remove('switch-off')
   } else {
     timeSwitch.classList.add('switch-off')
@@ -97,20 +103,20 @@ export function defaultSettings() {
   const soundSwitch = document.querySelector('.sound-switch')
   const gameSwitch = document.querySelector('.time-switch')
 
-  time.value = 20
-  localStorage['roundDuration'] = 20
+  time.value = DEFAULT_ROUND_DURATION
+  localStorage.roundDuration = DEFAULT_ROUND_DURATION
 
-  volumeInput.volume = 0.3
+  volumeInput.volume = START_VALUES / TRANSFER_PERCENT
 
-  localStorage.soundMute = ''
+  localStorage.soundMute = SOUNDS_SWITCH.on
   soundSwitch.classList.remove('switch-off')
 
-  localStorage['timerOnOff'] = 'switch-off'
+  localStorage.timerOnOff = TIMER_ON_OFF.off
   if (!gameSwitch.classList.contains('switch-off')) {
     gameSwitch.classList.add('switch-off')
   }
 
-  localStorage['levelSoundArtQuiz'] = volumeInput.volume
+  localStorage.levelSoundArtQuiz = volumeInput.volume
   volumeInput.style.background = `linear-gradient(
     90deg,
     #14f500 0%,

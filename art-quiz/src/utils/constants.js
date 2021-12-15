@@ -14,6 +14,11 @@ export const SOUNDS = {
   grandWin: 'grand-win',
 }
 
+export const SOUNDS_SWITCH = {
+  on: '',
+  off: 'switch-off',
+}
+
 export const BUTTONS = {
   homeBtn: 'home-button',
   settingsBtn: 'settings-button',
@@ -49,6 +54,8 @@ export const START_VALUES = {
   defaultBullets: ['', '', '', '', '', '', '', '', '', ''],
   questionsPerRound: 10,
   soundLevel: 30,
+  numberOfRounds: 12,
+  shiftByOne: 1,
 }
 
 export const TYPE_GAME = {
@@ -58,5 +65,21 @@ export const TYPE_GAME = {
 
 export const SAVE_RESULT = {
   cardScore: 'card-score',
+  cardScoreHide: 'card-score hide',
   play: 'play',
+  noPlay: 'no-play',
 }
+
+export const TIMER = {
+  timeOutValue: -1,
+  timeOutMsg: "Time's up",
+}
+
+export const DELAYS = {
+  delayStartAnim: 0,
+  delayDrawPage: 300,
+  delayFinishAnim: 600,
+  delayModalAnim: 800,
+}
+
+export const TRANSFER_PERCENT = 100
