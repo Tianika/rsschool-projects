@@ -2,7 +2,7 @@ import { Slider } from './Slider';
 import { sortAscend, sortDescend } from '../utils/sort';
 import data from '../data/data';
 import { ToyCard } from './ToyCard';
-import { sortTypes } from '../utils/constants';
+import { sortTypes, FAVORITE, SORT_INDEX } from '../utils/constants';
 
 export class Settings {
   slider: Slider;
@@ -23,7 +23,27 @@ export class Settings {
 
       if (favoriteChoice.checked) {
         toyCards.forEach((card) => {
-          if (card.getAttribute('data-favorite') === 'false') {
+          if (card.getAttribute('data-favorite') === FAVORITE.false) {
+            card.classList.add('hidden');
+          }
+        });
+      } else {
+        toyCards.forEach((card) => {
+          card.classList.remove('hidden');
+        });
+      }
+    });
+
+    const shapeChoice = document.querySelector(
+      '.ball-choice-item'
+    ) as HTMLInputElement;
+
+    shapeChoice.addEventListener('change', () => {
+      const toyCards = document.querySelectorAll('.toy-card');
+
+      if (shapeChoice.checked) {
+        toyCards.forEach((card) => {
+          if (!(card.getAttribute('data-shape') === 'шар')) {
             card.classList.add('hidden');
           }
         });
@@ -65,7 +85,7 @@ export class Settings {
     ) as HTMLButtonElement;
 
     defaultButton.addEventListener('click', (): void => {
-      //localStorage.dataForChristmasGame = JSON.stringify(data)
+      selectSortType.selectedIndex = SORT_INDEX.default;
 
       const toyCard = new ToyCard();
       toyCard.draw(data);

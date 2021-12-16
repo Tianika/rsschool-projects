@@ -1,27 +1,28 @@
-import * as noUiSlider from 'nouislider'
-import 'nouislider/dist/nouislider.css'
+import * as noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
+import { SLIDER_VALUES } from '../utils/constants';
 
 export class Slider {
   draw(): void {
     const countSlider = document.querySelector(
       '#count-slider'
-    ) as noUiSlider.target
+    ) as noUiSlider.target;
 
     if (countSlider) {
       noUiSlider.create(countSlider, {
-        start: [1, 12],
+        start: [SLIDER_VALUES.countMin, SLIDER_VALUES.countMax],
         connect: true,
         range: {
-          min: 1,
-          max: 12,
+          min: SLIDER_VALUES.countMin,
+          max: SLIDER_VALUES.countMax,
         },
-        step: 1,
-      })
+        step: SLIDER_VALUES.countStep,
+      });
 
       const countDivs = [
         document.querySelector('.count-slider-min'),
         document.querySelector('.count-slider-max'),
-      ]
+      ];
 
       if (countSlider.noUiSlider) {
         countSlider.noUiSlider.on(
@@ -30,38 +31,38 @@ export class Slider {
             if (countDivs[0] && countDivs[1]) {
               countDivs[0].innerHTML = parseInt(
                 values[0].toString(),
-                10
-              ).toString()
+                SLIDER_VALUES.decimal
+              ).toString();
               countDivs[1].innerHTML = parseInt(
                 values[1].toString(),
-                10
-              ).toString()
+                SLIDER_VALUES.decimal
+              ).toString();
             }
           }
-        )
+        );
       }
     }
 
     const yearSlider = document.querySelector(
       '#year-slider'
-    ) as noUiSlider.target
+    ) as noUiSlider.target;
 
     if (yearSlider) {
       noUiSlider.create(yearSlider, {
-        start: [1940, 2020],
+        start: [SLIDER_VALUES.yearMin, SLIDER_VALUES.yearMax],
         connect: true,
         range: {
-          min: 1940,
-          max: 2020,
+          min: SLIDER_VALUES.yearMin,
+          max: SLIDER_VALUES.yearMax,
         },
-        step: 10,
-      })
+        step: SLIDER_VALUES.yearStep,
+      });
     }
 
     const yearDivs = [
       document.querySelector('.year-slider-min'),
       document.querySelector('.year-slider-max'),
-    ]
+    ];
 
     if (yearSlider.noUiSlider) {
       yearSlider.noUiSlider.on(
@@ -70,15 +71,15 @@ export class Slider {
           if (yearDivs[0] && yearDivs[1]) {
             yearDivs[0].innerHTML = parseInt(
               values[0].toString(),
-              10
-            ).toString()
+              SLIDER_VALUES.decimal
+            ).toString();
             yearDivs[1].innerHTML = parseInt(
               values[1].toString(),
-              10
-            ).toString()
+              SLIDER_VALUES.decimal
+            ).toString();
           }
         }
-      )
+      );
     }
   }
 }

@@ -1,4 +1,4 @@
-import { dataToys } from '../utils/interfaces'
+import { dataToys } from '../utils/interfaces';
 
 const data: Array<dataToys> = [
   {
@@ -601,6 +601,6 @@ const data: Array<dataToys> = [
     size: 'средний',
     favorite: true,
   },
-]
+];
 
-export default data
+export default data;
