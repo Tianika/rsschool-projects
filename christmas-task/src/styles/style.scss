@@ -271,9 +271,21 @@ a {
   }
 }
 
+.shape-choice,
+.size-choice {
+  .checkbox-item {
+    transition: all 0.3s ease-in;
+    &:hover {
+      filter: invert(51%) sepia(64%) saturate(1000%) hue-rotate(-13deg)
+        brightness(100%) contrast(104%);
+    }
+  }
+}
+
 .shape-choice-item {
   width: 40px;
   height: 40px;
+
   ~ label::before {
     width: 40px;
     height: 40px;
@@ -411,6 +423,12 @@ a {
     width: 40px;
     height: 40px;
   }
+}
+
+.size-choice-item:checked + label::before,
+.shape-choice-item:checked + label::before {
+  filter: invert(51%) sepia(64%) saturate(1000%) hue-rotate(-13deg)
+    brightness(110%) contrast(104%) drop-shadow(0 0 10px $light-color);
 }
 
 .favorite-choice {
