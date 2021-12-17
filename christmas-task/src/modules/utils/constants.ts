@@ -36,7 +36,7 @@ export const VALUES_FOR_FILTER = {
   ball: 'шар',
   bell: 'колокольчик',
   cone: 'шишка',
-  snowflake: '',
+  snowflake: 'снежинка',
   toy: 'фигурка',
   'white-color': 'белый',
   'yellow-color': 'желтый',
@@ -46,8 +46,6 @@ export const VALUES_FOR_FILTER = {
   'small-size': 'малый',
   'middle-size': 'средний',
   'big-size': 'большой',
-  true: 'true',
-  false: 'false',
 };
 
 export const FILTER_VALUES = {

@@ -88,11 +88,11 @@ export class ToyCard {
 
           if (cardToy.classList.contains('favorite-toy')) {
             cardToy.setAttribute('data-favorite', IS_FAVORITE.true);
-            toyFavorite.textContent = `Любимая: Да`;
+            toyFavorite.textContent = 'Любимая: Да';
             count++;
           } else {
             cardToy.setAttribute('data-favorite', IS_FAVORITE.false);
-            toyFavorite.textContent = `Любимая: Нет`;
+            toyFavorite.textContent = 'Любимая: Нет';
             count--;
           }
 
