@@ -4,8 +4,9 @@ export enum sortTypes {
   sortFromYear = 'data-year',
 }
 
-export const FAVORITE = {
+export const IS_FAVORITE = {
   false: 'false',
+  true: 'true',
 };
 
 export const SORT_INDEX = {
@@ -30,3 +31,61 @@ export const COUNT_FAVORITE = {
 export const DELAY = {
   delayWarning: 1500,
 };
+
+export const VALUES_FOR_FILTER = {
+  ball: 'шар',
+  bell: 'колокольчик',
+  cone: 'шишка',
+  snowflake: '',
+  toy: 'фигурка',
+  'white-color': 'белый',
+  'yellow-color': 'желтый',
+  'red-color': 'красный',
+  'blue-color': 'синий',
+  'green-color': 'зелёный',
+  'small-size': 'малый',
+  'middle-size': 'средний',
+  'big-size': 'большой',
+  true: 'true',
+  false: 'false',
+};
+
+export const FILTER_VALUES = {
+  shape: {
+    ball: false,
+    bell: false,
+    corn: false,
+    snowflake: false,
+    toy: false,
+  },
+  color: {
+    white: false,
+    yellow: false,
+    red: false,
+    blue: false,
+    green: false,
+  },
+  size: {
+    small: false,
+  },
+  favorite: false,
+  count: {
+    min: 1,
+    max: 12,
+  },
+  year: {
+    min: 1940,
+    max: 2020,
+  },
+};
+
+export const ATTRIBUTES = [
+  'num',
+  'name',
+  'count',
+  'year',
+  'shape',
+  'color',
+  'size',
+  'favorite',
+];

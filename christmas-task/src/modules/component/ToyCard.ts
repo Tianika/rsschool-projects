@@ -1,5 +1,11 @@
 import { dataToys } from '../utils/interfaces';
-import { COUNT_FAVORITE, DELAY } from '../utils/constants';
+import {
+  COUNT_FAVORITE,
+  DELAY,
+  IS_FAVORITE,
+  ATTRIBUTES,
+} from '../utils/constants';
+import { setAttribute } from '../utils/general';
 
 export class ToyCard {
   draw(data: Array<dataToys>): void {
@@ -55,14 +61,9 @@ export class ToyCard {
 
       const cardToy = newsClone.querySelector('.toy-card') as HTMLElement;
 
-      cardToy.setAttribute('data-num', element.num);
-      cardToy.setAttribute('data-name', element.name);
-      cardToy.setAttribute('data-count', element.count);
-      cardToy.setAttribute('data-year', element.year);
-      cardToy.setAttribute('data-shape', element.shape);
-      cardToy.setAttribute('data-color', element.color);
-      cardToy.setAttribute('data-size', element.size);
-      cardToy.setAttribute('data-favorite', element.favorite.toString());
+      ATTRIBUTES.forEach((elem) => {
+        setAttribute(cardToy, elem, element[elem]);
+      });
 
       if (element.favorite) {
         count++;
@@ -86,11 +87,11 @@ export class ToyCard {
           cardToy.classList.toggle('favorite-toy');
 
           if (cardToy.classList.contains('favorite-toy')) {
-            cardToy.setAttribute('data-favorite', 'true');
+            cardToy.setAttribute('data-favorite', IS_FAVORITE.true);
             toyFavorite.textContent = `Любимая: Да`;
             count++;
           } else {
-            cardToy.setAttribute('data-favorite', 'false');
+            cardToy.setAttribute('data-favorite', IS_FAVORITE.false);
             toyFavorite.textContent = `Любимая: Нет`;
             count--;
           }
@@ -105,10 +106,9 @@ export class ToyCard {
       fragment.append(newsClone);
     });
 
-    const toyContainer: HTMLElement | null =
-      document.querySelector('.toys-container');
-
-    if (!toyContainer) return;
+    const toyContainer = document.querySelector(
+      '.toys-container'
+    ) as HTMLElement;
 
     toyContainer.innerHTML = '';
     toyContainer.appendChild(fragment);

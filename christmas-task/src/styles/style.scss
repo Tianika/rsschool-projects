@@ -229,19 +229,35 @@ a {
 
 .settings-toy {
   width: 46%;
-  padding: 10px;
+  padding: 10px 10px 20px 20px;
   font-family: Neucha;
   > .title {
     font-size: 22px;
-    line-height: 32px;
+    line-height: 28px;
     padding-top: 10px;
+    padding-bottom: 5px;
   }
+  div {
+    margin-bottom: 5px;
+  }
+}
+
+.count-title,
+.year-title,
+.sort-title {
+  margin-bottom: 5px;
 }
 
 .size-choice,
 .shape-choice,
 .color-choice {
   display: flex;
+}
+
+.size-choice {
+  .checkbox-item {
+    margin-right: 10px;
+  }
 }
 
 .shape-choice-item,
@@ -583,6 +599,10 @@ a {
 }
 
 @keyframes hiddenCard {
+  0% {
+    opacity: 0;
+  }
+
   100% {
     opacity: 0;
     height: 0;
@@ -600,17 +620,18 @@ a {
   margin: 10px;
   background-color: rgba($middle-color, 0.9);
   border: 2px solid $white;
+  border-radius: 5px;
   align-content: start;
   padding: 5px;
   overflow: hidden;
   cursor: pointer;
   visibility: visible;
   opacity: 1;
-  transition: all 0.5s ease-in;
+  transition: all 0.5s linear;
 
   &.hidden {
     animation-name: hiddenCard;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
   }
 
