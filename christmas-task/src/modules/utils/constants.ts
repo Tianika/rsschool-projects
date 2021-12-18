@@ -1,3 +1,9 @@
+export enum sortTypes {
+  default = 'data-num',
+  sortFromLetters = 'data-name',
+  sortFromYear = 'data-year',
+}
+
 export const IS_FAVORITE = {
   false: 'false',
   true: 'true',

@@ -71,6 +71,19 @@ export function checkFilter(card: HTMLElement, values: any): void {
       hideElement(card);
     }
   }
+
+  const toyContainer = document.querySelector('.toys-container') as HTMLElement;
+
+  const cards: NodeListOf<Element> =
+    toyContainer.querySelectorAll('.toy-card.visible');
+  const warning: HTMLElement | null =
+    toyContainer.querySelector('.warning-filter');
+
+  if (cards.length === 0) {
+    warning?.classList.remove('hide');
+  } else {
+    warning?.classList.add('hide');
+  }
 }
 
 export function hideElement(card) {

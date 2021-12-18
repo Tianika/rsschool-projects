@@ -3,7 +3,7 @@ import 'nouislider/dist/nouislider.css';
 import { sortAscend, sortDescend } from '../utils/sort';
 import data from '../data/data';
 import { ToyCard } from './ToyCard';
-import { sortTypes } from '../utils/interfaces';
+import { sortTypes } from '../utils/constants';
 import {
   IS_FAVORITE,
   SORT_INDEX,
@@ -11,7 +11,7 @@ import {
   SLIDER_VALUES,
   NOT_FOUND,
 } from '../utils/constants';
-import { checkToyCard, hideElement, showElement } from '../utils/general';
+import { checkToyCard } from '../utils/general';
 
 export class Settings {
   valuesForFilter: any;
@@ -196,7 +196,7 @@ export class Settings {
     ) as HTMLSelectElement;
 
     selectSortType.addEventListener('change', function (): void {
-      const index = this.selectedIndex;
+      const index: number = this.selectedIndex;
 
       switch (index) {
         case 0:
@@ -222,7 +222,7 @@ export class Settings {
       '.search-input'
     ) as HTMLInputElement;
 
-    searchInput?.addEventListener('input', (): void => {
+    searchInput.addEventListener('input', (): void => {
       const cards: NodeListOf<HTMLElement> =
         document.querySelectorAll('.toy-card');
       const searchValue = searchInput.value.trim().toLowerCase();

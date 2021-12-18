@@ -66,11 +66,6 @@ export class ToyCard {
         addAttribute(cardToy, attribute, toyData[attribute]);
       });
 
-      // if (toyData.favorite) {
-      //   count++;
-      //   cardToy.classList.add('favorite-toy');
-      // }
-
       cardToy.addEventListener('click', (): void => {
         if (
           count === COUNT_USER_FAVORITE.countMax &&
@@ -102,6 +97,12 @@ export class ToyCard {
         }
       });
 
+      const warning = document.createElement('div');
+      warning.innerText = 'Извините, совпадений не обнаружено';
+      warning.classList.add('warning-filter');
+      warning.classList.add('hide');
+
+      fragment.append(warning);
       fragment.append(newsClone);
     });
 

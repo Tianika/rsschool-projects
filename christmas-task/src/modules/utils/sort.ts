@@ -1,18 +1,19 @@
-import { sortTypes } from './interfaces';
+import { sortTypes } from './constants';
 
 function insertElement(firstElem: Element, secondElem) {
-  if (!secondElem) return;
-
-  return secondElem.parentElement.insertBefore(
-    firstElem,
-    secondElem.nextSibling
-  );
+  if (secondElem) {
+    return secondElem.parentNode.insertBefore(
+      firstElem,
+      secondElem.nextSibling
+    );
+  }
 }
 
 function getAttrForSort(typeSort: string, item): string | number {
   if (typeSort === sortTypes.sortFromLetters) {
     return item.getAttribute(typeSort).toLowerCase();
   } else {
+    console.log(item.getAttribute(typeSort));
     return +item.getAttribute(typeSort);
   }
 }
@@ -24,7 +25,7 @@ export function sortAscend(typeSort: string): void {
 
   if (!cards) return;
 
-  for (let i = 0; i < cards.children.length; i++) {
+  for (let i = 1; i < cards.children.length; i++) {
     for (let j = i; j < cards.children.length; j++) {
       if (
         getAttrForSort(typeSort, cards.children[i]) <
@@ -46,7 +47,7 @@ export function sortDescend(typeSort: string): void {
 
   if (!cards) return;
 
-  for (let i = 0; i < cards.children.length; i++) {
+  for (let i = 1; i < cards.children.length; i++) {
     for (let j = i; j < cards.children.length; j++) {
       if (
         getAttrForSort(typeSort, cards.children[i]) >
