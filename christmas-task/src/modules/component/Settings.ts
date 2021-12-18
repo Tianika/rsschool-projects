@@ -3,14 +3,15 @@ import 'nouislider/dist/nouislider.css';
 import { sortAscend, sortDescend } from '../utils/sort';
 import data from '../data/data';
 import { ToyCard } from './ToyCard';
+import { sortTypes } from '../utils/interfaces';
 import {
-  sortTypes,
   IS_FAVORITE,
   SORT_INDEX,
   VALUES_FOR_FILTER,
   SLIDER_VALUES,
+  NOT_FOUND,
 } from '../utils/constants';
-import { checkToyCard, checkFilter } from '../utils/general';
+import { checkToyCard, hideElement, showElement } from '../utils/general';
 
 export class Settings {
   valuesForFilter: any;
@@ -29,6 +30,7 @@ export class Settings {
         min: SLIDER_VALUES.yearMin,
         max: SLIDER_VALUES.yearMax,
       },
+      search: new Set(),
     };
   }
 
@@ -193,7 +195,7 @@ export class Settings {
       '.sort-choice'
     ) as HTMLSelectElement;
 
-    selectSortType?.addEventListener('change', function () {
+    selectSortType.addEventListener('change', function (): void {
       const index = this.selectedIndex;
 
       switch (index) {
@@ -213,6 +215,30 @@ export class Settings {
           sortDescend(sortTypes.sortFromYear);
           break;
       }
+    });
+
+    //search input
+    const searchInput = document.querySelector(
+      '.search-input'
+    ) as HTMLInputElement;
+
+    searchInput?.addEventListener('input', (): void => {
+      const cards: NodeListOf<HTMLElement> =
+        document.querySelectorAll('.toy-card');
+      const searchValue = searchInput.value.trim().toLowerCase();
+
+      cards.forEach((card) => {
+        const title = card.querySelector('.toy-card-title') as HTMLElement;
+        const titleValue: string = title.innerText.toLowerCase();
+
+        if (titleValue.search(searchValue) === NOT_FOUND) {
+          this.valuesForFilter.search.add(card.dataset.num);
+        } else {
+          this.valuesForFilter.search.delete(card.dataset.num);
+        }
+      });
+
+      checkToyCard(this.valuesForFilter);
     });
 
     //reset button

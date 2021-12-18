@@ -9,10 +9,8 @@ export interface dataToys {
   favorite: boolean;
 }
 
-// export declare module noUiSlider {
-//   interface noUiSlider {}
-
-//   interface Instance extends HTMLElement {
-//     noUiSlider: noUiSlider
-//   }
-// }
+export enum sortTypes {
+  default = 'data-num',
+  sortFromLetters = 'data-name',
+  sortFromYear = 'data-year',
+}

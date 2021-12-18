@@ -60,6 +60,7 @@ export class ToyCard {
       toyFavorite.textContent = `Любимая: ${toyData.favorite ? 'Да' : 'Нет'}`;
 
       const cardToy = newsClone.querySelector('.toy-card') as HTMLElement;
+      cardToy.classList.add('visible');
 
       ATTRIBUTES.forEach((attribute) => {
         addAttribute(cardToy, attribute, toyData[attribute]);

@@ -19,8 +19,7 @@ export function checkToyCard(values: any): void {
 }
 
 export function checkFilter(card: HTMLElement, values: any): void {
-  card.classList.remove('hidden');
-  card.classList.add('visible');
+  showElement(card);
 
   const count = Number(card.dataset.count);
   const year = Number(card.dataset.year);
@@ -64,9 +63,22 @@ export function checkFilter(card: HTMLElement, values: any): void {
       hideElement(card);
     }
   }
+
+  if (values.search.size > 0) {
+    const numCard = card.dataset.num;
+
+    if (values.search.has(numCard)) {
+      hideElement(card);
+    }
+  }
 }
 
-function hideElement(card) {
+export function hideElement(card) {
   card.classList.add('hidden');
   card.classList.remove('visible');
+}
+
+export function showElement(card) {
+  card.classList.remove('hidden');
+  card.classList.add('visible');
 }
