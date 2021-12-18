@@ -1,14 +1,14 @@
 import { IS_FAVORITE, SLIDER_VALUES } from './constants';
 
-export function setAttribute(
+export function addAttribute(
   cardToy: HTMLElement,
-  elem: string,
-  value: string | boolean
+  attribute: string,
+  valueAttribute: string | boolean
 ): void {
-  if (typeof value === 'string') {
-    cardToy.setAttribute(`data-${elem}`, value);
+  if (typeof valueAttribute === 'string') {
+    cardToy.setAttribute(`data-${attribute}`, valueAttribute);
   } else {
-    cardToy.setAttribute(`data-${elem}`, value.toString());
+    cardToy.setAttribute(`data-${attribute}`, valueAttribute.toString());
   }
 }
 

@@ -23,7 +23,7 @@ export const SLIDER_VALUES = {
   decimal: 10,
 };
 
-export const COUNT_FAVORITE = {
+export const COUNT_USER_FAVORITE = {
   countMin: 0,
   countMax: 20,
 };

@@ -164,13 +164,25 @@ a {
 }
 
 .toys-count-container {
-  height: 60px;
-  width: 60px;
+  position: relative;
+  height: 65px;
+  width: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: end;
   margin-left: 25px;
+}
+
+.favorite-icon {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: url('../assets/svg/favorite-icon.svg') no-repeat;
+  background-position: center center;
+  background-size: contain;
+  right: 2px;
+  top: 5px;
 }
 
 .toys-count {
@@ -572,10 +584,16 @@ a {
   background-color: $middle-color;
   border-radius: 3px;
   border: 1px solid $white;
+
+  &:hover {
+    border: 1px solid $compl-color;
+    box-shadow: 0 0 5px $light-color;
+  }
 }
 
 .sort-choice {
   display: block;
+  cursor: pointer;
   width: 200px;
   height: 24px;
 }
@@ -646,8 +664,22 @@ a {
     box-shadow: $white 0 0 20px;
   }
 
-  &.favorite-toy {
+  &.user-favorite-toy {
     border: 2px solid $compl-color;
+    transition: all 0.5s linear;
+
+    .toy-card-favorite {
+      position: absolute;
+      opacity: 0.9;
+      width: 30px;
+      height: 30px;
+      left: 10px;
+      bottom: 10px;
+      background: url('../assets/svg/favorite-icon.svg') no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+
     &:hover {
       box-shadow: $light-color 0 0 20px;
     }
