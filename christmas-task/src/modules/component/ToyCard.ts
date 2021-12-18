@@ -97,12 +97,6 @@ export class ToyCard {
         }
       });
 
-      const warning = document.createElement('div');
-      warning.innerText = 'Извините, совпадений не обнаружено';
-      warning.classList.add('warning-filter');
-      warning.classList.add('hide');
-
-      fragment.append(warning);
       fragment.append(newsClone);
     });
 

@@ -237,6 +237,7 @@ a {
 
 /*-------------main toys------------*/
 .settings-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -612,17 +613,6 @@ a {
 .default-settings-button {
 }
 
-/*----toys---*/
-
-.toys-container {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 15px auto;
-  padding: 10px 0;
-}
-
 .warning-filter {
   position: absolute;
   z-index: 2;
@@ -630,7 +620,7 @@ a {
   justify-content: center;
   align-items: center;
   left: Calc(50% - 275px);
-  top: 50px;
+  bottom: -200px;
   height: 150px;
   width: 550px;
   font-size: 28px;
@@ -644,6 +634,16 @@ a {
     z-index: -1;
     opacity: 0;
   }
+}
+
+/*----toys---*/
+
+.toys-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 15px auto;
+  padding: 10px 0;
 }
 
 @keyframes hiddenCard {
@@ -679,7 +679,7 @@ a {
 
   &.hidden {
     animation-name: hiddenCard;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
 

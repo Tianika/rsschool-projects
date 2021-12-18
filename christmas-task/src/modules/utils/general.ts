@@ -76,8 +76,7 @@ export function checkFilter(card: HTMLElement, values: any): void {
 
   const cards: NodeListOf<Element> =
     toyContainer.querySelectorAll('.toy-card.visible');
-  const warning: HTMLElement | null =
-    toyContainer.querySelector('.warning-filter');
+  const warning: HTMLElement | null = document.querySelector('.warning-filter');
 
   if (cards.length === 0) {
     warning?.classList.remove('hide');
