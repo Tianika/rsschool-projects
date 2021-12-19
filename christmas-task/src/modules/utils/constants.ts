@@ -89,3 +89,5 @@ export const ATTRIBUTES = [
 ];
 
 export const NOT_FOUND = -1;
+
+export const DEFAULT_STRING = '';

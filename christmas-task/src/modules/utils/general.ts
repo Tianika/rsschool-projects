@@ -1,4 +1,4 @@
-import { IS_FAVORITE, SLIDER_VALUES } from './constants';
+import { IS_FAVORITE, SLIDER_VALUES, DEFAULT_STRING } from './constants';
 
 export function addAttribute(
   cardToy: HTMLElement,
@@ -93,4 +93,37 @@ export function hideElement(card) {
 export function showElement(card) {
   card.classList.remove('hidden');
   card.classList.add('visible');
+}
+
+export function resetSlider(countSlider, yearSlider) {
+  countSlider.noUiSlider?.set([SLIDER_VALUES.countMin, SLIDER_VALUES.countMax]);
+  yearSlider.noUiSlider?.set([SLIDER_VALUES.yearMin, SLIDER_VALUES.yearMax]);
+}
+
+export function resetSearch(searchInput, clearSearchBtn) {
+  searchInput.value = DEFAULT_STRING;
+  clearSearchBtn.classList.add('hide');
+}
+
+export function resetValueForFilter(valuesForFilter) {
+  valuesForFilter.shape.clear();
+  valuesForFilter.color.clear();
+  valuesForFilter.size.clear();
+  valuesForFilter.favorite = IS_FAVORITE.false;
+  valuesForFilter.count.min = SLIDER_VALUES.countMin;
+  valuesForFilter.count.max = SLIDER_VALUES.countMax;
+  valuesForFilter.year.min = SLIDER_VALUES.yearMin;
+  valuesForFilter.year.max = SLIDER_VALUES.yearMax;
+  valuesForFilter.search.clear();
+}
+
+export function resetCheckboxes() {
+  const settings = document.querySelector('.settings-container') as HTMLElement;
+  const checkboxes = settings.querySelectorAll(
+    'input'
+  ) as NodeListOf<HTMLInputElement>;
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
 }

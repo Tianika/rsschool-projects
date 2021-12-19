@@ -10,8 +10,15 @@ import {
   VALUES_FOR_FILTER,
   SLIDER_VALUES,
   NOT_FOUND,
+  DEFAULT_STRING,
 } from '../utils/constants';
-import { checkToyCard } from '../utils/general';
+import {
+  checkToyCard,
+  resetValueForFilter,
+  resetCheckboxes,
+  resetSearch,
+  resetSlider,
+} from '../utils/general';
 
 export class Settings {
   valuesForFilter: any;
@@ -21,7 +28,7 @@ export class Settings {
       shape: new Set(),
       color: new Set(),
       size: new Set(),
-      favorite: new Set(),
+      favorite: IS_FAVORITE.false,
       count: {
         min: SLIDER_VALUES.countMin,
         max: SLIDER_VALUES.countMax,
@@ -247,12 +254,12 @@ export class Settings {
       checkToyCard(this.valuesForFilter);
     });
 
-    const clearSearchBtn = document.querySelector('.clear-search');
+    const clearSearchBtn = document.querySelector(
+      '.clear-search'
+    ) as HTMLButtonElement;
 
-    clearSearchBtn?.addEventListener('click', () => {
-      searchInput.value = '';
-      searchInput.textContent = '';
-      clearSearchBtn?.classList.add('hide');
+    clearSearchBtn.addEventListener('click', () => {
+      resetSearch(searchInput, clearSearchBtn);
       searchInput.focus();
 
       this.valuesForFilter.search.clear();
@@ -260,14 +267,31 @@ export class Settings {
     });
 
     //reset button
+    const resetBtn = document.querySelector(
+      '.reset-filter-button'
+    ) as HTMLElement;
+
+    resetBtn.addEventListener('click', () => {
+      resetSlider(countSlider, yearSlider);
+      resetSearch(searchInput, clearSearchBtn);
+      resetValueForFilter(this.valuesForFilter);
+      resetCheckboxes();
+      checkToyCard(this.valuesForFilter);
+    });
 
     //default button
-    const defaultButton = document.querySelector(
+    const defaultBtn = document.querySelector(
       '.default-settings-button'
     ) as HTMLButtonElement;
 
-    defaultButton.addEventListener('click', (): void => {
+    defaultBtn.addEventListener('click', (): void => {
       selectSortType.selectedIndex = SORT_INDEX.default;
+
+      resetSlider(countSlider, yearSlider);
+      resetSearch(searchInput, clearSearchBtn);
+      resetValueForFilter(this.valuesForFilter);
+      resetCheckboxes();
+      checkToyCard(this.valuesForFilter);
 
       const toyCard = new ToyCard();
       toyCard.draw(data);
