@@ -142,6 +142,7 @@ a {
 }
 
 .search-field {
+  position: relative;
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -150,7 +151,7 @@ a {
 .search-input {
   margin-left: auto;
   height: 32px;
-  width: 250px;
+  width: 300px;
   padding-left: 5px;
   font-size: 20px;
   outline: none;
@@ -158,8 +159,27 @@ a {
   border-radius: 5px;
   color: $white;
   background-color: $middle-color;
+  transition: all 0.5s linear;
   &:focus {
     border: 2px solid $compl-color;
+  }
+}
+
+.clear-search {
+  position: absolute;
+  color: $white;
+  left: 277px;
+  top: 25px;
+  width: 14px;
+  height: 14px;
+  background-color: transparent;
+  background: url('../assets/svg/close.svg') no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  transition: all 0.5s linear;
+  &.hide {
+    opacity: 0;
   }
 }
 

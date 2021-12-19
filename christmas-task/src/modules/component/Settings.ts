@@ -225,7 +225,13 @@ export class Settings {
     searchInput.addEventListener('input', (): void => {
       const cards: NodeListOf<HTMLElement> =
         document.querySelectorAll('.toy-card');
-      const searchValue = searchInput.value.trim().toLowerCase();
+      const searchValue: string = searchInput.value.trim().toLowerCase();
+
+      if (searchValue.length > 0 && searchInput === document.activeElement) {
+        clearSearchBtn?.classList.remove('hide');
+      } else {
+        clearSearchBtn?.classList.add('hide');
+      }
 
       cards.forEach((card) => {
         const title = card.querySelector('.toy-card-title') as HTMLElement;
@@ -238,6 +244,18 @@ export class Settings {
         }
       });
 
+      checkToyCard(this.valuesForFilter);
+    });
+
+    const clearSearchBtn = document.querySelector('.clear-search');
+
+    clearSearchBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.textContent = '';
+      clearSearchBtn?.classList.add('hide');
+      searchInput.focus();
+
+      this.valuesForFilter.search.clear();
       checkToyCard(this.valuesForFilter);
     });
 
