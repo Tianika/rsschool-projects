@@ -37,7 +37,7 @@ export class Settings {
         min: SLIDER_VALUES.yearMin,
         max: SLIDER_VALUES.yearMax,
       },
-      search: new Set(),
+      search: '',
     };
   }
 
@@ -292,9 +292,80 @@ export class Settings {
       resetValueForFilter(this.valuesForFilter);
       resetCheckboxes();
       checkToyCard(this.valuesForFilter);
+      delete localStorage.filterForChristmasGame;
 
       const toyCard = new ToyCard();
       toyCard.draw(data);
+    });
+
+    if (localStorage.filterForChristmasGame)
+      window.addEventListener('DOMContentLoaded', () => {
+        const saveValuesFilter = JSON.parse(
+          localStorage.filterForChristmasGame
+        );
+
+        console.log(localStorage.filterForChristmasGame);
+        console.log(saveValuesFilter);
+
+        if (saveValuesFilter.shape.length > 0) {
+          saveValuesFilter.shape.forEach((item) => {
+            this.valuesForFilter.shape.add(item);
+          });
+        }
+        if (saveValuesFilter.color.length > 0) {
+          saveValuesFilter.color.forEach((item) => {
+            this.valuesForFilter.color.add(item);
+          });
+        }
+        if (saveValuesFilter.size.length > 0) {
+          saveValuesFilter.size.forEach((item) => {
+            this.valuesForFilter.size.add(item);
+          });
+        }
+
+        this.valuesForFilter.favorite = saveValuesFilter.favorite;
+        this.valuesForFilter.count.min = saveValuesFilter.count.min;
+        this.valuesForFilter.count.max = saveValuesFilter.count.max;
+        this.valuesForFilter.year.min = saveValuesFilter.year.min;
+        this.valuesForFilter.year.max = saveValuesFilter.year.max;
+
+        console.log(this.valuesForFilter);
+
+        checkToyCard(this.valuesForFilter);
+      });
+
+    window.addEventListener('beforeunload', () => {
+      const userFavoriteToys = document.querySelectorAll(
+        '.user-favorite-toy'
+      ) as NodeListOf<HTMLDivElement>;
+      const userFavoriteNums: Array<string> = [];
+
+      if (userFavoriteToys) {
+        userFavoriteToys.forEach((toy: any): void => {
+          if (toy) {
+            userFavoriteNums.push(toy.dataset.num);
+          }
+        });
+      }
+
+      const valueFilterForSave = {
+        shape: [...this.valuesForFilter.shape],
+        color: [...this.valuesForFilter.color],
+        size: [...this.valuesForFilter.size],
+        favorite: this.valuesForFilter.favorite,
+        count: {
+          min: this.valuesForFilter.count.min,
+          max: this.valuesForFilter.count.max,
+        },
+        year: {
+          min: this.valuesForFilter.year.min,
+          max: this.valuesForFilter.year.max,
+        },
+        userFavorite: [...userFavoriteNums],
+        sort: selectSortType.selectedIndex,
+      };
+
+      localStorage.filterForChristmasGame = JSON.stringify(valueFilterForSave);
     });
   }
 }
