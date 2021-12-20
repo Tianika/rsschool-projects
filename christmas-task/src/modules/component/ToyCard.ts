@@ -66,6 +66,10 @@ export class ToyCard {
         addAttribute(cardToy, attribute, toyData[attribute]);
       });
 
+      if (localStorage.countFavoriteToys) {
+        count = +localStorage.countFavoriteToys;
+      }
+
       cardToy.addEventListener('click', (): void => {
         if (
           count === COUNT_USER_FAVORITE.countMax &&
@@ -109,5 +113,9 @@ export class ToyCard {
 
     const toysCount = document.querySelector('.toys-count') as HTMLElement;
     toysCount.textContent = count.toString();
+
+    window.addEventListener('beforeunload', () => {
+      localStorage.countFavoriteToys = count.toString();
+    });
   }
 }

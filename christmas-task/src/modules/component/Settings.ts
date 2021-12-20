@@ -277,6 +277,7 @@ export class Settings {
       resetCheckboxes();
       checkToyCard(this.valuesForFilter);
       delete localStorage.filterForChristmasGame;
+      delete localStorage.countFavoriteToys;
 
       const toyCard = new ToyCard();
       toyCard.draw(data);
@@ -288,9 +289,6 @@ export class Settings {
         const saveValuesFilter = JSON.parse(
           localStorage.filterForChristmasGame
         );
-
-        // console.log(localStorage.filterForChristmasGame);
-        // console.log(saveValuesFilter);
 
         addCheckboxSelection(saveValuesFilter);
         addSliderValue(countSlider, yearSlider, saveValuesFilter);
@@ -333,7 +331,7 @@ export class Settings {
             '.toys-count'
           ) as HTMLElement;
 
-          toysCount.innerText = favoriteToys.length.toString();
+          toysCount.innerText = localStorage.countFavoriteToys;
 
           toys.forEach((toy: any): void => {
             if (favoriteToys.includes(toy.dataset.num)) {

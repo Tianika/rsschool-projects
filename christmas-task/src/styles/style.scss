@@ -807,3 +807,60 @@ a {
     opacity: 0;
   }
 }
+
+//adaptive toy page
+
+@media (max-width: 1024px) {
+  .main .container {
+    padding-top: 5px;
+  }
+
+  .settings-toy {
+    padding: 5px 5px 10px 10px;
+    &.left {
+      width: 44%;
+    }
+    &.right {
+      width: 53%;
+    }
+    .title {
+      padding-top: 5px;
+    }
+  }
+
+  .count-slider-container,
+  .year-slider-container {
+    width: 350px;
+  }
+
+  #count-slider,
+  #year-slider {
+    width: 230px;
+  }
+
+  .counts {
+    width: 25px;
+  }
+
+  .reset-filter-button,
+  .default-settings-button {
+    width: 150px;
+  }
+
+  .toy-card {
+    height: 220px;
+    width: 230px;
+    margin: 5px;
+    .toy-card-title {
+      width: 230px;
+      font-size: 20px;
+    }
+    .toy-card-image {
+      width: 80px;
+      padding: 5px;
+    }
+    .toy-card-describe {
+      font-size: 16px;
+    }
+  }
+}
