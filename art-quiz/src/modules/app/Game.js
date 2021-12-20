@@ -23,7 +23,7 @@ import {
   SOUNDS,
   SAVE_RESULT,
 } from '../../utils/constants';
-import images from '../../assets/data/images.json';
+import { fetchAsync } from '../../utils/fetchAsync';
 
 export class Game {
   constructor(round, typeGame) {
@@ -36,12 +36,7 @@ export class Game {
     this.typeGame = typeGame;
     this.beginSlice =
       round * START_VALUES.questionsPerRound + this.questionNumber;
-
     this.time = localStorage.roundDuration;
-    this.images = images.slice(
-      this.beginSlice,
-      this.beginSlice + START_VALUES.questionsPerRound
-    );
   }
 
   async run() {
@@ -49,6 +44,23 @@ export class Game {
   }
 
   runRound() {
+    let images = [];
+
+    fetchAsync('../../assets/data/images.json')
+      .then((data) => {
+        images = [...data];
+        console.log(images);
+      })
+      .catch((error) => console.error(error));
+
+    this.images = images.slice(
+      this.beginSlice,
+      this.beginSlice + START_VALUES.questionsPerRound
+    );
+
+    console.log(images);
+    console.log(this.images);
+
     // ---------- artist quiz
     if (this.typeGame === TYPE_GAME.artist) {
       const questionAboutArtist = new QuestionAboutArtist();

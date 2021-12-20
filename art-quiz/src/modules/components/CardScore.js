@@ -1,15 +1,22 @@
 import { START_VALUES } from '../../utils/constants';
-import images from '../../assets/data/images.json';
+import { fetchAsync } from '../../utils/fetchAsync';
 
 class CardScore {
   constructor(category, number, title, result) {
     this.title = title;
     this.cardNumber = category * START_VALUES.questionsPerRound + number;
     this.result = result;
-    this.info = images[this.cardNumber];
   }
 
   async renderCard() {
+    let images = [];
+
+    fetchAsync('../../assets/data/images.json')
+      .then((data) => (images = [...data]))
+      .catch((error) => console.error(error));
+
+    this.info = images[this.cardNumber];
+
     const formattedTitle = this.title.toString().padStart(2, '0');
 
     const component = ` 

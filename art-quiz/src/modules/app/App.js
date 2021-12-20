@@ -17,7 +17,7 @@ import {
   SOUNDS,
   PAGES,
 } from '../../utils/constants';
-import images from '../../assets/data/images.json';
+import { fetchAsync } from '../../utils/fetchAsync';
 
 export class App {
   start() {
@@ -25,6 +25,12 @@ export class App {
       const root = document.querySelector('.root');
       const body = document.querySelector('body');
       const person = new Person();
+
+      let images = [];
+
+      fetchAsync('../../assets/data/images.json')
+        .then((data) => (images = [...data]))
+        .catch((error) => console.error(error));
 
       const randomPictureNum = randomNumber(images.length);
       changeBgImage(root, randomPictureNum);
