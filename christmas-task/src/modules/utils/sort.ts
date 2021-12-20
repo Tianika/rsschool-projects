@@ -3,47 +3,25 @@ import { sortTypes } from './constants';
 export function sortToys(index: number): void {
   switch (index) {
     case 0:
-      sortDescend(sortTypes.default);
+      sortAscend(sortTypes.default);
       break;
     case 1:
-      sortDescend(sortTypes.sortFromLetters);
-      break;
-    case 2:
       sortAscend(sortTypes.sortFromLetters);
       break;
+    case 2:
+      sortDescend(sortTypes.sortFromLetters);
+      break;
     case 3:
-      sortAscend(sortTypes.sortFromYear);
+      sortDescend(sortTypes.sortFromYear);
       break;
     case 4:
-      sortDescend(sortTypes.sortFromYear);
+      sortAscend(sortTypes.sortFromYear);
       break;
   }
 }
 
 function sortAscend(typeSort: string): void {
-  const cards = document.querySelector('.toys-container');
-
-  if (!cards) return;
-
-  for (let i = 0; i < cards.children.length; i++) {
-    for (let j = i; j < cards.children.length; j++) {
-      if (
-        getAttrForSort(typeSort, cards.children[i]) <
-        getAttrForSort(typeSort, cards.children[j])
-      ) {
-        const replacedElem = cards.replaceChild(
-          cards.children[i],
-          cards.children[j]
-        );
-
-        insertElement(replacedElem, cards.children[i]);
-      }
-    }
-  }
-}
-
-function sortDescend(typeSort: string): void {
-  const cards = document.querySelector('.toys-container');
+  const cards = document.querySelector('.toys-container') as HTMLElement;
 
   if (!cards) return;
 
@@ -53,15 +31,35 @@ function sortDescend(typeSort: string): void {
         getAttrForSort(typeSort, cards.children[i]) >
         getAttrForSort(typeSort, cards.children[j])
       ) {
-        const replacedElem = cards.replaceChild(
-          cards.children[i],
-          cards.children[j]
-        );
-
-        insertElement(replacedElem, cards.children[i]);
+        swapElements(cards.children[i], cards.children[j]);
       }
     }
   }
+}
+
+function sortDescend(typeSort: string): void {
+  const cards = document.querySelector('.toys-container') as HTMLElement;
+
+  if (!cards) return;
+
+  for (let i = 0; i < cards.children.length; i++) {
+    for (let j = i; j < cards.children.length; j++) {
+      if (
+        getAttrForSort(typeSort, cards.children[i]) <
+        getAttrForSort(typeSort, cards.children[j])
+      ) {
+        swapElements(cards.children[i], cards.children[j]);
+      }
+    }
+  }
+}
+
+function swapElements(elem1, elem2) {
+  let prev1 = elem1.previousSibling;
+  let prev2 = elem2.previousSibling;
+
+  prev1.after(elem2);
+  prev2.after(elem1);
 }
 
 function getAttrForSort(typeSort: string, item): string | number {
@@ -69,14 +67,5 @@ function getAttrForSort(typeSort: string, item): string | number {
     return item.getAttribute(typeSort).toLowerCase();
   } else {
     return +item.getAttribute(typeSort);
-  }
-}
-
-function insertElement(firstElem: Element, secondElem) {
-  if (secondElem) {
-    return secondElem.parentNode.insertBefore(
-      firstElem,
-      secondElem.nextSibling
-    );
   }
 }
