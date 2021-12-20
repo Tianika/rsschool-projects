@@ -31,7 +31,11 @@ function sortAscend(typeSort: string): void {
         getAttrForSort(typeSort, cards.children[i]) >
         getAttrForSort(typeSort, cards.children[j])
       ) {
-        swapElements(cards.children[i], cards.children[j]);
+        const replacedCard = cards.replaceChild(
+          cards.children[j],
+          cards.children[i]
+        );
+        cards.children[j - 1].after(replacedCard);
       }
     }
   }
@@ -48,18 +52,14 @@ function sortDescend(typeSort: string): void {
         getAttrForSort(typeSort, cards.children[i]) <
         getAttrForSort(typeSort, cards.children[j])
       ) {
-        swapElements(cards.children[i], cards.children[j]);
+        const replacedCard = cards.replaceChild(
+          cards.children[j],
+          cards.children[i]
+        );
+        cards.children[j - 1].after(replacedCard);
       }
     }
   }
-}
-
-function swapElements(elem1, elem2) {
-  let prev1 = elem1.previousSibling;
-  let prev2 = elem2.previousSibling;
-
-  prev1.after(elem2);
-  prev2.after(elem1);
 }
 
 function getAttrForSort(typeSort: string, item): string | number {
