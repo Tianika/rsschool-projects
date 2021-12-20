@@ -1,25 +1,26 @@
 import { sortTypes } from './constants';
 
-function insertElement(firstElem: Element, secondElem) {
-  if (secondElem) {
-    return secondElem.parentNode.insertBefore(
-      firstElem,
-      secondElem.nextSibling
-    );
+export function sortToys(index: number): void {
+  switch (index) {
+    case 0:
+      sortDescend(sortTypes.default);
+      break;
+    case 1:
+      sortDescend(sortTypes.sortFromLetters);
+      break;
+    case 2:
+      sortAscend(sortTypes.sortFromLetters);
+      break;
+    case 3:
+      sortAscend(sortTypes.sortFromYear);
+      break;
+    case 4:
+      sortDescend(sortTypes.sortFromYear);
+      break;
   }
 }
 
-function getAttrForSort(typeSort: string, item): string | number {
-  if (typeSort === sortTypes.sortFromLetters) {
-    return item.getAttribute(typeSort).toLowerCase();
-  } else {
-    return +item.getAttribute(typeSort);
-  }
-}
-
-//function compareValues()
-
-export function sortAscend(typeSort: string): void {
+function sortAscend(typeSort: string): void {
   const cards = document.querySelector('.toys-container');
 
   if (!cards) return;
@@ -41,7 +42,7 @@ export function sortAscend(typeSort: string): void {
   }
 }
 
-export function sortDescend(typeSort: string): void {
+function sortDescend(typeSort: string): void {
   const cards = document.querySelector('.toys-container');
 
   if (!cards) return;
@@ -60,5 +61,22 @@ export function sortDescend(typeSort: string): void {
         insertElement(replacedElem, cards.children[i]);
       }
     }
+  }
+}
+
+function getAttrForSort(typeSort: string, item): string | number {
+  if (typeSort === sortTypes.sortFromLetters) {
+    return item.getAttribute(typeSort).toLowerCase();
+  } else {
+    return +item.getAttribute(typeSort);
+  }
+}
+
+function insertElement(firstElem: Element, secondElem) {
+  if (secondElem) {
+    return secondElem.parentNode.insertBefore(
+      firstElem,
+      secondElem.nextSibling
+    );
   }
 }

@@ -1,16 +1,14 @@
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
-import { sortAscend, sortDescend } from '../utils/sort';
+import { sortToys } from '../utils/sort';
 import data from '../data/data';
 import { ToyCard } from './ToyCard';
-import { sortTypes } from '../utils/constants';
 import {
   IS_FAVORITE,
   SORT_INDEX,
   VALUES_FOR_FILTER,
   SLIDER_VALUES,
   NOT_FOUND,
-  DEFAULT_STRING,
 } from '../utils/constants';
 import {
   checkToyCard,
@@ -18,6 +16,8 @@ import {
   resetCheckboxes,
   resetSearch,
   resetSlider,
+  addCheckboxSelection,
+  addSliderValue,
 } from '../utils/general';
 
 export class Settings {
@@ -37,7 +37,7 @@ export class Settings {
         min: SLIDER_VALUES.yearMin,
         max: SLIDER_VALUES.yearMax,
       },
-      search: '',
+      search: new Set(),
     };
   }
 
@@ -205,23 +205,7 @@ export class Settings {
     selectSortType.addEventListener('change', function (): void {
       const index: number = this.selectedIndex;
 
-      switch (index) {
-        case 0:
-          sortDescend(sortTypes.default);
-          break;
-        case 1:
-          sortDescend(sortTypes.sortFromLetters);
-          break;
-        case 2:
-          sortAscend(sortTypes.sortFromLetters);
-          break;
-        case 3:
-          sortAscend(sortTypes.sortFromYear);
-          break;
-        case 4:
-          sortDescend(sortTypes.sortFromYear);
-          break;
-      }
+      sortToys(index);
     });
 
     //search input
@@ -298,14 +282,18 @@ export class Settings {
       toyCard.draw(data);
     });
 
+    //load from local storage
     if (localStorage.filterForChristmasGame)
       window.addEventListener('DOMContentLoaded', () => {
         const saveValuesFilter = JSON.parse(
           localStorage.filterForChristmasGame
         );
 
-        console.log(localStorage.filterForChristmasGame);
-        console.log(saveValuesFilter);
+        // console.log(localStorage.filterForChristmasGame);
+        // console.log(saveValuesFilter);
+
+        addCheckboxSelection(saveValuesFilter);
+        addSliderValue(countSlider, yearSlider, saveValuesFilter);
 
         if (saveValuesFilter.shape.length > 0) {
           saveValuesFilter.shape.forEach((item) => {
@@ -329,11 +317,33 @@ export class Settings {
         this.valuesForFilter.year.min = saveValuesFilter.year.min;
         this.valuesForFilter.year.max = saveValuesFilter.year.max;
 
-        console.log(this.valuesForFilter);
-
+        // console.log(this.valuesForFilter);
         checkToyCard(this.valuesForFilter);
+
+        selectSortType.selectedIndex = saveValuesFilter.sort;
+        sortToys(selectSortType.selectedIndex);
+
+        const favoriteToys: Array<string> = saveValuesFilter.userFavorite;
+
+        if (favoriteToys.length > 0) {
+          const toys = document.querySelectorAll(
+            '.toy-card'
+          ) as NodeListOf<HTMLElement>;
+          const toysCount = document.querySelector(
+            '.toys-count'
+          ) as HTMLElement;
+
+          toysCount.innerText = favoriteToys.length.toString();
+
+          toys.forEach((toy: any): void => {
+            if (favoriteToys.includes(toy.dataset.num)) {
+              toy.classList.add('user-favorite-toy');
+            }
+          });
+        }
       });
 
+    //save to local storage
     window.addEventListener('beforeunload', () => {
       const userFavoriteToys = document.querySelectorAll(
         '.user-favorite-toy'

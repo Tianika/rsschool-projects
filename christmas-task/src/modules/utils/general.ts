@@ -1,4 +1,9 @@
-import { IS_FAVORITE, SLIDER_VALUES, DEFAULT_STRING } from './constants';
+import {
+  IS_FAVORITE,
+  SLIDER_VALUES,
+  DEFAULT_STRING,
+  VALUES_FOR_FILTER,
+} from './constants';
 
 export function addAttribute(
   cardToy: HTMLElement,
@@ -126,4 +131,40 @@ export function resetCheckboxes() {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
+}
+
+export function addCheckboxSelection(saveValuesFilter) {
+  const settings = document.querySelector('.settings-container') as HTMLElement;
+  const checkboxes = settings.querySelectorAll(
+    'input'
+  ) as NodeListOf<HTMLInputElement>;
+
+  checkboxes.forEach((checkbox) => {
+    if (saveValuesFilter.shape.includes(VALUES_FOR_FILTER[checkbox.id])) {
+      checkbox.checked = true;
+    }
+    if (saveValuesFilter.color.includes(VALUES_FOR_FILTER[checkbox.id])) {
+      checkbox.checked = true;
+    }
+    if (saveValuesFilter.size.includes(VALUES_FOR_FILTER[checkbox.id])) {
+      checkbox.checked = true;
+    }
+    if (
+      checkbox.id === 'favorite' &&
+      saveValuesFilter.favorite === IS_FAVORITE.true
+    ) {
+      checkbox.checked = true;
+    }
+  });
+}
+
+export function addSliderValue(countSlider, yearSlider, saveValuesFilter) {
+  countSlider.noUiSlider?.set([
+    saveValuesFilter.count.min,
+    saveValuesFilter.count.max,
+  ]);
+  yearSlider.noUiSlider?.set([
+    saveValuesFilter.year.min,
+    saveValuesFilter.year.max,
+  ]);
 }
