@@ -1,14 +1,8 @@
-import { Settings } from '../component/Settings';
-import { ToyCard } from '../component/ToyCard';
-import data from '../data/data';
-import { dataToys } from '../utils/interfaces';
-
+import { ToyPages } from '../pages/ToysPage';
 export class App {
   start(): void {
-    const settingsView: Settings = new Settings();
-    settingsView.draw();
+    const toyPage: ToyPages = new ToyPages();
 
-    const toyCards: ToyCard = new ToyCard();
-    toyCards.draw(data);
+    toyPage.draw();
   }
 }

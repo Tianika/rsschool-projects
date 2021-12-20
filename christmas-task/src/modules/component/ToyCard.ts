@@ -119,3 +119,5 @@ export class ToyCard {
     });
   }
 }
+
+export default ToyCard;
