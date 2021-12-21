@@ -39,27 +39,17 @@ export class Game {
     this.time = localStorage.roundDuration;
   }
 
-  async run() {
+  run() {
     this.runRound();
   }
 
-  runRound() {
-    let images = [];
-
-    fetchAsync('../../assets/data/images.json')
-      .then((data) => {
-        images = [...data];
-        console.log(images);
-      })
-      .catch((error) => console.error(error));
+  async runRound() {
+    const images = await fetchAsync('../../assets/data/images.json');
 
     this.images = images.slice(
       this.beginSlice,
       this.beginSlice + START_VALUES.questionsPerRound
     );
-
-    console.log(images);
-    console.log(this.images);
 
     // ---------- artist quiz
     if (this.typeGame === TYPE_GAME.artist) {
@@ -148,8 +138,10 @@ export class Game {
     }
   }
 
-  addAnswersToArtists() {
+  async addAnswersToArtists() {
     const container = document.querySelector('.question-artist-answers');
+
+    const images = await fetchAsync('../../assets/data/images.json');
 
     while (this.answers.length < ANSWER.length) {
       let author = images[randomNumber(images.length - 1)].author;
@@ -167,7 +159,9 @@ export class Game {
     });
   }
 
-  addAnswersToPictures() {
+  async addAnswersToPictures() {
+    const images = await fetchAsync('../../assets/data/images.json');
+
     while (this.answers.length < ANSWER.length) {
       let image = images[randomNumber(images.length - 1)];
 

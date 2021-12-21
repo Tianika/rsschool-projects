@@ -20,17 +20,13 @@ import {
 import { fetchAsync } from '../../utils/fetchAsync';
 
 export class App {
-  start() {
+  async start() {
     try {
       const root = document.querySelector('.root');
       const body = document.querySelector('body');
       const person = new Person();
 
-      let images = [];
-
-      fetchAsync('../../assets/data/images.json')
-        .then((data) => (images = [...data]))
-        .catch((error) => console.error(error));
+      const images = await fetchAsync('../../assets/data/images.json');
 
       const randomPictureNum = randomNumber(images.length);
       changeBgImage(root, randomPictureNum);

@@ -9,11 +9,7 @@ class CardScore {
   }
 
   async renderCard() {
-    let images = [];
-
-    fetchAsync('../../assets/data/images.json')
-      .then((data) => (images = [...data]))
-      .catch((error) => console.error(error));
+    const images = await fetchAsync('../../assets/data/images.json');
 
     this.info = images[this.cardNumber];
 
