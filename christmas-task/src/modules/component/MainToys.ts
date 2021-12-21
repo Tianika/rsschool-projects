@@ -1,4 +1,4 @@
-export const MainToys = () => {
+export const MainToys = (): DocumentFragment => {
   const component = ` 
   <div class="container">
     <div class="settings-container">
@@ -101,13 +101,14 @@ export const MainToys = () => {
   </div>
   `;
 
-  const fragment = document.createDocumentFragment();
-  const main = document.createElement('main');
+  const fragment: DocumentFragment = document.createDocumentFragment();
+  const main: HTMLElement = document.createElement('main');
 
   main.classList.add('main');
   main.innerHTML = component;
 
   fragment.appendChild(main);
+
   return fragment;
 };
 

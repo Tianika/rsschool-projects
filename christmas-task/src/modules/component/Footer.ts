@@ -1,4 +1,4 @@
-export const Footer = () => {
+export const Footer = (): DocumentFragment => {
   const component = ` 
     <div class="container">
       <div class="copyright-year">&copy; 2021</div>
@@ -11,13 +11,14 @@ export const Footer = () => {
     </div>
   `;
 
-  const fragment = document.createDocumentFragment();
-  const footer = document.createElement('footer');
+  const fragment: DocumentFragment = document.createDocumentFragment();
+  const footer: HTMLElement = document.createElement('footer');
 
   footer.classList.add('footer');
   footer.innerHTML = component;
 
   fragment.appendChild(footer);
+
   return fragment;
 };
 

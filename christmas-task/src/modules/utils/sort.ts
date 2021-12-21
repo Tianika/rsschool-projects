@@ -1,4 +1,5 @@
 import { sortTypes } from './constants';
+import { sortValue, typeForSortFunc } from './interfaces';
 
 export function sortToys(index: number): void {
   switch (index) {
@@ -21,17 +22,27 @@ export function sortToys(index: number): void {
 }
 
 function sortDescend(typeSort: string): void {
-  const cards = document.querySelector('.toys-container') as HTMLElement;
+  const cards = document.querySelector('.toys-container') as Element;
 
   if (!cards) return;
 
   for (let i = 0; i < cards.children.length; i++) {
     for (let j = i; j < cards.children.length; j++) {
-      if (
-        getAttrForSort(typeSort, cards.children[i]) <
-        getAttrForSort(typeSort, cards.children[j])
-      ) {
-        const el = cards.replaceChild(cards.children[j], cards.children[i]);
+      const valueI: typeForSortFunc = getAttrForSort(
+        typeSort,
+        cards.children[i]
+      );
+      const valueJ: typeForSortFunc = getAttrForSort(
+        typeSort,
+        cards.children[j]
+      );
+
+      if (valueI && valueJ && valueI > valueJ) {
+        const el: Element = cards.replaceChild(
+          cards.children[j],
+          cards.children[i]
+        );
+
         cards.insertBefore(el, cards.children[i].nextSibling);
       }
     }
@@ -39,27 +50,41 @@ function sortDescend(typeSort: string): void {
 }
 
 function sortAscend(typeSort: string): void {
-  const cards = document.querySelector('.toys-container') as HTMLElement;
-
-  if (!cards) return;
+  const cards = document.querySelector('.toys-container') as Element;
 
   for (let i = 0; i < cards.children.length; i++) {
     for (let j = i; j < cards.children.length; j++) {
-      if (
-        getAttrForSort(typeSort, cards.children[i]) >
-        getAttrForSort(typeSort, cards.children[j])
-      ) {
-        const el = cards.replaceChild(cards.children[j], cards.children[i]);
+      const valueI: typeForSortFunc = getAttrForSort(
+        typeSort,
+        cards.children[i]
+      );
+      const valueJ: typeForSortFunc = getAttrForSort(
+        typeSort,
+        cards.children[j]
+      );
+
+      if (valueI && valueJ && valueI > valueJ) {
+        const el: Element = cards.replaceChild(
+          cards.children[j],
+          cards.children[i]
+        );
+
         cards.insertBefore(el, cards.children[i].nextSibling);
       }
     }
   }
 }
 
-function getAttrForSort(typeSort: string, item): string | number {
+function getAttrForSort(typeSort: string, item: Element): typeForSortFunc {
   if (typeSort === sortTypes.sortFromLetters) {
-    return item.getAttribute(typeSort).toLowerCase();
+    const value: sortValue = item.getAttribute(typeSort);
+
+    return value?.toLowerCase();
   } else {
-    return +item.getAttribute(typeSort);
+    const value: sortValue = item.getAttribute(typeSort);
+
+    if (value) {
+      return +value;
+    }
   }
 }

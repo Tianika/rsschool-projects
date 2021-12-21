@@ -1,4 +1,4 @@
-export const Header = () => {
+export const Header = (): DocumentFragment => {
   const component = ` 
         <div class="container">
           <div class="link-main-container">
@@ -28,13 +28,14 @@ export const Header = () => {
         </div>
   `;
 
-  const fragment = document.createDocumentFragment();
-  const header = document.createElement('header');
+  const fragment: DocumentFragment = document.createDocumentFragment();
+  const header: HTMLElement = document.createElement('header');
 
   header.classList.add('header');
   header.innerHTML = component;
 
   fragment.appendChild(header);
+
   return fragment;
 };
 

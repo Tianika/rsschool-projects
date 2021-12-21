@@ -1,4 +1,4 @@
-import { dataToys } from '../utils/interfaces';
+import { dataToys, ICard } from '../utils/interfaces';
 import {
   COUNT_USER_FAVORITE,
   DELAY,
@@ -9,12 +9,12 @@ import { addAttribute } from '../utils/general';
 
 export class ToyCard {
   draw(dataToys: Array<dataToys>): void {
-    const fragment = document.createDocumentFragment();
+    const fragment: DocumentFragment = document.createDocumentFragment();
     const toyCardTemp: HTMLTemplateElement | null =
       document.querySelector('#toyCardTemp');
-    let count = COUNT_USER_FAVORITE.countMin;
+    let count: number = COUNT_USER_FAVORITE.countMin;
 
-    dataToys.forEach((toyData) => {
+    dataToys.forEach((toyData: dataToys): void => {
       if (!toyCardTemp) return;
 
       const newsClone = toyCardTemp.content.cloneNode(true) as HTMLElement;
@@ -59,11 +59,13 @@ export class ToyCard {
       ) as HTMLElement;
       toyFavorite.textContent = `Любимая: ${toyData.favorite ? 'Да' : 'Нет'}`;
 
-      const cardToy = newsClone.querySelector('.toy-card') as HTMLElement;
+      const cardToy = newsClone.querySelector('.toy-card') as ICard;
       cardToy.classList.add('visible');
 
-      ATTRIBUTES.forEach((attribute) => {
-        addAttribute(cardToy, attribute, toyData[attribute]);
+      ATTRIBUTES.forEach((attribute: string): void => {
+        const valueAttribute: string | boolean = toyData[attribute];
+
+        addAttribute(cardToy, attribute, valueAttribute);
       });
 
       if (localStorage.countFavoriteToys) {

@@ -19,9 +19,10 @@ import {
   addCheckboxSelection,
   addSliderValue,
 } from '../utils/general';
+import { IValuesForFilter, ICard, ISaveValues } from '../utils/interfaces';
 
 export class Settings {
-  valuesForFilter: any;
+  valuesForFilter: IValuesForFilter;
 
   constructor() {
     this.valuesForFilter = {
@@ -58,7 +59,7 @@ export class Settings {
         step: SLIDER_VALUES.countStep,
       });
 
-      const countDivs = [
+      const countDivs: Array<Element | null> = [
         document.querySelector('.count-slider-min'),
         document.querySelector('.count-slider-max'),
       ];
@@ -68,8 +69,14 @@ export class Settings {
           'update',
           (values: Array<string | number>, handle: number) => {
             if (countDivs[0] && countDivs[1]) {
-              const min = parseInt(values[0].toString(), SLIDER_VALUES.decimal);
-              const max = parseInt(values[1].toString(), SLIDER_VALUES.decimal);
+              const min: number = parseInt(
+                values[0].toString(),
+                SLIDER_VALUES.decimal
+              );
+              const max: number = parseInt(
+                values[1].toString(),
+                SLIDER_VALUES.decimal
+              );
 
               this.valuesForFilter.count.min = min;
               this.valuesForFilter.count.max = max;
@@ -101,7 +108,7 @@ export class Settings {
       });
     }
 
-    const yearDivs = [
+    const yearDivs: Array<Element | null> = [
       document.querySelector('.year-slider-min'),
       document.querySelector('.year-slider-max'),
     ];
@@ -111,8 +118,14 @@ export class Settings {
         'update',
         (values: Array<string | number>, handle: number) => {
           if (yearDivs[0] && yearDivs[1]) {
-            const min = parseInt(values[0].toString(), SLIDER_VALUES.decimal);
-            const max = parseInt(values[1].toString(), SLIDER_VALUES.decimal);
+            const min: number = parseInt(
+              values[0].toString(),
+              SLIDER_VALUES.decimal
+            );
+            const max: number = parseInt(
+              values[1].toString(),
+              SLIDER_VALUES.decimal
+            );
 
             this.valuesForFilter.year.min = min;
             this.valuesForFilter.year.max = max;
@@ -130,14 +143,18 @@ export class Settings {
     const shapes: NodeListOf<HTMLInputElement> =
       document.querySelectorAll('.shape-choice-item');
 
-    shapes.forEach((elem) => {
-      elem.addEventListener('change', (e: any): void => {
+    shapes.forEach((elem: HTMLInputElement): void => {
+      elem.addEventListener('change', (e: Event): void => {
         if (!e) return;
 
-        if (e.target.checked) {
-          this.valuesForFilter.shape.add(VALUES_FOR_FILTER[e.target.id]);
+        const target = e.target as HTMLInputElement;
+        const id: string = target.id;
+        const value: string = VALUES_FOR_FILTER[id];
+
+        if (target.checked) {
+          this.valuesForFilter.shape.add(value);
         } else {
-          this.valuesForFilter.shape.delete(VALUES_FOR_FILTER[e.target.id]);
+          this.valuesForFilter.shape.delete(value);
         }
 
         checkToyCard(this.valuesForFilter);
@@ -148,14 +165,17 @@ export class Settings {
     const colors: NodeListOf<HTMLInputElement> =
       document.querySelectorAll('.color-choice-item');
 
-    colors.forEach((elem) => {
-      elem.addEventListener('change', (e: any): void => {
+    colors.forEach((elem: HTMLInputElement): void => {
+      elem.addEventListener('change', (e: Event): void => {
         if (!e) return;
 
-        if (e.target.checked) {
-          this.valuesForFilter.color.add(VALUES_FOR_FILTER[e.target.id]);
+        const target = e.target as HTMLInputElement;
+        const value: string = VALUES_FOR_FILTER[target.id];
+
+        if (target.checked) {
+          this.valuesForFilter.color.add(value);
         } else {
-          this.valuesForFilter.color.delete(VALUES_FOR_FILTER[e.target.id]);
+          this.valuesForFilter.color.delete(value);
         }
 
         checkToyCard(this.valuesForFilter);
@@ -167,13 +187,16 @@ export class Settings {
       document.querySelectorAll('.size-choice-item');
 
     sizes.forEach((elem) => {
-      elem.addEventListener('change', (e: any): void => {
+      elem.addEventListener('change', (e: Event): void => {
         if (!e) return;
 
-        if (e.target.checked) {
-          this.valuesForFilter.size.add(VALUES_FOR_FILTER[e.target.id]);
+        const target = e.target as HTMLInputElement;
+        const value: string = VALUES_FOR_FILTER[target.id];
+
+        if (target.checked) {
+          this.valuesForFilter.size.add(value);
         } else {
-          this.valuesForFilter.size.delete(VALUES_FOR_FILTER[e.target.id]);
+          this.valuesForFilter.size.delete(value);
         }
 
         checkToyCard(this.valuesForFilter);
@@ -185,10 +208,12 @@ export class Settings {
       '.favorite-choice-item'
     ) as HTMLInputElement;
 
-    favorite.addEventListener('change', (e: any): void => {
+    favorite.addEventListener('change', (e: Event): void => {
       if (!e) return;
 
-      if (e.target.checked) {
+      const target = e.target as HTMLInputElement;
+
+      if (target.checked) {
         this.valuesForFilter.favorite = IS_FAVORITE.true;
       } else {
         this.valuesForFilter.favorite = IS_FAVORITE.false;
@@ -214,8 +239,7 @@ export class Settings {
     ) as HTMLInputElement;
 
     searchInput.addEventListener('input', (): void => {
-      const cards: NodeListOf<HTMLElement> =
-        document.querySelectorAll('.toy-card');
+      const cards: NodeListOf<ICard> = document.querySelectorAll('.toy-card');
       const searchValue: string = searchInput.value.trim().toLowerCase();
 
       if (searchValue.length > 0 && searchInput === document.activeElement) {
@@ -224,7 +248,7 @@ export class Settings {
         clearSearchBtn?.classList.add('hide');
       }
 
-      cards.forEach((card) => {
+      cards.forEach((card: ICard): void => {
         const title = card.querySelector('.toy-card-title') as HTMLElement;
         const titleValue: string = title.innerText.toLowerCase();
 
@@ -242,7 +266,7 @@ export class Settings {
       '.clear-search'
     ) as HTMLButtonElement;
 
-    clearSearchBtn.addEventListener('click', () => {
+    clearSearchBtn.addEventListener('click', (): void => {
       resetSearch(searchInput, clearSearchBtn);
       searchInput.focus();
 
@@ -253,9 +277,9 @@ export class Settings {
     //reset button
     const resetBtn = document.querySelector(
       '.reset-filter-button'
-    ) as HTMLElement;
+    ) as HTMLButtonElement;
 
-    resetBtn.addEventListener('click', () => {
+    resetBtn.addEventListener('click', (): void => {
       resetSlider(countSlider, yearSlider);
       resetSearch(searchInput, clearSearchBtn);
       resetValueForFilter(this.valuesForFilter);
@@ -279,14 +303,14 @@ export class Settings {
       delete localStorage.filterForChristmasGame;
       delete localStorage.countFavoriteToys;
 
-      const toyCard = new ToyCard();
+      const toyCard: ToyCard = new ToyCard();
       toyCard.draw(data);
     });
 
     //load from local storage
     if (localStorage.filterForChristmasGame)
       window.addEventListener('DOMContentLoaded', () => {
-        const saveValuesFilter = JSON.parse(
+        const saveValuesFilter: ISaveValues = JSON.parse(
           localStorage.filterForChristmasGame
         );
 
@@ -294,17 +318,17 @@ export class Settings {
         addSliderValue(countSlider, yearSlider, saveValuesFilter);
 
         if (saveValuesFilter.shape.length > 0) {
-          saveValuesFilter.shape.forEach((item) => {
+          saveValuesFilter.shape.forEach((item: string) => {
             this.valuesForFilter.shape.add(item);
           });
         }
         if (saveValuesFilter.color.length > 0) {
-          saveValuesFilter.color.forEach((item) => {
+          saveValuesFilter.color.forEach((item: string) => {
             this.valuesForFilter.color.add(item);
           });
         }
         if (saveValuesFilter.size.length > 0) {
-          saveValuesFilter.size.forEach((item) => {
+          saveValuesFilter.size.forEach((item: string) => {
             this.valuesForFilter.size.add(item);
           });
         }
@@ -321,21 +345,21 @@ export class Settings {
         selectSortType.selectedIndex = saveValuesFilter.sort;
         sortToys(selectSortType.selectedIndex);
 
-        const favoriteToys: Array<string> = saveValuesFilter.userFavorite;
+        const favoriteToys: Array<string> = [...saveValuesFilter.userFavorite];
 
         if (favoriteToys.length > 0) {
-          const toys = document.querySelectorAll(
+          const cards = document.querySelectorAll(
             '.toy-card'
-          ) as NodeListOf<HTMLElement>;
+          ) as NodeListOf<ICard>;
           const toysCount = document.querySelector(
             '.toys-count'
           ) as HTMLElement;
 
           toysCount.innerText = localStorage.countFavoriteToys;
 
-          toys.forEach((toy: any): void => {
-            if (favoriteToys.includes(toy.dataset.num)) {
-              toy.classList.add('user-favorite-toy');
+          cards.forEach((card: ICard): void => {
+            if (favoriteToys.includes(card.dataset.num)) {
+              card.classList.add('user-favorite-toy');
             }
           });
         }
@@ -356,7 +380,7 @@ export class Settings {
         });
       }
 
-      const valueFilterForSave = {
+      const valueFilterForSave: ISaveValues = {
         shape: [...this.valuesForFilter.shape],
         color: [...this.valuesForFilter.color],
         size: [...this.valuesForFilter.size],
@@ -371,6 +395,7 @@ export class Settings {
         },
         userFavorite: [...userFavoriteNums],
         sort: selectSortType.selectedIndex,
+        search: [],
       };
 
       localStorage.filterForChristmasGame = JSON.stringify(valueFilterForSave);

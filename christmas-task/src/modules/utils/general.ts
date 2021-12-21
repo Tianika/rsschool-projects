@@ -1,12 +1,14 @@
+import * as noUiSlider from 'nouislider';
 import {
   IS_FAVORITE,
   SLIDER_VALUES,
   DEFAULT_STRING,
   VALUES_FOR_FILTER,
 } from './constants';
+import { ICard, IValuesForFilter, ISaveValues } from './interfaces';
 
 export function addAttribute(
-  cardToy: HTMLElement,
+  cardToy: ICard,
   attribute: string,
   valueAttribute: string | boolean
 ): void {
@@ -17,17 +19,17 @@ export function addAttribute(
   }
 }
 
-export function checkToyCard(values: any): void {
-  const cards: NodeListOf<HTMLElement> = document.querySelectorAll('.toy-card');
+export function checkToyCard(values: IValuesForFilter): void {
+  const cards: NodeListOf<ICard> = document.querySelectorAll('.toy-card');
 
-  cards.forEach((card) => checkFilter(card, values));
+  cards.forEach((card: ICard): void => checkFilter(card, values));
 }
 
-export function checkFilter(card: HTMLElement, values: any): void {
+export function checkFilter(card: ICard, values: IValuesForFilter): void {
   showElement(card);
 
-  const count = Number(card.dataset.count);
-  const year = Number(card.dataset.year);
+  const count: number = Number(card.dataset.count);
+  const year: number = Number(card.dataset.year);
 
   if (+values.count.min > count || count > +values.count.max) {
     hideElement(card);
@@ -79,7 +81,7 @@ export function checkFilter(card: HTMLElement, values: any): void {
 
   const toyContainer = document.querySelector('.toys-container') as HTMLElement;
 
-  const cards: NodeListOf<Element> =
+  const cards: NodeListOf<ICard> =
     toyContainer.querySelectorAll('.toy-card.visible');
   const warning: HTMLElement | null = document.querySelector('.warning-filter');
 
@@ -90,27 +92,33 @@ export function checkFilter(card: HTMLElement, values: any): void {
   }
 }
 
-export function hideElement(card) {
+export function hideElement(card: ICard): void {
   card.classList.add('hidden');
   card.classList.remove('visible');
 }
 
-export function showElement(card) {
+export function showElement(card: ICard): void {
   card.classList.remove('hidden');
   card.classList.add('visible');
 }
 
-export function resetSlider(countSlider, yearSlider) {
+export function resetSlider(
+  countSlider: noUiSlider.target,
+  yearSlider: noUiSlider.target
+): void {
   countSlider.noUiSlider?.set([SLIDER_VALUES.countMin, SLIDER_VALUES.countMax]);
   yearSlider.noUiSlider?.set([SLIDER_VALUES.yearMin, SLIDER_VALUES.yearMax]);
 }
 
-export function resetSearch(searchInput, clearSearchBtn) {
+export function resetSearch(
+  searchInput: HTMLInputElement,
+  clearSearchBtn: HTMLButtonElement
+): void {
   searchInput.value = DEFAULT_STRING;
   clearSearchBtn.classList.add('hide');
 }
 
-export function resetValueForFilter(valuesForFilter) {
+export function resetValueForFilter(valuesForFilter: IValuesForFilter): void {
   valuesForFilter.shape.clear();
   valuesForFilter.color.clear();
   valuesForFilter.size.clear();
@@ -128,25 +136,28 @@ export function resetCheckboxes() {
     'input'
   ) as NodeListOf<HTMLInputElement>;
 
-  checkboxes.forEach((checkbox) => {
+  checkboxes.forEach((checkbox: HTMLInputElement) => {
     checkbox.checked = false;
   });
 }
 
-export function addCheckboxSelection(saveValuesFilter) {
+export function addCheckboxSelection(saveValuesFilter: ISaveValues) {
   const settings = document.querySelector('.settings-container') as HTMLElement;
   const checkboxes = settings.querySelectorAll(
     'input'
   ) as NodeListOf<HTMLInputElement>;
 
-  checkboxes.forEach((checkbox) => {
-    if (saveValuesFilter.shape.includes(VALUES_FOR_FILTER[checkbox.id])) {
+  checkboxes.forEach((checkbox: HTMLInputElement): void => {
+    const id: string = checkbox.id;
+    const value: string = VALUES_FOR_FILTER[id];
+
+    if (saveValuesFilter.shape.includes(value)) {
       checkbox.checked = true;
     }
-    if (saveValuesFilter.color.includes(VALUES_FOR_FILTER[checkbox.id])) {
+    if (saveValuesFilter.color.includes(value)) {
       checkbox.checked = true;
     }
-    if (saveValuesFilter.size.includes(VALUES_FOR_FILTER[checkbox.id])) {
+    if (saveValuesFilter.size.includes(value)) {
       checkbox.checked = true;
     }
     if (
@@ -158,7 +169,11 @@ export function addCheckboxSelection(saveValuesFilter) {
   });
 }
 
-export function addSliderValue(countSlider, yearSlider, saveValuesFilter) {
+export function addSliderValue(
+  countSlider: noUiSlider.target,
+  yearSlider: noUiSlider.target,
+  saveValuesFilter: ISaveValues
+): void {
   countSlider.noUiSlider?.set([
     saveValuesFilter.count.min,
     saveValuesFilter.count.max,
