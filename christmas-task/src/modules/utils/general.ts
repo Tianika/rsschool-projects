@@ -4,6 +4,7 @@ import {
   SLIDER_VALUES,
   DEFAULT_STRING,
   VALUES_FOR_FILTER,
+  ValuesFilter,
 } from './constants';
 import { ICard, IValuesForFilter, ISaveValues } from './interfaces';
 
@@ -148,8 +149,8 @@ export function addCheckboxSelection(saveValuesFilter: ISaveValues) {
   ) as NodeListOf<HTMLInputElement>;
 
   checkboxes.forEach((checkbox: HTMLInputElement): void => {
-    const id: string = checkbox.id;
-    const value: string = VALUES_FOR_FILTER[id];
+    const id = checkbox.id as ValuesFilter;
+    const value = VALUES_FOR_FILTER[id];
 
     if (saveValuesFilter.shape.includes(value)) {
       checkbox.checked = true;

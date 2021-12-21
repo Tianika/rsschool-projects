@@ -1,4 +1,4 @@
-import { IValuesFilter } from './interfaces';
+import { Delay, SortIndex } from './interfaces';
 
 export enum sortTypes {
   default = 'data-num',
@@ -11,7 +11,7 @@ export enum IS_FAVORITE {
   true = 'true',
 }
 
-export const SORT_INDEX = {
+export const SORT_INDEX: SortIndex = {
   default: 0,
 };
 
@@ -30,37 +30,64 @@ export enum COUNT_USER_FAVORITE {
   countMax = 20,
 }
 
-export const DELAY = {
+export const DELAY: Delay = {
   delayWarning: 1500,
 };
 
-export const VALUES_FOR_FILTER = {
+export enum ValuesFilter {
+  ball = 'ball',
+  bell = 'bell',
+  cone = 'cone',
+  snowflake = 'snowflake',
+  toy = 'toy',
+  white = 'white',
+  yellow = 'yellow',
+  red = 'red',
+  blue = 'blue',
+  green = 'green',
+  small = 'small',
+  middle = 'middle',
+  big = 'big',
+}
+
+export const VALUES_FOR_FILTER: Record<ValuesFilter, string> = {
   ball: 'шар',
   bell: 'колокольчик',
   cone: 'шишка',
   snowflake: 'снежинка',
   toy: 'фигурка',
-  'white-color': 'белый',
-  'yellow-color': 'желтый',
-  'red-color': 'красный',
-  'blue-color': 'синий',
-  'green-color': 'зелёный',
-  'small-size': 'малый',
-  'middle-size': 'средний',
-  'big-size': 'большой',
+  white: 'белый',
+  yellow: 'желтый',
+  red: 'красный',
+  blue: 'синий',
+  green: 'зелёный',
+  small: 'малый',
+  middle: 'средний',
+  big: 'большой',
 };
 
-export const ATTRIBUTES = [
-  'num',
-  'name',
-  'count',
-  'year',
-  'shape',
-  'color',
-  'size',
-  'favorite',
+export enum Attributes {
+  num = 'num',
+  name = 'name',
+  count = 'count',
+  year = 'year',
+  shape = 'shape',
+  color = 'color',
+  size = 'size',
+  favorite = 'favorite',
+}
+
+export const ATTRIBUTES: Attributes[] = [
+  Attributes.num,
+  Attributes.name,
+  Attributes.count,
+  Attributes.year,
+  Attributes.shape,
+  Attributes.color,
+  Attributes.size,
+  Attributes.favorite,
 ];
 
-export const NOT_FOUND = -1;
+export const NOT_FOUND: number = -1;
 
-export const DEFAULT_STRING = '';
+export const DEFAULT_STRING: string = '';

@@ -29,38 +29,38 @@ export const MainToys = (): DocumentFragment => {
         <h3 class="title color-title">Цвет</h3>
         <div class="color-choice">
           <div class="checkbox-item">
-            <input type="checkbox" class="color-choice-item white-choice-item" id="white-color">
+            <input type="checkbox" class="color-choice-item white-choice-item" id="white">
             <label for="white-color"></label>
           </div>
           <div class="checkbox-item">
-            <input type="checkbox" class="color-choice-item yellow-choice-item" id="yellow-color">
+            <input type="checkbox" class="color-choice-item yellow-choice-item" id="yellow">
             <label for="yellow-color"></label>
           </div>
           <div class="checkbox-item">
-            <input type="checkbox" class="color-choice-item red-choice-item" id="red-color">
+            <input type="checkbox" class="color-choice-item red-choice-item" id="red">
             <label for="red-color"></label>
           </div>
           <div class="checkbox-item">
-            <input type="checkbox" class="color-choice-item blue-choice-item" id="blue-color">
+            <input type="checkbox" class="color-choice-item blue-choice-item" id="blue">
             <label for="blue-color"></label>
           </div>
           <div class="checkbox-item">
-            <input type="checkbox" class="color-choice-item green-choice-item" id="green-color">
+            <input type="checkbox" class="color-choice-item green-choice-item" id="green">
             <label for="green-color"></label>
           </div>
         </div>
         <h3 class="title size-title">Размер</h3>
         <div class="size-choice">
           <div class="checkbox-item">
-            <input type="checkbox" class="size-choice-item small-choice-item" id="small-size">
+            <input type="checkbox" class="size-choice-item small-choice-item" id="small">
             <label for="small-size"></label>
           </div>
           <div class="checkbox-item">
-            <input type="checkbox" class="size-choice-item middle-choice-item" id="middle-size">
+            <input type="checkbox" class="size-choice-item middle-choice-item" id="middle">
             <label for="middle-size"></label>
           </div>
           <div class="checkbox-item">
-            <input type="checkbox" class="size-choice-item big-choice-item" id="big-size">
+            <input type="checkbox" class="size-choice-item big-choice-item" id="big">
             <label for="big-size"></label>
           </div>
         </div>

@@ -4,6 +4,8 @@ import {
   DELAY,
   IS_FAVORITE,
   ATTRIBUTES,
+  Attributes,
+  DEFAULT_STRING,
 } from '../utils/constants';
 import { addAttribute } from '../utils/general';
 
@@ -62,7 +64,7 @@ export class ToyCard {
       const cardToy = newsClone.querySelector('.toy-card') as ICard;
       cardToy.classList.add('visible');
 
-      ATTRIBUTES.forEach((attribute: string): void => {
+      ATTRIBUTES.forEach((attribute: Attributes): void => {
         const valueAttribute: string | boolean = toyData[attribute];
 
         addAttribute(cardToy, attribute, valueAttribute);
@@ -110,7 +112,7 @@ export class ToyCard {
       '.toys-container'
     ) as HTMLElement;
 
-    toyContainer.innerHTML = '';
+    toyContainer.innerHTML = DEFAULT_STRING;
     toyContainer.appendChild(fragment);
 
     const toysCount = document.querySelector('.toys-count') as HTMLElement;

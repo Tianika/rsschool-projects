@@ -59,3 +59,7 @@ export interface ICard extends HTMLElement {
 export type typeForSortFunc = string | number | undefined;
 
 export type sortValue = string | null | undefined;
+
+export type SortIndex = { default: number };
+
+export type Delay = { delayWarning: number };

@@ -9,6 +9,7 @@ import {
   VALUES_FOR_FILTER,
   SLIDER_VALUES,
   NOT_FOUND,
+  ValuesFilter,
 } from '../utils/constants';
 import {
   checkToyCard,
@@ -69,14 +70,8 @@ export class Settings {
           'update',
           (values: Array<string | number>, handle: number) => {
             if (countDivs[0] && countDivs[1]) {
-              const min: number = parseInt(
-                values[0].toString(),
-                SLIDER_VALUES.decimal
-              );
-              const max: number = parseInt(
-                values[1].toString(),
-                SLIDER_VALUES.decimal
-              );
+              const min = parseInt(values[0].toString(), SLIDER_VALUES.decimal);
+              const max = parseInt(values[1].toString(), SLIDER_VALUES.decimal);
 
               this.valuesForFilter.count.min = min;
               this.valuesForFilter.count.max = max;
@@ -118,14 +113,8 @@ export class Settings {
         'update',
         (values: Array<string | number>, handle: number) => {
           if (yearDivs[0] && yearDivs[1]) {
-            const min: number = parseInt(
-              values[0].toString(),
-              SLIDER_VALUES.decimal
-            );
-            const max: number = parseInt(
-              values[1].toString(),
-              SLIDER_VALUES.decimal
-            );
+            const min = parseInt(values[0].toString(), SLIDER_VALUES.decimal);
+            const max = parseInt(values[1].toString(), SLIDER_VALUES.decimal);
 
             this.valuesForFilter.year.min = min;
             this.valuesForFilter.year.max = max;
@@ -148,8 +137,8 @@ export class Settings {
         if (!e) return;
 
         const target = e.target as HTMLInputElement;
-        const id: string = target.id;
-        const value: string = VALUES_FOR_FILTER[id];
+        const id = target.id as ValuesFilter;
+        const value = VALUES_FOR_FILTER[id];
 
         if (target.checked) {
           this.valuesForFilter.shape.add(value);
@@ -170,7 +159,8 @@ export class Settings {
         if (!e) return;
 
         const target = e.target as HTMLInputElement;
-        const value: string = VALUES_FOR_FILTER[target.id];
+        const id = target.id as ValuesFilter;
+        const value = VALUES_FOR_FILTER[id];
 
         if (target.checked) {
           this.valuesForFilter.color.add(value);
@@ -191,7 +181,8 @@ export class Settings {
         if (!e) return;
 
         const target = e.target as HTMLInputElement;
-        const value: string = VALUES_FOR_FILTER[target.id];
+        const id = target.id as ValuesFilter;
+        const value = VALUES_FOR_FILTER[id];
 
         if (target.checked) {
           this.valuesForFilter.size.add(value);
@@ -250,7 +241,7 @@ export class Settings {
 
       cards.forEach((card: ICard): void => {
         const title = card.querySelector('.toy-card-title') as HTMLElement;
-        const titleValue: string = title.innerText.toLowerCase();
+        const titleValue = title.innerText.toLowerCase();
 
         if (titleValue.search(searchValue) === NOT_FOUND) {
           this.valuesForFilter.search.add(card.dataset.num);
@@ -369,11 +360,11 @@ export class Settings {
     window.addEventListener('beforeunload', () => {
       const userFavoriteToys = document.querySelectorAll(
         '.user-favorite-toy'
-      ) as NodeListOf<HTMLDivElement>;
+      ) as NodeListOf<ICard>;
       const userFavoriteNums: Array<string> = [];
 
       if (userFavoriteToys) {
-        userFavoriteToys.forEach((toy: any): void => {
+        userFavoriteToys.forEach((toy: ICard): void => {
           if (toy) {
             userFavoriteNums.push(toy.dataset.num);
           }
