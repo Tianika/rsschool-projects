@@ -77,17 +77,6 @@ export enum Attributes {
   favorite = 'favorite',
 }
 
-export const ATTRIBUTES: Attributes[] = [
-  Attributes.num,
-  Attributes.name,
-  Attributes.count,
-  Attributes.year,
-  Attributes.shape,
-  Attributes.color,
-  Attributes.size,
-  Attributes.favorite,
-];
-
 export const NOT_FOUND: number = -1;
 
 export const DEFAULT_STRING: string = '';

@@ -1,4 +1,4 @@
-export interface dataToys {
+export interface IDataToys {
   num: string;
   name: string;
   count: string;

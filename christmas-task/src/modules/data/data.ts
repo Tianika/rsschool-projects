@@ -1,6 +1,6 @@
-import { dataToys } from '../utils/interfaces';
+import { IDataToys } from '../utils/interfaces';
 
-const data: Array<dataToys> = [
+const data: Array<IDataToys> = [
   {
     num: '1',
     name: 'Большой шар с рисунком',

@@ -1,22 +1,21 @@
-import { dataToys, ICard } from '../utils/interfaces';
+import { IDataToys, ICard } from '../utils/interfaces';
 import {
   COUNT_USER_FAVORITE,
   DELAY,
   IS_FAVORITE,
-  ATTRIBUTES,
   Attributes,
   DEFAULT_STRING,
 } from '../utils/constants';
 import { addAttribute } from '../utils/general';
 
 export class ToyCard {
-  draw(dataToys: Array<dataToys>): void {
+  draw(dataToys: Array<IDataToys>): void {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const toyCardTemp: HTMLTemplateElement | null =
       document.querySelector('#toyCardTemp');
     let count: number = COUNT_USER_FAVORITE.countMin;
 
-    dataToys.forEach((toyData: dataToys): void => {
+    dataToys.forEach((toyData: IDataToys): void => {
       if (!toyCardTemp) return;
 
       const newsClone = toyCardTemp.content.cloneNode(true) as HTMLElement;
@@ -64,7 +63,7 @@ export class ToyCard {
       const cardToy = newsClone.querySelector('.toy-card') as ICard;
       cardToy.classList.add('visible');
 
-      ATTRIBUTES.forEach((attribute: Attributes): void => {
+      Object.values(Attributes).forEach((attribute: Attributes): void => {
         const valueAttribute: string | boolean = toyData[attribute];
 
         addAttribute(cardToy, attribute, valueAttribute);
