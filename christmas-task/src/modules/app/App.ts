@@ -1,9 +1,10 @@
-import { ToyPages } from '../pages/ToysPage';
+import { MainPage, ToysPage } from '../pages';
 
 export class App {
   start(): void {
-    const toyPage: ToyPages = new ToyPages();
-
-    toyPage.draw();
+    // const mainPage = new MainPage();
+    // mainPage.draw();
+    // const toyPage: ToysPage = new ToysPage();
+    // toyPage.draw();
   }
 }

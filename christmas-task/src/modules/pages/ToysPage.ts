@@ -1,7 +1,7 @@
 import { Header, MainToys, Footer, Settings, ToyCard } from '../component';
 import data from '../data/data';
 
-export class ToyPages {
+export class ToysPage {
   draw(): void {
     const header: DocumentFragment = Header();
     const mainToys: DocumentFragment = MainToys();
@@ -20,3 +20,5 @@ export class ToyPages {
     toyCards.draw(data);
   }
 }
+
+export default ToysPage;
