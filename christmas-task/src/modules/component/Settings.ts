@@ -10,6 +10,7 @@ import {
   SLIDER_VALUES,
   NOT_FOUND,
   ValuesFilter,
+  HashIds,
 } from '../utils/constants';
 import {
   checkToyCard,
@@ -80,6 +81,7 @@ export class Settings {
               countDivs[1].innerHTML = max.toString();
 
               checkToyCard(this.valuesForFilter);
+              this.saveSettings();
             }
           }
         );
@@ -123,6 +125,7 @@ export class Settings {
             yearDivs[1].innerHTML = max.toString();
 
             checkToyCard(this.valuesForFilter);
+            this.saveSettings();
           }
         }
       );
@@ -147,6 +150,7 @@ export class Settings {
         }
 
         checkToyCard(this.valuesForFilter);
+        this.saveSettings();
       });
     });
 
@@ -169,6 +173,7 @@ export class Settings {
         }
 
         checkToyCard(this.valuesForFilter);
+        this.saveSettings();
       });
     });
 
@@ -191,6 +196,7 @@ export class Settings {
         }
 
         checkToyCard(this.valuesForFilter);
+        this.saveSettings();
       });
     });
 
@@ -211,6 +217,7 @@ export class Settings {
       }
 
       checkToyCard(this.valuesForFilter);
+      this.saveSettings();
     });
 
     //sort
@@ -218,10 +225,11 @@ export class Settings {
       '.sort-choice'
     ) as HTMLSelectElement;
 
-    selectSortType.addEventListener('change', function (): void {
-      const index: number = this.selectedIndex;
+    selectSortType.addEventListener('change', (): void => {
+      const index: number = selectSortType.selectedIndex;
 
       sortToys(index);
+      this.saveSettings();
     });
 
     //search input
@@ -251,6 +259,7 @@ export class Settings {
       });
 
       checkToyCard(this.valuesForFilter);
+      this.saveSettings();
     });
 
     const clearSearchBtn = document.querySelector(
@@ -263,6 +272,7 @@ export class Settings {
 
       this.valuesForFilter.search.clear();
       checkToyCard(this.valuesForFilter);
+      this.saveSettings();
     });
 
     //reset button
@@ -276,6 +286,7 @@ export class Settings {
       resetValueForFilter(this.valuesForFilter);
       resetCheckboxes();
       checkToyCard(this.valuesForFilter);
+      this.saveSettings();
     });
 
     //default button
@@ -299,98 +310,122 @@ export class Settings {
     });
 
     //load from local storage
-    if (localStorage.filterForChristmasGame)
-      window.addEventListener('DOMContentLoaded', () => {
-        const saveValuesFilter: ISaveValues = JSON.parse(
-          localStorage.filterForChristmasGame
-        );
+    if (localStorage.filterForChristmasGame) {
+      this.loadSettings();
+    }
 
-        addCheckboxSelection(saveValuesFilter);
-        addSliderValue(countSlider, yearSlider, saveValuesFilter);
+    // window.addEventListener('hashchange', () => {
+    //   const hash = window.location.hash.slice(1);
 
-        if (saveValuesFilter.shape.length > 0) {
-          saveValuesFilter.shape.forEach((item: string) => {
-            this.valuesForFilter.shape.add(item);
-          });
-        }
-        if (saveValuesFilter.color.length > 0) {
-          saveValuesFilter.color.forEach((item: string) => {
-            this.valuesForFilter.color.add(item);
-          });
-        }
-        if (saveValuesFilter.size.length > 0) {
-          saveValuesFilter.size.forEach((item: string) => {
-            this.valuesForFilter.size.add(item);
-          });
-        }
+    //   if (hash === HashIds.toysId) {
+    //     this.loadSettings();
+    //   }
+    // });
+  }
 
-        this.valuesForFilter.favorite = saveValuesFilter.favorite;
-        this.valuesForFilter.count.min = saveValuesFilter.count.min;
-        this.valuesForFilter.count.max = saveValuesFilter.count.max;
-        this.valuesForFilter.year.min = saveValuesFilter.year.min;
-        this.valuesForFilter.year.max = saveValuesFilter.year.max;
+  loadSettings() {
+    const saveValuesFilter: ISaveValues = JSON.parse(
+      localStorage.filterForChristmasGame
+    );
+    const userFavorite: Array<string> = JSON.parse(
+      localStorage.favoriteForChristmasGame
+    );
+    const countSlider = document.querySelector(
+      '#count-slider'
+    ) as noUiSlider.target;
+    const yearSlider = document.querySelector(
+      '#year-slider'
+    ) as noUiSlider.target;
 
-        // console.log(this.valuesForFilter);
-        checkToyCard(this.valuesForFilter);
+    addCheckboxSelection(saveValuesFilter);
+    addSliderValue(countSlider, yearSlider, saveValuesFilter);
 
-        selectSortType.selectedIndex = saveValuesFilter.sort;
-        sortToys(selectSortType.selectedIndex);
+    if (saveValuesFilter.shape.length > 0) {
+      saveValuesFilter.shape.forEach((item: string) => {
+        this.valuesForFilter.shape.add(item);
+      });
+    }
+    if (saveValuesFilter.color.length > 0) {
+      saveValuesFilter.color.forEach((item: string) => {
+        this.valuesForFilter.color.add(item);
+      });
+    }
+    if (saveValuesFilter.size.length > 0) {
+      saveValuesFilter.size.forEach((item: string) => {
+        this.valuesForFilter.size.add(item);
+      });
+    }
 
-        const favoriteToys: Array<string> = [...saveValuesFilter.userFavorite];
+    this.valuesForFilter.favorite = saveValuesFilter.favorite;
+    this.valuesForFilter.count.min = saveValuesFilter.count.min;
+    this.valuesForFilter.count.max = saveValuesFilter.count.max;
+    this.valuesForFilter.year.min = saveValuesFilter.year.min;
+    this.valuesForFilter.year.max = saveValuesFilter.year.max;
 
-        if (favoriteToys.length > 0) {
-          const cards = document.querySelectorAll(
-            '.toy-card'
-          ) as NodeListOf<ICard>;
-          const toysCount = document.querySelector(
-            '.toys-count'
-          ) as HTMLElement;
+    checkToyCard(this.valuesForFilter);
 
-          toysCount.innerText = localStorage.countFavoriteToys;
+    const selectSortType = document.querySelector(
+      '.sort-choice'
+    ) as HTMLSelectElement;
 
-          cards.forEach((card: ICard): void => {
-            if (favoriteToys.includes(card.dataset.num)) {
-              card.classList.add('user-favorite-toy');
-            }
-          });
+    selectSortType.selectedIndex = saveValuesFilter.sort;
+    sortToys(selectSortType.selectedIndex);
+
+    if (userFavorite.length > 0) {
+      const cards = document.querySelectorAll('.toy-card') as NodeListOf<ICard>;
+      const toysCount = document.querySelector('.toys-count') as HTMLElement;
+
+      toysCount.innerText = localStorage.countFavoriteToys;
+
+      cards.forEach((card: ICard): void => {
+        if (userFavorite.includes(card.dataset.num)) {
+          card.classList.add('user-favorite-toy');
         }
       });
+    }
+  }
 
-    //save to local storage
-    window.addEventListener('beforeunload', () => {
-      const userFavoriteToys = document.querySelectorAll(
-        '.user-favorite-toy'
-      ) as NodeListOf<ICard>;
-      const userFavoriteNums: Array<string> = [];
+  saveSettings() {
+    const userFavoriteToys = document.querySelectorAll(
+      '.user-favorite-toy'
+    ) as NodeListOf<ICard>;
+    const userFavoriteNums: Array<string> = [];
+    const selectSortType = document.querySelector(
+      '.sort-choice'
+    ) as HTMLSelectElement;
 
-      if (userFavoriteToys) {
-        userFavoriteToys.forEach((toy: ICard): void => {
-          if (toy) {
-            userFavoriteNums.push(toy.dataset.num);
-          }
-        });
-      }
+    if (userFavoriteToys) {
+      userFavoriteToys.forEach((toy: ICard): void => {
+        if (toy) {
+          userFavoriteNums.push(toy.dataset.num);
+        }
+      });
+    }
 
-      const valueFilterForSave: ISaveValues = {
-        shape: [...this.valuesForFilter.shape],
-        color: [...this.valuesForFilter.color],
-        size: [...this.valuesForFilter.size],
-        favorite: this.valuesForFilter.favorite,
-        count: {
-          min: this.valuesForFilter.count.min,
-          max: this.valuesForFilter.count.max,
-        },
-        year: {
-          min: this.valuesForFilter.year.min,
-          max: this.valuesForFilter.year.max,
-        },
-        userFavorite: [...userFavoriteNums],
-        sort: selectSortType.selectedIndex,
-        search: [],
-      };
+    const valueFilterForSave: ISaveValues = {
+      shape: [...this.valuesForFilter.shape],
+      color: [...this.valuesForFilter.color],
+      size: [...this.valuesForFilter.size],
+      favorite: this.valuesForFilter.favorite,
+      count: {
+        min: this.valuesForFilter.count.min,
+        max: this.valuesForFilter.count.max,
+      },
+      year: {
+        min: this.valuesForFilter.year.min,
+        max: this.valuesForFilter.year.max,
+      },
+      sort: selectSortType.selectedIndex,
+      search: [],
+    };
 
-      localStorage.filterForChristmasGame = JSON.stringify(valueFilterForSave);
-    });
+    const userFavorite: Array<string> = [...userFavoriteNums];
+
+    localStorage.filterForChristmasGame = JSON.stringify(valueFilterForSave);
+    localStorage.favoriteForChristmasGame = JSON.stringify(userFavorite);
+
+    console.log(localStorage.filterForChristmasGame);
+    console.log(localStorage.favoriteForChristmasGame);
   }
 }
 

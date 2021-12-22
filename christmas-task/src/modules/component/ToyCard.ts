@@ -120,6 +120,10 @@ export class ToyCard {
     window.addEventListener('beforeunload', () => {
       localStorage.countFavoriteToys = count.toString();
     });
+
+    window.addEventListener('hashchange', () => {
+      localStorage.countFavoriteToys = count.toString();
+    });
   }
 }
 

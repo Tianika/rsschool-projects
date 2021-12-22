@@ -40,7 +40,6 @@ export interface ISaveValues {
   };
   search: Array<string>;
   sort: number;
-  userFavorite: Array<string>;
 }
 
 export interface ICard extends HTMLElement {

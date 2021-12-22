@@ -21,29 +21,17 @@ export class App {
   }
 
   drawMainPage() {
-    const root = document.querySelector('.root') as HTMLElement;
-    root.innerHTML = DEFAULT_STRING;
-
     const mainPage: MainPage = new MainPage();
     mainPage.draw();
-    window.location.hash = DEFAULT_STRING;
   }
 
   drawToysPage() {
-    const root = document.querySelector('.root') as HTMLElement;
-    root.innerHTML = DEFAULT_STRING;
-
     const toysPage: ToysPage = new ToysPage();
     toysPage.draw();
-    window.location.hash = DEFAULT_STRING;
   }
 
   drawTreePage() {
-    const root = document.querySelector('.root') as HTMLElement;
-    root.innerHTML = DEFAULT_STRING;
-
     const treePage: TreePage = new TreePage();
     treePage.draw();
-    window.location.hash = DEFAULT_STRING;
   }
 }

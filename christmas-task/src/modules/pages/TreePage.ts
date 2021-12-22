@@ -1,4 +1,5 @@
 import { Header, MainTree, Footer } from '../component';
+import { DEFAULT_STRING } from '../utils/constants';
 
 export class MainPage {
   draw(): void {
@@ -7,6 +8,7 @@ export class MainPage {
     const footer: DocumentFragment = Footer();
 
     const root = document.querySelector('.root') as HTMLElement;
+    root.innerHTML = DEFAULT_STRING;
 
     root.appendChild(header);
     root.appendChild(main);
