@@ -1,4 +1,4 @@
-import { MainPage, ToysPage } from '../pages';
+import { MainPage, ToysPage, TreePage } from '../pages';
 import { DEFAULT_STRING, HashIds } from '../utils/constants';
 
 export class App {
@@ -14,6 +14,8 @@ export class App {
         this.drawMainPage();
       } else if (hash === HashIds.toysId) {
         this.drawToysPage();
+      } else if (hash === HashIds.treeId) {
+        this.drawTreePage();
       }
     });
   }
@@ -33,6 +35,15 @@ export class App {
 
     const toysPage: ToysPage = new ToysPage();
     toysPage.draw();
+    window.location.hash = DEFAULT_STRING;
+  }
+
+  drawTreePage() {
+    const root = document.querySelector('.root') as HTMLElement;
+    root.innerHTML = DEFAULT_STRING;
+
+    const treePage: TreePage = new TreePage();
+    treePage.draw();
     window.location.hash = DEFAULT_STRING;
   }
 }
