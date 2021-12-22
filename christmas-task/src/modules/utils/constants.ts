@@ -80,3 +80,9 @@ export enum Attributes {
 export const NOT_FOUND: number = -1;
 
 export const DEFAULT_STRING: string = '';
+
+export enum HashIds {
+  mainId = 'main-page',
+  toysId = 'toys-page',
+  treeId = 'tree-page',
+}

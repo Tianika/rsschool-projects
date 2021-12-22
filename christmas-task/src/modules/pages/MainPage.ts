@@ -11,6 +11,12 @@ export class MainPage {
     root.appendChild(header);
     root.appendChild(main);
     root.appendChild(footer);
+
+    const mainA = document.querySelector('.main') as HTMLElement;
+    const headerA = document.querySelector('.header') as HTMLElement;
+
+    mainA.classList.add('main-page');
+    headerA.classList.add('main-header');
   }
 }
 

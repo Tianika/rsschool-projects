@@ -2,13 +2,13 @@ export const Header = (): DocumentFragment => {
   const component = ` 
         <div class="container">
           <div class="link-main-container">
-            <a href="#" class="link-main"></a>
+            <a href="#main-page" class="link-main"></a>
           </div>
           <div class="link-toys-container">
-            <a href="#" class="link-toys">Игрушки</a>
+            <a href="#toys-page" class="link-toys">Игрушки</a>
           </div>
           <div class="link-trees-container">
-            <a href="#" class="link-trees">Ёлка</a>
+            <a href="#tree-page" class="link-trees">Ёлка</a>
           </div>
           <div class="search-field">
             <input
