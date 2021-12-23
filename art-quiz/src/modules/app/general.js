@@ -1,4 +1,4 @@
-import { DELAYS } from '../../utils/constants';
+import { DELAYS } from '../../utils';
 
 export function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);

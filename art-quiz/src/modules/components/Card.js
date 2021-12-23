@@ -1,4 +1,4 @@
-import { PAGES, START_VALUES, SAVE_RESULT } from '../../utils/constants';
+import { PAGES, START_VALUES, SAVE_RESULT } from '../../utils';
 
 class Card {
   constructor(subtitle, number) {

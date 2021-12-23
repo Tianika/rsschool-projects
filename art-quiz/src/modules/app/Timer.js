@@ -1,7 +1,7 @@
 import { playSound } from './sound';
 import { AnswerWindow } from '../components';
 import { modalAnimation } from './general';
-import { TIMER, SOUNDS, ANSWER } from '../../utils/constants';
+import { TIMER, SOUNDS, ANSWER } from '../../utils';
 
 export class Timer {
   constructor(game) {

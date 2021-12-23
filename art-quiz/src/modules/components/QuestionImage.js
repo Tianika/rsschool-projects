@@ -3,14 +3,14 @@ export class QuestionImage {
     this.number = number;
   }
 
-  async renderQuestion() {
+  renderQuestion() {
     const container = document.querySelector('.question-artist-image');
 
     let link = `https://raw.githubusercontent.com/Tianika/image-data/master/full/${this.number}full.jpg`;
 
     const imgBg = new Image();
 
-    imgBg.src = await link;
+    imgBg.src = link;
 
     imgBg.addEventListener(
       'load',

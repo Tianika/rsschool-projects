@@ -1,5 +1,5 @@
 import { CardScore, Footer } from '../components';
-import { START_VALUES } from '../../utils/constants';
+import { START_VALUES } from '../../utils';
 
 class Score {
   constructor(number) {

@@ -1,10 +1,14 @@
 import { Card, Footer } from '../components';
+import { TYPE_GAME, CATEGORIES } from '../../utils';
 
 class Category {
   constructor(category) {
     this.container = document.querySelector('.root');
     this.category = category;
-    this.quiz = category === 'artist' ? 'Artist quiz' : 'Pictures quiz';
+    this.quiz =
+      category === TYPE_GAME.artist
+        ? CATEGORIES.artistQuiz
+        : CATEGORIES.picturesQuiz;
   }
 
   run() {

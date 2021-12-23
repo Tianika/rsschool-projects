@@ -80,3 +80,8 @@ export const DELAYS = {
 };
 
 export const TRANSFER_PERCENT = 100;
+
+export const CATEGORIES = {
+  artistQuiz: 'Artist quiz',
+  picturesQuiz: 'Pictures quiz',
+};

@@ -22,8 +22,8 @@ import {
   ANSWER,
   SOUNDS,
   SAVE_RESULT,
-} from '../../utils/constants';
-import { fetchAsync } from '../../utils/fetchAsync';
+  fetchAsync
+} from '../../utils';
 
 export class Game {
   constructor(round, typeGame) {
@@ -44,7 +44,7 @@ export class Game {
   }
 
   async runRound() {
-    const images = await fetchAsync('../../assets/data/images.json');
+    const images = await fetchAsync('../../data/images.json');
 
     this.images = images.slice(
       this.beginSlice,
@@ -141,7 +141,7 @@ export class Game {
   async addAnswersToArtists() {
     const container = document.querySelector('.question-artist-answers');
 
-    const images = await fetchAsync('../../assets/data/images.json');
+    const images = await fetchAsync('../../data/images.json');
 
     while (this.answers.length < ANSWER.length) {
       let author = images[randomNumber(images.length - 1)].author;
@@ -160,7 +160,7 @@ export class Game {
   }
 
   async addAnswersToPictures() {
-    const images = await fetchAsync('../../assets/data/images.json');
+    const images = await fetchAsync('../../data/images.json');
 
     while (this.answers.length < ANSWER.length) {
       let image = images[randomNumber(images.length - 1)];

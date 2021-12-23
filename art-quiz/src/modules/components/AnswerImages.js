@@ -1,4 +1,4 @@
-import { ANSWER } from '../../utils/constants';
+import { ANSWER } from '../../utils';
 
 export class AnswerImages {
   constructor(name, rightName) {

@@ -1,5 +1,4 @@
-import { START_VALUES } from '../../utils/constants';
-import { fetchAsync } from '../../utils/fetchAsync';
+import { START_VALUES, fetchAsync } from '../../utils';
 
 class CardScore {
   constructor(category, number, title, result) {
@@ -9,7 +8,7 @@ class CardScore {
   }
 
   async renderCard() {
-    const images = await fetchAsync('../../assets/data/images.json');
+    const images = await fetchAsync('../../data/images.json');
 
     this.info = images[this.cardNumber];
 

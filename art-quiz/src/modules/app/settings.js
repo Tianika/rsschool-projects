@@ -6,7 +6,7 @@ import {
   SOUNDS_SWITCH,
   DEFAULT_ROUND_DURATION,
   START_VALUES,
-} from '../../utils/constants';
+} from '../../utils';
 
 export async function changeVolumeBg() {
   const volume = await document.querySelector('.volume-input');

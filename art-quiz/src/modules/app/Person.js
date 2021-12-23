@@ -1,4 +1,4 @@
-import { START_VALUES, PAGES } from '../../utils/constants';
+import { START_VALUES, PAGES } from '../../utils';
 
 export class Person {
   constructor() {

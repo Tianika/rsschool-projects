@@ -16,6 +16,7 @@ export class GrandResultWindow {
         </div>
       </div>
   `;
+
     return component;
   }
 }

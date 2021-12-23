@@ -1,7 +1,7 @@
 import { playSound } from './sound';
 import { AnswerWindow } from '../components';
 import { modalAnimation } from './general';
-import { ANSWER, SOUNDS } from '../../utils/constants';
+import { ANSWER, SOUNDS } from '../../utils';
 
 export class Answer {
   constructor(game) {
