@@ -25,6 +25,8 @@ export interface IValuesForFilter {
   search: Set<string>;
 }
 
+export type FavoriteToys = Set<string>;
+
 export interface ISaveValues {
   shape: Array<string>;
   color: Array<string>;

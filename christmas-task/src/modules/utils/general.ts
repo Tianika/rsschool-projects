@@ -170,15 +170,20 @@ export function addCheckboxSelection(saveValuesFilter: ISaveValues) {
   });
 }
 
-export function addSliderValue(
-  countSlider: noUiSlider.target,
-  yearSlider: noUiSlider.target,
-  saveValuesFilter: ISaveValues
+export function addCountSliderValue(
+  saveValuesFilter: ISaveValues,
+  countSlider: noUiSlider.target
 ): void {
   countSlider.noUiSlider?.set([
     saveValuesFilter.count.min,
     saveValuesFilter.count.max,
   ]);
+}
+
+export function addYearSliderValue(
+  saveValuesFilter: ISaveValues,
+  yearSlider: noUiSlider.target
+): void {
   yearSlider.noUiSlider?.set([
     saveValuesFilter.year.min,
     saveValuesFilter.year.max,

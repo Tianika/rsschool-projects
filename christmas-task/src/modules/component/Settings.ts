@@ -19,7 +19,8 @@ import {
   resetSearch,
   resetSlider,
   addCheckboxSelection,
-  addSliderValue,
+  addCountSliderValue,
+  addYearSliderValue,
 } from '../utils/general';
 import { IValuesForFilter, ICard, ISaveValues } from '../utils/interfaces';
 
@@ -45,6 +46,11 @@ export class Settings {
   }
 
   draw(): void {
+    // load from local storage
+    if (localStorage.filterForChristmasGame) {
+      this.loadSettings();
+    }
+
     //count slider
     const countSlider = document.querySelector(
       '#count-slider'
@@ -60,6 +66,14 @@ export class Settings {
         },
         step: SLIDER_VALUES.countStep,
       });
+
+      if (localStorage.filterForChristmasGame) {
+        const saveValuesFilter: ISaveValues = JSON.parse(
+          localStorage.filterForChristmasGame
+        );
+
+        addCountSliderValue(saveValuesFilter, countSlider);
+      }
 
       const countDivs: Array<Element | null> = [
         document.querySelector('.count-slider-min'),
@@ -103,6 +117,14 @@ export class Settings {
         },
         step: SLIDER_VALUES.yearStep,
       });
+    }
+
+    if (localStorage.filterForChristmasGame) {
+      const saveValuesFilter: ISaveValues = JSON.parse(
+        localStorage.filterForChristmasGame
+      );
+
+      addYearSliderValue(saveValuesFilter, yearSlider);
     }
 
     const yearDivs: Array<Element | null> = [
@@ -309,26 +331,13 @@ export class Settings {
       toyCard.draw(data);
     });
 
-    //load from local storage
-    if (localStorage.filterForChristmasGame) {
-      this.loadSettings();
-    }
-
-    // window.addEventListener('hashchange', () => {
-    //   const hash = window.location.hash.slice(1);
-
-    //   if (hash === HashIds.toysId) {
-    //     this.loadSettings();
-    //   }
-    // });
+    window.addEventListener('DOMContentLoaded', this.loadSettings);
+    window.addEventListener('beforeunload', this.saveSettings);
   }
 
   loadSettings() {
     const saveValuesFilter: ISaveValues = JSON.parse(
       localStorage.filterForChristmasGame
-    );
-    const userFavorite: Array<string> = JSON.parse(
-      localStorage.favoriteForChristmasGame
     );
     const countSlider = document.querySelector(
       '#count-slider'
@@ -338,7 +347,8 @@ export class Settings {
     ) as noUiSlider.target;
 
     addCheckboxSelection(saveValuesFilter);
-    addSliderValue(countSlider, yearSlider, saveValuesFilter);
+    addCountSliderValue(saveValuesFilter, countSlider);
+    addYearSliderValue(saveValuesFilter, yearSlider);
 
     if (saveValuesFilter.shape.length > 0) {
       saveValuesFilter.shape.forEach((item: string) => {
@@ -369,38 +379,13 @@ export class Settings {
     ) as HTMLSelectElement;
 
     selectSortType.selectedIndex = saveValuesFilter.sort;
-    sortToys(selectSortType.selectedIndex);
-
-    if (userFavorite.length > 0) {
-      const cards = document.querySelectorAll('.toy-card') as NodeListOf<ICard>;
-      const toysCount = document.querySelector('.toys-count') as HTMLElement;
-
-      toysCount.innerText = localStorage.countFavoriteToys;
-
-      cards.forEach((card: ICard): void => {
-        if (userFavorite.includes(card.dataset.num)) {
-          card.classList.add('user-favorite-toy');
-        }
-      });
-    }
+    sortToys(saveValuesFilter.sort);
   }
 
   saveSettings() {
-    const userFavoriteToys = document.querySelectorAll(
-      '.user-favorite-toy'
-    ) as NodeListOf<ICard>;
-    const userFavoriteNums: Array<string> = [];
     const selectSortType = document.querySelector(
       '.sort-choice'
     ) as HTMLSelectElement;
-
-    if (userFavoriteToys) {
-      userFavoriteToys.forEach((toy: ICard): void => {
-        if (toy) {
-          userFavoriteNums.push(toy.dataset.num);
-        }
-      });
-    }
 
     const valueFilterForSave: ISaveValues = {
       shape: [...this.valuesForFilter.shape],
@@ -419,13 +404,7 @@ export class Settings {
       search: [],
     };
 
-    const userFavorite: Array<string> = [...userFavoriteNums];
-
     localStorage.filterForChristmasGame = JSON.stringify(valueFilterForSave);
-    localStorage.favoriteForChristmasGame = JSON.stringify(userFavorite);
-
-    console.log(localStorage.filterForChristmasGame);
-    console.log(localStorage.favoriteForChristmasGame);
   }
 }
 

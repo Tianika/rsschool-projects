@@ -37,7 +37,7 @@ function sortDescend(typeSort: string): void {
         cards.children[j]
       );
 
-      if (valueI && valueJ && valueI > valueJ) {
+      if (valueI && valueJ && valueI < valueJ) {
         const el: Element = cards.replaceChild(
           cards.children[j],
           cards.children[i]

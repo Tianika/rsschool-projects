@@ -1,4 +1,4 @@
-import { IDataToys, ICard } from '../utils/interfaces';
+import { IDataToys, ICard, FavoriteToys } from '../utils/interfaces';
 import {
   COUNT_USER_FAVORITE,
   DELAY,
@@ -9,6 +9,12 @@ import {
 import { addAttribute } from '../utils/general';
 
 export class ToyCard {
+  favoriteToys: FavoriteToys;
+
+  constructor() {
+    this.favoriteToys = new Set();
+  }
+
   draw(dataToys: Array<IDataToys>): void {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const toyCardTemp: HTMLTemplateElement | null =
@@ -69,10 +75,6 @@ export class ToyCard {
         addAttribute(cardToy, attribute, valueAttribute);
       });
 
-      if (localStorage.countFavoriteToys) {
-        count = +localStorage.countFavoriteToys;
-      }
-
       cardToy.addEventListener('click', (): void => {
         if (
           count === COUNT_USER_FAVORITE.countMax &&
@@ -91,10 +93,14 @@ export class ToyCard {
 
           if (cardToy.classList.contains('user-favorite-toy')) {
             cardToy.setAttribute('data-user-favorite', IS_FAVORITE.true);
+            this.favoriteToys.add(cardToy.dataset.num);
             count++;
+            this.saveFavoriteToys();
           } else {
             cardToy.setAttribute('data-user-favorite', IS_FAVORITE.false);
+            this.favoriteToys.delete(cardToy.dataset.num);
             count--;
+            this.saveFavoriteToys();
           }
 
           const toysCount = document.querySelector(
@@ -117,13 +123,46 @@ export class ToyCard {
     const toysCount = document.querySelector('.toys-count') as HTMLElement;
     toysCount.textContent = count.toString();
 
-    window.addEventListener('beforeunload', () => {
-      localStorage.countFavoriteToys = count.toString();
-    });
+    if (localStorage.filterForChristmasGame) {
+      this.loadFavoriteToys();
+    }
 
-    window.addEventListener('hashchange', () => {
-      localStorage.countFavoriteToys = count.toString();
-    });
+    window.addEventListener('beforeunload', this.saveFavoriteToys);
+  }
+
+  saveFavoriteToys() {
+    const userFavoriteToys: Array<string> = [...this.favoriteToys];
+    localStorage.favoriteForChristmasGame = JSON.stringify(userFavoriteToys);
+  }
+
+  loadFavoriteToys() {
+    if (localStorage.favoriteForChristmasGame) {
+      const userFavoriteToys: Array<string> = JSON.parse(
+        localStorage.favoriteForChristmasGame
+      );
+      const count = userFavoriteToys.length;
+
+      if (userFavoriteToys.length > 0) {
+        userFavoriteToys.forEach((toy: string): void => {
+          this.favoriteToys.add(toy);
+        });
+      }
+
+      if (userFavoriteToys.length > 0) {
+        const cards = document.querySelectorAll(
+          '.toy-card'
+        ) as NodeListOf<ICard>;
+        const toysCount = document.querySelector('.toys-count') as HTMLElement;
+
+        toysCount.innerText = count.toString();
+
+        cards.forEach((card: ICard): void => {
+          if (userFavoriteToys.includes(card.dataset.num)) {
+            card.classList.add('user-favorite-toy');
+          }
+        });
+      }
+    }
   }
 }
 
