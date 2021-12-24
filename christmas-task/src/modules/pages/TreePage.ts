@@ -5,12 +5,20 @@ import {
   TREES,
   BACKGROUNDS,
   DELAY,
+  IBackgroundSettings,
+  DEFAULT_VALUE_BG,
 } from '../utils';
-import data from '../data/data';
 import { addToyForPage } from '../utils';
 
 export class MainPage {
-  constructor() {}
+  settings: IBackgroundSettings;
+
+  constructor() {
+    this.settings = {
+      tree: DEFAULT_VALUE_BG,
+      background: DEFAULT_VALUE_BG,
+    };
+  }
 
   draw(): void {
     const header: DocumentFragment = Header();
@@ -39,6 +47,22 @@ export class MainPage {
     this.addBackgrounds();
     this.addToys();
 
+    const treeConrainer = document.querySelector(
+      '.tree-container'
+    ) as HTMLElement;
+    const christmasTree = document.querySelector(
+      '.christmas-tree'
+    ) as HTMLImageElement;
+
+    if (localStorage.settingsBgForTreePage) {
+      const settings = JSON.parse(localStorage.settingsBgForTreePage);
+      this.settings.tree = settings.tree;
+      this.settings.background = settings.background;
+
+      treeConrainer.style.backgroundImage = `url(../assets/bg/${this.settings.background}.jpg)`;
+      christmasTree.src = `../assets/tree/${this.settings.tree}.png`;
+    }
+
     const resetBtn = document.querySelector(
       '.reset-button'
     ) as HTMLButtonElement;
@@ -52,6 +76,16 @@ export class MainPage {
       }, DELAY.delayActive);
 
       delete localStorage.settingsForTreePage;
+      delete localStorage.settingsBgForTreePage;
+
+      treeConrainer.style.backgroundImage = `url(../assets/bg/${this.settings.background}.jpg)`;
+      christmasTree.src = `../assets/tree/${this.settings.tree}.png`;
+
+      treeConrainer.style.backgroundImage = `url(../assets/bg/${DEFAULT_VALUE_BG}.jpg)`;
+      christmasTree.src = `../assets/tree/${DEFAULT_VALUE_BG}.png`;
+
+      this.settings.tree = DEFAULT_VALUE_BG;
+      this.settings.background = DEFAULT_VALUE_BG;
     });
   }
 
@@ -80,7 +114,12 @@ export class MainPage {
       if (target.classList.contains('tree')) {
         const number = target.dataset.tree;
 
+        if (!number) return;
+
+        this.settings.tree = number;
         christmasTree.src = `../assets/tree/${number}.png`;
+
+        localStorage.settingsBgForTreePage = JSON.stringify(this.settings);
       }
     });
   }
@@ -110,7 +149,12 @@ export class MainPage {
       if (target.classList.contains('background')) {
         const number = target.dataset.background;
 
+        if (!number) return;
+
         treeContainer.style.backgroundImage = `url(../assets/bg/${number}.jpg)`;
+
+        this.settings.background = number;
+        localStorage.settingsBgForTreePage = JSON.stringify(this.settings);
       }
     });
   }

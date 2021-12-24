@@ -70,7 +70,12 @@ export type Delay = {
   delayDefault: number;
 };
 
-export interface ISettings {
+export interface IButtonSettings {
   isPlay: boolean;
   isSnow: boolean;
+}
+
+export interface IBackgroundSettings {
+  tree: string;
+  background: string;
 }

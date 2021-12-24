@@ -1,7 +1,7 @@
-import { DEFAULT_SOUND, ISettings, DELAY } from '../utils';
+import { DEFAULT_SOUND, IButtonSettings, DELAY } from '../utils';
 
 export class Buttons {
-  settings: ISettings;
+  settings: IButtonSettings;
   audio: HTMLAudioElement;
   snowInterval: NodeJS.Timer;
 
