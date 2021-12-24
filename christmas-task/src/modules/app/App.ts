@@ -3,9 +3,13 @@ import { DEFAULT_STRING, HashIds } from '../utils/constants';
 
 export class App {
   start(): void {
-    const mainPage = new MainPage();
     window.location.hash = DEFAULT_STRING;
-    mainPage.draw();
+
+    // const mainPage = new MainPage();
+    // mainPage.draw();
+
+    const treePage: TreePage = new TreePage();
+    treePage.draw();
 
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.slice(1);

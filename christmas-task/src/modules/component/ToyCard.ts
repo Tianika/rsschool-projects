@@ -21,6 +21,10 @@ export class ToyCard {
       document.querySelector('#toyCardTemp');
     let count: number = COUNT_USER_FAVORITE.countMin;
 
+    if (localStorage.favoriteForChristmasGame) {
+      count = JSON.parse(localStorage.favoriteForChristmasGame).length;
+    }
+
     dataToys.forEach((toyData: IDataToys): void => {
       if (!toyCardTemp) return;
 
@@ -123,7 +127,7 @@ export class ToyCard {
     const toysCount = document.querySelector('.toys-count') as HTMLElement;
     toysCount.textContent = count.toString();
 
-    if (localStorage.filterForChristmasGame) {
+    if (localStorage.favoriteForChristmasGame) {
       this.loadFavoriteToys();
     }
 

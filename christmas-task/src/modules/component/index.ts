@@ -5,3 +5,4 @@ export { default as MainToys } from './MainToys';
 export { default as MainTree } from './MainTree';
 export { default as Settings } from './Settings';
 export { default as ToyCard } from './ToyCard';
+export { default as Buttons } from './Buttons';

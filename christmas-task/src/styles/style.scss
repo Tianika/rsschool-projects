@@ -957,6 +957,7 @@ a {
     display: flex;
     justify-content: space-between;
     max-width: 1800px;
+    padding-top: 0;
   }
 
   .title {
@@ -983,7 +984,7 @@ a {
   display: flex;
   justify-content: space-around;
   padding: 10px 20px;
-  margin-top: 5px;
+  margin-top: 15px;
   .button {
     width: 40px;
     height: 40px;
@@ -1107,7 +1108,7 @@ a {
   display: flex;
   justify-content: center;
   width: 50%;
-  height: 800px;
+  height: 815px;
   background-image: url('../assets/bg/1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -1119,7 +1120,7 @@ a {
   z-index: 1;
   display: flex;
   align-self: end;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   height: 90%;
 }
 
@@ -1136,7 +1137,7 @@ a {
   );
   width: 55%;
   height: 50px;
-  bottom: 70px;
+  bottom: 50px;
   border-radius: 50%;
   filter: blur(3px);
 }

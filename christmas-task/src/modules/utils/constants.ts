@@ -86,3 +86,5 @@ export enum HashIds {
   toysId = 'toys-page',
   treeId = 'tree-page',
 }
+
+export const DEFAULT_SOUND = 0;

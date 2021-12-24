@@ -1,4 +1,4 @@
-import { Header, MainTree, Footer } from '../component';
+import { Header, MainTree, Footer, Buttons } from '../component';
 import { DEFAULT_STRING } from '../utils/constants';
 
 export class MainPage {
@@ -19,6 +19,9 @@ export class MainPage {
 
     mainElem.classList.add('main-tree');
     headerElem.classList.add('header-tree');
+
+    const buttons: Buttons = new Buttons();
+    buttons.playSound();
   }
 }
 
