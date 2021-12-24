@@ -63,4 +63,14 @@ export type sortValue = string | null | undefined;
 
 export type SortIndex = { default: number };
 
-export type Delay = { delayWarning: number };
+export type Delay = {
+  delayWarning: number;
+  delayActive: number;
+  delaySnow: number;
+  delayDefault: number;
+};
+
+export interface ISettings {
+  isPlay: boolean;
+  isSnow: boolean;
+}

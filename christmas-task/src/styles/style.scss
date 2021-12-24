@@ -1004,7 +1004,16 @@ a {
     }
     &.save-button {
       background-image: url('../assets/svg/save.svg');
-      &:active {
+      &.active {
+        filter: invert(51%) sepia(64%) saturate(1000%) hue-rotate(-13deg)
+          brightness(100%) contrast(104%) drop-shadow(0 0 10px $light-color);
+      }
+    }
+    &.reset-button {
+      background-image: url('../assets/svg/reset-settings.svg');
+      transition: transform 0.5s linear;
+      &.active {
+        transform: rotate(180deg);
         filter: invert(51%) sepia(64%) saturate(1000%) hue-rotate(-13deg)
           brightness(100%) contrast(104%) drop-shadow(0 0 10px $light-color);
       }

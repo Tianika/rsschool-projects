@@ -6,6 +6,7 @@ export const Main = (): DocumentFragment => {
         <button class="button sound-button"></button>
         <button class="button snow-button"></button>
         <button class="button save-button"></button>
+        <button class="button reset-button"></button>
       </div>
       <div class="choice-tree-container">
         <h3 class="title choice-tree-title">Выберите ёлку</h3>

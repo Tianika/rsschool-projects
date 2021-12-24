@@ -37,6 +37,9 @@ export enum COUNT_USER_FAVORITE {
 
 export const DELAY: Delay = {
   delayWarning: 1500,
+  delayActive: 500,
+  delaySnow: 100,
+  delayDefault: 0,
 };
 
 export enum ValuesFilter {

@@ -1,51 +1,106 @@
-import { DEFAULT_SOUND } from '../utils';
+import { DEFAULT_SOUND, ISettings, DELAY } from '../utils';
 
 export class Buttons {
-  playSound() {
-    let isPlay = false;
-    const soundPaths = ['../../assets/audio/audio.mp3'];
-    const audio = new Audio();
-    audio.src = soundPaths[DEFAULT_SOUND];
+  settings: ISettings;
+  audio: HTMLAudioElement;
+  snowInterval: NodeJS.Timer;
 
+  constructor() {
+    this.settings = {
+      isPlay: false,
+      isSnow: false,
+    };
+    this.audio = new Audio();
+    this.snowInterval = setInterval(() => {}, DELAY.delayDefault);
+  }
+
+  playSound() {
     const soundBtn = document.querySelector(
       '.sound-button'
     ) as HTMLButtonElement;
+    const soundPaths = ['../../assets/audio/audio.mp3'];
+    this.audio.src = soundPaths[DEFAULT_SOUND];
+
+    if (localStorage.settingsForTreePage) {
+      const settings = JSON.parse(localStorage.settingsForTreePage);
+
+      this.settings.isPlay = settings.isPlay;
+
+      if (this.settings.isPlay) {
+        soundBtn.classList.add('active');
+        document.addEventListener(
+          'click',
+          (): void => {
+            this.playAudio(soundBtn);
+          },
+          { once: true }
+        );
+      }
+    }
 
     soundBtn.addEventListener('click', (): void => {
-      if (!isPlay) {
-        audio.play();
-        soundBtn.classList.add('active');
-        isPlay = true;
+      if (!this.settings.isPlay) {
+        this.playAudio(soundBtn);
       } else {
-        audio.pause();
-        soundBtn.classList.remove('active');
-        isPlay = false;
+        this.muteAudio(soundBtn);
       }
     });
 
-    audio.addEventListener('ended', (): void => {
-      soundBtn.classList.remove('active');
-      isPlay = false;
+    this.audio.addEventListener('ended', (): void => {
+      this.muteAudio(soundBtn);
     });
   }
 
-  drawSnowflakes() {
-    let isSnow = false;
-    let snowInterval: NodeJS.Timer;
+  playAudio(soundBtn: HTMLButtonElement) {
+    this.audio.play();
+    soundBtn.classList.add('active');
+    this.settings.isPlay = true;
+    localStorage.settingsForTreePage = JSON.stringify(this.settings);
+  }
 
+  muteAudio(soundBtn: HTMLButtonElement) {
+    this.audio.pause();
+    soundBtn.classList.remove('active');
+    this.settings.isPlay = false;
+    localStorage.settingsForTreePage = JSON.stringify(this.settings);
+  }
+
+  drawSnowflakes() {
     const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
 
+    if (localStorage.settingsForTreePage) {
+      const settings = JSON.parse(localStorage.settingsForTreePage);
+
+      this.settings.isSnow = settings.isSnow;
+
+      if (this.settings.isSnow) {
+        this.snowInterval = setInterval(this.createSnowflake, DELAY.delaySnow);
+
+        this.snowOn(snowBtn);
+      }
+    }
+
     snowBtn.addEventListener('click', (): void => {
-      if (!isSnow) {
-        isSnow = true;
-        snowInterval = setInterval(this.createSnowflake, 200);
-        snowBtn.classList.add('active');
+      if (!this.settings.isSnow) {
+        this.snowInterval = setInterval(this.createSnowflake, DELAY.delaySnow);
+        this.snowOn(snowBtn);
+        localStorage.settingsForTreePage = JSON.stringify(this.settings);
       } else {
-        isSnow = false;
-        clearInterval(snowInterval);
-        snowBtn.classList.remove('active');
+        clearInterval(this.snowInterval);
+        this.snowOff(snowBtn);
+        localStorage.settingsForTreePage = JSON.stringify(this.settings);
       }
     });
+  }
+
+  snowOn(snowBtn: HTMLButtonElement): void {
+    this.settings.isSnow = true;
+    snowBtn.classList.add('active');
+  }
+
+  snowOff(snowBtn: HTMLButtonElement): void {
+    this.settings.isSnow = false;
+    snowBtn.classList.remove('active');
   }
 
   createSnowflake() {
@@ -54,11 +109,11 @@ export class Buttons {
 
     const time = Math.random() * 2 + 4;
     const removeTime = time * 1000;
-    const size = Math.random() * 20 + 10 + 'px';
+    const size = Math.random() * 15 + 15 + 'px';
 
     snowflake.classList.add('snowflake');
     snowflake.style.left = Math.random() * container.offsetWidth + 'px';
-    snowflake.style.opacity = (Math.random() * 6 + 0.1).toString();
+    snowflake.style.opacity = (Math.random() * 4 + 0.2).toString();
     snowflake.style.animationDuration = time + 's';
     snowflake.style.width = size;
     snowflake.style.height = size;
@@ -68,6 +123,17 @@ export class Buttons {
     setTimeout(() => {
       snowflake.remove();
     }, removeTime);
+  }
+
+  resetSettings() {
+    const soundBtn = document.querySelector(
+      '.sound-button'
+    ) as HTMLButtonElement;
+    const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
+
+    clearInterval(this.snowInterval);
+    this.muteAudio(soundBtn);
+    this.snowOff(snowBtn);
   }
 
   saveTree() {}

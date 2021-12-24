@@ -4,11 +4,14 @@ import {
   COUNT_USER_FAVORITE,
   TREES,
   BACKGROUNDS,
+  DELAY,
 } from '../utils';
 import data from '../data/data';
 import { addToyForPage } from '../utils';
 
 export class MainPage {
+  constructor() {}
+
   draw(): void {
     const header: DocumentFragment = Header();
     const main: DocumentFragment = MainTree();
@@ -28,12 +31,28 @@ export class MainPage {
     headerElem.classList.add('header-tree');
 
     const buttons: Buttons = new Buttons();
+
     buttons.playSound();
     buttons.drawSnowflakes();
 
     this.addTrees();
     this.addBackgrounds();
     this.addToys();
+
+    const resetBtn = document.querySelector(
+      '.reset-button'
+    ) as HTMLButtonElement;
+
+    resetBtn.addEventListener('click', (): void => {
+      buttons.resetSettings();
+      resetBtn.classList.add('active');
+
+      setTimeout(() => {
+        resetBtn.classList.remove('active');
+      }, DELAY.delayActive);
+
+      delete localStorage.settingsForTreePage;
+    });
   }
 
   addTrees() {

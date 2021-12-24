@@ -6,6 +6,7 @@ import {
   DEFAULT_STRING,
   VALUES_FOR_FILTER,
   ValuesFilter,
+  Attributes,
 } from './constants';
 import { ICard, IValuesForFilter, ISaveValues } from './interfaces';
 
@@ -163,7 +164,7 @@ export function addCheckboxSelection(saveValuesFilter: ISaveValues) {
       checkbox.checked = true;
     }
     if (
-      checkbox.id === 'favorite' &&
+      checkbox.id === Attributes.favorite &&
       saveValuesFilter.favorite === IS_FAVORITE.true
     ) {
       checkbox.checked = true;
