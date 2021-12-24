@@ -167,7 +167,11 @@ export class MainPage {
     if (localStorage.favoriteForChristmasGame) {
       favoriteToys = JSON.parse(localStorage.favoriteForChristmasGame);
 
-      favoriteToys.forEach((toy) => {});
+      for (let i = COUNT_USER_FAVORITE.countMin; i < favoriteToys.length; i++) {
+        const toy = addToyForPage(+favoriteToys[i]);
+
+        fragment.appendChild(toy);
+      }
     } else {
       for (
         let i = COUNT_USER_FAVORITE.countMin;
