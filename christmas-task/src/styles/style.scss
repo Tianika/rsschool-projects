@@ -995,16 +995,22 @@ a {
     transition: all 0.3s linear;
     &.sound-button {
       background-image: url('../assets/svg/mute.svg');
+      &.active {
+        background-image: url('../assets/svg/audio.svg');
+      }
     }
     &.snow-button {
       background-image: url('../assets/svg/snow.svg');
     }
     &.save-button {
       background-image: url('../assets/svg/save.svg');
+      &:active {
+        filter: invert(51%) sepia(64%) saturate(1000%) hue-rotate(-13deg)
+          brightness(100%) contrast(104%) drop-shadow(0 0 10px $light-color);
+      }
     }
 
     &.active {
-      background-image: url('../assets/svg/audio.svg');
       filter: invert(51%) sepia(64%) saturate(1000%) hue-rotate(-13deg)
         brightness(100%) contrast(104%) drop-shadow(0 0 10px $light-color);
     }
@@ -1020,7 +1026,6 @@ a {
     height: 120px;
     margin: 5px;
     background-color: rgba($white, 0.5);
-    background-image: url('../assets/tree/1.png');
     background-repeat: no-repeat;
     background-size: 70% 90%;
     background-position: center center;
@@ -1043,7 +1048,6 @@ a {
     height: 75px;
     margin: 3px;
     background-color: rgba($white, 0.5);
-    background-image: url('../assets/bg/1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

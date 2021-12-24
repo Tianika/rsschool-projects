@@ -31,15 +31,19 @@ export class Buttons {
 
   drawSnowflakes() {
     let isSnow = false;
+    let snowInterval: NodeJS.Timer;
 
     const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
 
     snowBtn.addEventListener('click', (): void => {
       if (!isSnow) {
         isSnow = true;
-        setInterval(this.createSnowflake, 200);
+        snowInterval = setInterval(this.createSnowflake, 200);
+        snowBtn.classList.add('active');
       } else {
         isSnow = false;
+        clearInterval(snowInterval);
+        snowBtn.classList.remove('active');
       }
     });
   }

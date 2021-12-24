@@ -23,6 +23,73 @@ export class MainPage {
     const buttons: Buttons = new Buttons();
     buttons.playSound();
     buttons.drawSnowflakes();
+
+    this.addTrees();
+    this.addBackgrounds();
+  }
+
+  addTrees() {
+    const trees = ['1', '2', '3', '4', '5', '6'];
+
+    const treesConrainer = document.querySelector(
+      '.choice-tree'
+    ) as HTMLElement;
+
+    trees.forEach((item: string): void => {
+      const tree = document.createElement('li');
+
+      tree.classList.add('tree');
+      tree.style.backgroundImage = `url(../assets/tree/${item}.png)`;
+      tree.setAttribute('data-tree', item);
+
+      treesConrainer.appendChild(tree);
+    });
+
+    const christmasTree = document.querySelector(
+      '.christmas-tree'
+    ) as HTMLImageElement;
+
+    treesConrainer.addEventListener('click', (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      if (target.classList.contains('tree')) {
+        const number = target.dataset.tree;
+
+        christmasTree.src = `../assets/tree/${number}.png`;
+      }
+    });
+  }
+
+  addBackgrounds() {
+    const backgrounds = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+    const backgroundsConrainer = document.querySelector(
+      '.choice-background'
+    ) as HTMLElement;
+
+    backgrounds.forEach((item: string): void => {
+      const background = document.createElement('li');
+
+      background.classList.add('background');
+      background.style.backgroundImage = `url(../assets/bg/${item}.jpg)`;
+      background.setAttribute('data-background', item);
+
+      backgroundsConrainer.appendChild(background);
+    });
+
+    const treeContainer = document.querySelector(
+      '.tree-container'
+    ) as HTMLImageElement;
+
+    backgroundsConrainer.addEventListener('click', (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      if (target.classList.contains('background')) {
+        const number = target.dataset.background;
+
+        treeContainer.style.backgroundImage = `url(../assets/bg/${number}.jpg)`;
+      }
+    });
   }
 }
 
