@@ -22,6 +22,7 @@ export class MainPage {
 
     const buttons: Buttons = new Buttons();
     buttons.playSound();
+    buttons.drawSnowflakes();
   }
 }
 

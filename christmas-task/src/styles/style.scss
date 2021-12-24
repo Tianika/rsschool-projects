@@ -1105,6 +1105,7 @@ a {
 
 .tree-container {
   position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   width: 50%;
@@ -1113,6 +1114,25 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
+}
+
+@keyframes fall {
+  100% {
+    transform: translateY(780px) rotate(200deg);
+  }
+}
+
+.snowflake {
+  position: absolute;
+  top: -30px;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  background-image: url('../assets/svg/snow.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  animation: fall linear forwards;
 }
 
 .christmas-tree {
