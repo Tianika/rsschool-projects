@@ -1,18 +1,15 @@
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
-import { sortToys } from '../utils/sort';
 import data from '../data/data';
 import { ToyCard } from './ToyCard';
 import {
+  sortToys,
   IS_FAVORITE,
   SORT_INDEX,
   VALUES_FOR_FILTER,
   SLIDER_VALUES,
   NOT_FOUND,
   ValuesFilter,
-  HashIds,
-} from '../utils/constants';
-import {
   checkToyCard,
   resetValueForFilter,
   resetCheckboxes,
@@ -21,8 +18,10 @@ import {
   addCheckboxSelection,
   addCountSliderValue,
   addYearSliderValue,
-} from '../utils/general';
-import { IValuesForFilter, ICard, ISaveValues } from '../utils/interfaces';
+  IValuesForFilter,
+  ICard,
+  ISaveValues,
+} from '../utils';
 
 export class Settings {
   valuesForFilter: IValuesForFilter;

@@ -1,12 +1,14 @@
-import { IDataToys, ICard, FavoriteToys } from '../utils/interfaces';
 import {
+  IDataToys,
+  ICard,
+  FavoriteToys,
   COUNT_USER_FAVORITE,
   DELAY,
   IS_FAVORITE,
   Attributes,
   DEFAULT_STRING,
-} from '../utils/constants';
-import { addAttribute } from '../utils/general';
+  addAttribute,
+} from '../utils';
 
 export class ToyCard {
   favoriteToys: FavoriteToys;

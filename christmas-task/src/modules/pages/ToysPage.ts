@@ -1,6 +1,6 @@
 import { Header, MainToys, Footer, Settings, ToyCard } from '../component';
 import data from '../data/data';
-import { DEFAULT_STRING } from '../utils/constants';
+import { DEFAULT_STRING } from '../utils';
 
 export class ToysPage {
   draw(): void {

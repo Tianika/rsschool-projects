@@ -1,4 +1,4 @@
-import { DEFAULT_SOUND } from '../utils/constants';
+import { DEFAULT_SOUND } from '../utils';
 
 export class Buttons {
   playSound() {

@@ -1,5 +1,5 @@
 import { MainPage, ToysPage, TreePage } from '../pages';
-import { DEFAULT_STRING, HashIds } from '../utils/constants';
+import { DEFAULT_STRING, HashIds } from '../utils';
 
 export class App {
   start(): void {

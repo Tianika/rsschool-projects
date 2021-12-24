@@ -1,5 +1,5 @@
 import { Header, MainTree, Footer, Buttons } from '../component';
-import { DEFAULT_STRING } from '../utils/constants';
+import { DEFAULT_STRING } from '../utils';
 
 export class MainPage {
   draw(): void {
