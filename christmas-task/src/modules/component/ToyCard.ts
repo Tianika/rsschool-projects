@@ -5,6 +5,7 @@ import {
   COUNT_USER_FAVORITE,
   DELAY,
   IS_FAVORITE,
+  FAVORITE,
   Attributes,
   DEFAULT_STRING,
   addAttribute,
@@ -70,7 +71,9 @@ export class ToyCard {
       const toyFavorite = newsClone.querySelector(
         '.describe-content.favorite'
       ) as HTMLElement;
-      toyFavorite.textContent = `Любимая: ${toyData.favorite ? 'Да' : 'Нет'}`;
+      toyFavorite.textContent = `Любимая: ${
+        toyData.favorite ? FAVORITE.yes : FAVORITE.no
+      }`;
 
       const cardToy = newsClone.querySelector('.toy-card') as ICard;
       cardToy.classList.add('visible');
@@ -148,13 +151,13 @@ export class ToyCard {
       );
       const count = userFavoriteToys.length;
 
-      if (userFavoriteToys.length > 0) {
+      if (userFavoriteToys.length > COUNT_USER_FAVORITE.countMin) {
         userFavoriteToys.forEach((toy: string): void => {
           this.favoriteToys.add(toy);
         });
       }
 
-      if (userFavoriteToys.length > 0) {
+      if (userFavoriteToys.length > COUNT_USER_FAVORITE.countMin) {
         const cards = document.querySelectorAll(
           '.toy-card'
         ) as NodeListOf<ICard>;

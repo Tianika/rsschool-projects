@@ -1,4 +1,5 @@
 import * as noUiSlider from 'nouislider';
+import data from '../data/data';
 import {
   IS_FAVORITE,
   SLIDER_VALUES,
@@ -188,4 +189,19 @@ export function addYearSliderValue(
     saveValuesFilter.year.min,
     saveValuesFilter.year.max,
   ]);
+}
+
+export function addToyForPage(index: number): HTMLLIElement {
+  const toy = document.createElement('li');
+  const amount = document.createElement('div');
+
+  amount.classList.add('toy-amount');
+  amount.innerText = data[index].count;
+
+  toy.appendChild(amount);
+  toy.classList.add('choice-toy-item');
+  toy.style.backgroundImage = `url(../assets/toys/${data[index].num}.png)`;
+  toy.setAttribute('data-toy', index.toString());
+
+  return toy;
 }

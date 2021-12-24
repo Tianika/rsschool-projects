@@ -324,7 +324,7 @@ export class Settings {
       resetCheckboxes();
       checkToyCard(this.valuesForFilter);
       delete localStorage.filterForChristmasGame;
-      delete localStorage.countFavoriteToys;
+      delete localStorage.favoriteForChristmasGame;
 
       const toyCard: ToyCard = new ToyCard();
       toyCard.draw(data);

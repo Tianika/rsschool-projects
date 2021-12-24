@@ -11,6 +11,11 @@ export enum IS_FAVORITE {
   true = 'true',
 }
 
+export enum FAVORITE {
+  yes = 'Да',
+  no = 'Нет',
+}
+
 export const SORT_INDEX: SortIndex = {
   default: 0,
 };
@@ -88,3 +93,7 @@ export enum HashIds {
 }
 
 export const DEFAULT_SOUND = 0;
+
+export const TREES = ['1', '2', '3', '4', '5', '6'];
+
+export const BACKGROUNDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];

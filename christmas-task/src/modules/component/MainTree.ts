@@ -30,7 +30,7 @@ export const Main = (): DocumentFragment => {
       </div>
     </div>
     <div class="tree-container">
-      <img class="christmas-tree" src='./assets/tree/2.png' alt="Новогодняя ёлка" usemap="#treemap">
+      <img class="christmas-tree" src='./assets/tree/1.png' alt="Новогодняя ёлка" usemap="#treemap">
       <div class="shadow-tree"></div>
       <map name="treemap">
         <area shape="rect" coords="34,44,270,350" alt="Новогодняя ёлка">

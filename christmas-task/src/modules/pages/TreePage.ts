@@ -1,5 +1,12 @@
 import { Header, MainTree, Footer, Buttons } from '../component';
-import { DEFAULT_STRING } from '../utils';
+import {
+  DEFAULT_STRING,
+  COUNT_USER_FAVORITE,
+  TREES,
+  BACKGROUNDS,
+} from '../utils';
+import data from '../data/data';
+import { addToyForPage } from '../utils';
 
 export class MainPage {
   draw(): void {
@@ -26,16 +33,15 @@ export class MainPage {
 
     this.addTrees();
     this.addBackgrounds();
+    this.addToys();
   }
 
   addTrees() {
-    const trees = ['1', '2', '3', '4', '5', '6'];
-
     const treesConrainer = document.querySelector(
       '.choice-tree'
     ) as HTMLElement;
 
-    trees.forEach((item: string): void => {
+    TREES.forEach((item: string): void => {
       const tree = document.createElement('li');
 
       tree.classList.add('tree');
@@ -61,13 +67,11 @@ export class MainPage {
   }
 
   addBackgrounds() {
-    const backgrounds = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
     const backgroundsConrainer = document.querySelector(
       '.choice-background'
     ) as HTMLElement;
 
-    backgrounds.forEach((item: string): void => {
+    BACKGROUNDS.forEach((item: string): void => {
       const background = document.createElement('li');
 
       background.classList.add('background');
@@ -90,6 +94,30 @@ export class MainPage {
         treeContainer.style.backgroundImage = `url(../assets/bg/${number}.jpg)`;
       }
     });
+  }
+
+  addToys() {
+    const toysConrainer = document.querySelector('.choice-toy') as HTMLElement;
+    let favoriteToys: Array<string>;
+    const fragment = document.createDocumentFragment();
+
+    if (localStorage.favoriteForChristmasGame) {
+      favoriteToys = JSON.parse(localStorage.favoriteForChristmasGame);
+
+      favoriteToys.forEach((toy) => {});
+    } else {
+      for (
+        let i = COUNT_USER_FAVORITE.countMin;
+        i < COUNT_USER_FAVORITE.countMax;
+        i++
+      ) {
+        const toy = addToyForPage(i);
+
+        fragment.appendChild(toy);
+      }
+    }
+
+    toysConrainer.appendChild(fragment);
   }
 }
 

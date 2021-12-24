@@ -1170,7 +1170,9 @@ a {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
   .choice-toy-item {
+    position: relative;
     width: 75px;
     height: 75px;
     margin: 5px;
@@ -1186,6 +1188,21 @@ a {
       border: 1px solid $compl-color;
       box-shadow: 0 0 10px $light-color;
     }
+  }
+
+  .toy-amount {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid $white;
+    border-radius: 50%;
+    background-color: $shadow-color;
+    font-size: 20px;
   }
 }
 
