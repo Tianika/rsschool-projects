@@ -109,7 +109,7 @@ export const Main = (): DocumentFragment => {
       <img class="christmas-tree" src='./assets/tree/1.png' alt="Новогодняя ёлка" usemap="#treemap">
       <div class="shadow-tree"></div>
       <map name="treemap">
-        <area shape="rect" coords="34,44,270,350" alt="Новогодняя ёлка">
+      <area target="" alt="Ёлка" href="" coords="10,549,240,4,265,5,484,555,412,662,257,683,99,659" shape="poly">
       </map>
     </div>
     <div class="main-tree-toys">

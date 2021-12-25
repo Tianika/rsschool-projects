@@ -18,6 +18,9 @@
   margin: 0;
   border: 0;
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 a {
   text-decoration: none;
@@ -1430,7 +1433,7 @@ a {
     width: 75px;
     height: 75px;
     margin: 5px;
-    background-image: url('../assets/toys/32.png');
+    // background-image: url('../assets/toys/32.png');
     background-color: rgba($white, 0.5);
     background-repeat: no-repeat;
     background-size: 85% 85%;
@@ -1442,6 +1445,13 @@ a {
       border: 1px solid $compl-color;
       box-shadow: 0 0 10px $light-color;
     }
+  }
+
+  .choice-toy-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
   }
 
   .toy-amount {

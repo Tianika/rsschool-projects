@@ -7,6 +7,7 @@ import {
   DELAY,
   IBackgroundSettings,
   DEFAULT_VALUE_BG,
+  OFFSET,
 } from '../utils';
 import { addToyForPage } from '../utils';
 
@@ -40,7 +41,6 @@ export class MainPage {
 
     const buttons: Buttons = new Buttons();
 
-    buttons.playSound();
     buttons.drawSnowflakes();
 
     this.addTrees();
@@ -171,7 +171,7 @@ export class MainPage {
       favoriteToys = JSON.parse(localStorage.favoriteForChristmasGame);
 
       for (let i = COUNT_USER_FAVORITE.countMin; i < favoriteToys.length; i++) {
-        const toy = addToyForPage(+favoriteToys[i]);
+        const toy = addToyForPage(+favoriteToys[i] - OFFSET);
 
         fragment.appendChild(toy);
       }

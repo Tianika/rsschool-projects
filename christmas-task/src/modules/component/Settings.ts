@@ -329,9 +329,6 @@ export class Settings {
       const toyCard: ToyCard = new ToyCard();
       toyCard.draw(data);
     });
-
-    window.addEventListener('DOMContentLoaded', this.loadSettings);
-    window.addEventListener('beforeunload', this.saveSettings);
   }
 
   loadSettings() {

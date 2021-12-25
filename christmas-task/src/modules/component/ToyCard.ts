@@ -135,8 +135,6 @@ export class ToyCard {
     if (localStorage.favoriteForChristmasGame) {
       this.loadFavoriteToys();
     }
-
-    window.addEventListener('beforeunload', this.saveFavoriteToys);
   }
 
   saveFavoriteToys() {

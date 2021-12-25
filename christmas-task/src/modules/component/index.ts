@@ -7,3 +7,4 @@ export { default as Settings } from './Settings';
 export { default as ToyCard } from './ToyCard';
 export { default as Buttons } from './Buttons';
 export { default as Garland } from './Garland';
+export { default as Sound } from './Sound';
