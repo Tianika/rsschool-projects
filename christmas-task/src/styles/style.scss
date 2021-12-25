@@ -74,6 +74,11 @@ $middle-color: #014034;
 $light-color: #f28c0f;
 $compl-color: #f26b1d;
 $white: #ffffff;
+$silver: #e9e9e9;
+$gold: #ffff04;
+$red: #ff073a;
+$blue: #04d9ff;
+$green: #00ff00;
 
 /*-------------header - footer------------*/
 .root {
@@ -1073,6 +1078,25 @@ a {
 .choice-light {
   display: flex;
   justify-content: center;
+  .power-button {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    background-image: url('../assets/svg/power-off.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: center center;
+    border: 3px solid $white;
+    border-radius: 50%;
+    background-color: $white;
+    transition: all 0.3s linear;
+    &.active {
+      background-image: url('../assets/svg/power-on.svg');
+      border: 3px solid $compl-color;
+      box-shadow: 0 0 5px $light-color;
+      filter: drop-shadow(0 0 10px $light-color);
+    }
+  }
   .light {
     width: 30px;
     height: 30px;
@@ -1094,19 +1118,19 @@ a {
       );
     }
     &.silver {
-      background: radial-gradient(circle at 65% 15%, #ffffff, #c0c0c0);
+      background: radial-gradient(circle at 65% 15%, $white, $silver);
     }
     &.gold {
-      background-color: #ffd700;
+      background-color: $gold;
     }
     &.red {
-      background-color: #ff0000;
+      background-color: $red;
     }
     &.green {
-      background-color: #0000ff;
+      background-color: $green;
     }
     &.blue {
-      background-color: #00ff00;
+      background-color: $blue;
     }
 
     &.active {
@@ -1170,10 +1194,10 @@ a {
     display: inline-block;
     position: relative;
     width: 8px;
-    height: 15px;
+    height: 12px;
     border-radius: 50%;
     margin: 0 8px;
-    background-color: rgb(218, 45, 45);
+    opacity: 0;
     &::before {
       position: absolute;
       display: block;
@@ -1197,6 +1221,156 @@ a {
       border-bottom: 1px solid #333;
       transform: rotate(-5deg);
     }
+
+    &.silver {
+      opacity: 1;
+      background-color: rgba($silver, 0.4);
+      &:nth-child(2n + 1) {
+        animation: lightSilver 2s linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightSilver 2s linear infinite;
+        animation-delay: 1s;
+      }
+    }
+
+    &.gold {
+      opacity: 1;
+      background-color: rgba($gold, 0.4);
+      &:nth-child(2n + 1) {
+        animation: lightGold 2s linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightGold 2s linear infinite;
+        animation-delay: 1s;
+      }
+    }
+
+    &.red {
+      opacity: 1;
+      background-color: rgba($red, 0.4);
+      &:nth-child(2n + 1) {
+        animation: lightRed 2s linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightRed 2s linear infinite;
+        animation-delay: 1s;
+      }
+    }
+
+    &.blue {
+      opacity: 1;
+      background-color: rgba($blue, 0.4);
+      &:nth-child(2n + 1) {
+        animation: lightBlue 2s linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightBlue 2s linear infinite;
+        animation-delay: 1s;
+      }
+    }
+
+    &.green {
+      opacity: 1;
+      background-color: rgba($green, 0.4);
+      &:nth-child(2n + 1) {
+        animation: lightGreen 2s linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightGreen 2s linear infinite;
+        animation-delay: 1s;
+      }
+    }
+
+    &.different {
+      opacity: 1;
+      &:nth-child(4n) {
+        animation: lightGreen 2s linear infinite;
+      }
+      &:nth-child(4n + 1) {
+        background-color: rgba($gold, 0.4);
+        animation: lightGold 2s linear infinite;
+        animation-delay: 1s;
+      }
+      &:nth-child(4n + 2) {
+        animation: lightBlue 2s linear infinite;
+      }
+      &:nth-child(4n + 3) {
+        background-color: rgba($red, 0.4);
+        animation: lightRed 2s linear infinite;
+        animation-delay: 1s;
+      }
+    }
+  }
+}
+
+@keyframes lightSilver {
+  0% {
+    background-color: rgba($silver, 0.4);
+  }
+  50% {
+    background-color: $silver;
+    box-shadow: 0 2px 5px $silver, 0 3px 10px $silver, 0 5px 20px $silver,
+      0 5px 30px $silver;
+  }
+  100% {
+    background-color: rgba($silver, 0.4);
+  }
+}
+
+@keyframes lightGold {
+  0% {
+    background-color: rgba($gold, 0.4);
+  }
+  50% {
+    background-color: $gold;
+    box-shadow: 0 2px 5px $gold, 0 3px 10px $gold, 0 5px 20px $gold,
+      0 5px 30px $gold;
+  }
+  100% {
+    background-color: rgba($gold, 0.4);
+  }
+}
+
+@keyframes lightRed {
+  0% {
+    background-color: rgba($red, 0.4);
+  }
+  50% {
+    background-color: $red;
+    box-shadow: 0 2px 5px $red, 0 3px 10px $red, 0 5px 20px $red,
+      0 5px 30px $red;
+  }
+  100% {
+    background-color: rgba($red, 0.4);
+  }
+}
+
+@keyframes lightBlue {
+  0% {
+    background-color: rgba($blue, 0.4);
+  }
+  50% {
+    background-color: $blue;
+    box-shadow: 0 2px 5px $blue, 0 3px 10px $blue, 0 5px 20px $blue,
+      0 5px 30px $blue;
+  }
+  100% {
+    background-color: rgba($blue, 0.4);
+  }
+}
+
+@keyframes lightGreen {
+  0% {
+    background-color: rgba($green, 0.4);
+  }
+  50% {
+    background-color: $green;
+    box-shadow: 0 2px 5px $green, 0 3px 10px $green, 0 5px 20px $green,
+      0 5px 30px $green;
+  }
+  100% {
+    background-color: rgba($green, 0.4);
   }
 }
 

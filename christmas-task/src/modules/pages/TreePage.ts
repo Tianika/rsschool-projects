@@ -1,4 +1,4 @@
-import { Header, MainTree, Footer, Buttons } from '../component';
+import { Header, MainTree, Footer, Buttons, Garland } from '../component';
 import {
   DEFAULT_STRING,
   COUNT_USER_FAVORITE,
@@ -46,6 +46,9 @@ export class MainPage {
     this.addTrees();
     this.addBackgrounds();
     this.addToys();
+
+    const garland: Garland = new Garland();
+    garland.draw();
 
     const treeConrainer = document.querySelector(
       '.tree-container'

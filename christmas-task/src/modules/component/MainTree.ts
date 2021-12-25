@@ -21,23 +21,24 @@ export const Main = (): DocumentFragment => {
       <div class="choice-light-container">
         <h3 class="title choice-light-title">Гирлянда</h3>
           <ul class="choice-light">
-            <li class="light different"></li>
-            <li class="light silver"></li>
-            <li class="light gold"></li>
-            <li class="light red"></li>
-            <li class="light green"></li>
-            <li class="light blue"></li>
+            <li class="light different" data-color="different"></li>
+            <li class="light silver" data-color="silver"></li>
+            <li class="light gold" data-color="gold"></li>
+            <li class="light red" data-color="red"></li>
+            <li class="light blue" data-color="blue"></li>
+            <li class="light green" data-color="green"></li>
+            <li class="power-button"></li>
           </ul>
       </div>
     </div>
     <div class="tree-container">
       <div class="garland-container">
         <ul class="garland-item">
-          <li style="transform: translateY(0px) rotate(10deg)"></li>
-          <li style="transform: translateY(5px) rotate(5deg)"></li>
-          <li style="transform: translateY(7px)"></li>
-          <li style="transform: translateY(5px) rotate(-10deg)"></li>
-          <li style="transform: translateY(0px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(22deg)"></li>
+          <li style="transform: translateY(8px) rotate(15deg)"></li>
+          <li style="transform: translateY(10px)"></li>
+          <li style="transform: translateY(8px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(-22deg)"></li>
         </ul>
         <ul class="garland-item">
           <li style="transform: translateY(0px) rotate(25deg)"></li>
