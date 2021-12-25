@@ -1129,6 +1129,77 @@ a {
   background-position: center bottom;
 }
 
+.garland-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+  top: 50px;
+  width: 500px;
+  height: 650px;
+}
+
+.garland-item {
+  position: absolute;
+
+  &:nth-child(1) {
+    top: 110px;
+    transform: rotate(24deg);
+  }
+  &:nth-child(2) {
+    top: 180px;
+    transform: rotate(-22deg);
+  }
+  &:nth-child(3) {
+    top: 270px;
+    transform: rotate(18deg);
+  }
+  &:nth-child(4) {
+    top: 360px;
+    transform: rotate(-15deg);
+  }
+  &:nth-child(5) {
+    top: 450px;
+    transform: rotate(10deg);
+  }
+  &:nth-child(6) {
+    top: 540px;
+    transform: rotate(-9deg);
+  }
+  li {
+    display: inline-block;
+    position: relative;
+    width: 8px;
+    height: 15px;
+    border-radius: 50%;
+    margin: 0 8px;
+    background-color: rgb(218, 45, 45);
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      top: -3px;
+      left: 1px;
+      width: 6px;
+      height: 6px;
+      border-radius: 40% 40% 10% 10%;
+      background-color: #333;
+    }
+    &:not(:last-child):after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 30px;
+      height: 10px;
+      border-radius: 50%;
+      left: 3px;
+      top: -8px;
+      border-bottom: 1px solid #333;
+      transform: rotate(-5deg);
+    }
+  }
+}
+
 @keyframes fall {
   100% {
     transform: translateY(800px) rotate(200deg);

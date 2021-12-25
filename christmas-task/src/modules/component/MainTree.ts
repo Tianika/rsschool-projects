@@ -31,6 +31,80 @@ export const Main = (): DocumentFragment => {
       </div>
     </div>
     <div class="tree-container">
+      <div class="garland-container">
+        <ul class="garland-item">
+          <li style="transform: translateY(0px) rotate(10deg)"></li>
+          <li style="transform: translateY(5px) rotate(5deg)"></li>
+          <li style="transform: translateY(7px)"></li>
+          <li style="transform: translateY(5px) rotate(-10deg)"></li>
+          <li style="transform: translateY(0px) rotate(-15deg)"></li>
+        </ul>
+        <ul class="garland-item">
+          <li style="transform: translateY(0px) rotate(25deg)"></li>
+          <li style="transform: translateY(10px) rotate(15deg)"></li>
+          <li style="transform: translateY(18px) rotate(10deg)"></li>
+          <li style="transform: translateY(20px)"></li>
+          <li style="transform: translateY(18px) rotate(-10deg)"></li>
+          <li style="transform: translateY(10px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(-25deg)"></li>
+        </ul>
+        <ul class="garland-item">
+          <li style="transform: translateY(0px) rotate(25deg)"></li>
+          <li style="transform: translateY(10px) rotate(15deg)"></li>
+          <li style="transform: translateY(18px) rotate(10deg)"></li>
+          <li style="transform: translateY(22px) rotate(5deg)"></li>
+          <li style="transform: translateY(24px)"></li>
+          <li style="transform: translateY(22px) rotate(-5deg)"></li>
+          <li style="transform: translateY(18px) rotate(-10deg)"></li>
+          <li style="transform: translateY(10px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(-25deg)"></li>
+        </ul>
+        <ul class="garland-item">
+          <li style="transform: translateY(0px) rotate(25deg)"></li>
+          <li style="transform: translateY(10px) rotate(15deg)"></li>
+          <li style="transform: translateY(18px) rotate(10deg)"></li>
+          <li style="transform: translateY(24px) rotate(5deg)"></li>
+          <li style="transform: translateY(28px) rotate(3deg)"></li>
+          <li style="transform: translateY(30px)"></li>
+          <li style="transform: translateY(28px) rotate(-3deg)"></li>
+          <li style="transform: translateY(24px) rotate(-5deg)"></li>
+          <li style="transform: translateY(18px) rotate(-10deg)"></li>
+          <li style="transform: translateY(10px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(-25deg)"></li>
+        </ul>
+        <ul class="garland-item">
+          <li style="transform: translateY(0px) rotate(25deg)"></li>
+          <li style="transform: translateY(10px) rotate(15deg)"></li>
+          <li style="transform: translateY(18px) rotate(10deg)"></li>
+          <li style="transform: translateY(24px) rotate(5deg)"></li>
+          <li style="transform: translateY(28px) rotate(3deg)"></li>
+          <li style="transform: translateY(30px) rotate(1deg)"></li>
+          <li style="transform: translateY(32px)"></li>
+          <li style="transform: translateY(30px) rotate(-1deg)"></li>
+          <li style="transform: translateY(28px) rotate(-3deg)"></li>
+          <li style="transform: translateY(24px) rotate(-5deg)"></li>
+          <li style="transform: translateY(18px) rotate(-10deg)"></li>
+          <li style="transform: translateY(10px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(-25deg)"></li>
+        </ul>
+        <ul class="garland-item">
+          <li style="transform: translateY(0px) rotate(25deg)"></li>
+          <li style="transform: translateY(10px) rotate(15deg)"></li>
+          <li style="transform: translateY(18px) rotate(10deg)"></li>
+          <li style="transform: translateY(24px) rotate(5deg)"></li>
+          <li style="transform: translateY(28px) rotate(3deg)"></li>
+          <li style="transform: translateY(30px) rotate(1deg)"></li>
+          <li style="transform: translateY(32px)"></li>
+          <li style="transform: translateY(33px)"></li>
+          <li style="transform: translateY(32px)"></li>
+          <li style="transform: translateY(30px) rotate(-1deg)"></li>
+          <li style="transform: translateY(28px) rotate(-3deg)"></li>
+          <li style="transform: translateY(24px) rotate(-5deg)"></li>
+          <li style="transform: translateY(18px) rotate(-10deg)"></li>
+          <li style="transform: translateY(10px) rotate(-15deg)"></li>
+          <li style="transform: translateY(0px) rotate(-25deg)"></li>
+        </ul>
+      </div>
       <img class="christmas-tree" src='./assets/tree/1.png' alt="Новогодняя ёлка" usemap="#treemap">
       <div class="shadow-tree"></div>
       <map name="treemap">
