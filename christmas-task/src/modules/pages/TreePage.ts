@@ -1,4 +1,4 @@
-import { Header, MainTree, Footer, Buttons, Garland } from '../component';
+import { Header, MainTree, Footer, Garland } from '../component';
 import {
   DEFAULT_STRING,
   COUNT_USER_FAVORITE,
@@ -39,9 +39,9 @@ export class MainPage {
     mainElem.classList.add('main-tree');
     headerElem.classList.add('header-tree');
 
-    const buttons: Buttons = new Buttons();
+    // const buttons: Buttons = new Buttons();
 
-    buttons.drawSnowflakes();
+    // buttons.drawSnowflakes();
 
     this.addTrees();
     this.addBackgrounds();
@@ -71,8 +71,8 @@ export class MainPage {
     ) as HTMLButtonElement;
 
     resetBtn.addEventListener('click', (): void => {
-      buttons.resetSettings();
-      resetBtn.classList.add('active');
+      // buttons.resetSettings();
+      // resetBtn.classList.add('active');
 
       setTimeout(() => {
         resetBtn.classList.remove('active');

@@ -1,46 +1,47 @@
 import { DELAY } from '../utils';
 
-export class Buttons {
+export class Snowflakes {
   isSnow: boolean;
-  snowInterval: NodeJS.Timer;
+  //snowInterval: NodeJS.Timer;
 
   constructor() {
-    (this.isSnow = false), (this.snowInterval = setInterval(() => {}, 0));
+    this.isSnow = false;
   }
 
   drawSnowflakes() {
     const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
 
-    // const snowInterval = setInterval(() => {
-    //   if (snowBtn.classList.contains('active')) {
-    //     this.snowOn(snowBtn);
-    //     localStorage.settingsForTreePage = JSON.stringify(this.settings);
-    //   } else {
-    //     clearInterval(snowInterval);
-    //     this.snowOff(snowBtn);
-    //     localStorage.settingsForTreePage = JSON.stringify(this.settings);
-    //   }
-    // }, 50);
-
-    if (localStorage.settingsForTreePage) {
-      const settings = JSON.parse(localStorage.settingsForTreePage);
-      this.isSnow = settings.isSnow;
+    if (localStorage.isSnowForTreePage) {
+      this.isSnow = JSON.parse(localStorage.isSnowForTreePage);
 
       if (this.isSnow) {
-        this.snowInterval = setInterval(this.createSnowflake, DELAY.delaySnow);
         this.snowOn(snowBtn);
       }
     }
 
+    const snowInterval = setInterval(() => {
+      if (snowBtn.classList.contains('active')) {
+        this.createSnowflake();
+      } else {
+        clearInterval(snowInterval);
+      }
+    }, DELAY.delaySnow);
+
+    //this.snowInterval = setInterval(this.createSnowflake, DELAY.delaySnow);
+
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {
-        this.snowInterval = setInterval(this.createSnowflake, DELAY.delaySnow);
         this.snowOn(snowBtn);
-        localStorage.settingsForTreePage = JSON.stringify(this.isSnow);
+
+        const snowInterval1 = setInterval(() => {
+          if (snowBtn.classList.contains('active')) {
+            this.createSnowflake();
+          } else {
+            clearInterval(snowInterval1);
+          }
+        }, DELAY.delaySnow);
       } else {
-        clearInterval(this.snowInterval);
         this.snowOff(snowBtn);
-        localStorage.settingsForTreePage = JSON.stringify(this.isSnow);
       }
     });
   }
@@ -48,11 +49,13 @@ export class Buttons {
   snowOn(snowBtn: HTMLButtonElement): void {
     this.isSnow = true;
     snowBtn.classList.add('active');
+    localStorage.isSnowForTreePage = JSON.stringify(this.isSnow);
   }
 
   snowOff(snowBtn: HTMLButtonElement): void {
     this.isSnow = false;
     snowBtn.classList.remove('active');
+    localStorage.isSnowForTreePage = JSON.stringify(this.isSnow);
   }
 
   createSnowflake() {
@@ -79,14 +82,6 @@ export class Buttons {
       }, removeTime);
     }
   }
-
-  resetSettings() {
-    const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
-
-    this.snowOff(snowBtn);
-  }
-
-  saveTree() {}
 }
 
-export default Buttons;
+export default Snowflakes;

@@ -1,5 +1,5 @@
 import { MainPage, ToysPage, TreePage } from '../pages';
-import { Sound } from '../component';
+import { Sound, Snowflakes } from '../component';
 import { DEFAULT_STRING, HashIds, SOUND_PATHS, DEFAULT_SOUND } from '../utils';
 
 export class App {
@@ -47,7 +47,9 @@ export class App {
     const soundBtn = document.querySelector(
       '.sound-button'
     ) as HTMLButtonElement;
-
     sound.playSound(soundBtn);
+
+    const snowflakes = new Snowflakes();
+    snowflakes.drawSnowflakes();
   }
 }
