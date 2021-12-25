@@ -1086,13 +1086,13 @@ a {
     background-repeat: no-repeat;
     background-size: 20px 20px;
     background-position: center center;
-    border: 3px solid $white;
+    border: 2px solid $white;
     border-radius: 50%;
     background-color: $white;
     transition: all 0.3s linear;
     &.active {
       background-image: url('../assets/svg/power-on.svg');
-      border: 3px solid $compl-color;
+      border: 2px solid $compl-color;
       box-shadow: 0 0 5px $light-color;
       filter: drop-shadow(0 0 10px $light-color);
     }

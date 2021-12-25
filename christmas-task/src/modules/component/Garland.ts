@@ -1,3 +1,5 @@
+import { DEFAULT_STRING, DEFAULT_COLOR } from '../utils';
+
 export class Garland {
   draw() {
     const buttons = document.querySelectorAll(
@@ -7,22 +9,40 @@ export class Garland {
       '.garland-item li'
     ) as NodeListOf<HTMLElement>;
     const powerBtn = document.querySelector('.power-button') as HTMLElement;
+    let isLight = false;
 
     buttons.forEach((button) => {
       button.addEventListener('click', (event: Event): void => {
         const target = event.target as HTMLElement;
         const color = target.dataset.color as string;
 
+        powerBtn.classList.add('active');
+        isLight = true;
+
         lights.forEach((light) => {
-          light.classList.value = '';
+          light.classList.value = DEFAULT_STRING;
           light.classList.add(color);
-          powerBtn.classList.add('active');
         });
       });
     });
 
-    powerBtn.addEventListener('click', () => {
-      powerBtn.classList.toggle('active');
+    powerBtn.addEventListener('click', (): void => {
+      if (!isLight) {
+        powerBtn.classList.add('active');
+        isLight = true;
+
+        lights.forEach((light) => {
+          light.classList.value = DEFAULT_STRING;
+          light.classList.add(DEFAULT_COLOR);
+        });
+      } else {
+        powerBtn.classList.remove('active');
+        isLight = false;
+
+        lights.forEach((light) => {
+          light.classList.value = DEFAULT_STRING;
+        });
+      }
     });
   }
 }
