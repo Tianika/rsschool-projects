@@ -205,7 +205,6 @@ export function addToyForPage(index: number): HTMLLIElement {
   toy.classList.add('choice-toy-img');
   toy.alt = data[index].name;
   toy.draggable = true;
-  toy.id = data[index].num;
   toy.src = `../assets/toys/${data[index].num}.png`;
   toy.setAttribute('data-toy', index.toString());
 

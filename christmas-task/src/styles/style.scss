@@ -82,6 +82,7 @@ $gold: #ffff04;
 $red: #ff073a;
 $blue: #04d9ff;
 $green: #00ff00;
+$opacityGarland: 0.3;
 
 /*-------------header - footer------------*/
 .root {
@@ -1160,7 +1161,6 @@ a {
   position: absolute;
   display: flex;
   justify-content: center;
-  z-index: 5;
   top: 50px;
   width: 500px;
   height: 650px;
@@ -1227,7 +1227,7 @@ a {
 
     &.silver {
       opacity: 1;
-      background-color: rgba($silver, 0.4);
+      background-color: rgba($silver, $opacityGarland);
       &:nth-child(2n + 1) {
         animation: lightSilver 2s linear infinite;
       }
@@ -1239,7 +1239,7 @@ a {
 
     &.gold {
       opacity: 1;
-      background-color: rgba($gold, 0.4);
+      background-color: rgba($gold, $opacityGarland);
       &:nth-child(2n + 1) {
         animation: lightGold 2s linear infinite;
       }
@@ -1251,7 +1251,7 @@ a {
 
     &.red {
       opacity: 1;
-      background-color: rgba($red, 0.4);
+      background-color: rgba($red, $opacityGarland);
       &:nth-child(2n + 1) {
         animation: lightRed 2s linear infinite;
       }
@@ -1263,7 +1263,7 @@ a {
 
     &.blue {
       opacity: 1;
-      background-color: rgba($blue, 0.4);
+      background-color: rgba($blue, $opacityGarland);
       &:nth-child(2n + 1) {
         animation: lightBlue 2s linear infinite;
       }
@@ -1275,7 +1275,7 @@ a {
 
     &.green {
       opacity: 1;
-      background-color: rgba($green, 0.4);
+      background-color: rgba($green, $opacityGarland);
       &:nth-child(2n + 1) {
         animation: lightGreen 2s linear infinite;
       }
@@ -1291,7 +1291,7 @@ a {
         animation: lightGreen 2s linear infinite;
       }
       &:nth-child(4n + 1) {
-        background-color: rgba($gold, 0.4);
+        background-color: rgba($gold, $opacityGarland);
         animation: lightGold 2s linear infinite;
         animation-delay: 1s;
       }
@@ -1299,7 +1299,7 @@ a {
         animation: lightBlue 2s linear infinite;
       }
       &:nth-child(4n + 3) {
-        background-color: rgba($red, 0.4);
+        background-color: rgba($red, $opacityGarland);
         animation: lightRed 2s linear infinite;
         animation-delay: 1s;
       }
@@ -1309,7 +1309,7 @@ a {
 
 @keyframes lightSilver {
   0% {
-    background-color: rgba($silver, 0.4);
+    background-color: rgba($silver, $opacityGarland);
   }
   50% {
     background-color: $silver;
@@ -1317,13 +1317,13 @@ a {
       0 5px 30px $silver;
   }
   100% {
-    background-color: rgba($silver, 0.4);
+    background-color: rgba($silver, $opacityGarland);
   }
 }
 
 @keyframes lightGold {
   0% {
-    background-color: rgba($gold, 0.4);
+    background-color: rgba($gold, $opacityGarland);
   }
   50% {
     background-color: $gold;
@@ -1331,13 +1331,13 @@ a {
       0 5px 30px $gold;
   }
   100% {
-    background-color: rgba($gold, 0.4);
+    background-color: rgba($gold, $opacityGarland);
   }
 }
 
 @keyframes lightRed {
   0% {
-    background-color: rgba($red, 0.4);
+    background-color: rgba($red, $opacityGarland);
   }
   50% {
     background-color: $red;
@@ -1345,13 +1345,13 @@ a {
       0 5px 30px $red;
   }
   100% {
-    background-color: rgba($red, 0.4);
+    background-color: rgba($red, $opacityGarland);
   }
 }
 
 @keyframes lightBlue {
   0% {
-    background-color: rgba($blue, 0.4);
+    background-color: rgba($blue, $opacityGarland);
   }
   50% {
     background-color: $blue;
@@ -1359,13 +1359,13 @@ a {
       0 5px 30px $blue;
   }
   100% {
-    background-color: rgba($blue, 0.4);
+    background-color: rgba($blue, $opacityGarland);
   }
 }
 
 @keyframes lightGreen {
   0% {
-    background-color: rgba($green, 0.4);
+    background-color: rgba($green, $opacityGarland);
   }
   50% {
     background-color: $green;
@@ -1373,7 +1373,7 @@ a {
       0 5px 30px $green;
   }
   100% {
-    background-color: rgba($green, 0.4);
+    background-color: rgba($green, $opacityGarland);
   }
 }
 
@@ -1398,7 +1398,6 @@ a {
 
 .christmas-tree {
   position: relative;
-  z-index: 1;
   display: flex;
   align-self: end;
   margin-bottom: 30px;
@@ -1407,7 +1406,6 @@ a {
 
 .shadow-tree {
   position: absolute;
-  z-index: 0;
   background: radial-gradient(
     ellipse,
     #000000ee,
@@ -1437,11 +1435,7 @@ a {
   width: 75px;
   height: 75px;
   margin: 5px;
-  // background-image: url('../assets/toys/32.png');
   background-color: rgba($white, 0.5);
-  // background-repeat: no-repeat;
-  // background-size: 85% 85%;
-  // background-position: center center;
   border: 1px solid $white;
   border-radius: 5px;
   transition: all 0.3s linear;
@@ -1475,8 +1469,9 @@ a {
   .choice-toy-img {
     position: absolute;
     z-index: 7;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
+    filter: blur(0.3px);
   }
 }
 
