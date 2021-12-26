@@ -1,4 +1,4 @@
-import { Header, MainTree, Footer, Garland } from '../component';
+import { Header, MainTree, Footer, Garland, Snowflakes } from '../component';
 import {
   DEFAULT_STRING,
   COUNT_USER_FAVORITE,
@@ -39,13 +39,12 @@ export class MainPage {
     mainElem.classList.add('main-tree');
     headerElem.classList.add('header-tree');
 
-    // const buttons: Buttons = new Buttons();
-
-    // buttons.drawSnowflakes();
-
     this.addTrees();
     this.addBackgrounds();
     this.addToys();
+
+    const snowflakes = new Snowflakes();
+    snowflakes.drawSnowflakes();
 
     const garland: Garland = new Garland();
     garland.draw();
@@ -71,15 +70,23 @@ export class MainPage {
     ) as HTMLButtonElement;
 
     resetBtn.addEventListener('click', (): void => {
-      // buttons.resetSettings();
-      // resetBtn.classList.add('active');
-
       setTimeout(() => {
         resetBtn.classList.remove('active');
       }, DELAY.delayActive);
 
-      delete localStorage.settingsForTreePage;
+      delete localStorage.isSoundForTreePag;
+      delete localStorage.isSnowForTreePage;
       delete localStorage.settingsBgForTreePage;
+      delete localStorage.colorGarlandForChristmasTask;
+
+      snowflakes.snowOff();
+
+      const powerBtn = document.querySelector('.power-button') as HTMLElement;
+      const lights = document.querySelectorAll(
+        '.garland-item li'
+      ) as NodeListOf<HTMLElement>;
+
+      garland.garlandOff(powerBtn, lights);
 
       treeConrainer.style.backgroundImage = `url(../assets/bg/${this.settings.background}.jpg)`;
       christmasTree.src = `../assets/tree/${this.settings.tree}.png`;

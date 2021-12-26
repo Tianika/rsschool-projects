@@ -1,6 +1,12 @@
 import { MainPage, ToysPage, TreePage } from '../pages';
 import { Sound, Snowflakes } from '../component';
-import { DEFAULT_STRING, HashIds, SOUND_PATHS, DEFAULT_SOUND } from '../utils';
+import {
+  DEFAULT_STRING,
+  HashIds,
+  SOUND_PATHS,
+  DEFAULT_SOUND,
+  DELAY,
+} from '../utils';
 
 export class App {
   start(): void {
@@ -49,7 +55,16 @@ export class App {
     ) as HTMLButtonElement;
     sound.playSound(soundBtn);
 
-    const snowflakes = new Snowflakes();
-    snowflakes.drawSnowflakes();
+    const resetBtn = document.querySelector(
+      '.reset-button'
+    ) as HTMLButtonElement;
+    resetBtn.addEventListener('click', () => {
+      sound.muteAudio(soundBtn);
+      setTimeout(() => {
+        resetBtn.classList.remove('active');
+      }, DELAY.delayActive);
+
+      delete localStorage.isSoundForTreePage;
+    });
   }
 }

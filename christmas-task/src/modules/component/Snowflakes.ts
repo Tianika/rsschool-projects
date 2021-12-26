@@ -15,7 +15,7 @@ export class Snowflakes {
       this.isSnow = JSON.parse(localStorage.isSnowForTreePage);
 
       if (this.isSnow) {
-        this.snowOn(snowBtn);
+        this.snowOn();
       }
     }
 
@@ -31,7 +31,7 @@ export class Snowflakes {
 
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {
-        this.snowOn(snowBtn);
+        this.snowOn();
 
         const snowInterval1 = setInterval(() => {
           if (snowBtn.classList.contains('active')) {
@@ -41,18 +41,22 @@ export class Snowflakes {
           }
         }, DELAY.delaySnow);
       } else {
-        this.snowOff(snowBtn);
+        this.snowOff();
       }
     });
   }
 
-  snowOn(snowBtn: HTMLButtonElement): void {
+  snowOn(): void {
+    const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
+
     this.isSnow = true;
     snowBtn.classList.add('active');
     localStorage.isSnowForTreePage = JSON.stringify(this.isSnow);
   }
 
-  snowOff(snowBtn: HTMLButtonElement): void {
+  snowOff(): void {
+    const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
+
     this.isSnow = false;
     snowBtn.classList.remove('active');
     localStorage.isSnowForTreePage = JSON.stringify(this.isSnow);
