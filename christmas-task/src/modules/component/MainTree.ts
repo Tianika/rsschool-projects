@@ -106,10 +106,10 @@ export const Main = (): DocumentFragment => {
           <li style="transform: translateY(0px) rotate(-25deg)"></li>
         </ul>
       </div>
-      <img class="christmas-tree" src='./assets/tree/1.png' alt="Новогодняя ёлка" usemap="#treemap">
+      <img class="christmas-tree" draggable="false"; src='./assets/tree/1.png' alt="Новогодняя ёлка" usemap="#treemap">
       <div class="shadow-tree"></div>
       <map name="treemap">
-      <area target="" alt="Ёлка" href="" coords="10,549,240,4,265,5,484,555,412,662,257,683,99,659" shape="poly">
+        <area target="" alt="Ёлка" coords="10,549,240,4,265,5,484,555,412,662,257,683,99,659" shape="poly">      
       </map>
     </div>
     <div class="main-tree-toys">

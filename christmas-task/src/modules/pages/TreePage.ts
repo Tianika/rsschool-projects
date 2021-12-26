@@ -1,4 +1,11 @@
-import { Header, MainTree, Footer, Garland, Snowflakes } from '../component';
+import {
+  Header,
+  MainTree,
+  Footer,
+  Garland,
+  Snowflakes,
+  DragAndDrop,
+} from '../component';
 import {
   DEFAULT_STRING,
   COUNT_USER_FAVORITE,
@@ -48,6 +55,9 @@ export class MainPage {
 
     const garland: Garland = new Garland();
     garland.draw();
+
+    const dragAndDrop: DragAndDrop = new DragAndDrop();
+    dragAndDrop.draw();
 
     const treeConrainer = document.querySelector(
       '.tree-container'

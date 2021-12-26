@@ -8,3 +8,4 @@ export { default as ToyCard } from './ToyCard';
 export { default as Snowflakes } from './Snowflakes';
 export { default as Garland } from './Garland';
 export { default as Sound } from './Sound';
+export { default as DragAndDrop } from './DragAndDrop';
