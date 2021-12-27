@@ -11,10 +11,24 @@ export class Garland {
     const buttons = document.querySelectorAll(
       '.light'
     ) as NodeListOf<HTMLElement>;
+    const powerBtn = document.querySelector('.power-button') as HTMLElement;
+    const garlandContainer = document.querySelector(
+      '.garland-container'
+    ) as HTMLElement;
+
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 2; i < 8; i++) {
+      const garlandItem: HTMLElement = this.garlandItemCreate(i);
+
+      fragment.appendChild(garlandItem);
+    }
+
+    garlandContainer.appendChild(fragment);
+
     const lights = document.querySelectorAll(
       '.garland-item li'
     ) as NodeListOf<HTMLElement>;
-    const powerBtn = document.querySelector('.power-button') as HTMLElement;
 
     if (localStorage.colorGarlandForChristmasTask) {
       const color = JSON.parse(localStorage.colorGarlandForChristmasTask);
@@ -42,6 +56,27 @@ export class Garland {
         this.garlandOff(powerBtn, lights);
       }
     });
+  }
+
+  garlandItemCreate(number: number): HTMLElement {
+    const garlandItem = document.createElement('ul');
+    garlandItem.classList.add('garland-item');
+
+    for (let i = -number; i <= number; i++) {
+      const light = this.garlandLightCreate(i);
+      garlandItem.appendChild(light);
+    }
+
+    return garlandItem;
+  }
+
+  garlandLightCreate(num: number): HTMLElement {
+    const garlandLight = document.createElement('li');
+    const x = -(num ** 2);
+
+    garlandLight.style.transform = `translateY(${x}px) rotate(${-num * 5}deg)`;
+
+    return garlandLight;
   }
 
   garlandOn(
