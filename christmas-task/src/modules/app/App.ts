@@ -12,16 +12,13 @@ export class App {
   start(): void {
     window.location.hash = DEFAULT_STRING;
 
-    // const mainPage = new MainPage();
-    // mainPage.draw();
+    const mainPage = new MainPage();
+    mainPage.draw();
 
     const audio = new Audio();
     audio.src = SOUND_PATHS[DEFAULT_SOUND];
 
     const sound = new Sound(audio);
-
-    const treePage: TreePage = new TreePage();
-    treePage.draw();
 
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.slice(1);
