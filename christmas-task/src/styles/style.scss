@@ -1299,9 +1299,9 @@ a {
   padding: 10px;
   .save-tree {
     display: inline-block;
-    width: 120px;
-    height: 120px;
-    margin: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 5px 0 5px 15px;
     background-color: rgba($white, 0.5);
     background-image: url('../assets/tree/1.png');
     background-repeat: no-repeat;
@@ -1333,27 +1333,27 @@ a {
   z-index: 5;
 
   &:nth-child(1) {
-    top: 120px;
+    top: 130px;
     transform: rotate(10deg);
   }
   &:nth-child(2) {
-    top: 190px;
+    top: 200px;
     transform: rotate(-10deg);
   }
   &:nth-child(3) {
-    top: 270px;
+    top: 280px;
     transform: rotate(10deg);
   }
   &:nth-child(4) {
-    top: 350px;
+    top: 360px;
     transform: rotate(-10deg);
   }
   &:nth-child(5) {
-    top: 450px;
+    top: 460px;
     transform: rotate(10deg);
   }
   &:nth-child(6) {
-    top: 560px;
+    top: 570px;
     transform: rotate(-10deg);
   }
   li {
@@ -1555,6 +1555,22 @@ a {
   }
   100% {
     background-color: rgba($green, $opacityGarland);
+  }
+}
+.save-tree {
+  position: relative;
+
+  .small-canvas {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .big-canvas {
+    position: absolute;
+    z-index: 11;
+    bottom: 0;
+    right: 0;
   }
 }
 

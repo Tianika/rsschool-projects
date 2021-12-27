@@ -18,6 +18,7 @@ import {
   EMPTY_LS,
 } from '../utils';
 import { addToyForPage } from '../utils';
+import html2canvas from 'html2canvas';
 
 export class MainPage {
   settings: IBackgroundSettings;
@@ -109,6 +110,17 @@ export class MainPage {
 
       this.settings.tree = DEFAULT_VALUE_BG;
       this.settings.background = DEFAULT_VALUE_BG;
+    });
+
+    const saveBtn = document.querySelector('.save-button') as HTMLElement;
+
+    saveBtn.addEventListener('click', (): void => {
+      this.saveTree();
+      saveBtn.classList.add('active');
+
+      setTimeout(() => {
+        saveBtn.classList.remove('active');
+      }, DELAY.delayActive);
     });
   }
 
@@ -212,6 +224,30 @@ export class MainPage {
 
     toysConrainer.appendChild(fragment);
   }
+
+  saveTree() {
+    const saveContainer = document.querySelector(
+      '.choice-saving-tree'
+    ) as HTMLElement;
+    const li = document.createElement('li');
+    li.classList.add('save-tree');
+    const savingTree = document.querySelector('.tree-container') as HTMLElement;
+
+    html2canvas(savingTree).then((canvas) => {
+      canvas.style.width = '148px';
+      canvas.style.height = '148px';
+      canvas.style.borderRadius = '5px';
+
+      canvas.addEventListener('click', (): void => {
+        this.showSaveTree(canvas);
+      });
+
+      li.appendChild(canvas);
+      saveContainer.append(li);
+    });
+  }
+
+  showSaveTree(canvas: HTMLCanvasElement) {}
 }
 
 export default MainPage;

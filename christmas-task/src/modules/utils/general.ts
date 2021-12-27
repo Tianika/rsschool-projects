@@ -209,7 +209,7 @@ export function addToyForPage(index: number): HTMLLIElement {
     toy.alt = data[index].name;
     toy.draggable = true;
     toy.dataset.id = data[index].num;
-    toy.src = `../assets/toys/${data[index].num}.png`;
+    toy.src = `./assets/toys/${data[index].num}.png`;
 
     toyContainer.appendChild(toy);
   }
