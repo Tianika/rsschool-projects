@@ -194,22 +194,27 @@ export function addYearSliderValue(
 
 export function addToyForPage(index: number): HTMLLIElement {
   const toyContainer = document.createElement('li');
-  const toy = document.createElement('img');
-  const amount = document.createElement('div');
+  const countToys = +data[index].count;
+
+  for (let i = 0; i < countToys; i++) {
+    const toy = document.createElement('img');
+    const amount = document.createElement('div');
+
+    amount.classList.add('toy-amount');
+    amount.innerText = data[index].count;
+
+    toy.classList.add('choice-toy-img');
+    toy.alt = data[index].name;
+    toy.draggable = true;
+    toy.dataset.id = data[index].num;
+    toy.src = `../assets/toys/${data[index].num}.png`;
+
+    toyContainer.appendChild(toy);
+    toyContainer.appendChild(amount);
+  }
 
   toyContainer.classList.add('choice-toy-item');
-
-  amount.classList.add('toy-amount');
-  amount.innerText = data[index].count;
-
-  toy.classList.add('choice-toy-img');
-  toy.alt = data[index].name;
-  toy.draggable = true;
-  toy.src = `../assets/toys/${data[index].num}.png`;
-  toy.setAttribute('data-toy', index.toString());
-
-  toyContainer.appendChild(toy);
-  toyContainer.appendChild(amount);
+  toyContainer.dataset.id = data[index].num;
 
   return toyContainer;
 }

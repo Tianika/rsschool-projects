@@ -1185,6 +1185,20 @@ a {
   filter: blur(3px);
 }
 
+.basket {
+  position: absolute;
+  z-index: 4;
+  left: 5px;
+  bottom: 20px;
+  height: 180px;
+  width: 180px;
+  background-image: url('../assets/basket.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  filter: blur(0.3px) drop-shadow(0 3px 10px rgb(65, 65, 65));
+}
+
 .snowflake-container {
   position: absolute;
   width: 100%;
@@ -1236,6 +1250,7 @@ a {
   }
 
   .choice-toy-img {
+    position: absolute;
     width: 65px;
     height: 65px;
   }
@@ -1348,7 +1363,7 @@ a {
       width: 6px;
       height: 5px;
       border-radius: 40% 40% 10% 10%;
-      background-color: #333;
+      background-color: $shadow-color;
     }
     &:not(:last-child):after {
       content: '';
@@ -1359,7 +1374,7 @@ a {
       border-radius: 50%;
       left: 5px;
       top: -9px;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid $shadow-color;
     }
 
     &.silver {

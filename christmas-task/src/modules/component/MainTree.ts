@@ -38,9 +38,10 @@ export const Main = (): DocumentFragment => {
       <div class="snowflake-container">
       </div>
       <map name="treemap">
-        <area shape="poly" coords="10,549,240,4,265,5,484,555,412,662,257,683,99,659">
+        <area shape="poly" coords="9,616,132,299,205,103,250,9,342,264,411,424,486,622,431,681,357,697,239,698,137,698,68,687">
       </map>
       <img class="christmas-tree" draggable="false" src='./assets/tree/1.png' alt="Новогодняя ёлка" usemap="#treemap">
+      <div class="basket"></div>
     </div>
     <div class="main-tree-toys">
       <div class="choice-toy-container">

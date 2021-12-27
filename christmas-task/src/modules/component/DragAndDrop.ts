@@ -8,9 +8,11 @@ export class DragAndDrop {
     const toys = toysContainer.querySelectorAll(
       '.choice-toy-img'
     ) as NodeListOf<HTMLImageElement>;
-    const tree = document.querySelector('area') as HTMLElement;
     const treeContainer = document.querySelector(
       '.tree-container'
+    ) as HTMLElement;
+    const decorationContainer = treeContainer.querySelector(
+      'map'
     ) as HTMLElement;
 
     toys.forEach((toy): void => {
@@ -27,11 +29,11 @@ export class DragAndDrop {
       });
     });
 
-    tree.addEventListener('dragover', (event: Event): void => {
+    decorationContainer.addEventListener('dragover', (event: Event): void => {
       event.preventDefault();
     });
 
-    tree.addEventListener('drop', (event: IDropIvent): void => {
+    decorationContainer.addEventListener('drop', (event: IDropIvent): void => {
       event.preventDefault();
 
       const toy = document.querySelector('.selected') as HTMLElement;
@@ -47,7 +49,7 @@ export class DragAndDrop {
         const top = event.clientY - coords.top - 25;
 
         const fragment = document.createDocumentFragment();
-        const newToy = toy.cloneNode() as HTMLElement;
+        const newToy = toy.cloneNode(true) as HTMLElement;
 
         newToy.classList.remove('selected');
         newToy.classList.add('onTree');
@@ -91,6 +93,42 @@ export class DragAndDrop {
 
         toyOnTree.style.left = `${left}px`;
         toyOnTree.style.top = `${top}px`;
+      }
+    });
+
+    const basket = document.querySelector('.basket') as HTMLElement;
+
+    basket.addEventListener('dragover', (event: Event): void => {
+      event.preventDefault();
+    });
+
+    basket.addEventListener('drop', (event: Event): void => {
+      event.preventDefault();
+
+      const toys = toysContainer.querySelectorAll(
+        '.choice-toy-item'
+      ) as NodeListOf<HTMLImageElement>;
+      const toyOnTree = document.querySelector(
+        '.selectedOnTree'
+      ) as HTMLElement;
+
+      if (toyOnTree) {
+        toys.forEach((toy) => {
+          if (toyOnTree.dataset.id === toy.dataset.id) {
+            console.log(toy);
+            let amountToys = toy.querySelector('.toy-amount') as HTMLElement;
+            let count = amountToys.innerText;
+
+            if (+count === 0) {
+              toy.append(toyOnTree);
+              toyOnTree.classList.remove('onTree');
+              amountToys.innerText = (+count + 1).toString();
+            } else if (+count > 0) {
+              amountToys.innerText = (+count + 1).toString();
+              toyOnTree.remove();
+            }
+          }
+        });
       }
     });
   }
