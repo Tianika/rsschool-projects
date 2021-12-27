@@ -40,29 +40,16 @@ export class DragAndDrop {
       const coords = treeContainer.getBoundingClientRect();
 
       if (toy) {
-        const countToys = toy.parentElement?.querySelector(
-          '.toy-amount'
-        ) as HTMLElement;
-        const count = +countToys.innerText - 1;
-
         const left = event.clientX - coords.left - 25;
         const top = event.clientY - coords.top - 25;
 
-        const fragment = document.createDocumentFragment();
-        const newToy = toy.cloneNode(true) as HTMLElement;
+        toy.classList.remove('selected');
+        toy.classList.add('onTree');
+        toy.style.left = `${left}px`;
+        toy.style.top = `${top}px`;
 
-        newToy.classList.remove('selected');
-        newToy.classList.add('onTree');
-        newToy.style.left = `${left}px`;
-        newToy.style.top = `${top}px`;
-
-        fragment.append(newToy);
-        treeContainer.appendChild(fragment);
-
-        countToys.innerText = count.toString();
-        if (count === 0) {
-          toy.remove();
-        }
+        treeContainer.appendChild(toy);
+        this.changeCountToys();
       }
 
       const toysOnTree = document.querySelectorAll(
@@ -115,21 +102,33 @@ export class DragAndDrop {
       if (toyOnTree) {
         toys.forEach((toy) => {
           if (toyOnTree.dataset.id === toy.dataset.id) {
-            console.log(toy);
-            let amountToys = toy.querySelector('.toy-amount') as HTMLElement;
-            let count = amountToys.innerText;
+            toyOnTree.classList.remove('onTree');
+            toyOnTree.style.left = '0px';
+            toyOnTree.style.top = '0px';
+            toy.append(toyOnTree);
 
-            if (+count === 0) {
-              toy.append(toyOnTree);
-              toyOnTree.classList.remove('onTree');
-              amountToys.innerText = (+count + 1).toString();
-            } else if (+count > 0) {
-              amountToys.innerText = (+count + 1).toString();
-              toyOnTree.remove();
-            }
+            this.changeCountToys();
           }
         });
       }
+    });
+  }
+
+  changeCountToys() {
+    const toysContainer = document.querySelector(
+      '.choice-toy-container'
+    ) as HTMLElement;
+    const choiceToysArray = toysContainer.querySelectorAll(
+      '.choice-toy-item'
+    ) as NodeListOf<HTMLElement>;
+
+    choiceToysArray.forEach((toy) => {
+      const toysArray = toy.querySelectorAll(
+        '.choice-toy-img'
+      ) as NodeListOf<HTMLElement>;
+      const toysAmount = toy.querySelector('.toy-amount') as HTMLElement;
+
+      toysAmount.innerText = toysArray.length.toString();
     });
   }
 }

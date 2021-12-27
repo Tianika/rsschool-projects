@@ -196,12 +196,14 @@ export function addToyForPage(index: number): HTMLLIElement {
   const toyContainer = document.createElement('li');
   const countToys = +data[index].count;
 
+  const amount = document.createElement('div');
+
+  amount.classList.add('toy-amount');
+  amount.innerText = data[index].count;
+  toyContainer.appendChild(amount);
+
   for (let i = 0; i < countToys; i++) {
     const toy = document.createElement('img');
-    const amount = document.createElement('div');
-
-    amount.classList.add('toy-amount');
-    amount.innerText = data[index].count;
 
     toy.classList.add('choice-toy-img');
     toy.alt = data[index].name;
@@ -210,7 +212,6 @@ export function addToyForPage(index: number): HTMLLIElement {
     toy.src = `../assets/toys/${data[index].num}.png`;
 
     toyContainer.appendChild(toy);
-    toyContainer.appendChild(amount);
   }
 
   toyContainer.classList.add('choice-toy-item');
