@@ -108,3 +108,5 @@ export const DEFAULT_COLOR = 'different';
 export const OFFSET = 1;
 
 export const SOUND_PATHS = ['../../assets/audio/audio.mp3'];
+
+export const EMPTY_LS = '[]';

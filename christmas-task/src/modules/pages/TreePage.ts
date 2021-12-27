@@ -15,6 +15,7 @@ import {
   IBackgroundSettings,
   DEFAULT_VALUE_BG,
   OFFSET,
+  EMPTY_LS,
 } from '../utils';
 import { addToyForPage } from '../utils';
 
@@ -184,7 +185,10 @@ export class MainPage {
     let favoriteToys: Array<string>;
     const fragment = document.createDocumentFragment();
 
-    if (localStorage.favoriteForChristmasGame) {
+    if (
+      localStorage.favoriteForChristmasGame &&
+      localStorage.favoriteForChristmasGame !== EMPTY_LS
+    ) {
       favoriteToys = JSON.parse(localStorage.favoriteForChristmasGame);
 
       for (let i = COUNT_USER_FAVORITE.countMin; i < favoriteToys.length; i++) {

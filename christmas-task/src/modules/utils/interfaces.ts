@@ -74,3 +74,8 @@ export interface IBackgroundSettings {
   tree: string;
   background: string;
 }
+
+export interface IDropIvent extends Event {
+  clientX: number;
+  clientY: number;
+}
