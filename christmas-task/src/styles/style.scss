@@ -892,22 +892,24 @@ a {
   font-family: Neucha;
 }
 
-.main-page-titte {
+.main-page-title {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 450px;
   height: 200px;
-
   border-radius: 5px;
   padding: 10px;
-  font-size: 44px;
-  line-height: 46px;
+  font-size: 50px;
+  line-height: 56px;
+  letter-spacing: 2px;
   margin-bottom: 20px;
 }
 
 .main-page-link {
+  position: relative;
+  z-index: 5;
   width: 300px;
   height: 80px;
   font-size: 36px;
@@ -931,6 +933,7 @@ a {
 
 .decoration-container {
   position: absolute;
+  z-index: 1;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top center;
@@ -942,6 +945,10 @@ a {
     left: 100px;
     width: 600px;
     height: 500px;
+    @media (max-width: 1024px) {
+      width: 400px;
+      height: 3050px;
+    }
   }
 
   &.right {
@@ -952,6 +959,10 @@ a {
     height: 700px;
     right: 80px;
     opacity: 0.9;
+    @media (max-width: 1024px) {
+      width: 400px;
+      height: 500px;
+    }
   }
 }
 
@@ -1380,7 +1391,7 @@ a {
     &.silver {
       opacity: 1;
       background-color: rgba($silver, $opacityGarland);
-      animation: lightSilver $animDuration linear infinite;
+      animation: garlandSilver $animDuration linear infinite;
       &:nth-child(4n + 1) {
         animation-delay: Calc($animDuration / 5);
       }
@@ -1395,7 +1406,7 @@ a {
     &.gold {
       opacity: 1;
       background-color: rgba($gold, $opacityGarland);
-      animation: lightGold $animDuration linear infinite;
+      animation: garlandGold $animDuration linear infinite;
       &:nth-child(4n + 1) {
         animation-delay: Calc($animDuration / 5);
       }
@@ -1410,7 +1421,7 @@ a {
     &.red {
       opacity: 1;
       background-color: rgba($red, $opacityGarland);
-      animation: lightRed $animDuration linear infinite;
+      animation: garlandRed $animDuration linear infinite;
       &:nth-child(4n + 1) {
         animation-delay: Calc($animDuration / 5);
       }
@@ -1425,7 +1436,7 @@ a {
     &.blue {
       opacity: 1;
       background-color: rgba($blue, $opacityGarland);
-      animation: lightBlue $animDuration linear infinite;
+      animation: garlandBlue $animDuration linear infinite;
       &:nth-child(4n + 1) {
         animation-delay: Calc($animDuration / 5);
       }
@@ -1440,7 +1451,7 @@ a {
     &.green {
       opacity: 1;
       background-color: rgba($green, $opacityGarland);
-      animation: lightGreen $animDuration linear infinite;
+      animation: garlandGreen $animDuration linear infinite;
       &:nth-child(4n + 1) {
         animation-delay: Calc($animDuration / 5);
       }
@@ -1456,28 +1467,28 @@ a {
       opacity: 1;
       &:nth-child(4n) {
         background-color: rgba($green, $opacityGarland);
-        animation: lightGreen $animDuration linear infinite;
+        animation: garlandGreen $animDuration linear infinite;
       }
       &:nth-child(4n + 1) {
         background-color: rgba($gold, $opacityGarland);
-        animation: lightGold $animDuration linear infinite;
+        animation: garlandGold $animDuration linear infinite;
         animation-delay: Calc($animDuration / 5);
       }
       &:nth-child(4n + 2) {
         background-color: rgba($blue, $opacityGarland);
-        animation: lightBlue $animDuration linear infinite;
+        animation: garlandBlue $animDuration linear infinite;
         animation-delay: Calc($animDuration / 5 * 2);
       }
       &:nth-child(4n + 3) {
         background-color: rgba($red, $opacityGarland);
-        animation: lightRed $animDuration linear infinite;
+        animation: garlandRed $animDuration linear infinite;
         animation-delay: Calc($animDuration / 5 * 3);
       }
     }
   }
 }
 
-@keyframes lightSilver {
+@keyframes garlandSilver {
   0% {
     background-color: rgba($silver, $opacityGarland);
   }
@@ -1491,7 +1502,7 @@ a {
   }
 }
 
-@keyframes lightGold {
+@keyframes garlandGold {
   0% {
     background-color: rgba($gold, $opacityGarland);
   }
@@ -1505,7 +1516,7 @@ a {
   }
 }
 
-@keyframes lightRed {
+@keyframes garlandRed {
   0% {
     background-color: rgba($red, $opacityGarland);
   }
@@ -1519,7 +1530,7 @@ a {
   }
 }
 
-@keyframes lightBlue {
+@keyframes garlandBlue {
   0% {
     background-color: rgba($blue, $opacityGarland);
   }
@@ -1533,7 +1544,7 @@ a {
   }
 }
 
-@keyframes lightGreen {
+@keyframes garlandGreen {
   0% {
     background-color: rgba($green, $opacityGarland);
   }

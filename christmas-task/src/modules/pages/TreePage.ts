@@ -72,8 +72,8 @@ export class MainPage {
       this.settings.tree = settings.tree;
       this.settings.background = settings.background;
 
-      treeConrainer.style.backgroundImage = `url(../assets/bg/${this.settings.background}.jpg)`;
-      christmasTree.src = `../assets/tree/${this.settings.tree}.png`;
+      treeConrainer.style.backgroundImage = `url(./assets/bg/${this.settings.background}.jpg)`;
+      christmasTree.src = `./assets/tree/${this.settings.tree}.png`;
     }
 
     const resetBtn = document.querySelector(
@@ -102,10 +102,10 @@ export class MainPage {
       garland.garlandOff(powerBtn, lights);
 
       treeConrainer.style.backgroundImage = `url(../assets/bg/${this.settings.background}.jpg)`;
-      christmasTree.src = `../assets/tree/${this.settings.tree}.png`;
+      christmasTree.src = `./assets/tree/${this.settings.tree}.png`;
 
       treeConrainer.style.backgroundImage = `url(../assets/bg/${DEFAULT_VALUE_BG}.jpg)`;
-      christmasTree.src = `../assets/tree/${DEFAULT_VALUE_BG}.png`;
+      christmasTree.src = `./assets/tree/${DEFAULT_VALUE_BG}.png`;
 
       this.settings.tree = DEFAULT_VALUE_BG;
       this.settings.background = DEFAULT_VALUE_BG;
@@ -121,7 +121,7 @@ export class MainPage {
       const tree = document.createElement('li');
 
       tree.classList.add('tree');
-      tree.style.backgroundImage = `url(../assets/tree/${item}.png)`;
+      tree.style.backgroundImage = `url(./assets/tree/${item}.png)`;
       tree.setAttribute('data-tree', item);
 
       treesConrainer.appendChild(tree);
@@ -140,7 +140,7 @@ export class MainPage {
         if (!number) return;
 
         this.settings.tree = number;
-        christmasTree.src = `../assets/tree/${number}.png`;
+        christmasTree.src = `./assets/tree/${number}.png`;
 
         localStorage.settingsBgForTreePage = JSON.stringify(this.settings);
       }
@@ -156,7 +156,7 @@ export class MainPage {
       const background = document.createElement('li');
 
       background.classList.add('background');
-      background.style.backgroundImage = `url(../assets/bg/${item}.jpg)`;
+      background.style.backgroundImage = `url(./assets/bg/${item}.jpg)`;
       background.setAttribute('data-background', item);
 
       backgroundsConrainer.appendChild(background);
@@ -174,7 +174,7 @@ export class MainPage {
 
         if (!number) return;
 
-        treeContainer.style.backgroundImage = `url(../assets/bg/${number}.jpg)`;
+        treeContainer.style.backgroundImage = `url(./assets/bg/${number}.jpg)`;
 
         this.settings.background = number;
         localStorage.settingsBgForTreePage = JSON.stringify(this.settings);

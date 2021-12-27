@@ -1,6 +1,6 @@
 export const Main = (): DocumentFragment => {
   const component = ` 
-    <div class="main-page-titte">Помогите бабушке украсить ёлку</div>
+    <div class="main-page-title">Новогодняя игра "Наряди ёлку"</div>
     <div class="main-page-link">
       <a href="#toys-page" class="link-button">Начать игру</a>
     </div>
