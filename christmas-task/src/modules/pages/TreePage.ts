@@ -81,6 +81,8 @@ export class MainPage {
     ) as HTMLButtonElement;
 
     resetBtn.addEventListener('click', (): void => {
+      resetBtn.classList.add('active');
+
       setTimeout(() => {
         resetBtn.classList.remove('active');
       }, DELAY.delayActive);
