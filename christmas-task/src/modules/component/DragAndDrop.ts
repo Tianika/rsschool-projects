@@ -27,20 +27,6 @@ export class DragAndDrop {
       });
     });
 
-    // toysOnTree.forEach((toy): void => {
-    //   toy.addEventListener('dragstart', (event: Event): void => {
-    //     const target = event.target as HTMLElement;
-
-    //     target.classList.add('selectedOnTree');
-    //   });
-
-    //   toy.addEventListener('dragend', (event: Event): void => {
-    //     const target = event.target as HTMLElement;
-
-    //     target.classList.remove('selectedOnTree');
-    //   });
-    // });
-
     tree.addEventListener('dragover', (event: Event): void => {
       event.preventDefault();
     });

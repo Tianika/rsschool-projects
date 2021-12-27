@@ -1185,6 +1185,13 @@ a {
   filter: blur(3px);
 }
 
+.snowflake-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .snowflake {
   position: absolute;
   top: -30px;
@@ -1292,11 +1299,12 @@ a {
   top: 50px;
   width: 500px;
   height: 650px;
+  pointer-events: none;
 }
 
 .garland-item {
   position: absolute;
-  z-index: 1;
+  z-index: 5;
 
   &:nth-child(1) {
     top: 110px;
@@ -1358,82 +1366,98 @@ a {
     &.silver {
       opacity: 1;
       background-color: rgba($silver, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightSilver $animDuration linear infinite;
+      animation: lightSilver $animDuration linear infinite;
+      &:nth-child(4n + 1) {
+        animation-delay: Calc($animDuration / 5);
       }
-      &:nth-child(2n) {
-        animation: lightSilver $animDuration linear infinite;
-        animation-delay: $animDelay;
+      &:nth-child(4n + 2) {
+        animation-delay: Calc($animDuration / 5 * 2);
+      }
+      &:nth-child(4n + 3) {
+        animation-delay: Calc($animDuration / 5 * 3);
       }
     }
 
     &.gold {
       opacity: 1;
       background-color: rgba($gold, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightGold $animDuration linear infinite;
+      animation: lightGold $animDuration linear infinite;
+      &:nth-child(4n + 1) {
+        animation-delay: Calc($animDuration / 5);
       }
-      &:nth-child(2n) {
-        animation: lightGold $animDuration linear infinite;
-        animation-delay: $animDelay;
+      &:nth-child(4n + 2) {
+        animation-delay: Calc($animDuration / 5 * 2);
+      }
+      &:nth-child(4n + 3) {
+        animation-delay: Calc($animDuration / 5 * 3);
       }
     }
 
     &.red {
       opacity: 1;
       background-color: rgba($red, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightRed $animDuration linear infinite;
+      animation: lightRed $animDuration linear infinite;
+      &:nth-child(4n + 1) {
+        animation-delay: Calc($animDuration / 5);
       }
-      &:nth-child(2n) {
-        animation: lightRed $animDuration linear infinite;
-        animation-delay: $animDelay;
+      &:nth-child(4n + 2) {
+        animation-delay: Calc($animDuration / 5 * 2);
+      }
+      &:nth-child(4n + 3) {
+        animation-delay: Calc($animDuration / 5 * 3);
       }
     }
 
     &.blue {
       opacity: 1;
       background-color: rgba($blue, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightBlue $animDuration linear infinite;
+      animation: lightBlue $animDuration linear infinite;
+      &:nth-child(4n + 1) {
+        animation-delay: Calc($animDuration / 5);
       }
-      &:nth-child(2n) {
-        animation: lightBlue $animDuration linear infinite;
-        animation-delay: $animDelay;
+      &:nth-child(4n + 2) {
+        animation-delay: Calc($animDuration / 5 * 2);
+      }
+      &:nth-child(4n + 3) {
+        animation-delay: Calc($animDuration / 5 * 3);
       }
     }
 
     &.green {
       opacity: 1;
       background-color: rgba($green, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightGreen $animDuration linear infinite;
+      animation: lightGreen $animDuration linear infinite;
+      &:nth-child(4n + 1) {
+        animation-delay: Calc($animDuration / 5);
       }
-      &:nth-child(2n) {
-        animation: lightGreen $animDuration linear infinite;
-        animation-delay: $animDelay;
+      &:nth-child(4n + 2) {
+        animation-delay: Calc($animDuration / 5 * 2);
+      }
+      &:nth-child(4n + 3) {
+        animation-delay: Calc($animDuration / 5 * 3);
       }
     }
 
     &.different {
       opacity: 1;
       &:nth-child(4n) {
+        background-color: rgba($green, $opacityGarland);
         animation: lightGreen $animDuration linear infinite;
       }
       &:nth-child(4n + 1) {
         background-color: rgba($gold, $opacityGarland);
         animation: lightGold $animDuration linear infinite;
-        animation-delay: 0.25s;
+        animation-delay: Calc($animDuration / 5);
       }
       &:nth-child(4n + 2) {
         background-color: rgba($blue, $opacityGarland);
         animation: lightBlue $animDuration linear infinite;
-        animation-delay: 0.5s;
+        animation-delay: Calc($animDuration / 5 * 2);
       }
       &:nth-child(4n + 3) {
         background-color: rgba($red, $opacityGarland);
         animation: lightRed $animDuration linear infinite;
-        animation-delay: 0.75s;
+        animation-delay: Calc($animDuration / 5 * 3);
       }
     }
   }

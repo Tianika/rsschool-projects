@@ -107,6 +107,8 @@ export const Main = (): DocumentFragment => {
           <li style="transform: translateY(0px) rotate(-25deg)"></li>
         </ul>
       </div>
+      <div class="snowflake-container">
+      </div>
       <map name="treemap">
         <area shape="poly" coords="10,549,240,4,265,5,484,555,412,662,257,683,99,659">
       </map>

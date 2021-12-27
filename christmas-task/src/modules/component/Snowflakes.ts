@@ -27,8 +27,6 @@ export class Snowflakes {
       }
     }, DELAY.delaySnow);
 
-    //this.snowInterval = setInterval(this.createSnowflake, DELAY.delaySnow);
-
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {
         this.snowOn();
@@ -63,7 +61,9 @@ export class Snowflakes {
   }
 
   createSnowflake() {
-    const container = document.querySelector('.tree-container') as HTMLElement;
+    const container = document.querySelector(
+      '.snowflake-container'
+    ) as HTMLElement;
 
     if (container) {
       const snowflake = document.createElement('span') as HTMLElement;
