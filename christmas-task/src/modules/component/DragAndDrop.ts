@@ -1,9 +1,15 @@
 export class DragAndDrop {
   draw(): void {
-    const toys = document.querySelectorAll(
+    const toysContainer = document.querySelector(
+      '.choice-toy-container'
+    ) as HTMLElement;
+    const toys = toysContainer.querySelectorAll(
       '.choice-toy-img'
     ) as NodeListOf<HTMLImageElement>;
-    const tree = document.querySelector('.tree-container') as HTMLElement;
+    const tree = document.querySelector('area') as HTMLElement;
+    const treeContainer = document.querySelector(
+      '.tree-container'
+    ) as HTMLElement;
 
     toys.forEach((toy) => {
       toy.addEventListener('dragstart', (event: Event): void => {
@@ -27,15 +33,35 @@ export class DragAndDrop {
       event.preventDefault();
 
       const toy = document.querySelector('.selected') as HTMLElement;
-      const coords = tree.getBoundingClientRect();
 
-      const left = event.clientX - coords.left - 25;
-      const top = event.clientY - coords.top - 25;
+      if (toy) {
+        const coords = treeContainer.getBoundingClientRect();
 
-      toy.style.left = `${left}px`;
-      toy.style.top = `${top}px`;
+        const left = event.clientX - coords.left - 25;
+        const top = event.clientY - coords.top - 25;
 
-      tree.appendChild(toy);
+        const countToys = toy.parentElement?.querySelector(
+          '.toy-amount'
+        ) as HTMLElement;
+        const count = +countToys.innerText - 1;
+
+        const fragment = document.createDocumentFragment();
+        const newToy = toy.cloneNode();
+
+        newToy.classList.remove('selected');
+
+        newToy.style.left = `${left}px`;
+        newToy.style.top = `${top}px`;
+
+        fragment.append(newToy);
+
+        treeContainer.appendChild(fragment);
+
+        countToys.innerText = count.toString();
+        if (count === 0) {
+          toy.remove();
+        }
+      }
     });
   }
 }

@@ -83,6 +83,8 @@ $red: #ff073a;
 $blue: #04d9ff;
 $green: #00ff00;
 $opacityGarland: 0.3;
+$animDuration: 1s;
+$animDelay: 0.5s;
 
 /*-------------header - footer------------*/
 .root {
@@ -1157,230 +1159,30 @@ a {
   background-position: center bottom;
 }
 
-.garland-container {
-  position: absolute;
+.christmas-tree {
+  position: relative;
+  z-index: 4;
   display: flex;
-  justify-content: center;
-  top: 50px;
-  width: 500px;
-  height: 650px;
+  align-self: end;
+  height: 780px;
+  margin-bottom: 30px;
 }
 
-.garland-item {
+.shadow-tree {
   position: absolute;
-
-  &:nth-child(1) {
-    top: 110px;
-    transform: rotate(24deg);
-  }
-  &:nth-child(2) {
-    top: 180px;
-    transform: rotate(-22deg);
-  }
-  &:nth-child(3) {
-    top: 270px;
-    transform: rotate(18deg);
-  }
-  &:nth-child(4) {
-    top: 360px;
-    transform: rotate(-15deg);
-  }
-  &:nth-child(5) {
-    top: 450px;
-    transform: rotate(10deg);
-  }
-  &:nth-child(6) {
-    top: 540px;
-    transform: rotate(-9deg);
-  }
-  li {
-    display: inline-block;
-    position: relative;
-    width: 8px;
-    height: 12px;
-    border-radius: 50%;
-    margin: 0 8px;
-    opacity: 0;
-    &::before {
-      position: absolute;
-      display: block;
-      content: '';
-      top: -4px;
-      left: 1px;
-      width: 6px;
-      height: 6px;
-      border-radius: 40% 40% 10% 10%;
-      background-color: #333;
-    }
-    &:not(:last-child):after {
-      content: '';
-      position: absolute;
-      display: block;
-      width: 30px;
-      height: 10px;
-      border-radius: 50%;
-      left: 3px;
-      top: -8px;
-      border-bottom: 1px solid #333;
-      transform: rotate(-5deg);
-    }
-
-    &.silver {
-      opacity: 1;
-      background-color: rgba($silver, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightSilver 2s linear infinite;
-      }
-      &:nth-child(2n) {
-        animation: lightSilver 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-
-    &.gold {
-      opacity: 1;
-      background-color: rgba($gold, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightGold 2s linear infinite;
-      }
-      &:nth-child(2n) {
-        animation: lightGold 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-
-    &.red {
-      opacity: 1;
-      background-color: rgba($red, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightRed 2s linear infinite;
-      }
-      &:nth-child(2n) {
-        animation: lightRed 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-
-    &.blue {
-      opacity: 1;
-      background-color: rgba($blue, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightBlue 2s linear infinite;
-      }
-      &:nth-child(2n) {
-        animation: lightBlue 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-
-    &.green {
-      opacity: 1;
-      background-color: rgba($green, $opacityGarland);
-      &:nth-child(2n + 1) {
-        animation: lightGreen 2s linear infinite;
-      }
-      &:nth-child(2n) {
-        animation: lightGreen 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-
-    &.different {
-      opacity: 1;
-      &:nth-child(4n) {
-        animation: lightGreen 2s linear infinite;
-      }
-      &:nth-child(4n + 1) {
-        background-color: rgba($gold, $opacityGarland);
-        animation: lightGold 2s linear infinite;
-        animation-delay: 1s;
-      }
-      &:nth-child(4n + 2) {
-        animation: lightBlue 2s linear infinite;
-      }
-      &:nth-child(4n + 3) {
-        background-color: rgba($red, $opacityGarland);
-        animation: lightRed 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-  }
-}
-
-@keyframes lightSilver {
-  0% {
-    background-color: rgba($silver, $opacityGarland);
-  }
-  50% {
-    background-color: $silver;
-    box-shadow: 0 2px 5px $silver, 0 3px 10px $silver, 0 5px 20px $silver,
-      0 5px 30px $silver;
-  }
-  100% {
-    background-color: rgba($silver, $opacityGarland);
-  }
-}
-
-@keyframes lightGold {
-  0% {
-    background-color: rgba($gold, $opacityGarland);
-  }
-  50% {
-    background-color: $gold;
-    box-shadow: 0 2px 5px $gold, 0 3px 10px $gold, 0 5px 20px $gold,
-      0 5px 30px $gold;
-  }
-  100% {
-    background-color: rgba($gold, $opacityGarland);
-  }
-}
-
-@keyframes lightRed {
-  0% {
-    background-color: rgba($red, $opacityGarland);
-  }
-  50% {
-    background-color: $red;
-    box-shadow: 0 2px 5px $red, 0 3px 10px $red, 0 5px 20px $red,
-      0 5px 30px $red;
-  }
-  100% {
-    background-color: rgba($red, $opacityGarland);
-  }
-}
-
-@keyframes lightBlue {
-  0% {
-    background-color: rgba($blue, $opacityGarland);
-  }
-  50% {
-    background-color: $blue;
-    box-shadow: 0 2px 5px $blue, 0 3px 10px $blue, 0 5px 20px $blue,
-      0 5px 30px $blue;
-  }
-  100% {
-    background-color: rgba($blue, $opacityGarland);
-  }
-}
-
-@keyframes lightGreen {
-  0% {
-    background-color: rgba($green, $opacityGarland);
-  }
-  50% {
-    background-color: $green;
-    box-shadow: 0 2px 5px $green, 0 3px 10px $green, 0 5px 20px $green,
-      0 5px 30px $green;
-  }
-  100% {
-    background-color: rgba($green, $opacityGarland);
-  }
-}
-
-@keyframes fall {
-  100% {
-    transform: translateY(800px) rotate(200deg);
-  }
+  background: radial-gradient(
+    ellipse,
+    #000000ee,
+    #000000a6,
+    #00000042,
+    #00000000,
+    transparent
+  );
+  width: 60%;
+  height: 70px;
+  bottom: 50px;
+  border-radius: 50%;
+  filter: blur(3px);
 }
 
 .snowflake {
@@ -1396,31 +1198,13 @@ a {
   animation: fall linear forwards;
 }
 
-.christmas-tree {
-  position: relative;
-  display: flex;
-  align-self: end;
-  margin-bottom: 30px;
-  height: 780px;
+@keyframes fall {
+  100% {
+    transform: translateY(800px) rotate(200deg);
+  }
 }
 
-.shadow-tree {
-  position: absolute;
-  background: radial-gradient(
-    ellipse,
-    #000000ee,
-    #000000a6,
-    #00000042,
-    #00000000,
-    transparent
-  );
-  width: 55%;
-  height: 50px;
-  bottom: 50px;
-  border-radius: 50%;
-  filter: blur(3px);
-}
-
+//choice-toy
 .choice-toy {
   display: flex;
   justify-content: center;
@@ -1497,5 +1281,230 @@ a {
       border: 1px solid $compl-color;
       box-shadow: 0 0 10px $light-color;
     }
+  }
+}
+
+/*----garland----*/
+.garland-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 50px;
+  width: 500px;
+  height: 650px;
+}
+
+.garland-item {
+  position: absolute;
+  z-index: 1;
+
+  &:nth-child(1) {
+    top: 110px;
+    transform: rotate(24deg);
+  }
+  &:nth-child(2) {
+    top: 180px;
+    transform: rotate(-22deg);
+  }
+  &:nth-child(3) {
+    top: 270px;
+    transform: rotate(18deg);
+  }
+  &:nth-child(4) {
+    top: 360px;
+    transform: rotate(-15deg);
+  }
+  &:nth-child(5) {
+    top: 450px;
+    transform: rotate(10deg);
+  }
+  &:nth-child(6) {
+    top: 540px;
+    transform: rotate(-9deg);
+  }
+  li {
+    display: inline-block;
+    position: relative;
+    z-index: 7;
+    width: 8px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 8px;
+    opacity: 0;
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      top: -4px;
+      left: 1px;
+      width: 6px;
+      height: 6px;
+      border-radius: 40% 40% 10% 10%;
+      background-color: #333;
+    }
+    &:not(:last-child):after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 30px;
+      height: 10px;
+      border-radius: 50%;
+      left: 3px;
+      top: -8px;
+      border-bottom: 1px solid #333;
+      transform: rotate(-5deg);
+    }
+
+    &.silver {
+      opacity: 1;
+      background-color: rgba($silver, $opacityGarland);
+      &:nth-child(2n + 1) {
+        animation: lightSilver $animDuration linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightSilver $animDuration linear infinite;
+        animation-delay: $animDelay;
+      }
+    }
+
+    &.gold {
+      opacity: 1;
+      background-color: rgba($gold, $opacityGarland);
+      &:nth-child(2n + 1) {
+        animation: lightGold $animDuration linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightGold $animDuration linear infinite;
+        animation-delay: $animDelay;
+      }
+    }
+
+    &.red {
+      opacity: 1;
+      background-color: rgba($red, $opacityGarland);
+      &:nth-child(2n + 1) {
+        animation: lightRed $animDuration linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightRed $animDuration linear infinite;
+        animation-delay: $animDelay;
+      }
+    }
+
+    &.blue {
+      opacity: 1;
+      background-color: rgba($blue, $opacityGarland);
+      &:nth-child(2n + 1) {
+        animation: lightBlue $animDuration linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightBlue $animDuration linear infinite;
+        animation-delay: $animDelay;
+      }
+    }
+
+    &.green {
+      opacity: 1;
+      background-color: rgba($green, $opacityGarland);
+      &:nth-child(2n + 1) {
+        animation: lightGreen $animDuration linear infinite;
+      }
+      &:nth-child(2n) {
+        animation: lightGreen $animDuration linear infinite;
+        animation-delay: $animDelay;
+      }
+    }
+
+    &.different {
+      opacity: 1;
+      &:nth-child(4n) {
+        animation: lightGreen $animDuration linear infinite;
+      }
+      &:nth-child(4n + 1) {
+        background-color: rgba($gold, $opacityGarland);
+        animation: lightGold $animDuration linear infinite;
+        animation-delay: 0.25s;
+      }
+      &:nth-child(4n + 2) {
+        background-color: rgba($blue, $opacityGarland);
+        animation: lightBlue $animDuration linear infinite;
+        animation-delay: 0.5s;
+      }
+      &:nth-child(4n + 3) {
+        background-color: rgba($red, $opacityGarland);
+        animation: lightRed $animDuration linear infinite;
+        animation-delay: 0.75s;
+      }
+    }
+  }
+}
+
+@keyframes lightSilver {
+  0% {
+    background-color: rgba($silver, $opacityGarland);
+  }
+  50% {
+    background-color: $silver;
+    box-shadow: 0 2px 5px $silver, 0 3px 10px $silver, 0 5px 20px $silver,
+      0 5px 30px $silver;
+  }
+  100% {
+    background-color: rgba($silver, $opacityGarland);
+  }
+}
+
+@keyframes lightGold {
+  0% {
+    background-color: rgba($gold, $opacityGarland);
+  }
+  50% {
+    background-color: $gold;
+    box-shadow: 0 2px 5px $gold, 0 3px 10px $gold, 0 5px 20px $gold,
+      0 5px 30px $gold;
+  }
+  100% {
+    background-color: rgba($gold, $opacityGarland);
+  }
+}
+
+@keyframes lightRed {
+  0% {
+    background-color: rgba($red, $opacityGarland);
+  }
+  50% {
+    background-color: $red;
+    box-shadow: 0 2px 5px $red, 0 3px 10px $red, 0 5px 20px $red,
+      0 5px 30px $red;
+  }
+  100% {
+    background-color: rgba($red, $opacityGarland);
+  }
+}
+
+@keyframes lightBlue {
+  0% {
+    background-color: rgba($blue, $opacityGarland);
+  }
+  50% {
+    background-color: $blue;
+    box-shadow: 0 2px 5px $blue, 0 3px 10px $blue, 0 5px 20px $blue,
+      0 5px 30px $blue;
+  }
+  100% {
+    background-color: rgba($blue, $opacityGarland);
+  }
+}
+
+@keyframes lightGreen {
+  0% {
+    background-color: rgba($green, $opacityGarland);
+  }
+  50% {
+    background-color: $green;
+    box-shadow: 0 2px 5px $green, 0 3px 10px $green, 0 5px 20px $green,
+      0 5px 30px $green;
+  }
+  100% {
+    background-color: rgba($green, $opacityGarland);
   }
 }
