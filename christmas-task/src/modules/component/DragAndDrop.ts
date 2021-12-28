@@ -44,67 +44,31 @@ export class DragAndDrop {
         const top = event.clientY - coords.top - 25;
 
         toy.classList.remove('selected');
-        toy.classList.add('onTree');
         toy.style.left = `${left}px`;
         toy.style.top = `${top}px`;
 
         treeContainer.appendChild(toy);
         this.changeCountToys();
       }
-
-      const toysOnTree = document.querySelectorAll(
-        '.onTree'
-      ) as NodeListOf<HTMLElement>;
-
-      toysOnTree.forEach((toy) => {
-        toy.addEventListener('dragstart', (event: Event): void => {
-          const target = event.target as HTMLElement;
-
-          target.classList.add('selectedOnTree');
-        });
-
-        toy.addEventListener('dragend', (event: Event): void => {
-          const target = event.target as HTMLElement;
-
-          target.classList.remove('selectedOnTree');
-        });
-      });
-
-      const toyOnTree = document.querySelector(
-        '.selectedOnTree'
-      ) as HTMLElement;
-
-      if (toyOnTree) {
-        const left = event.clientX - coords.left - 25;
-        const top = event.clientY - coords.top - 25;
-
-        toyOnTree.style.left = `${left}px`;
-        toyOnTree.style.top = `${top}px`;
-      }
     });
 
-    const basket = document.querySelector('.basket') as HTMLElement;
-
-    basket.addEventListener('dragover', (event: Event): void => {
+    treeContainer.addEventListener('dragover', (event: Event): void => {
       event.preventDefault();
     });
 
-    basket.addEventListener('drop', (event: Event): void => {
+    treeContainer.addEventListener('drop', (event: Event): void => {
       event.preventDefault();
 
       const toys = toysContainer.querySelectorAll(
         '.choice-toy-item'
       ) as NodeListOf<HTMLImageElement>;
-      const toyOnTree = document.querySelector(
-        '.selectedOnTree'
-      ) as HTMLElement;
+      const toyOnTree = document.querySelector('.selected') as HTMLElement;
 
       if (toyOnTree) {
         toys.forEach((toy) => {
           if (toyOnTree.dataset.id === toy.dataset.id) {
-            toyOnTree.classList.remove('onTree');
-            toyOnTree.style.left = '0px';
-            toyOnTree.style.top = '0px';
+            toyOnTree.style.left = '4px';
+            toyOnTree.style.top = '4px';
             toy.append(toyOnTree);
 
             this.changeCountToys();

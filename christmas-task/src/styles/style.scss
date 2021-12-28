@@ -1196,20 +1196,6 @@ a {
   filter: blur(3px);
 }
 
-.basket {
-  position: absolute;
-  z-index: 4;
-  left: 5px;
-  bottom: 20px;
-  height: 180px;
-  width: 180px;
-  background-image: url('../assets/basket.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
-  filter: saturate(0.7) blur(0.3px) drop-shadow(0 3px 10px rgb(65, 65, 65));
-}
-
 .snowflake-container {
   position: absolute;
   width: 100%;
