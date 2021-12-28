@@ -102,10 +102,7 @@ export class MainPage {
 
       garland.garlandOff(powerBtn, lights);
 
-      treeConrainer.style.backgroundImage = `url(../assets/bg/${this.settings.background}.jpg)`;
-      christmasTree.src = `./assets/tree/${this.settings.tree}.png`;
-
-      treeConrainer.style.backgroundImage = `url(../assets/bg/${DEFAULT_VALUE_BG}.jpg)`;
+      treeConrainer.style.backgroundImage = `url(./assets/bg/${DEFAULT_VALUE_BG}.jpg)`;
       christmasTree.src = `./assets/tree/${DEFAULT_VALUE_BG}.png`;
 
       this.settings.tree = DEFAULT_VALUE_BG;
