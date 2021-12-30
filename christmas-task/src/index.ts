@@ -1,6 +1,6 @@
 import './styles/normalize.css';
 import './styles/style.scss';
-import { App } from './modules/app/App';
+import { App } from './modules/app';
 
-const app: App = new App();
+const app = new App();
 app.start();

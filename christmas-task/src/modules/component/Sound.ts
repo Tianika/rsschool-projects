@@ -3,10 +3,11 @@ export class Sound {
   audio: HTMLAudioElement;
 
   constructor(audio: HTMLAudioElement) {
-    (this.isPlay = false), (this.audio = audio);
+    this.isPlay = false;
+    this.audio = audio;
   }
 
-  playSound(soundBtn: HTMLButtonElement) {
+  playSound(soundBtn: HTMLButtonElement): void {
     if (localStorage.isSoundForTreePage) {
       this.isPlay = JSON.parse(localStorage.isSoundForTreePage);
 
@@ -29,14 +30,14 @@ export class Sound {
     });
   }
 
-  playAudio(soundBtn: HTMLButtonElement) {
+  playAudio(soundBtn: HTMLButtonElement): void {
     this.audio.play();
     soundBtn.classList.add('active');
     this.isPlay = true;
     localStorage.isSoundForTreePage = JSON.stringify(this.isPlay);
   }
 
-  muteAudio(soundBtn: HTMLButtonElement) {
+  muteAudio(soundBtn: HTMLButtonElement): void {
     this.audio.pause();
     soundBtn.classList.remove('active');
     this.isPlay = false;

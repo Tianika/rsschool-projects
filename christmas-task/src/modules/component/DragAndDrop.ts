@@ -65,7 +65,7 @@ export class DragAndDrop {
       const toyOnTree = document.querySelector('.selected') as HTMLElement;
 
       if (toyOnTree) {
-        toys.forEach((toy) => {
+        toys.forEach((toy): void => {
           if (toyOnTree.dataset.id === toy.dataset.id) {
             toyOnTree.style.left = '4px';
             toyOnTree.style.top = '4px';
@@ -78,7 +78,7 @@ export class DragAndDrop {
     });
   }
 
-  changeCountToys() {
+  changeCountToys(): void {
     const toysContainer = document.querySelector(
       '.choice-toy-container'
     ) as HTMLElement;
@@ -86,7 +86,7 @@ export class DragAndDrop {
       '.choice-toy-item'
     ) as NodeListOf<HTMLElement>;
 
-    choiceToysArray.forEach((toy) => {
+    choiceToysArray.forEach((toy): void => {
       const toysArray = toy.querySelectorAll(
         '.choice-toy-img'
       ) as NodeListOf<HTMLElement>;

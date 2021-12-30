@@ -7,7 +7,7 @@ export class Garland {
     this.isLight = false;
   }
 
-  draw() {
+  draw(): void {
     const buttons = document.querySelectorAll(
       '.light'
     ) as NodeListOf<HTMLElement>;
@@ -36,7 +36,7 @@ export class Garland {
       this.garlandOn(powerBtn, color, lights);
     }
 
-    buttons.forEach((button) => {
+    buttons.forEach((button): void => {
       button.addEventListener('click', (event: Event): void => {
         const target = event.target as HTMLElement;
         const color = target.dataset.color as string;
@@ -93,12 +93,12 @@ export class Garland {
     });
   }
 
-  garlandOff(powerBtn: HTMLElement, lights: NodeListOf<HTMLElement>) {
+  garlandOff(powerBtn: HTMLElement, lights: NodeListOf<HTMLElement>): void {
     powerBtn.classList.remove('active');
     this.isLight = false;
     delete localStorage.colorGarlandForChristmasTask;
 
-    lights.forEach((light) => {
+    lights.forEach((light): void => {
       light.classList.value = DEFAULT_STRING;
     });
   }

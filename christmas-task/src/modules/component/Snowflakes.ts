@@ -1,14 +1,14 @@
-import { DELAY } from '../utils';
+import { DELAY, NUM_FOR_SNOW } from '../utils';
+let snowInterval1: NodeJS.Timer;
 
 export class Snowflakes {
   isSnow: boolean;
-  //snowInterval: NodeJS.Timer;
 
   constructor() {
     this.isSnow = false;
   }
 
-  drawSnowflakes() {
+  drawSnowflakes(): void {
     const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
 
     if (localStorage.isSnowForTreePage) {
@@ -19,27 +19,30 @@ export class Snowflakes {
       }
     }
 
-    const snowInterval = setInterval(() => {
+    const snowInterval = setInterval((): void => {
       if (snowBtn.classList.contains('active')) {
-        this.createSnowflake();
+        this.createSnowflake;
       } else {
         clearInterval(snowInterval);
       }
     }, DELAY.delaySnow);
 
+    window.addEventListener('hashchange', (): void => {
+      clearInterval(snowInterval);
+    });
+
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {
         this.snowOn();
 
-        const snowInterval1 = setInterval(() => {
+        snowInterval1 = setInterval((): void => {
           if (snowBtn.classList.contains('active')) {
             this.createSnowflake();
-          } else {
-            clearInterval(snowInterval1);
           }
         }, DELAY.delaySnow);
       } else {
         this.snowOff();
+        clearInterval(snowInterval1);
       }
     });
   }
@@ -60,7 +63,7 @@ export class Snowflakes {
     localStorage.isSnowForTreePage = JSON.stringify(this.isSnow);
   }
 
-  createSnowflake() {
+  createSnowflake(): void {
     const container = document.querySelector(
       '.snowflake-container'
     ) as HTMLElement;
@@ -68,20 +71,28 @@ export class Snowflakes {
     if (container) {
       const snowflake = document.createElement('span') as HTMLElement;
 
-      const time = Math.random() * 2 + 4;
-      const removeTime = time * 1000;
-      const size = Math.random() * 15 + 15 + 'px';
+      const time =
+        Math.random() * NUM_FOR_SNOW.offsetDuration + NUM_FOR_SNOW.baseDuration;
+      const removeTime = time * NUM_FOR_SNOW.multiplyForSec;
+      const size =
+        Math.random() * NUM_FOR_SNOW.baseSize +
+        NUM_FOR_SNOW.baseSize +
+        NUM_FOR_SNOW.unitSize;
 
       snowflake.classList.add('snowflake');
-      snowflake.style.left = Math.random() * container.offsetWidth + 'px';
-      snowflake.style.opacity = (Math.random() * 4 + 0.2).toString();
-      snowflake.style.animationDuration = time + 's';
+      snowflake.style.left =
+        Math.random() * container.offsetWidth + NUM_FOR_SNOW.unitSize;
+      snowflake.style.opacity = (
+        Math.random() * NUM_FOR_SNOW.offsetOpacity +
+        NUM_FOR_SNOW.baseOpacity
+      ).toString();
+      snowflake.style.animationDuration = time + NUM_FOR_SNOW.unitTime;
       snowflake.style.width = size;
       snowflake.style.height = size;
 
       container.appendChild(snowflake);
 
-      setTimeout(() => {
+      setTimeout((): void => {
         snowflake.remove();
       }, removeTime);
     }

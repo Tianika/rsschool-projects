@@ -4,7 +4,7 @@ import {
   DEFAULT_STRING,
   HashIds,
   SOUND_PATHS,
-  DEFAULT_SOUND,
+  SoundPaths,
   DELAY,
 } from '../utils';
 
@@ -16,7 +16,7 @@ export class App {
     mainPage.draw();
 
     const audio = new Audio();
-    audio.src = SOUND_PATHS[DEFAULT_SOUND];
+    audio.src = SOUND_PATHS[SoundPaths.default];
 
     const sound = new Sound(audio);
 
@@ -33,18 +33,18 @@ export class App {
     });
   }
 
-  drawMainPage() {
-    const mainPage: MainPage = new MainPage();
+  drawMainPage(): void {
+    const mainPage = new MainPage();
     mainPage.draw();
   }
 
-  drawToysPage() {
-    const toysPage: ToysPage = new ToysPage();
+  drawToysPage(): void {
+    const toysPage = new ToysPage();
     toysPage.draw();
   }
 
-  drawTreePage(sound: Sound) {
-    const treePage: TreePage = new TreePage();
+  drawTreePage(sound: Sound): void {
+    const treePage = new TreePage();
     treePage.draw();
 
     const soundBtn = document.querySelector(
@@ -55,7 +55,7 @@ export class App {
     const resetBtn = document.querySelector(
       '.reset-button'
     ) as HTMLButtonElement;
-    resetBtn.addEventListener('click', () => {
+    resetBtn.addEventListener('click', (): void => {
       sound.muteAudio(soundBtn);
       setTimeout(() => {
         resetBtn.classList.remove('active');
@@ -65,3 +65,5 @@ export class App {
     });
   }
 }
+
+export default App;

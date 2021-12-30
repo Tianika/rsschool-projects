@@ -20,7 +20,7 @@ import {
 import { addToyForPage } from '../utils';
 import html2canvas from 'html2canvas';
 
-export class MainPage {
+export class TreePage {
   settings: IBackgroundSettings;
 
   constructor() {
@@ -121,7 +121,7 @@ export class MainPage {
     });
   }
 
-  addTrees() {
+  addTrees(): void {
     const treesConrainer = document.querySelector(
       '.choice-tree'
     ) as HTMLElement;
@@ -156,7 +156,7 @@ export class MainPage {
     });
   }
 
-  addBackgrounds() {
+  addBackgrounds(): void {
     const backgroundsConrainer = document.querySelector(
       '.choice-background'
     ) as HTMLElement;
@@ -191,7 +191,7 @@ export class MainPage {
     });
   }
 
-  addToys() {
+  addToys(): void {
     const toysConrainer = document.querySelector('.choice-toy') as HTMLElement;
     let favoriteToys: Array<string>;
     const fragment = document.createDocumentFragment();
@@ -222,7 +222,7 @@ export class MainPage {
     toysConrainer.appendChild(fragment);
   }
 
-  saveTree() {
+  saveTree(): void {
     const saveContainer = document.querySelector(
       '.choice-saving-tree'
     ) as HTMLElement;
@@ -230,21 +230,15 @@ export class MainPage {
     li.classList.add('save-tree');
     const savingTree = document.querySelector('.tree-container') as HTMLElement;
 
-    html2canvas(savingTree).then((canvas) => {
+    html2canvas(savingTree).then((canvas): void => {
       canvas.style.width = '148px';
       canvas.style.height = '148px';
       canvas.style.borderRadius = '5px';
-
-      canvas.addEventListener('click', (): void => {
-        this.showSaveTree(canvas);
-      });
 
       li.appendChild(canvas);
       saveContainer.append(li);
     });
   }
-
-  showSaveTree(canvas: HTMLCanvasElement) {}
 }
 
-export default MainPage;
+export default TreePage;

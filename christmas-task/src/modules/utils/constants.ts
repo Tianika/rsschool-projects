@@ -107,6 +107,23 @@ export const DEFAULT_COLOR = 'different';
 
 export const OFFSET = 1;
 
-export const SOUND_PATHS = ['./assets/audio/audio.mp3'];
+export enum SoundPaths {
+  default = 'default',
+}
+
+export const SOUND_PATHS: Record<SoundPaths, string> = {
+  [SoundPaths.default]: './assets/audio/audio.mp3',
+};
 
 export const EMPTY_LS = '[]';
+
+export const NUM_FOR_SNOW = {
+  baseDuration: 4,
+  offsetDuration: 2,
+  multiplyForSec: 1000,
+  baseSize: 15,
+  baseOpacity: 0.2,
+  offsetOpacity: 4,
+  unitSize: 'px',
+  unitTime: 's',
+};
