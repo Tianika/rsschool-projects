@@ -16,11 +16,12 @@ import {
   DEFAULT_VALUE_BG,
   OFFSET,
   EMPTY_LS,
+  SIZE_FOR_CANVAS,
+  addToyForPage,
 } from '../utils';
-import { addToyForPage } from '../utils';
 import html2canvas from 'html2canvas';
 
-export class TreePage {
+class TreePage {
   settings: IBackgroundSettings;
 
   constructor() {
@@ -55,10 +56,10 @@ export class TreePage {
     const snowflakes = new Snowflakes();
     snowflakes.drawSnowflakes();
 
-    const garland: Garland = new Garland();
+    const garland = new Garland();
     garland.draw();
 
-    const dragAndDrop: DragAndDrop = new DragAndDrop();
+    const dragAndDrop = new DragAndDrop();
     dragAndDrop.draw();
 
     const treeConrainer = document.querySelector(
@@ -84,7 +85,7 @@ export class TreePage {
     resetBtn.addEventListener('click', (): void => {
       resetBtn.classList.add('active');
 
-      setTimeout(() => {
+      setTimeout((): void => {
         resetBtn.classList.remove('active');
       }, DELAY.delayActive);
 
@@ -115,7 +116,7 @@ export class TreePage {
       this.saveTree();
       saveBtn.classList.add('active');
 
-      setTimeout(() => {
+      setTimeout((): void => {
         saveBtn.classList.remove('active');
       }, DELAY.delayActive);
     });
@@ -140,7 +141,7 @@ export class TreePage {
       '.christmas-tree'
     ) as HTMLImageElement;
 
-    treesConrainer.addEventListener('click', (event: Event) => {
+    treesConrainer.addEventListener('click', (event: Event): void => {
       const target = event.target as HTMLElement;
 
       if (target.classList.contains('tree')) {
@@ -175,7 +176,7 @@ export class TreePage {
       '.tree-container'
     ) as HTMLImageElement;
 
-    backgroundsConrainer.addEventListener('click', (event: Event) => {
+    backgroundsConrainer.addEventListener('click', (event: Event): void => {
       const target = event.target as HTMLElement;
 
       if (target.classList.contains('background')) {
@@ -231,9 +232,9 @@ export class TreePage {
     const savingTree = document.querySelector('.tree-container') as HTMLElement;
 
     html2canvas(savingTree).then((canvas): void => {
-      canvas.style.width = '148px';
-      canvas.style.height = '148px';
-      canvas.style.borderRadius = '5px';
+      canvas.style.width = SIZE_FOR_CANVAS.size;
+      canvas.style.height = SIZE_FOR_CANVAS.size;
+      canvas.style.borderRadius = SIZE_FOR_CANVAS.borderRadius;
 
       li.appendChild(canvas);
       saveContainer.append(li);

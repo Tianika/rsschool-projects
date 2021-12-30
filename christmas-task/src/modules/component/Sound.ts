@@ -1,4 +1,4 @@
-export class Sound {
+class Sound {
   isPlay: boolean;
   audio: HTMLAudioElement;
 

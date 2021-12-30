@@ -85,9 +85,9 @@ export enum Attributes {
   favorite = 'favorite',
 }
 
-export const NOT_FOUND: number = -1;
+export const NOT_FOUND = -1;
 
-export const DEFAULT_STRING: string = '';
+export const DEFAULT_STRING = '';
 
 export enum HashIds {
   mainId = 'main-page',
@@ -97,9 +97,20 @@ export enum HashIds {
 
 export const DEFAULT_SOUND = 0;
 
-export const TREES = ['1', '2', '3', '4', '5', '6'];
+export const TREES: string[] = ['1', '2', '3', '4', '5', '6'];
 
-export const BACKGROUNDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+export const BACKGROUNDS: string[] = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+];
 
 export const DEFAULT_VALUE_BG = '1';
 
@@ -126,4 +137,9 @@ export const NUM_FOR_SNOW = {
   offsetOpacity: 4,
   unitSize: 'px',
   unitTime: 's',
+};
+
+export const SIZE_FOR_CANVAS = {
+  size: '148px',
+  borderRadius: '5px',
 };

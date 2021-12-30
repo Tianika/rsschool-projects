@@ -1,4 +1,4 @@
-export const Main = (): DocumentFragment => {
+const Main = (): DocumentFragment => {
   const component = ` 
     <div class="main-page-title">Новогодняя игра "Наряди ёлку"</div>
     <div class="main-page-link">

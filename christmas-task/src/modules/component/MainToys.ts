@@ -1,4 +1,4 @@
-export const MainToys = (): DocumentFragment => {
+const MainToys = (): DocumentFragment => {
   const component = ` 
   <div class="container">
     <div class="settings-container">

@@ -1,6 +1,6 @@
 import { DEFAULT_STRING, DEFAULT_COLOR } from '../utils';
 
-export class Garland {
+class Garland {
   isLight: Boolean;
 
   constructor() {

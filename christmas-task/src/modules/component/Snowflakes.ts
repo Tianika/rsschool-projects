@@ -1,7 +1,7 @@
 import { DELAY, NUM_FOR_SNOW } from '../utils';
 let snowInterval1: NodeJS.Timer;
 
-export class Snowflakes {
+class Snowflakes {
   isSnow: boolean;
 
   constructor() {

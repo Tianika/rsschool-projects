@@ -1,4 +1,4 @@
-export const Footer = (): DocumentFragment => {
+const Footer = (): DocumentFragment => {
   const component = ` 
     <div class="container">
       <div class="copyright-year">&copy; 2021</div>

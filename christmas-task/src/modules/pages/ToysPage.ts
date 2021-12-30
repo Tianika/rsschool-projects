@@ -1,8 +1,8 @@
 import { Header, MainToys, Footer, Settings, ToyCard } from '../component';
-import data from '../data/data';
+import data from '../data';
 import { DEFAULT_STRING } from '../utils';
 
-export class ToysPage {
+class ToysPage {
   draw(): void {
     const header: DocumentFragment = Header();
     const mainToys: DocumentFragment = MainToys();
@@ -15,10 +15,10 @@ export class ToysPage {
     root.appendChild(mainToys);
     root.appendChild(footer);
 
-    const toyCards: ToyCard = new ToyCard();
+    const toyCards = new ToyCard();
     toyCards.draw(data);
 
-    const settingsView: Settings = new Settings();
+    const settingsView = new Settings();
     settingsView.draw();
   }
 }

@@ -1,7 +1,7 @@
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
-import data from '../data/data';
-import { ToyCard } from './ToyCard';
+import data from '../data';
+import ToyCard from './ToyCard';
 import {
   sortToys,
   IS_FAVORITE,

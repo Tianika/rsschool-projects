@@ -1,5 +1,6 @@
 import * as noUiSlider from 'nouislider';
-import data from '../data/data';
+import { isString } from '.';
+import data from '../data';
 import {
   IS_FAVORITE,
   SLIDER_VALUES,
@@ -15,7 +16,11 @@ export function addAttribute(
   attribute: string,
   valueAttribute: string | boolean
 ): void {
-  if (typeof valueAttribute === 'string') {
+  const TYPE_STRING = 'string';
+  const isString = (value: string | boolean): boolean =>
+    typeof value === TYPE_STRING;
+
+  if (isString(valueAttribute)) {
     cardToy.setAttribute(`data-${attribute}`, valueAttribute);
   } else {
     cardToy.setAttribute(`data-${attribute}`, valueAttribute.toString());

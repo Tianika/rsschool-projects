@@ -1,4 +1,4 @@
-export const Header = (): DocumentFragment => {
+const Header = (): DocumentFragment => {
   const component = ` 
         <div class="container">
           <div class="link-main-container">

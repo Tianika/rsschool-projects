@@ -8,7 +8,7 @@ import {
   DELAY,
 } from '../utils';
 
-export class App {
+class App {
   start(): void {
     window.location.hash = DEFAULT_STRING;
 

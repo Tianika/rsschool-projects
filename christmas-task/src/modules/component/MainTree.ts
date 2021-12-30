@@ -1,4 +1,4 @@
-export const Main = (): DocumentFragment => {
+const Main = (): DocumentFragment => {
   const component = ` 
   <div class="container">
     <div class="main-tree-settings">

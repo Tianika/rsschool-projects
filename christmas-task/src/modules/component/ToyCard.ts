@@ -11,7 +11,7 @@ import {
   addAttribute,
 } from '../utils';
 
-export class ToyCard {
+class ToyCard {
   favoriteToys: FavoriteToys;
 
   constructor() {
@@ -22,7 +22,7 @@ export class ToyCard {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const toyCardTemp: HTMLTemplateElement | null =
       document.querySelector('#toyCardTemp');
-    let count: number = COUNT_USER_FAVORITE.countMin;
+    let count = COUNT_USER_FAVORITE.countMin;
 
     if (localStorage.favoriteForChristmasGame) {
       count = JSON.parse(localStorage.favoriteForChristmasGame).length;
@@ -137,12 +137,12 @@ export class ToyCard {
     }
   }
 
-  saveFavoriteToys() {
+  saveFavoriteToys(): void {
     const userFavoriteToys: Array<string> = [...this.favoriteToys];
     localStorage.favoriteForChristmasGame = JSON.stringify(userFavoriteToys);
   }
 
-  loadFavoriteToys() {
+  loadFavoriteToys(): void {
     if (localStorage.favoriteForChristmasGame) {
       const userFavoriteToys: Array<string> = JSON.parse(
         localStorage.favoriteForChristmasGame

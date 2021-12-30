@@ -1,6 +1,6 @@
 import { IDropIvent } from '../utils';
 
-export class DragAndDrop {
+class DragAndDrop {
   draw(): void {
     const toysContainer = document.querySelector(
       '.choice-toy-container'
