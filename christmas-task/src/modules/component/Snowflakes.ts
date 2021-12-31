@@ -10,6 +10,9 @@ class Snowflakes {
 
   drawSnowflakes(): void {
     const snowBtn = document.querySelector('.snow-button') as HTMLButtonElement;
+    const mainLink = document.querySelector('.link-main') as HTMLButtonElement;
+    const toyLink = document.querySelector('.link-toys') as HTMLButtonElement;
+    const treeLink = document.querySelector('.link-trees') as HTMLButtonElement;
 
     if (localStorage.isSnowForTreePage) {
       this.isSnow = JSON.parse(localStorage.isSnowForTreePage);
@@ -21,15 +24,23 @@ class Snowflakes {
 
     const snowInterval = setInterval((): void => {
       if (snowBtn.classList.contains('active')) {
-        this.createSnowflake;
+        this.createSnowflake();
       } else {
         clearInterval(snowInterval);
       }
-    }, DELAY.snow);
 
-    window.addEventListener('hashchange', (): void => {
-      clearInterval(snowInterval);
-    });
+      mainLink.addEventListener('click', (): void => {
+        clearInterval(snowInterval);
+      });
+
+      toyLink.addEventListener('click', (): void => {
+        clearInterval(snowInterval);
+      });
+
+      treeLink.addEventListener('click', (): void => {
+        clearInterval(snowInterval);
+      });
+    }, DELAY.snow);
 
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {

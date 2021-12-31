@@ -27,8 +27,8 @@ export function checkToyCard(values: IValuesForFilter): void {
 export function checkFilter(card: ICard, values: IValuesForFilter): void {
   showElement(card);
 
-  const count: number = Number(card.dataset.count);
-  const year: number = Number(card.dataset.year);
+  const count = Number(card.dataset.count);
+  const year = Number(card.dataset.year);
 
   if (+values.count.min > count || count > +values.count.max) {
     hideElement(card);
