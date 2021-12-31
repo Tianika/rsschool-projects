@@ -1,4 +1,4 @@
-import { Delay, SortIndex } from './interfaces';
+import { SortIndex } from './interfaces';
 
 export enum sortTypes {
   default = 'data-num',
@@ -35,12 +35,12 @@ export enum COUNT_USER_FAVORITE {
   countMax = 20,
 }
 
-export const DELAY: Delay = {
-  delayWarning: 1500,
-  delayActive: 500,
-  delaySnow: 100,
-  delayDefault: 0,
-};
+export enum DELAY {
+  warning = 1500,
+  active = 500,
+  snow = 100,
+  default = 0,
+}
 
 export enum ValuesFilter {
   ball = 'ball',

@@ -96,7 +96,7 @@ class ToyCard {
           warning.classList.remove('hide');
           setTimeout(() => {
             warning.classList.add('hide');
-          }, DELAY.delayWarning);
+          }, DELAY.warning);
         } else {
           cardToy.classList.toggle('user-favorite-toy');
 

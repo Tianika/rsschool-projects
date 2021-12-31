@@ -9,19 +9,18 @@ export interface IDataToys {
   favorite: boolean;
 }
 
+type RangeOfNumbers = {
+  min: number;
+  max: number;
+};
+
 export interface IValuesForFilter {
   shape: Set<string>;
   color: Set<string>;
   size: Set<string>;
   favorite: string;
-  count: {
-    min: number;
-    max: number;
-  };
-  year: {
-    min: number;
-    max: number;
-  };
+  count: RangeOfNumbers;
+  year: RangeOfNumbers;
   search: Set<string>;
 }
 
@@ -32,14 +31,8 @@ export interface ISaveValues {
   color: Array<string>;
   size: Array<string>;
   favorite: string;
-  count: {
-    min: number;
-    max: number;
-  };
-  year: {
-    min: number;
-    max: number;
-  };
+  count: RangeOfNumbers;
+  year: RangeOfNumbers;
   search: Array<string>;
   sort: number;
 }
@@ -62,13 +55,6 @@ export type typeForSortFunc = string | number | undefined;
 export type sortValue = string | null | undefined;
 
 export type SortIndex = { default: number };
-
-export type Delay = {
-  delayWarning: number;
-  delayActive: number;
-  delaySnow: number;
-  delayDefault: number;
-};
 
 export interface IBackgroundSettings {
   tree: string;

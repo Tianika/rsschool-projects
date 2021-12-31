@@ -59,7 +59,7 @@ class App {
       sound.muteAudio(soundBtn);
       setTimeout(() => {
         resetBtn.classList.remove('active');
-      }, DELAY.delayActive);
+      }, DELAY.active);
 
       delete localStorage.isSoundForTreePage;
     });

@@ -25,7 +25,7 @@ class Snowflakes {
       } else {
         clearInterval(snowInterval);
       }
-    }, DELAY.delaySnow);
+    }, DELAY.snow);
 
     window.addEventListener('hashchange', (): void => {
       clearInterval(snowInterval);
@@ -39,7 +39,7 @@ class Snowflakes {
           if (snowBtn.classList.contains('active')) {
             this.createSnowflake();
           }
-        }, DELAY.delaySnow);
+        }, DELAY.snow);
       } else {
         this.snowOff();
         clearInterval(snowInterval1);

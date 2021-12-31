@@ -87,7 +87,7 @@ class TreePage {
 
       setTimeout((): void => {
         resetBtn.classList.remove('active');
-      }, DELAY.delayActive);
+      }, DELAY.active);
 
       delete localStorage.isSoundForTreePag;
       delete localStorage.isSnowForTreePage;
@@ -118,7 +118,7 @@ class TreePage {
 
       setTimeout((): void => {
         saveBtn.classList.remove('active');
-      }, DELAY.delayActive);
+      }, DELAY.active);
     });
   }
 
