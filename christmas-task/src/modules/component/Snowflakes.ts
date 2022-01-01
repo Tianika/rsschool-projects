@@ -28,19 +28,19 @@ class Snowflakes {
       } else {
         clearInterval(snowInterval);
       }
-
-      mainLink.addEventListener('click', (): void => {
-        clearInterval(snowInterval);
-      });
-
-      toyLink.addEventListener('click', (): void => {
-        clearInterval(snowInterval);
-      });
-
-      treeLink.addEventListener('click', (): void => {
-        clearInterval(snowInterval);
-      });
     }, DELAY.snow);
+
+    mainLink.addEventListener('click', (): void => {
+      clearInterval(snowInterval);
+    });
+
+    toyLink.addEventListener('click', (): void => {
+      clearInterval(snowInterval);
+    });
+
+    treeLink.addEventListener('click', (): void => {
+      clearInterval(snowInterval);
+    });
 
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {
