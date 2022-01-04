@@ -1,5 +1,5 @@
 import { Header, Main, Footer } from '../component';
-import { DEFAULT_STRING } from '../utils';
+import { DEFAULT_STRING_FOR_INNER_HTML } from '../utils';
 
 class MainPage {
   draw(): void {
@@ -8,7 +8,7 @@ class MainPage {
     const footer: DocumentFragment = Footer();
 
     const root = document.querySelector('.root') as HTMLElement;
-    root.innerHTML = DEFAULT_STRING;
+    root.innerHTML = DEFAULT_STRING_FOR_INNER_HTML;
 
     root.appendChild(header);
     root.appendChild(main);

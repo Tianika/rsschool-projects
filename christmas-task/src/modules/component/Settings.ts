@@ -1,13 +1,12 @@
 import * as noUiSlider from 'nouislider';
-import 'nouislider/dist/nouislider.css';
 import data from '../data';
 import ToyCard from './ToyCard';
 import {
   sortToys,
-  IS_FAVORITE,
+  IsFavoriteToy,
   SORT_INDEX,
   VALUES_FOR_FILTER,
-  SLIDER_VALUES,
+  SliderValues,
   NOT_FOUND,
   ValuesFilter,
   checkToyCard,
@@ -31,14 +30,14 @@ export class Settings {
       shape: new Set(),
       color: new Set(),
       size: new Set(),
-      favorite: IS_FAVORITE.false,
+      favorite: IsFavoriteToy.no,
       count: {
-        min: SLIDER_VALUES.countMin,
-        max: SLIDER_VALUES.countMax,
+        min: SliderValues.countMin,
+        max: SliderValues.countMax,
       },
       year: {
-        min: SLIDER_VALUES.yearMin,
-        max: SLIDER_VALUES.yearMax,
+        min: SliderValues.yearMin,
+        max: SliderValues.yearMax,
       },
       search: new Set(),
     };
@@ -57,13 +56,13 @@ export class Settings {
 
     if (countSlider) {
       noUiSlider.create(countSlider, {
-        start: [SLIDER_VALUES.countMin, SLIDER_VALUES.countMax],
+        start: [SliderValues.countMin, SliderValues.countMax],
         connect: true,
         range: {
-          min: SLIDER_VALUES.countMin,
-          max: SLIDER_VALUES.countMax,
+          min: SliderValues.countMin,
+          max: SliderValues.countMax,
         },
-        step: SLIDER_VALUES.countStep,
+        step: SliderValues.countStep,
       });
 
       if (localStorage.filterForChristmasGame) {
@@ -84,8 +83,8 @@ export class Settings {
           'update',
           (values: Array<string | number>, handle: number) => {
             if (countDivs[0] && countDivs[1]) {
-              const min = parseInt(values[0].toString(), SLIDER_VALUES.decimal);
-              const max = parseInt(values[1].toString(), SLIDER_VALUES.decimal);
+              const min = parseInt(values[0].toString(), SliderValues.decimal);
+              const max = parseInt(values[1].toString(), SliderValues.decimal);
 
               this.valuesForFilter.count.min = min;
               this.valuesForFilter.count.max = max;
@@ -108,13 +107,13 @@ export class Settings {
 
     if (yearSlider) {
       noUiSlider.create(yearSlider, {
-        start: [SLIDER_VALUES.yearMin, SLIDER_VALUES.yearMax],
+        start: [SliderValues.yearMin, SliderValues.yearMax],
         connect: true,
         range: {
-          min: SLIDER_VALUES.yearMin,
-          max: SLIDER_VALUES.yearMax,
+          min: SliderValues.yearMin,
+          max: SliderValues.yearMax,
         },
-        step: SLIDER_VALUES.yearStep,
+        step: SliderValues.yearStep,
       });
     }
 
@@ -136,8 +135,8 @@ export class Settings {
         'update',
         (values: Array<string | number>, handle: number) => {
           if (yearDivs[0] && yearDivs[1]) {
-            const min = parseInt(values[0].toString(), SLIDER_VALUES.decimal);
-            const max = parseInt(values[1].toString(), SLIDER_VALUES.decimal);
+            const min = parseInt(values[0].toString(), SliderValues.decimal);
+            const max = parseInt(values[1].toString(), SliderValues.decimal);
 
             this.valuesForFilter.year.min = min;
             this.valuesForFilter.year.max = max;
@@ -232,9 +231,9 @@ export class Settings {
       const target = e.target as HTMLInputElement;
 
       if (target.checked) {
-        this.valuesForFilter.favorite = IS_FAVORITE.true;
+        this.valuesForFilter.favorite = IsFavoriteToy.yes;
       } else {
-        this.valuesForFilter.favorite = IS_FAVORITE.false;
+        this.valuesForFilter.favorite = IsFavoriteToy.no;
       }
 
       checkToyCard(this.valuesForFilter);
@@ -331,7 +330,7 @@ export class Settings {
     });
   }
 
-  loadSettings() {
+  loadSettings(): void {
     const saveValuesFilter: ISaveValues = JSON.parse(
       localStorage.filterForChristmasGame
     );

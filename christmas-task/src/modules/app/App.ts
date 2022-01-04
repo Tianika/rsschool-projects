@@ -1,16 +1,16 @@
 import { MainPage, ToysPage, TreePage } from '../pages';
 import { Sound } from '../component';
 import {
-  DEFAULT_STRING,
+  DEFAULT_STRING_FOR_INNER_HTML,
   HashIds,
   SOUND_PATHS,
   SoundPaths,
-  DELAY,
+  Delay,
 } from '../utils';
 
 class App {
   start(): void {
-    window.location.hash = DEFAULT_STRING;
+    window.location.hash = DEFAULT_STRING_FOR_INNER_HTML;
 
     const mainPage = new MainPage();
     mainPage.draw();
@@ -59,7 +59,7 @@ class App {
       sound.muteAudio(soundBtn);
       setTimeout(() => {
         resetBtn.classList.remove('active');
-      }, DELAY.active);
+      }, Delay.active);
 
       delete localStorage.isSoundForTreePage;
     });

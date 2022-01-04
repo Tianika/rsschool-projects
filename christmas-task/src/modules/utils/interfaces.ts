@@ -65,3 +65,19 @@ export interface IDropIvent extends Event {
   clientX: number;
   clientY: number;
 }
+
+export type NumForSnow = {
+  baseDuration: number;
+  offsetDuration: number;
+  multiplyForSec: number;
+  baseSize: number;
+  baseOpacity: number;
+  offsetOpacity: number;
+  unitSize: string;
+  unitTime: string;
+};
+
+export type SizeForCanvas = {
+  size: string;
+  borderRadius: string;
+};

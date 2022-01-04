@@ -1,5 +1,6 @@
-import { DELAY, NUM_FOR_SNOW } from '../utils';
-let snowInterval1: NodeJS.Timer;
+import { Delay, NUM_FOR_SNOW } from '../utils';
+
+let snowInterval: NodeJS.Timer;
 
 class Snowflakes {
   isSnow: boolean;
@@ -22,13 +23,16 @@ class Snowflakes {
       }
     }
 
-    const snowInterval = setInterval((): void => {
-      if (snowBtn.classList.contains('active')) {
-        this.createSnowflake();
-      } else {
-        clearInterval(snowInterval);
-      }
-    }, DELAY.snow);
+    const startSnowInterval = (): NodeJS.Timer =>
+      setInterval((): void => {
+        if (snowBtn.classList.contains('active')) {
+          this.createSnowflake();
+        } else {
+          clearInterval(snowInterval);
+        }
+      }, Delay.snow);
+
+    snowInterval = startSnowInterval();
 
     mainLink.addEventListener('click', (): void => {
       clearInterval(snowInterval);
@@ -45,15 +49,10 @@ class Snowflakes {
     snowBtn.addEventListener('click', (): void => {
       if (!this.isSnow) {
         this.snowOn();
-
-        snowInterval1 = setInterval((): void => {
-          if (snowBtn.classList.contains('active')) {
-            this.createSnowflake();
-          }
-        }, DELAY.snow);
+        snowInterval = startSnowInterval();
       } else {
         this.snowOff();
-        clearInterval(snowInterval1);
+        clearInterval(snowInterval);
       }
     });
   }

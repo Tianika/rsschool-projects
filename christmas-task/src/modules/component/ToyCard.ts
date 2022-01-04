@@ -2,12 +2,12 @@ import {
   IDataToys,
   ICard,
   FavoriteToys,
-  COUNT_USER_FAVORITE,
-  DELAY,
-  IS_FAVORITE,
-  FAVORITE,
+  CountUserFavorite,
+  Delay,
+  IsFavoriteToy,
+  Favorite,
   Attributes,
-  DEFAULT_STRING,
+  DEFAULT_STRING_FOR_INNER_HTML,
   addAttribute,
 } from '../utils';
 
@@ -22,7 +22,7 @@ class ToyCard {
     const fragment: DocumentFragment = document.createDocumentFragment();
     const toyCardTemp: HTMLTemplateElement | null =
       document.querySelector('#toyCardTemp');
-    let count = COUNT_USER_FAVORITE.countMin;
+    let count = CountUserFavorite.countMin;
 
     if (localStorage.favoriteForChristmasGame) {
       count = JSON.parse(localStorage.favoriteForChristmasGame).length;
@@ -72,7 +72,7 @@ class ToyCard {
         '.describe-content.favorite'
       ) as HTMLElement;
       toyFavorite.textContent = `Любимая: ${
-        toyData.favorite ? FAVORITE.yes : FAVORITE.no
+        toyData.favorite ? Favorite.yes : Favorite.no
       }`;
 
       const cardToy = newsClone.querySelector('.toy-card') as ICard;
@@ -86,7 +86,7 @@ class ToyCard {
 
       cardToy.addEventListener('click', (): void => {
         if (
-          count === COUNT_USER_FAVORITE.countMax &&
+          count === CountUserFavorite.countMax &&
           !cardToy.classList.contains('user-favorite-toy')
         ) {
           const warning = cardToy.querySelector(
@@ -96,17 +96,17 @@ class ToyCard {
           warning.classList.remove('hide');
           setTimeout(() => {
             warning.classList.add('hide');
-          }, DELAY.warning);
+          }, Delay.warning);
         } else {
           cardToy.classList.toggle('user-favorite-toy');
 
           if (cardToy.classList.contains('user-favorite-toy')) {
-            cardToy.setAttribute('data-user-favorite', IS_FAVORITE.true);
+            cardToy.setAttribute('data-user-favorite', IsFavoriteToy.yes);
             this.favoriteToys.add(cardToy.dataset.num);
             count++;
             this.saveFavoriteToys();
           } else {
-            cardToy.setAttribute('data-user-favorite', IS_FAVORITE.false);
+            cardToy.setAttribute('data-user-favorite', IsFavoriteToy.no);
             this.favoriteToys.delete(cardToy.dataset.num);
             count--;
             this.saveFavoriteToys();
@@ -126,7 +126,7 @@ class ToyCard {
       '.toys-container'
     ) as HTMLElement;
 
-    toyContainer.innerHTML = DEFAULT_STRING;
+    toyContainer.innerHTML = DEFAULT_STRING_FOR_INNER_HTML;
     toyContainer.appendChild(fragment);
 
     const toysCount = document.querySelector('.toys-count') as HTMLElement;
@@ -149,13 +149,13 @@ class ToyCard {
       );
       const count = userFavoriteToys.length;
 
-      if (userFavoriteToys.length > COUNT_USER_FAVORITE.countMin) {
+      if (userFavoriteToys.length > CountUserFavorite.countMin) {
         userFavoriteToys.forEach((toy: string): void => {
           this.favoriteToys.add(toy);
         });
       }
 
-      if (userFavoriteToys.length > COUNT_USER_FAVORITE.countMin) {
+      if (userFavoriteToys.length > CountUserFavorite.countMin) {
         const cards = document.querySelectorAll(
           '.toy-card'
         ) as NodeListOf<ICard>;

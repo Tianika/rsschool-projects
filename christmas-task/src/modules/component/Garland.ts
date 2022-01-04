@@ -1,4 +1,7 @@
-import { DEFAULT_STRING, DEFAULT_COLOR } from '../utils';
+import {
+  DEFAULT_STRING_FOR_CLASSLIST,
+  DEFAULT_COLOR_FOR_GARLAND,
+} from '../utils';
 
 class Garland {
   isLight: Boolean;
@@ -49,9 +52,10 @@ class Garland {
 
     powerBtn.addEventListener('click', (): void => {
       if (!this.isLight) {
-        this.garlandOn(powerBtn, DEFAULT_COLOR, lights);
-        localStorage.colorGarlandForChristmasTask =
-          JSON.stringify(DEFAULT_COLOR);
+        this.garlandOn(powerBtn, DEFAULT_COLOR_FOR_GARLAND, lights);
+        localStorage.colorGarlandForChristmasTask = JSON.stringify(
+          DEFAULT_COLOR_FOR_GARLAND
+        );
       } else {
         this.garlandOff(powerBtn, lights);
       }
@@ -88,7 +92,7 @@ class Garland {
     this.isLight = true;
 
     lights.forEach((light) => {
-      light.classList.value = DEFAULT_STRING;
+      light.classList.value = DEFAULT_STRING_FOR_CLASSLIST;
       light.classList.add(color);
     });
   }
@@ -99,7 +103,7 @@ class Garland {
     delete localStorage.colorGarlandForChristmasTask;
 
     lights.forEach((light): void => {
-      light.classList.value = DEFAULT_STRING;
+      light.classList.value = DEFAULT_STRING_FOR_CLASSLIST;
     });
   }
 }

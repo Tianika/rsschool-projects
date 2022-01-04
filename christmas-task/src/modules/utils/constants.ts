@@ -1,17 +1,17 @@
-import { SortIndex } from './interfaces';
+import { SortIndex, NumForSnow, SizeForCanvas } from './interfaces';
 
-export enum sortTypes {
+export enum SortTypes {
   default = 'data-num',
   sortFromLetters = 'data-name',
   sortFromYear = 'data-year',
 }
 
-export enum IS_FAVORITE {
-  false = 'false',
-  true = 'true',
+export enum IsFavoriteToy {
+  no = 'false',
+  yes = 'true',
 }
 
-export enum FAVORITE {
+export enum Favorite {
   yes = 'Да',
   no = 'Нет',
 }
@@ -20,7 +20,7 @@ export const SORT_INDEX: SortIndex = {
   default: 0,
 };
 
-export enum SLIDER_VALUES {
+export enum SliderValues {
   countMin = 1,
   countMax = 12,
   countStep = 1,
@@ -30,12 +30,12 @@ export enum SLIDER_VALUES {
   decimal = 10,
 }
 
-export enum COUNT_USER_FAVORITE {
+export enum CountUserFavorite {
   countMin = 0,
   countMax = 20,
 }
 
-export enum DELAY {
+export enum Delay {
   warning = 1500,
   active = 500,
   snow = 100,
@@ -87,7 +87,11 @@ export enum Attributes {
 
 export const NOT_FOUND = -1;
 
-export const DEFAULT_STRING = '';
+export const DEFAULT_STRING_FOR_INNER_HTML = '';
+
+export const DEFAULT_STRING_FOR_SEARCH = '';
+
+export const DEFAULT_STRING_FOR_CLASSLIST = '';
 
 export enum HashIds {
   mainId = 'main-page',
@@ -114,7 +118,7 @@ export const BACKGROUNDS: string[] = [
 
 export const DEFAULT_VALUE_BG = '1';
 
-export const DEFAULT_COLOR = 'different';
+export const DEFAULT_COLOR_FOR_GARLAND = 'different';
 
 export const OFFSET = 1;
 
@@ -128,7 +132,7 @@ export const SOUND_PATHS: Record<SoundPaths, string> = {
 
 export const EMPTY_LS = '[]';
 
-export const NUM_FOR_SNOW = {
+export const NUM_FOR_SNOW: NumForSnow = {
   baseDuration: 4,
   offsetDuration: 2,
   multiplyForSec: 1000,
@@ -139,7 +143,7 @@ export const NUM_FOR_SNOW = {
   unitTime: 's',
 };
 
-export const SIZE_FOR_CANVAS = {
+export const SIZE_FOR_CANVAS: SizeForCanvas = {
   size: '148px',
   borderRadius: '5px',
 };

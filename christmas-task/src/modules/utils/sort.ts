@@ -1,22 +1,22 @@
-import { sortTypes } from './constants';
+import { SortTypes } from './constants';
 import { sortValue, typeForSortFunc } from './interfaces';
 
 export function sortToys(index: number): void {
   switch (index) {
     case 0:
-      sortAscend(sortTypes.default);
+      sortAscend(SortTypes.default);
       break;
     case 1:
-      sortAscend(sortTypes.sortFromLetters);
+      sortAscend(SortTypes.sortFromLetters);
       break;
     case 2:
-      sortDescend(sortTypes.sortFromLetters);
+      sortDescend(SortTypes.sortFromLetters);
       break;
     case 3:
-      sortDescend(sortTypes.sortFromYear);
+      sortDescend(SortTypes.sortFromYear);
       break;
     case 4:
-      sortAscend(sortTypes.sortFromYear);
+      sortAscend(SortTypes.sortFromYear);
       break;
   }
 }
@@ -76,7 +76,7 @@ function sortAscend(typeSort: string): void {
 }
 
 function getAttrForSort(typeSort: string, item: Element): typeForSortFunc {
-  if (typeSort === sortTypes.sortFromLetters) {
+  if (typeSort === SortTypes.sortFromLetters) {
     const value: sortValue = item.getAttribute(typeSort);
 
     return value?.toLowerCase();

@@ -1,3 +1,4 @@
+import html2canvas from 'html2canvas';
 import {
   Header,
   MainTree,
@@ -7,11 +8,11 @@ import {
   DragAndDrop,
 } from '../component';
 import {
-  DEFAULT_STRING,
-  COUNT_USER_FAVORITE,
+  DEFAULT_STRING_FOR_INNER_HTML,
+  CountUserFavorite,
   TREES,
   BACKGROUNDS,
-  DELAY,
+  Delay,
   IBackgroundSettings,
   DEFAULT_VALUE_BG,
   OFFSET,
@@ -19,7 +20,6 @@ import {
   SIZE_FOR_CANVAS,
   addToyForPage,
 } from '../utils';
-import html2canvas from 'html2canvas';
 
 class TreePage {
   settings: IBackgroundSettings;
@@ -37,7 +37,7 @@ class TreePage {
     const footer: DocumentFragment = Footer();
 
     const root = document.querySelector('.root') as HTMLElement;
-    root.innerHTML = DEFAULT_STRING;
+    root.innerHTML = DEFAULT_STRING_FOR_INNER_HTML;
 
     root.appendChild(header);
     root.appendChild(main);
@@ -87,7 +87,7 @@ class TreePage {
 
       setTimeout((): void => {
         resetBtn.classList.remove('active');
-      }, DELAY.active);
+      }, Delay.active);
 
       delete localStorage.isSoundForTreePag;
       delete localStorage.isSnowForTreePage;
@@ -118,7 +118,7 @@ class TreePage {
 
       setTimeout((): void => {
         saveBtn.classList.remove('active');
-      }, DELAY.active);
+      }, Delay.active);
     });
   }
 
@@ -203,15 +203,15 @@ class TreePage {
     ) {
       favoriteToys = JSON.parse(localStorage.favoriteForChristmasGame);
 
-      for (let i = COUNT_USER_FAVORITE.countMin; i < favoriteToys.length; i++) {
+      for (let i = CountUserFavorite.countMin; i < favoriteToys.length; i++) {
         const toy = addToyForPage(+favoriteToys[i] - OFFSET);
 
         fragment.appendChild(toy);
       }
     } else {
       for (
-        let i = COUNT_USER_FAVORITE.countMin;
-        i < COUNT_USER_FAVORITE.countMax;
+        let i = CountUserFavorite.countMin;
+        i < CountUserFavorite.countMax;
         i++
       ) {
         const toy = addToyForPage(i);

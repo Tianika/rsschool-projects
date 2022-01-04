@@ -1,9 +1,9 @@
 import * as noUiSlider from 'nouislider';
 import data from '../data';
 import {
-  IS_FAVORITE,
-  SLIDER_VALUES,
-  DEFAULT_STRING,
+  IsFavoriteToy,
+  SliderValues,
+  DEFAULT_STRING_FOR_SEARCH,
   VALUES_FOR_FILTER,
   ValuesFilter,
   Attributes,
@@ -62,10 +62,10 @@ export function checkFilter(card: ICard, values: IValuesForFilter): void {
     }
   }
 
-  if (values.favorite === IS_FAVORITE.true) {
+  if (values.favorite === IsFavoriteToy.yes) {
     const favoriteToy = card.dataset.favorite;
 
-    if (favoriteToy === IS_FAVORITE.false) {
+    if (favoriteToy === IsFavoriteToy.no) {
       hideElement(card);
     }
   }
@@ -105,15 +105,15 @@ export function resetSlider(
   countSlider: noUiSlider.target,
   yearSlider: noUiSlider.target
 ): void {
-  countSlider.noUiSlider?.set([SLIDER_VALUES.countMin, SLIDER_VALUES.countMax]);
-  yearSlider.noUiSlider?.set([SLIDER_VALUES.yearMin, SLIDER_VALUES.yearMax]);
+  countSlider.noUiSlider?.set([SliderValues.countMin, SliderValues.countMax]);
+  yearSlider.noUiSlider?.set([SliderValues.yearMin, SliderValues.yearMax]);
 }
 
 export function resetSearch(
   searchInput: HTMLInputElement,
   clearSearchBtn: HTMLButtonElement
 ): void {
-  searchInput.value = DEFAULT_STRING;
+  searchInput.value = DEFAULT_STRING_FOR_SEARCH;
   clearSearchBtn.classList.add('hide');
 }
 
@@ -121,11 +121,11 @@ export function resetValueForFilter(valuesForFilter: IValuesForFilter): void {
   valuesForFilter.shape.clear();
   valuesForFilter.color.clear();
   valuesForFilter.size.clear();
-  valuesForFilter.favorite = IS_FAVORITE.false;
-  valuesForFilter.count.min = SLIDER_VALUES.countMin;
-  valuesForFilter.count.max = SLIDER_VALUES.countMax;
-  valuesForFilter.year.min = SLIDER_VALUES.yearMin;
-  valuesForFilter.year.max = SLIDER_VALUES.yearMax;
+  valuesForFilter.favorite = IsFavoriteToy.no;
+  valuesForFilter.count.min = SliderValues.countMin;
+  valuesForFilter.count.max = SliderValues.countMax;
+  valuesForFilter.year.min = SliderValues.yearMin;
+  valuesForFilter.year.max = SliderValues.yearMax;
   valuesForFilter.search.clear();
 }
 
@@ -161,7 +161,7 @@ export function addCheckboxSelection(saveValuesFilter: ISaveValues) {
     }
     if (
       checkbox.id === Attributes.favorite &&
-      saveValuesFilter.favorite === IS_FAVORITE.true
+      saveValuesFilter.favorite === IsFavoriteToy.yes
     ) {
       checkbox.checked = true;
     }
