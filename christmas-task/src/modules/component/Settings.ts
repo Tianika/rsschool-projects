@@ -377,7 +377,7 @@ export class Settings {
     sortToys(saveValuesFilter.sort);
   }
 
-  saveSettings() {
+  saveSettings(): void {
     const selectSortType = document.querySelector(
       '.sort-choice'
     ) as HTMLSelectElement;

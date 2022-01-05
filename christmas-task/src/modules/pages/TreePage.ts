@@ -8,7 +8,7 @@ import {
   DragAndDrop,
 } from '../component';
 import {
-  DEFAULT_STRING_FOR_INNER_HTML,
+  DEFAULT_STRING,
   CountUserFavorite,
   TREES,
   BACKGROUNDS,
@@ -37,7 +37,7 @@ class TreePage {
     const footer: DocumentFragment = Footer();
 
     const root = document.querySelector('.root') as HTMLElement;
-    root.innerHTML = DEFAULT_STRING_FOR_INNER_HTML;
+    root.innerHTML = DEFAULT_STRING;
 
     root.appendChild(header);
     root.appendChild(main);

@@ -7,7 +7,7 @@ import {
   IsFavoriteToy,
   Favorite,
   Attributes,
-  DEFAULT_STRING_FOR_INNER_HTML,
+  DEFAULT_STRING,
   addAttribute,
 } from '../utils';
 
@@ -126,7 +126,7 @@ class ToyCard {
       '.toys-container'
     ) as HTMLElement;
 
-    toyContainer.innerHTML = DEFAULT_STRING_FOR_INNER_HTML;
+    toyContainer.innerHTML = DEFAULT_STRING;
     toyContainer.appendChild(fragment);
 
     const toysCount = document.querySelector('.toys-count') as HTMLElement;

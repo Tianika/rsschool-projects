@@ -87,11 +87,7 @@ export enum Attributes {
 
 export const NOT_FOUND = -1;
 
-export const DEFAULT_STRING_FOR_INNER_HTML = '';
-
-export const DEFAULT_STRING_FOR_SEARCH = '';
-
-export const DEFAULT_STRING_FOR_CLASSLIST = '';
+export const DEFAULT_STRING = '';
 
 export enum HashIds {
   mainId = 'main-page',

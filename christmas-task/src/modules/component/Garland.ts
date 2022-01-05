@@ -1,5 +1,5 @@
 import {
-  DEFAULT_STRING_FOR_CLASSLIST,
+  DEFAULT_STRING,
   DEFAULT_COLOR_FOR_GARLAND,
 } from '../utils';
 
@@ -92,7 +92,7 @@ class Garland {
     this.isLight = true;
 
     lights.forEach((light) => {
-      light.classList.value = DEFAULT_STRING_FOR_CLASSLIST;
+      light.classList.value = DEFAULT_STRING;
       light.classList.add(color);
     });
   }
@@ -103,7 +103,7 @@ class Garland {
     delete localStorage.colorGarlandForChristmasTask;
 
     lights.forEach((light): void => {
-      light.classList.value = DEFAULT_STRING_FOR_CLASSLIST;
+      light.classList.value = DEFAULT_STRING;
     });
   }
 }

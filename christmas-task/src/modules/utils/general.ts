@@ -3,7 +3,7 @@ import data from '../data';
 import {
   IsFavoriteToy,
   SliderValues,
-  DEFAULT_STRING_FOR_SEARCH,
+  DEFAULT_STRING,
   VALUES_FOR_FILTER,
   ValuesFilter,
   Attributes,
@@ -113,7 +113,7 @@ export function resetSearch(
   searchInput: HTMLInputElement,
   clearSearchBtn: HTMLButtonElement
 ): void {
-  searchInput.value = DEFAULT_STRING_FOR_SEARCH;
+  searchInput.value = DEFAULT_STRING;
   clearSearchBtn.classList.add('hide');
 }
 

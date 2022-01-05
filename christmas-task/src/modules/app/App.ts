@@ -1,7 +1,7 @@
 import { MainPage, ToysPage, TreePage } from '../pages';
 import { Sound } from '../component';
 import {
-  DEFAULT_STRING_FOR_INNER_HTML,
+  DEFAULT_STRING,
   HashIds,
   SOUND_PATHS,
   SoundPaths,
@@ -10,7 +10,7 @@ import {
 
 class App {
   start(): void {
-    window.location.hash = DEFAULT_STRING_FOR_INNER_HTML;
+    window.location.hash = DEFAULT_STRING;
 
     const mainPage = new MainPage();
     mainPage.draw();
