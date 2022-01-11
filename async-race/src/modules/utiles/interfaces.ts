@@ -1,1 +1,1 @@
-export type Function = () => {};
+export type Function = () => void;

@@ -1,15 +1,9 @@
-import { Function } from '../utiles/interfaces';
-
-export const createButton = (
-  title: string,
-  className: string,
-  handlerBtn: Function
-): HTMLButtonElement => {
+export const createButton = (data): HTMLButtonElement => {
   const button = document.createElement('button');
   button.classList.add('button');
-  button.classList.add(className);
-  button.innerText = title.toUpperCase();
-  button.onclick = handlerBtn;
+  button.classList.add(data.className);
+  button.innerText = data.text.toUpperCase();
+  button.onclick = data.handler;
 
   return button;
 };

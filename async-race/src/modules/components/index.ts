@@ -1,2 +1,3 @@
 export { createButton } from './button';
-export { createNavigation } from './navigation';
+export { createTextInput } from './textInput';
+export { createColorChoice } from './colorInput';
