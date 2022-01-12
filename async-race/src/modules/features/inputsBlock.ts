@@ -3,9 +3,9 @@ import {
   createTextInput,
   createColorChoice,
 } from '../components';
-import { DATA_INPUTS } from '../utiles';
+import { DATA_INPUTS } from '../utils';
 
-export const createInputBlock = () => {
+export const createInputBlock = (): HTMLElement => {
   const container = document.createElement('div');
 
   DATA_INPUTS.forEach((data) => {

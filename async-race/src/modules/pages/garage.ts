@@ -1,4 +1,4 @@
-import { createHeader } from '../features';
+import { createHeader, createFooter } from '../features';
 
 export const draw = (): void => {
   const root = document.querySelector('.root') as HTMLElement;
@@ -6,7 +6,10 @@ export const draw = (): void => {
   const fragment = document.createDocumentFragment();
 
   const header = createHeader();
-
   fragment.appendChild(header);
+
+  const footer = createFooter();
+  fragment.appendChild(footer);
+
   root.appendChild(fragment);
 };

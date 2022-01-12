@@ -1,4 +1,6 @@
-export const DATA_NAV_BTNS = [
+import { BtnData, FooterData, InputData } from '.';
+
+export const DATA_NAV_BTNS: Array<BtnData> = [
   {
     text: 'to garage',
     className: 'toGarageBtn',
@@ -11,7 +13,7 @@ export const DATA_NAV_BTNS = [
   },
 ];
 
-export const DATA_INPUTS = [
+export const DATA_INPUTS: Array<InputData> = [
   {
     textInputClass: 'input-create',
     colorInputClass: 'color-for-create',
@@ -32,7 +34,7 @@ export const DATA_INPUTS = [
   },
 ];
 
-export const DATA_RACE_BTNS = [
+export const DATA_RACE_BTNS: Array<BtnData> = [
   {
     text: 'race',
     className: 'raceBtn',
@@ -49,3 +51,18 @@ export const DATA_RACE_BTNS = [
     handler: () => console.log('generate cars'),
   },
 ];
+
+export const DATA_FOOTER: FooterData = {
+  year: '&copy; 2021',
+  target: '_blank',
+  author: {
+    class: 'copyright-author',
+    link: 'https://github.com/Tianika',
+    text: 'Tianika',
+  },
+  school: {
+    class: 'copyright-rsschool',
+    link: 'https://rs.school/',
+    text: '',
+  },
+};

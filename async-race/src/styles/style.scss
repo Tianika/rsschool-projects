@@ -64,6 +64,8 @@ $colorBtn: #b2fd74;
 
 /*----base---*/
 .root {
+  display: flex;
+  flex-direction: column;
   background-color: $base;
   color: $white;
   width: 100%;
@@ -98,4 +100,9 @@ $colorBtn: #b2fd74;
   background: $white;
   width: 25px;
   height: 25px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,4 +1,6 @@
-export const createButton = (data): HTMLButtonElement => {
+import { BtnData } from '../utils';
+
+export const createButton = (data: BtnData): HTMLButtonElement => {
   const button = document.createElement('button');
   button.classList.add('button');
   button.classList.add(data.className);
