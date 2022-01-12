@@ -71,8 +71,31 @@ $colorBtn: #b2fd74;
   padding: 20px;
 }
 
+.header {
+}
+
 .button {
   margin: 10px;
   padding: 5px 10px;
   background-color: $colorBtn;
+}
+
+.navigation {
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-text {
+  margin-right: 10px;
+}
+
+.input-color {
+  -webkit-appearance: none;
+  border: none;
+  background: $white;
+  width: 25px;
+  height: 25px;
 }

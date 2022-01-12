@@ -1,7 +1,7 @@
 import { createButton } from '../components';
 import { DATA_RACE_BTNS } from '../utiles';
 
-export const createRaceHeaderBtn = (): HTMLElement => {
+export const createRaceHeaderBtns = (): HTMLElement => {
   const div = document.createElement('div');
   div.classList.add('header-race-btn');
 
