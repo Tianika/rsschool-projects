@@ -77,9 +77,11 @@ $colorBtn: #b2fd74;
 }
 
 .button {
-  margin: 10px;
-  padding: 5px 10px;
+  margin: 7px;
+  padding: 3px 7px;
   background-color: $colorBtn;
+  font-size: 14px;
+  border-radius: 3px;
 }
 
 .navigation {
@@ -100,6 +102,69 @@ $colorBtn: #b2fd74;
   background: $white;
   width: 25px;
   height: 25px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.page-title {
+  font-size: 40px;
+  line-height: 44px;
+  margin: 10px 0;
+}
+
+.page-subtitle {
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.car-item {
+  margin-bottom: 10px;
+}
+
+.car-item-title {
+  display: flex;
+  align-items: center;
+}
+
+.car-name {
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+.car-item-race {
+  position: relative;
+  display: flex;
+  border-bottom: $white 3px dashed;
+}
+
+.car-icon {
+  position: relative;
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  svg {
+    position: absolute;
+    bottom: -9px;
+  }
+}
+
+.finish {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  right: 100px;
+  bottom: 0;
+  background-image: url('../assets/svg/flag.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: invert(1);
 }
 
 .footer {

@@ -3,12 +3,12 @@ import { BtnData, FooterData, InputData } from '.';
 export const DATA_NAV_BTNS: Array<BtnData> = [
   {
     text: 'to garage',
-    className: 'toGarageBtn',
+    className: 'garage-button',
     handler: () => (window.location.hash = '#garage'),
   },
   {
     text: 'to winners',
-    className: 'toWinnersBtn',
+    className: 'winners-button',
     handler: () => (window.location.hash = '#winners'),
   },
 ];
@@ -37,18 +37,44 @@ export const DATA_INPUTS: Array<InputData> = [
 export const DATA_RACE_BTNS: Array<BtnData> = [
   {
     text: 'race',
-    className: 'raceBtn',
+    className: 'race-button',
     handler: () => console.log('race'),
   },
   {
     text: 'reset',
-    className: 'resetBtn',
+    className: 'reset-button',
     handler: () => console.log('reset'),
   },
   {
     text: 'generate cars',
-    className: 'generateBtn',
+    className: 'generate-cars-button',
     handler: () => console.log('generate cars'),
+  },
+];
+
+export const DATA_CAR_BTNS: Array<BtnData> = [
+  {
+    text: 'select',
+    className: 'select-button',
+    handler: () => console.log('select'),
+  },
+  {
+    text: 'remove',
+    className: 'remove-button',
+    handler: () => console.log('remove'),
+  },
+];
+
+export const DATA_ENGINE_BTNS: Array<BtnData> = [
+  {
+    text: 'A',
+    className: 'start-button',
+    handler: () => console.log('start'),
+  },
+  {
+    text: 'B',
+    className: 'stop-button',
+    handler: () => console.log('stop'),
   },
 ];
 

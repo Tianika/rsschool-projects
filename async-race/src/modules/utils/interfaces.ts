@@ -24,3 +24,9 @@ export type FooterData = {
   author: LinkData;
   school: LinkData;
 };
+
+export type Car = {
+  name: string;
+  color: string;
+  id: number;
+};
