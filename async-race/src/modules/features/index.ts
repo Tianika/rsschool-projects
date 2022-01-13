@@ -7,3 +7,5 @@ export { createHeader } from './header';
 export { createFooter } from './footer';
 export { garageMainCreate } from './garageMain';
 export { createCarItem } from './carItem';
+export { winnersMainCreate } from './winnersMain';
+export { createTable } from './table';

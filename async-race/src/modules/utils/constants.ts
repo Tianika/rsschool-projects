@@ -116,3 +116,19 @@ export enum LimitCars {
   forGarage = 7,
   forWinners = 10,
 }
+
+export enum TableHeader {
+  number = 'number',
+  car = 'car',
+  name = 'name',
+  wins = 'wins',
+  bestTime = 'bestTime',
+}
+
+export const TABLE_HEADER: Record<TableHeader, string> = {
+  number: 'Number',
+  car: 'Car',
+  name: 'Name',
+  wins: 'Wins',
+  bestTime: 'Best time (seconds)',
+};

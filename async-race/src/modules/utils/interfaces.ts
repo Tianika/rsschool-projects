@@ -30,3 +30,9 @@ export type Car = {
   color: string;
   id: number;
 };
+
+export type Winner = {
+  id: string;
+  time: string;
+  wins: string;
+};

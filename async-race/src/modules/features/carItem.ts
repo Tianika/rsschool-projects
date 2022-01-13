@@ -1,7 +1,7 @@
 import { createButton, createCar } from '../components';
-import { DATA_CAR_BTNS, DATA_ENGINE_BTNS } from '../utils';
+import { Car, DATA_CAR_BTNS, DATA_ENGINE_BTNS } from '../utils';
 
-export const createCarItem = (car): HTMLElement => {
+export const createCarItem = (car: Car): HTMLElement => {
   const carContainer = document.createElement('div');
   carContainer.classList.add('car-item');
 

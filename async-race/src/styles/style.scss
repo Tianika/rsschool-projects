@@ -169,5 +169,22 @@ $colorBtn: #b2fd74;
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  div {
+    margin: 0 15px;
+  }
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.copyright-rsschool {
+  width: 70px;
+  height: 25px;
+  background-image: url('../assets/png/rs_school_js.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
 }

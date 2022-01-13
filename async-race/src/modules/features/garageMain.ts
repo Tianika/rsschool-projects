@@ -1,5 +1,5 @@
 import { createPageSubtitle, createPageTitle } from '../components';
-import { Car, LimitCars, PageTitles, ResponceURLS } from '../utils';
+import { Car, getCars, LimitCars, PageTitles, ResponceURLS } from '../utils';
 import { createCarItem } from '.';
 
 export const garageMainCreate = async (): Promise<HTMLElement> => {
@@ -29,10 +29,3 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
 
   return main;
 };
-
-async function getCars(url: string): Promise<Car[]> {
-  const responce = await fetch(url);
-  const data = await responce.json();
-
-  return data;
-}
