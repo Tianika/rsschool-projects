@@ -1,5 +1,4 @@
-import { createButton } from '../components';
-import { createCar } from '../components/car';
+import { createButton, createCar } from '../components';
 import { DATA_CAR_BTNS, DATA_ENGINE_BTNS } from '../utils';
 
 export const createCarItem = (car): HTMLElement => {

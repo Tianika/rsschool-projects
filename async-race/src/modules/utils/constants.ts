@@ -1,15 +1,24 @@
 import { BtnData, FooterData, InputData } from '.';
 
+export const DEFAULT_STRING = '';
+
+export const FIRST_INDEX = 1;
+
+export enum Hashes {
+  garage = 'garage',
+  winners = 'winners',
+}
+
 export const DATA_NAV_BTNS: Array<BtnData> = [
   {
     text: 'to garage',
     className: 'garage-button',
-    handler: () => (window.location.hash = '#garage'),
+    handler: () => (window.location.hash = `#${Hashes.garage}`),
   },
   {
     text: 'to winners',
     className: 'winners-button',
-    handler: () => (window.location.hash = '#winners'),
+    handler: () => (window.location.hash = `#${Hashes.winners}`),
   },
 ];
 
@@ -92,3 +101,18 @@ export const DATA_FOOTER: FooterData = {
     text: '',
   },
 };
+
+export enum PageTitles {
+  garage = 'Garage',
+  winners = 'Winners',
+}
+
+export enum ResponceURLS {
+  garage = 'http://127.0.0.1:3000/garage',
+  winners = 'http://127.0.0.1:3000/winners',
+}
+
+export enum LimitCars {
+  forGarage = 7,
+  forWinners = 10,
+}

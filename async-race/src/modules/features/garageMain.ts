@@ -1,34 +1,36 @@
-import { createPageSubtitle } from '../components';
-import { createPageTitle } from '../components/pageTitle';
-import { Car } from '../utils';
-import { createCarItem } from './carItem';
+import { createPageSubtitle, createPageTitle } from '../components';
+import { Car, LimitCars, PageTitles, ResponceURLS } from '../utils';
+import { createCarItem } from '.';
 
-export const garageMainCreate = (): HTMLElement => {
+export const garageMainCreate = async (): Promise<HTMLElement> => {
   const main = document.createElement('main');
   main.classList.add('main');
 
-  const title = createPageTitle('Garage', 9);
+  const page = 1;
+
+  const cars = await getCars(
+    `${ResponceURLS.garage}?_page=${page}&_limit=${LimitCars.forGarage}`
+  );
+
+  const title = createPageTitle(PageTitles.garage, cars.length);
   main.appendChild(title);
 
-  const subtitle = createPageSubtitle(1);
+  const subtitle = createPageSubtitle(page);
   main.appendChild(subtitle);
 
   const carsContainer = document.createElement('div');
   carsContainer.classList.add('cars-container');
 
-  Promise.resolve(getCars('http://127.0.0.1:3000/garage')).then(
-    (cars: Array<Car>): void =>
-      cars.forEach((car: Car): void => {
-        carsContainer.appendChild(createCarItem(car));
-      })
-  );
+  cars.forEach((car: Car): void => {
+    carsContainer.appendChild(createCarItem(car));
+  });
 
   main.appendChild(carsContainer);
 
   return main;
 };
 
-async function getCars(url: string) {
+async function getCars(url: string): Promise<Car[]> {
   const responce = await fetch(url);
   const data = await responce.json();
 
