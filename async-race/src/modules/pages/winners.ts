@@ -1,4 +1,5 @@
-import { createFooter, createNavigation, winnersMainCreate } from '../features';
+import { createFooter, createNavigation } from '../components';
+import { winnersMainCreate } from '../features';
 import { DEFAULT_STRING } from '../utils';
 
 export const draw = async (): Promise<void> => {

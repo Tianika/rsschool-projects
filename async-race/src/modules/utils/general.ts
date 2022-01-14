@@ -78,9 +78,18 @@ export const deleteCar = async (id: string): Promise<void> => {
   await fetch(`${ResponceURLS.garage}/${id}`, {
     method: 'DELETE',
   });
-  await fetch(`${ResponceURLS.winners}/${id}`, {
-    method: 'DELETE',
-  });
+
+  try {
+    const responce = await fetch(`${ResponceURLS.winners}/${id}`);
+
+    if (responce.status === 200) {
+      await fetch(`${ResponceURLS.winners}/${id}`, {
+        method: 'DELETE',
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const removeCar = async (event: Event | undefined): Promise<void> => {

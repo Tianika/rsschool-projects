@@ -1,4 +1,4 @@
-import { createButton } from '../components';
+import { createButton } from '.';
 import { DATA_NAV_BTNS } from '../utils';
 
 export const createNavigation = (): HTMLElement => {

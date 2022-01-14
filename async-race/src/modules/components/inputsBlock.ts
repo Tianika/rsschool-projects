@@ -1,8 +1,4 @@
-import {
-  createButton,
-  createTextInput,
-  createColorChoice,
-} from '../components';
+import { createButton, createTextInput, createColorChoice } from '.';
 import { DATA_INPUTS } from '../utils';
 
 export const createInputBlock = (): HTMLElement => {

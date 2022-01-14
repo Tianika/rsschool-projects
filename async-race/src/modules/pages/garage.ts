@@ -1,4 +1,5 @@
-import { createHeader, createFooter, garageMainCreate } from '../features';
+import { createFooter, createHeader } from '../components';
+import { garageMainCreate } from '../features';
 import { DEFAULT_STRING } from '../utils';
 
 export const draw = async (): Promise<void> => {

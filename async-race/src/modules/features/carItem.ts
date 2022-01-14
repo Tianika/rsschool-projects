@@ -13,7 +13,7 @@ export const createCarItem = (car: Car): HTMLElement => {
 
   DATA_CAR_BTNS.forEach((data): void => {
     const button = createButton(data);
-    button.dataset.id = car.id.toString();
+    button.dataset.id = carId;
     carItemHeader.appendChild(button);
   });
 

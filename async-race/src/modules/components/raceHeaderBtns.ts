@@ -1,4 +1,4 @@
-import { createButton } from '../components';
+import { createButton } from '.';
 import { DATA_RACE_BTNS } from '../utils';
 
 export const createRaceHeaderBtns = (): HTMLElement => {
