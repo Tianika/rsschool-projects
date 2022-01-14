@@ -1,5 +1,5 @@
-import { BtnData, FooterData, InputData, renderCar } from './';
-import { removeCar } from './general';
+import { removeCar, renderCar } from '../features';
+import { BtnData, FooterData, InputData } from './';
 import { createInputState, updateInputState } from './states';
 
 export const DEFAULT_STRING = '';

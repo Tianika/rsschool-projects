@@ -1,5 +1,6 @@
+import { getCar } from '.';
 import { createCarImage } from '../components';
-import { getCar, TABLE_HEADER, Winner } from '../utils';
+import { TABLE_HEADER, Winner } from '../utils';
 
 export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
   const table = document.createElement('table');

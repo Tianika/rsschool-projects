@@ -6,11 +6,10 @@ import {
 import {
   Car,
   DATA_PAGINATION_CARS_BTNS,
-  getCars,
   PageTitles,
   ResponceURLS,
 } from '../utils';
-import { createCarItem } from '.';
+import { createCarItem, getCars } from '.';
 import { commonState } from '../utils/states';
 
 export const garageMainCreate = async (): Promise<HTMLElement> => {
