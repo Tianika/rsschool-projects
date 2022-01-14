@@ -1,9 +1,9 @@
-export type VoidFunction = () => void;
+export type HandlerFunction = (event: Event | undefined) => void;
 
 export type BtnData = {
   text: string;
   className: string;
-  handler: VoidFunction;
+  handler: HandlerFunction;
 };
 
 export type InputData = {

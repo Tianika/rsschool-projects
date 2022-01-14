@@ -16,6 +16,11 @@ export const createLink = (target: string, data: LinkData): HTMLElement => {
   return div;
 };
 
+export const changeTitle = (number: number) => {
+  const title = document.querySelector('.garage-title') as HTMLElement;
+  title.innerHTML = `Garage (${number})`;
+};
+
 export const getCars = async (url: string): Promise<Car[]> => {
   const responce = await fetch(url);
   const data = await responce.json();
@@ -50,8 +55,7 @@ export const renderCar = async (): Promise<void> => {
   const main = document.querySelector('.main') as HTMLElement;
 
   if (main) {
-    const title = document.querySelector('.garage-title') as HTMLElement;
-    title.innerHTML = `Garage (${commonState.countCars})`;
+    changeTitle(commonState.countCars);
 
     const carsOnPage = document.querySelectorAll('.car-item').length as Number;
 
@@ -66,6 +70,48 @@ export const renderCar = async (): Promise<void> => {
       ) as HTMLElement;
 
       carsContainer.appendChild(createCarItem(car));
+    }
+  }
+};
+
+export const deleteCar = async (id: string): Promise<void> => {
+  await fetch(`${ResponceURLS.garage}/${id}`, {
+    method: 'DELETE',
+  });
+  await fetch(`${ResponceURLS.winners}/${id}`, {
+    method: 'DELETE',
+  });
+};
+
+export const removeCar = async (event: Event | undefined): Promise<void> => {
+  if (event) {
+    const target = event.target as HTMLElement;
+    const id = target.dataset.id;
+
+    if (id) {
+      await deleteCar(id);
+
+      const carForDelete = document.querySelector(`.car${id}`) as HTMLElement;
+      carForDelete.parentNode?.removeChild(carForDelete);
+
+      commonState.countCars -= FIRST_INDEX;
+      changeTitle(commonState.countCars);
+
+      const cars = await getCars(
+        `${ResponceURLS.garage}?_page=${commonState.pageGarage}&_limit=${commonState.limitGarage}`
+      );
+      const carsOnPage = document.querySelectorAll('.car-item')
+        .length as Number;
+
+      if (cars.length > carsOnPage) {
+        const car = cars[cars.length - FIRST_INDEX];
+
+        const carsContainer = document.querySelector(
+          '.cars-container'
+        ) as HTMLElement;
+
+        carsContainer.appendChild(createCarItem(car));
+      }
     }
   }
 };

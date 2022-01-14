@@ -1,4 +1,5 @@
 import { BtnData, FooterData, InputData, renderCar } from './';
+import { removeCar } from './general';
 import { createInputState, updateInputState } from './states';
 
 export const DEFAULT_STRING = '';
@@ -30,7 +31,7 @@ export const DATA_INPUTS: Array<InputData> = [
     btnData: {
       text: 'create',
       className: 'create-button',
-      handler: () => renderCar(),
+      handler: (event?: Event) => renderCar(),
     },
     state: createInputState,
   },
@@ -40,7 +41,7 @@ export const DATA_INPUTS: Array<InputData> = [
     btnData: {
       text: 'update',
       className: 'update-button',
-      handler: () => console.log('update'),
+      handler: (event?: Event) => console.log('update'),
     },
     state: updateInputState,
   },
@@ -50,17 +51,17 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
   {
     text: 'race',
     className: 'race-button',
-    handler: () => console.log('race'),
+    handler: (event?: Event) => console.log('race'),
   },
   {
     text: 'reset',
     className: 'reset-button',
-    handler: () => console.log('reset'),
+    handler: (event?: Event) => console.log('reset'),
   },
   {
     text: 'generate cars',
     className: 'generate-cars-button',
-    handler: () => console.log('generate cars'),
+    handler: (event?: Event) => console.log('generate cars'),
   },
 ];
 
@@ -68,12 +69,12 @@ export const DATA_PAGINATION_CARS_BTNS: Array<BtnData> = [
   {
     text: 'prev',
     className: 'prev-cars-button',
-    handler: () => console.log('prev'),
+    handler: (event?: Event) => console.log('prev'),
   },
   {
     text: 'next',
     className: 'next-cars-button',
-    handler: () => console.log('next'),
+    handler: (event?: Event) => console.log('next'),
   },
 ];
 
@@ -81,12 +82,12 @@ export const DATA_PAGINATION_WINNERS_BTNS: Array<BtnData> = [
   {
     text: 'prev',
     className: 'prev-winners-button',
-    handler: () => console.log('prev'),
+    handler: (event?: Event) => console.log('prev'),
   },
   {
     text: 'next',
     className: 'next-winners-button',
-    handler: () => console.log('next'),
+    handler: (event?: Event) => console.log('next'),
   },
 ];
 
@@ -94,12 +95,12 @@ export const DATA_CAR_BTNS: Array<BtnData> = [
   {
     text: 'select',
     className: 'select-button',
-    handler: () => console.log('select'),
+    handler: (event?: Event) => console.log('select'),
   },
   {
     text: 'remove',
     className: 'remove-button',
-    handler: () => console.log('remove'),
+    handler: (event?: Event) => removeCar(event),
   },
 ];
 
@@ -107,12 +108,12 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
   {
     text: 'A',
     className: 'start-button',
-    handler: () => console.log('start'),
+    handler: (event?: Event) => console.log('start'),
   },
   {
     text: 'B',
     className: 'stop-button',
-    handler: () => console.log('stop'),
+    handler: (event?: Event) => console.log('stop'),
   },
 ];
 

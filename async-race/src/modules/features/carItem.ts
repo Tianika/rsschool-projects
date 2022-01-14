@@ -2,14 +2,19 @@ import { createButton, createCarImage } from '../components';
 import { Car, DATA_CAR_BTNS, DATA_ENGINE_BTNS } from '../utils';
 
 export const createCarItem = (car: Car): HTMLElement => {
+  const carId = car.id.toString();
+
   const carContainer = document.createElement('div');
   carContainer.classList.add('car-item');
+  carContainer.classList.add(`car${carId}`);
 
   const carItemHeader = document.createElement('div');
   carItemHeader.classList.add('car-item-title');
 
   DATA_CAR_BTNS.forEach((data): void => {
-    carItemHeader.appendChild(createButton(data));
+    const button = createButton(data);
+    button.dataset.id = car.id.toString();
+    carItemHeader.appendChild(button);
   });
 
   const carItemTitle = document.createElement('h3');
@@ -23,7 +28,9 @@ export const createCarItem = (car: Car): HTMLElement => {
   carItemRace.classList.add('car-item-race');
 
   DATA_ENGINE_BTNS.forEach((data) => {
-    carItemRace.appendChild(createButton(data));
+    const button = createButton(data);
+    button.dataset.id = carId;
+    carItemRace.appendChild(button);
   });
 
   const carIcon = createCarImage(car.color);

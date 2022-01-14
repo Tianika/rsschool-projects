@@ -5,7 +5,9 @@ export const createButton = (data: BtnData): HTMLButtonElement => {
   button.classList.add('button');
   button.classList.add(data.className);
   button.innerText = data.text.toUpperCase();
-  button.onclick = data.handler;
+  button.addEventListener('click', (event: Event | undefined) =>
+    data.handler(event)
+  );
 
   return button;
 };
