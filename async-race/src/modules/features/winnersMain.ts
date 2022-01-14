@@ -1,29 +1,24 @@
-import { LimitCars, PageTitles, ResponceURLS, Winner } from '../utils';
+import { PageTitles, ResponceURLS, Winner } from '../utils';
 import { createPageTitle, createPageSubtitle } from '../components';
 import { createTable } from '.';
+import { commonState } from '../utils/states';
 
 export const winnersMainCreate = async (): Promise<HTMLElement> => {
   const main = document.createElement('main');
   main.classList.add('main');
 
-  const page = 1;
-
   const winners = await getWinners(
-    `${ResponceURLS.winners}?_page=${page}&_limit=${LimitCars.forWinners}`
+    `${ResponceURLS.winners}?_page=${commonState.pageWinners}&_limit=${commonState.limitWinners}`
   );
 
   const title = createPageTitle(PageTitles.winners, winners.length);
   main.appendChild(title);
 
-  const subtitle = createPageSubtitle(page);
+  const subtitle = createPageSubtitle(commonState.pageWinners);
   main.appendChild(subtitle);
 
   const winnersContainer = document.createElement('div');
   winnersContainer.classList.add('winners-container');
-
-  winners.forEach((winner): void => {
-    console.log(winner);
-  });
 
   winnersContainer.appendChild(await createTable(winners));
 

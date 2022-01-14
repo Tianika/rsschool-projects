@@ -1,21 +1,23 @@
 import { createPageSubtitle, createPageTitle } from '../components';
-import { Car, getCars, LimitCars, PageTitles, ResponceURLS } from '../utils';
+import { Car, getCars, PageTitles, ResponceURLS } from '../utils';
 import { createCarItem } from '.';
+import { commonState } from '../utils/states';
 
 export const garageMainCreate = async (): Promise<HTMLElement> => {
   const main = document.createElement('main');
   main.classList.add('main');
 
-  const page = 1;
-
   const cars = await getCars(
-    `${ResponceURLS.garage}?_page=${page}&_limit=${LimitCars.forGarage}`
+    `${ResponceURLS.garage}?_page=${commonState.pageGarage}&_limit=${commonState.limitGarage}`
   );
 
-  const title = createPageTitle(PageTitles.garage, cars.length);
+  const carsCount = await getCars(ResponceURLS.garage);
+  commonState.countCars = carsCount.length;
+
+  const title = createPageTitle(PageTitles.garage, commonState.countCars);
   main.appendChild(title);
 
-  const subtitle = createPageSubtitle(page);
+  const subtitle = createPageSubtitle(commonState.pageGarage);
   main.appendChild(subtitle);
 
   const carsContainer = document.createElement('div');

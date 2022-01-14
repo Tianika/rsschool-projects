@@ -1,4 +1,4 @@
-import { createCar } from '../components';
+import { createCarImage } from '../components';
 import { getCar, TABLE_HEADER, Winner } from '../utils';
 
 export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
@@ -36,7 +36,7 @@ async function createRow(winner: Winner): Promise<HTMLTableRowElement> {
   const car = await getCar(winner.id);
 
   const th1 = document.createElement('th');
-  th1.appendChild(createCar(car.color));
+  th1.appendChild(createCarImage(car.color));
   tr.appendChild(th1);
 
   const th2 = document.createElement('th');

@@ -12,8 +12,12 @@ export const createInputBlock = (): HTMLElement => {
     const inputContainer = document.createElement('div');
     inputContainer.classList.add('input-container');
 
-    inputContainer.appendChild(createTextInput(data.textInputClass));
-    inputContainer.appendChild(createColorChoice(data.colorInputClass));
+    inputContainer.appendChild(
+      createTextInput(data.textInputClass, data.state)
+    );
+    inputContainer.appendChild(
+      createColorChoice(data.colorInputClass, data.state)
+    );
     inputContainer.appendChild(createButton(data.btnData));
 
     container.appendChild(inputContainer);

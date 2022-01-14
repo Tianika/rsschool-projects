@@ -10,6 +10,7 @@ export type InputData = {
   textInputClass: string;
   colorInputClass: string;
   btnData: BtnData;
+  state: CarData;
 };
 
 export type LinkData = {
@@ -35,4 +36,9 @@ export type Winner = {
   id: string;
   time: string;
   wins: string;
+};
+
+export type CarData = {
+  name: string;
+  color: string;
 };

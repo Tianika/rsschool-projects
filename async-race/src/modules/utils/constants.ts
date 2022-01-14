@@ -1,4 +1,5 @@
-import { BtnData, FooterData, InputData } from '.';
+import { BtnData, FooterData, InputData, renderCar } from './';
+import { createInputState, updateInputState } from './states';
 
 export const DEFAULT_STRING = '';
 
@@ -13,12 +14,12 @@ export const DATA_NAV_BTNS: Array<BtnData> = [
   {
     text: 'to garage',
     className: 'garage-button',
-    handler: () => (window.location.hash = `#${Hashes.garage}`),
+    handler: (): string => (window.location.hash = `#${Hashes.garage}`),
   },
   {
     text: 'to winners',
     className: 'winners-button',
-    handler: () => (window.location.hash = `#${Hashes.winners}`),
+    handler: (): string => (window.location.hash = `#${Hashes.winners}`),
   },
 ];
 
@@ -29,8 +30,9 @@ export const DATA_INPUTS: Array<InputData> = [
     btnData: {
       text: 'create',
       className: 'create-button',
-      handler: () => console.log('create'),
+      handler: () => renderCar(),
     },
+    state: createInputState,
   },
   {
     textInputClass: 'input-update',
@@ -40,6 +42,7 @@ export const DATA_INPUTS: Array<InputData> = [
       className: 'update-button',
       handler: () => console.log('update'),
     },
+    state: updateInputState,
   },
 ];
 
@@ -88,7 +91,7 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
 ];
 
 export const DATA_FOOTER: FooterData = {
-  year: '&copy; 2021',
+  year: '&copy; 2022',
   target: '_blank',
   author: {
     class: 'copyright-author',
@@ -110,11 +113,6 @@ export enum PageTitles {
 export enum ResponceURLS {
   garage = 'http://127.0.0.1:3000/garage',
   winners = 'http://127.0.0.1:3000/winners',
-}
-
-export enum LimitCars {
-  forGarage = 7,
-  forWinners = 10,
 }
 
 export enum TableHeader {

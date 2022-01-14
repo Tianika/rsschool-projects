@@ -1,4 +1,4 @@
-export const createCar = (color: string): HTMLElement => {
+export const createCarImage = (color: string): HTMLElement => {
   const carIcon = document.createElement('div');
   carIcon.classList.add('car-icon');
   carIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70px" height="35px" viewBox="0 0 70 35" version="1.1">

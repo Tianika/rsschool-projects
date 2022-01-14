@@ -1,4 +1,4 @@
-import { createButton, createCar } from '../components';
+import { createButton, createCarImage } from '../components';
 import { Car, DATA_CAR_BTNS, DATA_ENGINE_BTNS } from '../utils';
 
 export const createCarItem = (car: Car): HTMLElement => {
@@ -26,7 +26,7 @@ export const createCarItem = (car: Car): HTMLElement => {
     carItemRace.appendChild(createButton(data));
   });
 
-  const carIcon = createCar(car.color);
+  const carIcon = createCarImage(car.color);
   carItemRace.appendChild(carIcon);
 
   const finish = document.createElement('div');
