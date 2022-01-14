@@ -1,5 +1,14 @@
-import { PageTitles, ResponceURLS, Winner } from '../utils';
-import { createPageTitle, createPageSubtitle } from '../components';
+import {
+  DATA_PAGINATION_WINNERS_BTNS,
+  PageTitles,
+  ResponceURLS,
+  Winner,
+} from '../utils';
+import {
+  createPageTitle,
+  createPageSubtitle,
+  createButton,
+} from '../components';
 import { createTable } from '.';
 import { commonState } from '../utils/states';
 
@@ -15,6 +24,11 @@ export const winnersMainCreate = async (): Promise<HTMLElement> => {
   main.appendChild(title);
 
   const subtitle = createPageSubtitle(commonState.pageWinners);
+
+  DATA_PAGINATION_WINNERS_BTNS.forEach((data) => {
+    subtitle.appendChild(createButton(data));
+  });
+
   main.appendChild(subtitle);
 
   const winnersContainer = document.createElement('div');

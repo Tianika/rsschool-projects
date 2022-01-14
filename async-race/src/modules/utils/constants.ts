@@ -64,6 +64,32 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
   },
 ];
 
+export const DATA_PAGINATION_CARS_BTNS: Array<BtnData> = [
+  {
+    text: 'prev',
+    className: 'prev-cars-button',
+    handler: () => console.log('prev'),
+  },
+  {
+    text: 'next',
+    className: 'next-cars-button',
+    handler: () => console.log('next'),
+  },
+];
+
+export const DATA_PAGINATION_WINNERS_BTNS: Array<BtnData> = [
+  {
+    text: 'prev',
+    className: 'prev-winners-button',
+    handler: () => console.log('prev'),
+  },
+  {
+    text: 'next',
+    className: 'next-winners-button',
+    handler: () => console.log('next'),
+  },
+];
+
 export const DATA_CAR_BTNS: Array<BtnData> = [
   {
     text: 'select',

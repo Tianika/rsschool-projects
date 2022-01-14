@@ -1,5 +1,15 @@
-import { createPageSubtitle, createPageTitle } from '../components';
-import { Car, getCars, PageTitles, ResponceURLS } from '../utils';
+import {
+  createButton,
+  createPageSubtitle,
+  createPageTitle,
+} from '../components';
+import {
+  Car,
+  DATA_PAGINATION_CARS_BTNS,
+  getCars,
+  PageTitles,
+  ResponceURLS,
+} from '../utils';
 import { createCarItem } from '.';
 import { commonState } from '../utils/states';
 
@@ -18,6 +28,11 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
   main.appendChild(title);
 
   const subtitle = createPageSubtitle(commonState.pageGarage);
+
+  DATA_PAGINATION_CARS_BTNS.forEach((data) => {
+    subtitle.appendChild(createButton(data));
+  });
+
   main.appendChild(subtitle);
 
   const carsContainer = document.createElement('div');
