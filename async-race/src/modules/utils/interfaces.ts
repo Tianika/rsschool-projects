@@ -42,3 +42,9 @@ export type CarData = {
   name: string;
   color: string;
 };
+
+export type CarDataForUpdate = {
+  name: string;
+  color: string;
+  id: string;
+};

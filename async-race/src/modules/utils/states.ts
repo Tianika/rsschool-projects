@@ -1,4 +1,4 @@
-import { CarData } from '.';
+import { CarData, CarDataForUpdate } from '.';
 
 export const commonState = {
   pageGarage: 1,
@@ -13,7 +13,8 @@ export const createInputState: CarData = {
   color: '#ffffff',
 };
 
-export const updateInputState: CarData = {
+export const updateInputState: CarDataForUpdate = {
   name: '',
   color: '#ffffff',
+  id: '',
 };

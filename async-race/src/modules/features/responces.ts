@@ -1,4 +1,4 @@
-import { Car, CarData, ResponceURLS } from '../utils';
+import { Car, CarData, CarDataForUpdate, ResponceURLS } from '../utils';
 
 export const getCars = async (url: string): Promise<Car[]> => {
   const responce = await fetch(url);
@@ -28,19 +28,31 @@ export const createCar = async (car: CarData): Promise<Car> => {
 };
 
 export const deleteCar = async (id: string): Promise<void> => {
-  await fetch(`${ResponceURLS.garage}/${id}`, {
+  const responce = await fetch(`${ResponceURLS.garage}/${id}`, {
     method: 'DELETE',
   });
+  const data = responce.json();
 
-  try {
-    const responce = await fetch(`${ResponceURLS.winners}/${id}`);
+  // try {
+  //   const responce = await fetch(`${ResponceURLS.winners}/${id}`);
 
-    if (responce.status === 200) {
-      await fetch(`${ResponceURLS.winners}/${id}`, {
-        method: 'DELETE',
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
+  //   if (responce.status === 200) {
+  //     fetch(`${ResponceURLS.winners}/${id}`, {
+  //       method: 'DELETE',
+  //     });
+  //   }
+  // } catch (error) {
+  //   console.error('Not found: ' + error);
+  // }
+};
+
+export const updateCar = async (car: CarDataForUpdate): Promise<void> => {
+  const responce = await fetch(`${ResponceURLS.garage}/${car.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(car),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data: Promise<Car> = responce.json();
 };

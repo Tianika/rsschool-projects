@@ -1,4 +1,10 @@
-import { generateCars, removeCar, renderCar } from '../features';
+import {
+  changeUpdatedCar,
+  generateCars,
+  removeCar,
+  renderCar,
+  selectCar,
+} from '../features';
 import { BtnData, FooterData, InputData } from './';
 import { createInputState, updateInputState } from './states';
 
@@ -43,7 +49,7 @@ export const DATA_INPUTS: Array<InputData> = [
     btnData: {
       text: 'update',
       className: 'update-button',
-      handler: (event?: Event) => console.log('update'),
+      handler: (event?: Event) => changeUpdatedCar(),
     },
     state: updateInputState,
   },
@@ -97,7 +103,7 @@ export const DATA_CAR_BTNS: Array<BtnData> = [
   {
     text: 'select',
     className: 'select-button',
-    handler: (event?: Event) => console.log('select'),
+    handler: (event?: Event) => selectCar(event),
   },
   {
     text: 'remove',
@@ -161,6 +167,8 @@ export const TABLE_HEADER: Record<TableHeader, string> = {
 };
 
 export const HEX_CODE: string[] = [
+  '0',
+  '1',
   '2',
   '3',
   '4',
