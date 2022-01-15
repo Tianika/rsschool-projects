@@ -1,30 +1,30 @@
-import { createCar, createCarItem, deleteCar, getCars } from '.';
-import { changeTitle, FIRST_INDEX, ResponceURLS } from '../utils';
+import { createCar, deleteCar } from '.';
+import {
+  addCarToPage,
+  changeTitle,
+  DEFAULT_STRING,
+  FIRST_INDEX,
+  generateColor,
+  generateName,
+  NUM_FOR_GENERATE,
+} from '../utils';
 import { commonState, createInputState } from '../utils/states';
 
 export const renderCar = async (): Promise<void> => {
+  if (createInputState.name === DEFAULT_STRING) {
+    createInputState.name = generateName();
+  }
+
   createCar(createInputState);
   commonState.countCars += FIRST_INDEX;
+  createInputState.name = DEFAULT_STRING;
 
   const main = document.querySelector('.main') as HTMLElement;
 
   if (main) {
     changeTitle(commonState.countCars);
 
-    const carsOnPage = document.querySelectorAll('.car-item').length as Number;
-
-    if (carsOnPage < commonState.limitGarage) {
-      const cars = await getCars(
-        `${ResponceURLS.garage}?_page=${commonState.pageGarage}&_limit=${commonState.limitGarage}`
-      );
-      const car = cars[cars.length - FIRST_INDEX];
-
-      const carsContainer = document.querySelector(
-        '.cars-container'
-      ) as HTMLElement;
-
-      carsContainer.appendChild(createCarItem(car));
-    }
+    addCarToPage();
   }
 };
 
@@ -42,21 +42,23 @@ export const removeCar = async (event: Event | undefined): Promise<void> => {
       commonState.countCars -= FIRST_INDEX;
       changeTitle(commonState.countCars);
 
-      const cars = await getCars(
-        `${ResponceURLS.garage}?_page=${commonState.pageGarage}&_limit=${commonState.limitGarage}`
-      );
-      const carsOnPage = document.querySelectorAll('.car-item')
-        .length as Number;
-
-      if (cars.length > carsOnPage) {
-        const car = cars[cars.length - FIRST_INDEX];
-
-        const carsContainer = document.querySelector(
-          '.cars-container'
-        ) as HTMLElement;
-
-        carsContainer.appendChild(createCarItem(car));
-      }
+      addCarToPage();
     }
   }
+};
+
+export const generateCars = async () => {
+  for (let i = 0; i < NUM_FOR_GENERATE; i++) {
+    const car = {
+      name: generateName(),
+      color: generateColor(),
+    };
+
+    createCar(car);
+  }
+
+  commonState.countCars += NUM_FOR_GENERATE;
+  changeTitle(commonState.countCars);
+
+  addCarToPage();
 };

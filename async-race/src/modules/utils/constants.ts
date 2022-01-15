@@ -1,10 +1,12 @@
-import { removeCar, renderCar } from '../features';
+import { generateCars, removeCar, renderCar } from '../features';
 import { BtnData, FooterData, InputData } from './';
 import { createInputState, updateInputState } from './states';
 
 export const DEFAULT_STRING = '';
 
 export const FIRST_INDEX = 1;
+
+export const NUM_FOR_GENERATE = 100;
 
 export enum Hashes {
   garage = 'garage',
@@ -61,7 +63,7 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
   {
     text: 'generate cars',
     className: 'generate-cars-button',
-    handler: (event?: Event) => console.log('generate cars'),
+    handler: (event?: Event) => generateCars(),
   },
 ];
 
@@ -157,3 +159,20 @@ export const TABLE_HEADER: Record<TableHeader, string> = {
   wins: 'Wins',
   bestTime: 'Best time (seconds)',
 };
+
+export const HEX_CODE: string[] = [
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+];

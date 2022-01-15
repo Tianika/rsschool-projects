@@ -86,7 +86,7 @@ export const carBrands: string[] = [
   'Pontiac',
   'Porsche',
   'Renault',
-  'Å koda',
+  'Skoda',
   'Smart',
   'Subaru',
   'Suzuki',

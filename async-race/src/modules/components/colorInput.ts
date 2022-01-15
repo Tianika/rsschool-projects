@@ -8,7 +8,6 @@ export const createColorChoice = (
   input.classList.add('input-color');
   input.classList.add(className);
   input.type = 'color';
-  input.value = '#ffffff';
 
   input.addEventListener('change', () => (state.color = input.value));
 
