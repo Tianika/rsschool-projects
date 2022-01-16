@@ -61,6 +61,7 @@ body {
 $base: #131313;
 $white: #ffffff;
 $colorBtn: #b2fd74;
+$gray: #868686;
 
 /*----base---*/
 .root {
@@ -80,9 +81,12 @@ $colorBtn: #b2fd74;
 .button {
   margin: 7px;
   padding: 3px 7px;
-  background-color: $colorBtn;
+  background-color: $gray;
   font-size: 14px;
   border-radius: 3px;
+  &.active {
+    background-color: $colorBtn;
+  }
 }
 
 .navigation {

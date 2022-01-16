@@ -3,6 +3,7 @@ export type HandlerFunction = (event: Event | undefined) => void;
 export type BtnData = {
   text: string;
   className: string;
+  isActive: boolean;
   handler: HandlerFunction;
 };
 

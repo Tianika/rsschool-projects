@@ -1,5 +1,4 @@
 import { createCar, deleteCar, getCar, updateCar } from '.';
-import { createCarImage } from '../components';
 import { createSvg } from '../components/car';
 import {
   addCarToPage,
@@ -34,6 +33,9 @@ export const renderCar = async (): Promise<void> => {
 
     addCarToPage();
   }
+
+  const input = document.querySelector('.input-create') as HTMLInputElement;
+  input.value = DEFAULT_STRING;
 };
 
 export const removeCar = async (event: Event | undefined): Promise<void> => {
@@ -78,6 +80,11 @@ export const selectCar = async (event: Event | undefined): Promise<void> => {
 
     const car = await getCar(id);
 
+    const updateBtn = document.querySelector(
+      '.update-button'
+    ) as HTMLButtonElement;
+    updateBtn.classList.add('active');
+
     const textInputUpdate = document.querySelector(
       '.input-update'
     ) as HTMLInputElement;
@@ -111,6 +118,16 @@ export const changeUpdatedCar = (): void => {
   carIcon.innerHTML = createSvg(updateInputState.color);
 
   updateInputState.id = DEFAULT_STRING;
+
+  const updateBtn = document.querySelector(
+    '.update-button'
+  ) as HTMLButtonElement;
+  updateBtn.classList.remove('active');
+
+  const textInputUpdate = document.querySelector(
+    '.input-update'
+  ) as HTMLInputElement;
+  textInputUpdate.value = DEFAULT_STRING;
 };
 
 export const nextCarPage = async (): Promise<void> => {
