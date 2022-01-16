@@ -1,6 +1,8 @@
 import {
   changeUpdatedCar,
   generateCars,
+  nextCarPage,
+  prevCarPage,
   removeCar,
   renderCar,
   selectCar,
@@ -77,12 +79,12 @@ export const DATA_PAGINATION_CARS_BTNS: Array<BtnData> = [
   {
     text: 'prev',
     className: 'prev-cars-button',
-    handler: (event?: Event) => console.log('prev'),
+    handler: (event?: Event) => prevCarPage(),
   },
   {
     text: 'next',
     className: 'next-cars-button',
-    handler: (event?: Event) => console.log('next'),
+    handler: (event?: Event) => nextCarPage(),
   },
 ];
 

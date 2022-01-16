@@ -45,3 +45,5 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
 
   return main;
 };
+
+export const garageInnerMainCreate = async (): Promise<void> => {};

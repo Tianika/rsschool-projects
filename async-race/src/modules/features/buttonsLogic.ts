@@ -3,8 +3,10 @@ import { createCarImage } from '../components';
 import { createSvg } from '../components/car';
 import {
   addCarToPage,
+  changeSubtitle,
   changeTitle,
   DEFAULT_STRING,
+  drawCarsOnPage,
   FIRST_INDEX,
   generateColor,
   generateName,
@@ -92,7 +94,7 @@ export const selectCar = async (event: Event | undefined): Promise<void> => {
   }
 };
 
-export const changeUpdatedCar = () => {
+export const changeUpdatedCar = (): void => {
   if (updateInputState.id !== DEFAULT_STRING) {
     updateCar(updateInputState);
   }
@@ -109,4 +111,25 @@ export const changeUpdatedCar = () => {
   carIcon.innerHTML = createSvg(updateInputState.color);
 
   updateInputState.id = DEFAULT_STRING;
+};
+
+export const nextCarPage = async (): Promise<void> => {
+  if (
+    commonState.pageGarage <
+    Math.ceil(commonState.countCars / commonState.limitGarage)
+  ) {
+    commonState.pageGarage += 1;
+
+    changeSubtitle(commonState.pageGarage);
+    drawCarsOnPage();
+  }
+};
+
+export const prevCarPage = async (): Promise<void> => {
+  if (commonState.pageGarage !== FIRST_INDEX) {
+    commonState.pageGarage -= 1;
+
+    changeSubtitle(commonState.pageGarage);
+    drawCarsOnPage();
+  }
 };
