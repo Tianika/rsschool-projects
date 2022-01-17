@@ -129,13 +129,13 @@ export const DATA_CAR_BTNS: Array<BtnData> = [
 
 export const DATA_ENGINE_BTNS: Array<BtnData> = [
   {
-    text: 'A',
+    text: 'Start',
     className: 'start-button',
     isActive: true,
     handler: (event?: Event) => console.log('start'),
   },
   {
-    text: 'B',
+    text: 'Stop',
     className: 'stop-button',
     isActive: false,
     handler: (event?: Event) => console.log('stop'),
@@ -180,7 +180,7 @@ export const TABLE_HEADER: Record<TableHeader, string> = {
   car: 'Car',
   name: 'Name',
   wins: 'Wins',
-  bestTime: 'Best time (seconds)',
+  bestTime: 'Best time (sec)',
 };
 
 export const HEX_CODE: string[] = [
