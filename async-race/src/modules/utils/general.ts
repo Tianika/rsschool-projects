@@ -88,3 +88,26 @@ export const drawCarsOnPage = async (): Promise<void> => {
     carsContainer.appendChild(createCarItem(car));
   });
 };
+
+export const checkCarsPaginationBtn = (): void => {
+  const prevBtn = document.querySelector(
+    '.prev-cars-button'
+  ) as HTMLButtonElement;
+  const nextBtn = document.querySelector(
+    '.next-cars-button'
+  ) as HTMLButtonElement;
+
+  const maxPages = Math.ceil(commonState.countCars / commonState.limitGarage);
+
+  if (commonState.pageGarage < maxPages) {
+    nextBtn.classList.add('active');
+  } else {
+    nextBtn.classList.remove('active');
+  }
+
+  if (commonState.pageGarage > FIRST_INDEX) {
+    prevBtn.classList.add('active');
+  } else {
+    prevBtn.classList.remove('active');
+  }
+};

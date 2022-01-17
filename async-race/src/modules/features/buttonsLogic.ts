@@ -4,6 +4,7 @@ import {
   addCarToPage,
   changeSubtitle,
   changeTitle,
+  checkCarsPaginationBtn,
   DEFAULT_STRING,
   drawCarsOnPage,
   FIRST_INDEX,
@@ -34,6 +35,8 @@ export const renderCar = async (): Promise<void> => {
     addCarToPage();
   }
 
+  checkCarsPaginationBtn();
+
   const input = document.querySelector('.input-create') as HTMLInputElement;
   input.value = DEFAULT_STRING;
 };
@@ -53,6 +56,7 @@ export const removeCar = async (event: Event | undefined): Promise<void> => {
       changeTitle(commonState.countCars);
 
       addCarToPage();
+      checkCarsPaginationBtn();
     }
   }
 };
@@ -71,6 +75,7 @@ export const generateCars = (): void => {
   changeTitle(commonState.countCars);
 
   addCarToPage();
+  checkCarsPaginationBtn();
 };
 
 export const selectCar = async (event: Event | undefined): Promise<void> => {
@@ -139,6 +144,7 @@ export const nextCarPage = async (): Promise<void> => {
 
     changeSubtitle(commonState.pageGarage);
     drawCarsOnPage();
+    checkCarsPaginationBtn();
   }
 };
 
@@ -148,5 +154,6 @@ export const prevCarPage = async (): Promise<void> => {
 
     changeSubtitle(commonState.pageGarage);
     drawCarsOnPage();
+    checkCarsPaginationBtn();
   }
 };

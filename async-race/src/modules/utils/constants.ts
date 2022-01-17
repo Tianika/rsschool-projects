@@ -201,3 +201,7 @@ export const HEX_CODE: string[] = [
   'e',
   'f',
 ];
+
+export enum Delays {
+  animBtn = 500,
+}

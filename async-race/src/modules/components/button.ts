@@ -1,4 +1,4 @@
-import { BtnData } from '../utils';
+import { BtnData, Delays } from '../utils';
 
 export const createButton = (data: BtnData): HTMLButtonElement => {
   const button = document.createElement('button');
@@ -13,6 +13,12 @@ export const createButton = (data: BtnData): HTMLButtonElement => {
   button.addEventListener('click', (event: Event | undefined) =>
     data.handler(event)
   );
+  button.addEventListener('click', (): void => {
+    if (button.classList.contains('active')) {
+      button.classList.add('click');
+      setTimeout((): void => button.classList.remove('click'), Delays.animBtn);
+    }
+  });
 
   return button;
 };
