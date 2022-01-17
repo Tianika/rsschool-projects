@@ -1,4 +1,11 @@
-import { Car, CarData, CarDataForUpdate, ResponceURLS } from '../utils';
+import {
+  Car,
+  CarData,
+  CarDataForUpdate,
+  DataRace,
+  RaceStatus,
+  ResponceURLS,
+} from '../utils';
 
 export const getCars = async (url: string): Promise<Car[]> => {
   const responce = await fetch(url);
@@ -33,17 +40,17 @@ export const deleteCar = async (id: string): Promise<void> => {
   });
   const data = responce.json();
 
-  // try {
-  //   const responce = await fetch(`${ResponceURLS.winners}/${id}`);
+  try {
+    const responce = await fetch(`${ResponceURLS.winners}/${id}`);
 
-  //   if (responce.status === 200) {
-  //     fetch(`${ResponceURLS.winners}/${id}`, {
-  //       method: 'DELETE',
-  //     });
-  //   }
-  // } catch (error) {
-  //   console.error('Not found: ' + error);
-  // }
+    if (responce.status === 200) {
+      fetch(`${ResponceURLS.winners}/${id}`, {
+        method: 'DELETE',
+      });
+    }
+  } catch (error) {
+    console.error('Not found: ' + error);
+  }
 };
 
 export const updateCar = async (car: CarDataForUpdate): Promise<void> => {
@@ -55,4 +62,44 @@ export const updateCar = async (car: CarDataForUpdate): Promise<void> => {
     },
   });
   const data: Promise<Car> = responce.json();
+};
+
+export const startEngine = async (id: string): Promise<DataRace> => {
+  const responce = await fetch(
+    `${ResponceURLS.engine}?id=${id}&status=started`,
+    {
+      method: 'PATCH',
+    }
+  );
+  const data: Promise<DataRace> = responce.json();
+
+  return data;
+};
+
+export const stopEngine = async (id: string): Promise<DataRace> => {
+  const responce = await fetch(
+    `${ResponceURLS.engine}?id=${id}&status=stopped`,
+    {
+      method: 'PATCH',
+    }
+  );
+  const data: Promise<DataRace> = responce.json();
+
+  return data;
+};
+
+export const drive = async (id: string): Promise<RaceStatus | undefined> => {
+  try {
+    const responce = await fetch(
+      `${ResponceURLS.engine}?id=${id}&status=drive`,
+      {
+        method: 'PATCH',
+      }
+    );
+    const data: Promise<RaceStatus> = responce.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };

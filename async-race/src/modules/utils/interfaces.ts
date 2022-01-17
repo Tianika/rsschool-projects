@@ -49,3 +49,12 @@ export type CarDataForUpdate = {
   color: string;
   id: string;
 };
+
+export type DataRace = {
+  velocity: number;
+  distance: number;
+};
+
+export type RaceStatus = {
+  success: boolean;
+};

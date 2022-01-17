@@ -1,11 +1,13 @@
 import {
   changeUpdatedCar,
+  driveCar,
   generateCars,
   nextCarPage,
   prevCarPage,
   removeCar,
   renderCar,
   selectCar,
+  stopCar,
 } from '../features';
 import { BtnData, FooterData, InputData } from './';
 import { createInputState, updateInputState } from './states';
@@ -132,13 +134,13 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
     text: 'Start',
     className: 'start-button',
     isActive: true,
-    handler: (event?: Event) => console.log('start'),
+    handler: (event?: Event) => driveCar(event),
   },
   {
     text: 'Stop',
     className: 'stop-button',
     isActive: false,
-    handler: (event?: Event) => console.log('stop'),
+    handler: (event?: Event) => stopCar(event),
   },
 ];
 
@@ -165,6 +167,7 @@ export enum PageTitles {
 export enum ResponceURLS {
   garage = 'http://127.0.0.1:3000/garage',
   winners = 'http://127.0.0.1:3000/winners',
+  engine = 'http://127.0.0.1:3000/engine',
 }
 
 export enum TableHeader {
@@ -205,3 +208,5 @@ export const HEX_CODE: string[] = [
 export enum Delays {
   animBtn = 500,
 }
+
+export const MS_PER_SEC = 1000;

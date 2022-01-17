@@ -1,6 +1,5 @@
 import {
   Car,
-  CarData,
   DEFAULT_STRING,
   FIRST_INDEX,
   HEX_CODE,
@@ -9,7 +8,7 @@ import {
 } from '.';
 import { carBrands, carModels } from '../data';
 import { createCarItem, getCars } from '../features';
-import { commonState, createInputState } from './states';
+import { commonState } from './states';
 
 export const createLink = (target: string, data: LinkData): HTMLElement => {
   const div = document.createElement('div');
@@ -110,4 +109,11 @@ export const checkCarsPaginationBtn = (): void => {
   } else {
     prevBtn.classList.remove('active');
   }
+};
+
+export const getId = (event: Event): string => {
+  const target = event.target as HTMLElement;
+  const id = target.dataset.id as string;
+
+  return id;
 };
