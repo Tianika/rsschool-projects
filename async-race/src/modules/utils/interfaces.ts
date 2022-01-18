@@ -11,7 +11,6 @@ export type InputData = {
   textInputClass: string;
   colorInputClass: string;
   btnData: BtnData;
-  state: CarData;
 };
 
 export type LinkData = {

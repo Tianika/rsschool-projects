@@ -113,6 +113,7 @@ export const selectCar = async (event: EventType): Promise<void> => {
 };
 
 export const changeUpdatedCar = (): void => {
+  console.log(updateInputState);
   if (updateInputState.id !== DEFAULT_STRING) {
     updateCar(updateInputState);
 

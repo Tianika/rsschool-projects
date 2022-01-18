@@ -1,6 +1,5 @@
 export { createButton } from './button';
-export { createTextInput } from './textInput';
-export { createColorChoice } from './colorInput';
+export { createColorChoice, createTextInput } from './inputs';
 export { createPageTitle } from './pageTitle';
 export { createPageSubtitle } from './pageSubtitle';
 export { createCarImage, createSvg } from './car';

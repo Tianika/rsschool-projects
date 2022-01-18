@@ -16,7 +16,7 @@ import {
   InputData,
   createInputState,
   updateInputState,
-} from './';
+} from '.';
 
 export const DEFAULT_STRING = '';
 
@@ -57,7 +57,6 @@ export const DATA_INPUTS: Array<InputData> = [
       isActive: true,
       handler: () => renderCar(),
     },
-    state: createInputState,
   },
   {
     textInputClass: 'input-update',
@@ -68,7 +67,6 @@ export const DATA_INPUTS: Array<InputData> = [
       isActive: false,
       handler: () => changeUpdatedCar(),
     },
-    state: updateInputState,
   },
 ];
 
