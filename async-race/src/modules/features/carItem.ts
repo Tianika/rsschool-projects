@@ -7,6 +7,7 @@ export const createCarItem = (car: Car): HTMLElement => {
   const carContainer = document.createElement('div');
   carContainer.classList.add('car-item');
   carContainer.classList.add(`car${carId}`);
+  carContainer.dataset.id = carId;
 
   const carItemHeader = document.createElement('div');
   carItemHeader.classList.add('car-item-title');
@@ -21,6 +22,11 @@ export const createCarItem = (car: Car): HTMLElement => {
   carItemTitle.classList.add('car-name');
   carItemTitle.innerText = car.name;
   carItemHeader.appendChild(carItemTitle);
+
+  const carItemError = document.createElement('span');
+  carItemError.classList.add('car-error');
+  carItemError.innerText = 'is broken';
+  carItemHeader.appendChild(carItemError);
 
   carContainer.appendChild(carItemHeader);
 

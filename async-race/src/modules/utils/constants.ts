@@ -6,7 +6,9 @@ import {
   prevCarPage,
   removeCar,
   renderCar,
+  resetRace,
   selectCar,
+  startRace,
   stopCar,
 } from '../features';
 import { BtnData, FooterData, InputData } from './';
@@ -46,7 +48,7 @@ export const DATA_INPUTS: Array<InputData> = [
       text: 'create',
       className: 'create-button',
       isActive: true,
-      handler: (event?: Event) => renderCar(),
+      handler: () => renderCar(),
     },
     state: createInputState,
   },
@@ -57,7 +59,7 @@ export const DATA_INPUTS: Array<InputData> = [
       text: 'update',
       className: 'update-button',
       isActive: false,
-      handler: (event?: Event) => changeUpdatedCar(),
+      handler: () => changeUpdatedCar(),
     },
     state: updateInputState,
   },
@@ -68,19 +70,19 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
     text: 'race',
     className: 'race-button',
     isActive: true,
-    handler: (event?: Event) => console.log('race'),
+    handler: () => startRace(),
   },
   {
     text: 'reset',
     className: 'reset-button',
     isActive: false,
-    handler: (event?: Event) => console.log('reset'),
+    handler: () => resetRace(),
   },
   {
     text: 'generate cars',
     className: 'generate-cars-button',
     isActive: true,
-    handler: (event?: Event) => generateCars(),
+    handler: () => generateCars(),
   },
 ];
 
@@ -89,13 +91,13 @@ export const DATA_PAGINATION_CARS_BTNS: Array<BtnData> = [
     text: 'prev',
     className: 'prev-cars-button',
     isActive: false,
-    handler: (event?: Event) => prevCarPage(),
+    handler: () => prevCarPage(),
   },
   {
     text: 'next',
     className: 'next-cars-button',
     isActive: false,
-    handler: (event?: Event) => nextCarPage(),
+    handler: () => nextCarPage(),
   },
 ];
 
@@ -104,13 +106,13 @@ export const DATA_PAGINATION_WINNERS_BTNS: Array<BtnData> = [
     text: 'prev',
     className: 'prev-winners-button',
     isActive: false,
-    handler: (event?: Event) => console.log('prev'),
+    handler: () => console.log('prev'),
   },
   {
     text: 'next',
     className: 'next-winners-button',
     isActive: false,
-    handler: (event?: Event) => console.log('next'),
+    handler: () => console.log('next'),
   },
 ];
 

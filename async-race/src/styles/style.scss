@@ -226,6 +226,15 @@ $gray: #868686;
   align-items: center;
 }
 
+.car-error {
+  opacity: 0;
+  margin-left: 10px;
+  color: rgb(248, 78, 78);
+  &.active {
+    opacity: 1;
+  }
+}
+
 .car-name {
   font-size: 20px;
   margin-left: 15px;

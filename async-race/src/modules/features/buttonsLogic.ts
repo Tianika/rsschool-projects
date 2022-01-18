@@ -164,51 +164,82 @@ export const prevCarPage = async (): Promise<void> => {
   }
 };
 
-export const driveCar = async (event: Event | undefined): Promise<void> => {
-  if (event) {
-    const target = event.target as HTMLElement;
-    const id = getId(event);
-    const container = document.querySelector(`.car${id}`) as HTMLElement;
+const animationDriveCar = async (id: string) => {
+  const container = document.querySelector(`.car${id}`) as HTMLElement;
 
-    if (target.classList.contains('active')) {
-      const startBtn = container.querySelector('.start-button') as HTMLElement;
-      startBtn?.classList.remove('active');
+  // if (target.classList.contains('active')) {
+  const startBtn = container.querySelector('.start-button') as HTMLElement;
+  startBtn.classList.remove('active');
 
-      const data = await startEngine(id);
-      const { velocity, distance } = data;
-      const timeRace = distance / velocity;
+  const data = await startEngine(id);
+  const { velocity, distance } = data;
+  const timeRace = distance / velocity;
 
-      const stopBtn = container.querySelector('.stop-button') as HTMLElement;
-      stopBtn?.classList.add('active');
+  const stopBtn = container.querySelector('.stop-button') as HTMLElement;
+  stopBtn.classList.add('active');
 
-      const car = container.querySelector('.car-icon') as HTMLElement;
+  const car = container.querySelector('.car-icon') as HTMLElement;
 
-      const startTime = new Date().getTime();
-      const finishTime = startTime + timeRace;
-      const dist = window.innerWidth - 320;
+  const startTime = new Date().getTime();
+  const finishTime = startTime + timeRace;
+  const dist = window.innerWidth - 320;
 
-      let animationId;
+  let animationId: number;
 
-      function anim() {
-        const currentTime = new Date().getTime();
+  function anim(): void {
+    const currentTime = new Date().getTime();
 
-        if (currentTime < finishTime) {
-          const newPos = 0 + (dist / timeRace) * (currentTime - startTime);
-          car.style.left = `${0 + newPos}px`;
+    if (currentTime < finishTime) {
+      const newPos = 0 + (dist / timeRace) * (currentTime - startTime);
+      car.style.left = `${0 + newPos}px`;
 
-          animationId = window.requestAnimationFrame(anim);
-        }
-      }
-
-      anim();
-
-      const driver = await drive(id);
-      if (!driver?.success) {
-        window.cancelAnimationFrame(animationId);
-      }
-      console.log(driver);
+      animationId = window.requestAnimationFrame(anim);
     }
   }
+
+  anim();
+
+  Promise.resolve(drive(id))
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      const errorMsg = container.querySelector('.car-error') as HTMLElement;
+      errorMsg.classList.add('active');
+
+      window.cancelAnimationFrame(animationId);
+      console.error(err);
+    });
+  // }
+};
+
+export const driveCar = async (event: Event | undefined): Promise<void> => {
+  if (event) {
+    //const target = event.target as HTMLElement;
+    const id = getId(event);
+
+    animationDriveCar(id);
+  }
+};
+
+const resetAnimationCar = async (id: string) => {
+  const container = document.querySelector(`.car${id}`) as HTMLElement;
+
+  // if (target.classList.contains('active')) {
+  const stopBtn = container.querySelector('.stop-button') as HTMLElement;
+  stopBtn.classList.remove('active');
+
+  await stopEngine(id);
+
+  const startBtn = container.querySelector('.start-button') as HTMLElement;
+  startBtn.classList.add('active');
+
+  const errorMsg = container.querySelector('.car-error') as HTMLElement;
+  errorMsg.classList.remove('active');
+
+  const car = container.querySelector('.car-icon') as HTMLElement;
+  car.style.left = '0px';
+  //}
 };
 
 export const stopCar = async (event: Event | undefined): Promise<void> => {
@@ -216,17 +247,52 @@ export const stopCar = async (event: Event | undefined): Promise<void> => {
 
   const target = event.target as HTMLElement;
   const id = getId(event);
-  const container = document.querySelector(`.car${id}`) as HTMLElement;
 
-  if (target.classList.contains('active')) {
-    const startBtn = container.querySelector('.start-button') as HTMLElement;
-    startBtn?.classList.add('active');
+  resetAnimationCar(id);
+};
 
-    const data = await stopEngine(id);
+export const startRace = () => {
+  const raceBtn = document.querySelector('.race-button') as HTMLButtonElement;
 
-    const stopBtn = container.querySelector('.stop-button') as HTMLElement;
-    stopBtn?.classList.remove('active');
+  if (raceBtn.classList.contains('active')) {
+    raceBtn.classList.remove('active');
 
-    console.log(data);
+    const resetBtn = document.querySelector('.reset-button') as HTMLElement;
+    resetBtn.classList.add('active');
+
+    const cars = document.querySelectorAll(
+      '.car-item'
+    ) as NodeListOf<HTMLElement>;
+
+    cars.forEach((car) => {
+      const id = car.dataset.id as string;
+
+      animationDriveCar(id);
+    });
   }
+
+  // Promise.all();
+};
+
+export const resetRace = () => {
+  const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
+
+  if (resetBtn.classList.contains('active')) {
+    resetBtn.classList.remove('active');
+
+    const raceBtn = document.querySelector('.race-button') as HTMLElement;
+    raceBtn.classList.add('active');
+
+    const cars = document.querySelectorAll(
+      '.car-item'
+    ) as NodeListOf<HTMLElement>;
+
+    cars.forEach((car) => {
+      const id = car.dataset.id as string;
+
+      resetAnimationCar(id);
+    });
+  }
+
+  // Promise.all();
 };
