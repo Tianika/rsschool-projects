@@ -142,7 +142,7 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
     text: 'Stop',
     className: 'stop-button',
     isActive: false,
-    handler: (event?: Event) => stopCar(event),
+    handler: (event?: Event) => console.log(event),
   },
 ];
 
@@ -211,4 +211,7 @@ export enum Delays {
   animBtn = 500,
 }
 
-export const MS_PER_SEC = 1000;
+export enum Positions {
+  offset = 320,
+  start = 0,
+}

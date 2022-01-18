@@ -5,7 +5,6 @@ import {
 } from '../components';
 import {
   Car,
-  checkCarsPaginationBtn,
   DATA_PAGINATION_CARS_BTNS,
   PageTitles,
   ResponceURLS,

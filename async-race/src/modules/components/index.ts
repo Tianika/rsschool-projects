@@ -3,7 +3,7 @@ export { createTextInput } from './textInput';
 export { createColorChoice } from './colorInput';
 export { createPageTitle } from './pageTitle';
 export { createPageSubtitle } from './pageSubtitle';
-export { createCarImage } from './car';
+export { createCarImage, createSvg } from './car';
 export { createFooter } from './footer';
 export { createHeader } from './header';
 export { createNavigation } from './navigation';

@@ -58,3 +58,7 @@ export type DataRace = {
 export type RaceStatus = {
   success: boolean;
 };
+
+export type EventType = Event | undefined;
+
+export type PromiseRace = Promise<void | RaceStatus | undefined>;

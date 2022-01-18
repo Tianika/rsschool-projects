@@ -5,6 +5,8 @@ import { DEFAULT_STRING } from '../utils';
 export const draw = async (): Promise<void> => {
   const root = document.querySelector('.root') as HTMLElement;
   root.innerHTML = DEFAULT_STRING;
+  root.classList.remove('garage');
+  root.classList.add('winners');
 
   const fragment = document.createDocumentFragment();
 

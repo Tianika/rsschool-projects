@@ -7,20 +7,24 @@ import {
   stopEngine,
   updateCar,
 } from '.';
-import { createSvg } from '../components/car';
+import { createSvg } from '../components';
 import {
   addCarToPage,
   changeSubtitle,
   changeTitle,
   checkCarsPaginationBtn,
+  DataRace,
   DEFAULT_STRING,
   drawCarsOnPage,
+  EventType,
   FIRST_INDEX,
   generateColor,
   generateName,
   getId,
-  MS_PER_SEC,
   NUM_FOR_GENERATE,
+  Positions,
+  PromiseRace,
+  RaceStatus,
 } from '../utils';
 import {
   commonState,
@@ -50,7 +54,7 @@ export const renderCar = async (): Promise<void> => {
   input.value = DEFAULT_STRING;
 };
 
-export const removeCar = async (event: Event | undefined): Promise<void> => {
+export const removeCar = async (event: EventType): Promise<void> => {
   if (event) {
     const id = getId(event);
 
@@ -85,7 +89,7 @@ export const generateCars = (): void => {
   checkCarsPaginationBtn();
 };
 
-export const selectCar = async (event: Event | undefined): Promise<void> => {
+export const selectCar = async (event: EventType): Promise<void> => {
   if (event) {
     const id = getId(event);
     const car = await getCar(id);
@@ -150,7 +154,7 @@ export const nextCarPage = async (): Promise<void> => {
     commonState.pageGarage <
     Math.ceil(commonState.countCars / commonState.limitGarage)
   ) {
-    commonState.pageGarage += 1;
+    commonState.pageGarage += FIRST_INDEX;
 
     changePage();
   }
@@ -158,20 +162,19 @@ export const nextCarPage = async (): Promise<void> => {
 
 export const prevCarPage = async (): Promise<void> => {
   if (commonState.pageGarage !== FIRST_INDEX) {
-    commonState.pageGarage -= 1;
+    commonState.pageGarage -= FIRST_INDEX;
 
     changePage();
   }
 };
 
-const animationDriveCar = async (id: string) => {
+const animationDriveCar = async (id: string): PromiseRace => {
   const container = document.querySelector(`.car${id}`) as HTMLElement;
 
-  // if (target.classList.contains('active')) {
   const startBtn = container.querySelector('.start-button') as HTMLElement;
   startBtn.classList.remove('active');
 
-  const data = await startEngine(id);
+  const data: DataRace = await startEngine(id);
   const { velocity, distance } = data;
   const timeRace = distance / velocity;
 
@@ -182,7 +185,7 @@ const animationDriveCar = async (id: string) => {
 
   const startTime = new Date().getTime();
   const finishTime = startTime + timeRace;
-  const dist = window.innerWidth - 320;
+  const dist = window.innerWidth - Positions.offset;
 
   let animationId: number;
 
@@ -190,8 +193,9 @@ const animationDriveCar = async (id: string) => {
     const currentTime = new Date().getTime();
 
     if (currentTime < finishTime) {
-      const newPos = 0 + (dist / timeRace) * (currentTime - startTime);
-      car.style.left = `${0 + newPos}px`;
+      const newPos =
+        Positions.start + (dist / timeRace) * (currentTime - startTime);
+      car.style.left = `${Positions.start + newPos}px`;
 
       animationId = window.requestAnimationFrame(anim);
     }
@@ -199,7 +203,12 @@ const animationDriveCar = async (id: string) => {
 
   anim();
 
-  Promise.resolve(drive(id))
+  stopBtn.addEventListener('click', async (event) => {
+    await stopCar(event);
+    window.cancelAnimationFrame(animationId);
+  });
+
+  const result = Promise.resolve(drive(id))
     .then((data) => {
       return data;
     })
@@ -210,22 +219,24 @@ const animationDriveCar = async (id: string) => {
       window.cancelAnimationFrame(animationId);
       console.error(err);
     });
-  // }
+
+  return result;
 };
 
-export const driveCar = async (event: Event | undefined): Promise<void> => {
+export const driveCar = async (event: EventType): Promise<void> => {
   if (event) {
-    //const target = event.target as HTMLElement;
-    const id = getId(event);
+    const target = event.target as HTMLElement;
+    if (target.classList.contains('active')) {
+      const id = getId(event);
 
-    animationDriveCar(id);
+      await animationDriveCar(id);
+    }
   }
 };
 
-const resetAnimationCar = async (id: string) => {
+const resetAnimationCar = async (id: string): Promise<void> => {
   const container = document.querySelector(`.car${id}`) as HTMLElement;
 
-  // if (target.classList.contains('active')) {
   const stopBtn = container.querySelector('.stop-button') as HTMLElement;
   stopBtn.classList.remove('active');
 
@@ -239,20 +250,23 @@ const resetAnimationCar = async (id: string) => {
 
   const car = container.querySelector('.car-icon') as HTMLElement;
   car.style.left = '0px';
-  //}
 };
 
-export const stopCar = async (event: Event | undefined): Promise<void> => {
+export const stopCar = async (event: EventType): Promise<void> => {
   if (!event) return;
 
   const target = event.target as HTMLElement;
-  const id = getId(event);
 
-  resetAnimationCar(id);
+  if (target.classList.contains('active')) {
+    const id = getId(event);
+
+    await resetAnimationCar(id);
+  }
 };
 
-export const startRace = () => {
+export const startRace = async (): Promise<void> => {
   const raceBtn = document.querySelector('.race-button') as HTMLButtonElement;
+  const promises: Array<PromiseRace> = [];
 
   if (raceBtn.classList.contains('active')) {
     raceBtn.classList.remove('active');
@@ -264,35 +278,33 @@ export const startRace = () => {
       '.car-item'
     ) as NodeListOf<HTMLElement>;
 
-    cars.forEach((car) => {
+    cars.forEach(async (car) => {
       const id = car.dataset.id as string;
 
-      animationDriveCar(id);
+      promises.push(animationDriveCar(id));
     });
   }
 
-  // Promise.all();
+  Promise.all(promises).then((data) => console.log(data));
 };
 
-export const resetRace = () => {
+export const resetRace = (): void => {
   const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
 
   if (resetBtn.classList.contains('active')) {
     resetBtn.classList.remove('active');
 
-    const raceBtn = document.querySelector('.race-button') as HTMLElement;
-    raceBtn.classList.add('active');
-
     const cars = document.querySelectorAll(
       '.car-item'
     ) as NodeListOf<HTMLElement>;
 
-    cars.forEach((car) => {
+    cars.forEach(async (car) => {
       const id = car.dataset.id as string;
 
-      resetAnimationCar(id);
+      await resetAnimationCar(id);
     });
-  }
 
-  // Promise.all();
+    const raceBtn = document.querySelector('.race-button') as HTMLElement;
+    raceBtn.classList.add('active');
+  }
 };

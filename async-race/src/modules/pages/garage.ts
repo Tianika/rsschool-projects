@@ -4,7 +4,10 @@ import { checkCarsPaginationBtn, DEFAULT_STRING } from '../utils';
 
 export const draw = async (): Promise<void> => {
   const root = document.querySelector('.root') as HTMLElement;
+
   root.innerHTML = DEFAULT_STRING;
+  root.classList.remove('winners');
+  root.classList.add('garage');
 
   const fragment = document.createDocumentFragment();
 

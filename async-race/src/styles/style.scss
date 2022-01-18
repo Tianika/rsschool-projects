@@ -61,6 +61,8 @@ body {
 $base: #131313;
 $white: #ffffff;
 $colorBtn: #a3ff58;
+$error: rgb(248, 78, 78);
+$light: #2bff00;
 $gray: #868686;
 
 /*----base---*/
@@ -74,6 +76,19 @@ $gray: #868686;
   height: auto;
   padding: 20px;
   font-family: 'Exo', sans-serif;
+  background: rgba($base, 0.95) no-repeat;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
+
+.garage {
+  background-image: url('../assets/img/garage.jpg');
+}
+
+.winners {
+  background-image: url('../assets/img/winners.jpg');
 }
 
 .navigation {
@@ -141,14 +156,14 @@ $gray: #868686;
   font-size: 14px;
   background-color: transparent;
   border-radius: 3px;
-  border: 2px solid $gray;
+  border: 1px solid $gray;
   box-shadow: 0 0 5px $gray;
   opacity: 1;
   transition: all 0.3s ease;
   cursor: default;
   &.active {
     color: $colorBtn;
-    border: 2px solid $colorBtn;
+    border: 1px solid $colorBtn;
     box-shadow: 0 0 5px $colorBtn;
     cursor: pointer;
     &.click {
@@ -229,7 +244,7 @@ $gray: #868686;
 .car-error {
   opacity: 0;
   margin-left: 10px;
-  color: rgb(248, 78, 78);
+  color: $error;
   &.active {
     opacity: 1;
   }
@@ -254,12 +269,14 @@ $gray: #868686;
   justify-content: center;
   align-items: end;
   left: 0;
+
   svg {
     position: absolute;
     left: 10px;
     bottom: -8px;
     width: 80px;
     height: 40px;
+    filter: drop-shadow(0px 3px 3px $light);
   }
 }
 
