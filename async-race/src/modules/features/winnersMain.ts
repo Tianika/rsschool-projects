@@ -3,6 +3,8 @@ import {
   PageTitles,
   ResponceURLS,
   Winner,
+  commonState,
+  BtnData,
 } from '../utils';
 import {
   createPageTitle,
@@ -10,7 +12,13 @@ import {
   createButton,
 } from '../components';
 import { createTable } from '.';
-import { commonState } from '../utils/states';
+
+export async function getWinners(url: string): Promise<Winner[]> {
+  const responce = await fetch(url);
+  const data = await responce.json();
+
+  return data;
+}
 
 export const winnersMainCreate = async (): Promise<HTMLElement> => {
   const main = document.createElement('main');
@@ -25,7 +33,7 @@ export const winnersMainCreate = async (): Promise<HTMLElement> => {
 
   const subtitle = createPageSubtitle(commonState.pageWinners);
 
-  DATA_PAGINATION_WINNERS_BTNS.forEach((data) => {
+  DATA_PAGINATION_WINNERS_BTNS.forEach((data: BtnData): void => {
     subtitle.appendChild(createButton(data));
   });
 
@@ -40,10 +48,3 @@ export const winnersMainCreate = async (): Promise<HTMLElement> => {
 
   return main;
 };
-
-async function getWinners(url: string): Promise<Winner[]> {
-  const responce = await fetch(url);
-  const data = await responce.json();
-
-  return data;
-}

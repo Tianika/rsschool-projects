@@ -1,14 +1,14 @@
 import {
   Car,
   DEFAULT_STRING,
-  FIRST_INDEX,
   HEX_CODE,
+  Indexes,
   LinkData,
   ResponceURLS,
+  commonState,
 } from '.';
 import { carBrands, carModels } from '../data';
 import { createCarItem, getCars } from '../features';
-import { commonState } from './states';
 
 export const createLink = (target: string, data: LinkData): HTMLElement => {
   const div = document.createElement('div');
@@ -104,7 +104,7 @@ export const checkCarsPaginationBtn = (): void => {
     nextBtn.classList.remove('active');
   }
 
-  if (commonState.pageGarage > FIRST_INDEX) {
+  if (commonState.pageGarage > Indexes.one) {
     prevBtn.classList.add('active');
   } else {
     prevBtn.classList.remove('active');

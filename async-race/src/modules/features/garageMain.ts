@@ -8,9 +8,9 @@ import {
   DATA_PAGINATION_CARS_BTNS,
   PageTitles,
   ResponceURLS,
+  commonState,
 } from '../utils';
 import { createCarItem, getCars } from '.';
-import { commonState } from '../utils/states';
 
 export const garageMainCreate = async (): Promise<HTMLElement> => {
   const main = document.createElement('main');
@@ -45,5 +45,3 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
 
   return main;
 };
-
-export const garageInnerMainCreate = async (): Promise<void> => {};

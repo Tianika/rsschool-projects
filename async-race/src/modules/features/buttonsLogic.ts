@@ -17,20 +17,17 @@ import {
   DEFAULT_STRING,
   drawCarsOnPage,
   EventType,
-  FIRST_INDEX,
   generateColor,
   generateName,
   getId,
   NUM_FOR_GENERATE,
   Positions,
-  PromiseRace,
-  RaceStatus,
-} from '../utils';
-import {
   commonState,
   createInputState,
   updateInputState,
-} from '../utils/states';
+  PromiseResult,
+  Indexes,
+} from '../utils';
 
 export const renderCar = async (): Promise<void> => {
   if (createInputState.name === DEFAULT_STRING) {
@@ -38,7 +35,7 @@ export const renderCar = async (): Promise<void> => {
   }
 
   createCar(createInputState);
-  commonState.countCars += FIRST_INDEX;
+  commonState.countCars += Indexes.one;
   createInputState.name = DEFAULT_STRING;
 
   const main = document.querySelector('.main') as HTMLElement;
@@ -64,7 +61,7 @@ export const removeCar = async (event: EventType): Promise<void> => {
       const carForDelete = document.querySelector(`.car${id}`) as HTMLElement;
       carForDelete.parentNode?.removeChild(carForDelete);
 
-      commonState.countCars -= FIRST_INDEX;
+      commonState.countCars -= Indexes.one;
       changeTitle(commonState.countCars);
 
       addCarToPage();
@@ -123,10 +120,10 @@ export const changeUpdatedCar = (): void => {
       `.car${updateInputState.id}`
     ) as HTMLElement;
 
-    const title = car?.querySelector('.car-name') as HTMLElement;
+    const title = car.querySelector('.car-name') as HTMLElement;
     title.innerHTML = updateInputState.name;
 
-    const carIcon = car?.querySelector('.car-icon') as HTMLElement;
+    const carIcon = car.querySelector('.car-icon') as HTMLElement;
     carIcon.innerHTML = createSvg(updateInputState.color);
 
     updateInputState.id = DEFAULT_STRING;
@@ -154,21 +151,21 @@ export const nextCarPage = async (): Promise<void> => {
     commonState.pageGarage <
     Math.ceil(commonState.countCars / commonState.limitGarage)
   ) {
-    commonState.pageGarage += FIRST_INDEX;
+    commonState.pageGarage += Indexes.one;
 
     changePage();
   }
 };
 
 export const prevCarPage = async (): Promise<void> => {
-  if (commonState.pageGarage !== FIRST_INDEX) {
-    commonState.pageGarage -= FIRST_INDEX;
+  if (commonState.pageGarage !== Indexes.one) {
+    commonState.pageGarage -= Indexes.one;
 
     changePage();
   }
 };
 
-const animationDriveCar = async (id: string): PromiseRace => {
+const animationDriveCar = async (id: string): PromiseResult => {
   const container = document.querySelector(`.car${id}`) as HTMLElement;
 
   const startBtn = container.querySelector('.start-button') as HTMLElement;
@@ -189,7 +186,7 @@ const animationDriveCar = async (id: string): PromiseRace => {
 
   let animationId: number;
 
-  function anim(): void {
+  function animation(): void {
     const currentTime = new Date().getTime();
 
     if (currentTime < finishTime) {
@@ -197,22 +194,24 @@ const animationDriveCar = async (id: string): PromiseRace => {
         Positions.start + (dist / timeRace) * (currentTime - startTime);
       car.style.left = `${Positions.start + newPos}px`;
 
-      animationId = window.requestAnimationFrame(anim);
+      animationId = window.requestAnimationFrame(animation);
     }
   }
 
-  anim();
+  animation();
 
-  stopBtn.addEventListener('click', async (event) => {
+  stopBtn.addEventListener('click', async (event: Event): Promise<void> => {
     await stopCar(event);
     window.cancelAnimationFrame(animationId);
   });
 
   const result = Promise.resolve(drive(id))
-    .then((data) => {
-      return data;
+    .then(() => {
+      console.log({ id, timeRace });
+
+      return { id, timeRace };
     })
-    .catch((err) => {
+    .catch((err: string): void => {
       const errorMsg = container.querySelector('.car-error') as HTMLElement;
       errorMsg.classList.add('active');
 
@@ -220,6 +219,7 @@ const animationDriveCar = async (id: string): PromiseRace => {
       console.error(err);
     });
 
+  console.log(result);
   return result;
 };
 
@@ -266,7 +266,7 @@ export const stopCar = async (event: EventType): Promise<void> => {
 
 export const startRace = async (): Promise<void> => {
   const raceBtn = document.querySelector('.race-button') as HTMLButtonElement;
-  const promises: Array<PromiseRace> = [];
+  const promises: Array<PromiseResult> = [];
 
   if (raceBtn.classList.contains('active')) {
     raceBtn.classList.remove('active');
@@ -278,7 +278,7 @@ export const startRace = async (): Promise<void> => {
       '.car-item'
     ) as NodeListOf<HTMLElement>;
 
-    cars.forEach(async (car) => {
+    cars.forEach(async (car: HTMLElement): Promise<void> => {
       const id = car.dataset.id as string;
 
       promises.push(animationDriveCar(id));
@@ -298,7 +298,7 @@ export const resetRace = (): void => {
       '.car-item'
     ) as NodeListOf<HTMLElement>;
 
-    cars.forEach(async (car) => {
+    cars.forEach(async (car: HTMLElement): Promise<void> => {
       const id = car.dataset.id as string;
 
       await resetAnimationCar(id);

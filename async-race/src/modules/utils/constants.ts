@@ -9,14 +9,21 @@ import {
   resetRace,
   selectCar,
   startRace,
-  stopCar,
 } from '../features';
-import { BtnData, FooterData, InputData } from './';
-import { createInputState, updateInputState } from './states';
+import {
+  BtnData,
+  FooterData,
+  InputData,
+  createInputState,
+  updateInputState,
+} from './';
 
 export const DEFAULT_STRING = '';
 
-export const FIRST_INDEX = 1;
+export const enum Indexes {
+  zero,
+  one,
+}
 
 export const NUM_FOR_GENERATE = 100;
 

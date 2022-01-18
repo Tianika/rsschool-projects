@@ -35,10 +35,9 @@ export const createCar = async (car: CarData): Promise<Car> => {
 };
 
 export const deleteCar = async (id: string): Promise<void> => {
-  const responce = await fetch(`${ResponceURLS.garage}/${id}`, {
+  await fetch(`${ResponceURLS.garage}/${id}`, {
     method: 'DELETE',
   });
-  const data = responce.json();
 
   try {
     const responce = await fetch(`${ResponceURLS.winners}/${id}`);
@@ -54,14 +53,13 @@ export const deleteCar = async (id: string): Promise<void> => {
 };
 
 export const updateCar = async (car: CarDataForUpdate): Promise<void> => {
-  const responce = await fetch(`${ResponceURLS.garage}/${car.id}`, {
+  await fetch(`${ResponceURLS.garage}/${car.id}`, {
     method: 'PUT',
     body: JSON.stringify(car),
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  const data: Promise<Car> = responce.json();
 };
 
 export const startEngine = async (id: string): Promise<DataRace> => {

@@ -8,7 +8,7 @@ export const createTextInput = (
   input.classList.add('input-text');
   input.classList.add(className);
 
-  input.addEventListener('change', () => (state.name = input.value));
+  input.addEventListener('change', (): string => (state.name = input.value));
 
   return input;
 };

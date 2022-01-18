@@ -1,11 +1,15 @@
 import { createButton, createTextInput, createColorChoice } from '.';
-import { DATA_INPUTS } from '../utils';
-import { createInputState, updateInputState } from '../utils/states';
+import {
+  DATA_INPUTS,
+  createInputState,
+  updateInputState,
+  Indexes,
+} from '../utils';
 
 export const createInputBlock = (): HTMLElement => {
   const container = document.createElement('div');
 
-  DATA_INPUTS.forEach((data, index) => {
+  DATA_INPUTS.forEach((data, index): void => {
     const inputContainer = document.createElement('div');
     inputContainer.classList.add('input-container');
 
@@ -15,9 +19,9 @@ export const createInputBlock = (): HTMLElement => {
 
     const colorInput = createColorChoice(data.colorInputClass, data.state);
 
-    if (index === 0) {
+    if (index === Indexes.zero) {
       colorInput.value = createInputState.color;
-    } else if (index === 1) {
+    } else if (index === Indexes.one) {
       colorInput.value = updateInputState.color;
     }
 
