@@ -10,7 +10,7 @@ export const commonState: CommonState = {
   pageGarage: 1,
   pageWinners: 1,
   limitGarage: 7,
-  limitWinners: 7,
+  limitWinners: 10,
   countCars: 4,
   promises: [],
   animationIds: [],

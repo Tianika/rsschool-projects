@@ -35,6 +35,9 @@ import {
   removeActiveClass,
   checkWinner,
   CheckWinner,
+  PromiseRaceResolve,
+  Winner,
+  DataForUpdateWinner,
 } from '../utils';
 
 export const renderCar = async (): Promise<void> => {
@@ -208,16 +211,6 @@ const animationDriveCar = async (id: string): PromiseResult => {
     });
   });
 
-  const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
-  resetBtn.addEventListener('click', async (): Promise<void> => {
-    Promise.resolve(resetAnimationCar(id)).then(() => {
-      window.cancelAnimationFrame(animationId);
-    });
-
-    resetBtn.classList.remove('active');
-    addActiveClass('race-button');
-  });
-
   const result = Promise.resolve(drive(id))
     .then(() => {
       return { id, timeRace };
@@ -228,7 +221,7 @@ const animationDriveCar = async (id: string): PromiseResult => {
 
       window.cancelAnimationFrame(animationId);
     });
-
+  console.log(result);
   return result;
 };
 
@@ -279,11 +272,6 @@ export const startRace = async (): Promise<void> => {
   if (raceBtn.classList.contains('active')) {
     raceBtn.classList.remove('active');
 
-    const resetBtn = document.querySelector(
-      '.reset-button'
-    ) as HTMLButtonElement;
-    resetBtn.classList.add('active');
-
     const cars = document.querySelectorAll(
       '.car-item'
     ) as NodeListOf<HTMLElement>;
@@ -295,34 +283,65 @@ export const startRace = async (): Promise<void> => {
     });
   }
 
-  Promise.all(commonState.promises).then((data) => {
+  const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
+  resetBtn.addEventListener('click', async (): Promise<void> => {
+    if (resetBtn.classList.contains('active')) {
+      const cars = document.querySelectorAll(
+        '.car-item'
+      ) as NodeListOf<HTMLElement>;
+      const promises: Array<PromiseResult> = [];
+
+      cars.forEach((car: HTMLElement): void => {
+        const id = car.dataset.id as string;
+        promises.push(Promise.resolve(resetAnimationCar(id)));
+        resetBtn.classList.remove('active');
+      });
+
+      Promise.all(promises).then((): void => {
+        addActiveClass('race-button');
+      });
+    }
+  });
+
+  Promise.all(commonState.promises).then((data: PromiseRaceResolve[]) => {
     commonState.raceResult = [...data];
-    console.log('result', commonState.raceResult);
+
     const winner: CheckWinner | void = checkWinner(commonState.raceResult);
-    console.log('winner ', winner);
+
     commonState.raceResult = [];
     commonState.promises = [];
 
     if (winner) {
-      Promise.resolve(getWinner(winner.id)).then((data) => {
-        console.log(winner.id);
-        console.log('data ', data);
-        if (data) {
-          console.log('update');
-          if (winner.timeRace < +data.time) {
-            const newWins = data.wins + 1;
-            const newData = { wins: newWins, time: winner.timeRace };
+      Promise.resolve(getWinner(winner.id)).then(
+        (data: Winner | null): void => {
+          const resetBtn = document.querySelector(
+            '.reset-button'
+          ) as HTMLButtonElement;
+          resetBtn.classList.add('active');
+
+          if (data) {
+            let newTime = +data.time;
+
+            if (winner.timeRace < +data.time) {
+              newTime = winner.timeRace;
+            }
+
+            const newWins = data.wins + Indexes.one;
+            const newData: DataForUpdateWinner = {
+              wins: newWins,
+              time: newTime,
+            };
 
             updateWinner(winner.id, newData);
+          } else {
+            createWinner({
+              id: winner.id,
+              wins: Indexes.one.toString(),
+              time: winner.timeRace.toString(),
+            });
           }
-        } else {
-          createWinner({
-            id: winner.id,
-            wins: 1,
-            time: winner.timeRace,
-          });
         }
-      });
+      );
     }
   });
 };

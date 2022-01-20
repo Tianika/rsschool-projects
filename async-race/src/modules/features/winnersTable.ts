@@ -1,6 +1,6 @@
 import { getCar } from '.';
 import { createCarImage } from '../components';
-import { TABLE_HEADER, Winner } from '../utils';
+import { Indexes, TABLE_HEADER, Winner } from '../utils';
 
 export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
   const table = document.createElement('table');
@@ -19,19 +19,22 @@ export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
 
   table.appendChild(tr);
 
-  winners.forEach(async (winner: Winner): Promise<void> => {
-    const tr = await createRow(winner);
+  winners.forEach(async (winner: Winner, index: number): Promise<void> => {
+    const tr = await createRow(winner, index);
     table.appendChild(tr);
   });
 
   return table;
 };
 
-async function createRow(winner: Winner): Promise<HTMLTableRowElement> {
+async function createRow(
+  winner: Winner,
+  index: number
+): Promise<HTMLTableRowElement> {
   const tr = document.createElement('tr');
 
   const th0 = document.createElement('th');
-  th0.innerText = winner.id;
+  th0.innerText = (index + Indexes.one).toString();
   tr.appendChild(th0);
 
   const car = await getCar(winner.id);

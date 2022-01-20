@@ -3,6 +3,7 @@ import {
   CarData,
   CarDataForUpdate,
   commonState,
+  DataForUpdateWinner,
   DataRace,
   RaceStatus,
   ResponceURLS,
@@ -42,17 +43,7 @@ export const deleteCar = async (id: string): Promise<void> => {
     method: 'DELETE',
   });
 
-  try {
-    const responce = await fetch(`${ResponceURLS.winners}/${id}`);
-
-    if (responce.status === 200) {
-      fetch(`${ResponceURLS.winners}/${id}`, {
-        method: 'DELETE',
-      });
-    }
-  } catch (error) {
-    console.error('Not found: ' + error);
-  }
+  deleteWinner(id);
 };
 
 export const updateCar = async (car: CarDataForUpdate): Promise<void> => {
@@ -90,19 +81,12 @@ export const stopEngine = async (id: string): Promise<DataRace> => {
 };
 
 export const drive = async (id: string): Promise<RaceStatus | undefined> => {
-  try {
-    const responce = await fetch(
-      `${ResponceURLS.engine}?id=${id}&status=drive`,
-      {
-        method: 'PATCH',
-      }
-    );
-    const data: Promise<RaceStatus> = responce.json();
+  const responce = await fetch(`${ResponceURLS.engine}?id=${id}&status=drive`, {
+    method: 'PATCH',
+  });
+  const data: Promise<RaceStatus> = responce.json();
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 export const getWinners = async (): Promise<Winner[]> => {
@@ -127,7 +111,7 @@ export const getWinner = async (id: string): Promise<Winner | null> => {
   return data;
 };
 
-export const createWinner = async (winner) => {
+export const createWinner = async (winner: Winner) => {
   const responce = await fetch(ResponceURLS.winners, {
     method: 'POST',
     body: JSON.stringify(winner),
@@ -136,11 +120,14 @@ export const createWinner = async (winner) => {
     },
   });
   const data = await responce.json();
-
+  console.log('createWinner ', data);
   return data;
 };
 
-export const updateWinner = async (id, winner) => {
+export const updateWinner = async (
+  id: string,
+  winner: DataForUpdateWinner
+): Promise<void> => {
   const responce = await fetch(`${ResponceURLS.winners}/${+id}`, {
     method: 'PUT',
     body: JSON.stringify(winner),
@@ -149,6 +136,12 @@ export const updateWinner = async (id, winner) => {
     },
   });
   const data = await responce.json();
-
+  console.log('updateWinner ', data);
   return data;
+};
+
+export const deleteWinner = async (id: string): Promise<void> => {
+  fetch(`${ResponceURLS.winners}/${id}`, {
+    method: 'DELETE',
+  });
 };

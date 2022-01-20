@@ -68,9 +68,16 @@ export type ResultRace = {
   timeRace: number;
 };
 
+export type DataForUpdateWinner = {
+  wins: string;
+  time: number;
+};
+
 export type CheckWinner = ResultRace | undefined;
 
-export type PromiseResult = Promise<void | ResultRace>;
+export type PromiseRaceResolve = void | ResultRace;
+
+export type PromiseResult = Promise<PromiseRaceResolve>;
 
 export type PromiseRace = Promise<void | RaceStatus | undefined>;
 
@@ -82,7 +89,7 @@ export type CommonState = {
   countCars: number;
   promises: Array<PromiseResult>;
   animationIds: Array<number>;
-  raceResult: Array<void | ResultRace>;
+  raceResult: Array<PromiseRaceResolve>;
   winnersSortType: WinnersSortType;
   winnersSortOrder: WinnersSortOrder;
 };
