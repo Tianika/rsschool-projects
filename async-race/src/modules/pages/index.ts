@@ -1,2 +1,2 @@
-export * as garage from './garage';
-export * as winners from './winners';
+export * as garage from './garagePage';
+export * as winners from './winnersPage';

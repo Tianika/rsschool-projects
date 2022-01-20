@@ -1,6 +1,6 @@
 import { createFooter, createNavigation } from '../components';
 import { winnersMainCreate } from '../features';
-import { DEFAULT_STRING } from '../utils';
+import { checkWinnersPaginationBtn, DEFAULT_STRING } from '../utils';
 
 export const draw = async (): Promise<void> => {
   const root = document.querySelector('.root') as HTMLElement;
@@ -22,4 +22,6 @@ export const draw = async (): Promise<void> => {
   fragment.appendChild(footer);
 
   root.appendChild(fragment);
+
+  checkWinnersPaginationBtn();
 };

@@ -4,6 +4,7 @@ import {
   ResponceURLS,
   commonState,
   BtnData,
+  checkWinnersPaginationBtn,
 } from '../utils';
 import {
   createPageTitle,
@@ -18,7 +19,7 @@ export const winnersMainCreate = async (): Promise<HTMLElement> => {
 
   const winners = await getWinners();
 
-  const title = createPageTitle(PageTitles.winners, winners.length);
+  const title = createPageTitle(PageTitles.winners, commonState.countWinners);
   main.appendChild(title);
 
   const subtitle = createPageSubtitle(commonState.pageWinners);

@@ -3,7 +3,9 @@ import {
   driveOneCar,
   generateCars,
   nextCarPage,
+  nextWinnersPage,
   prevCarPage,
+  prevWinnersPage,
   removeCar,
   renderCar,
   selectCar,
@@ -104,13 +106,13 @@ export const DATA_PAGINATION_WINNERS_BTNS: Array<BtnData> = [
     text: 'prev',
     className: 'prev-winners-button',
     isActive: false,
-    handler: () => console.log('prev'),
+    handler: () => prevWinnersPage(),
   },
   {
     text: 'next',
     className: 'next-winners-button',
     isActive: false,
-    handler: () => console.log('next'),
+    handler: () => nextWinnersPage(),
   },
 ];
 

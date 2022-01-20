@@ -1,25 +1,24 @@
 import {
   createCar,
+  createTable,
   createWinner,
   deleteCar,
   drive,
   getCar,
   getWinner,
+  getWinners,
   startEngine,
   stopEngine,
   updateCar,
   updateWinner,
 } from '.';
 import { createSvg } from '../components';
-import { winners } from '../pages';
 import {
-  addCarToPage,
   changeSubtitle,
   changeTitle,
   checkCarsPaginationBtn,
   DataRace,
   DEFAULT_STRING,
-  drawCarsOnPage,
   EventType,
   generateColor,
   generateName,
@@ -38,7 +37,9 @@ import {
   PromiseRaceResolve,
   Winner,
   DataForUpdateWinner,
+  checkWinnersPaginationBtn,
 } from '../utils';
+import { addCarToPage, drawCarsOnPage } from './garageMain';
 
 export const renderCar = async (): Promise<void> => {
   if (createInputState.name === DEFAULT_STRING) {
@@ -145,7 +146,7 @@ export const changeUpdatedCar = (): void => {
   }
 };
 
-export const changePage = async (): Promise<void> => {
+const changeCarPage = async (): Promise<void> => {
   changeSubtitle(commonState.pageGarage);
   await drawCarsOnPage();
   checkCarsPaginationBtn();
@@ -158,7 +159,7 @@ export const nextCarPage = async (): Promise<void> => {
   ) {
     commonState.pageGarage += Indexes.one;
 
-    changePage();
+    changeCarPage();
   }
 };
 
@@ -166,7 +167,7 @@ export const prevCarPage = async (): Promise<void> => {
   if (commonState.pageGarage !== Indexes.one) {
     commonState.pageGarage -= Indexes.one;
 
-    changePage();
+    changeCarPage();
   }
 };
 
@@ -344,4 +345,37 @@ export const startRace = async (): Promise<void> => {
       );
     }
   });
+};
+
+const changeWinnersPage = async (): Promise<void> => {
+  changeSubtitle(commonState.pageWinners);
+
+  const winnersContainer = document.querySelector(
+    '.winners-container'
+  ) as HTMLElement;
+  winnersContainer.innerHTML = DEFAULT_STRING;
+
+  const winners = await getWinners();
+  winnersContainer.appendChild(await createTable(winners));
+
+  checkWinnersPaginationBtn();
+};
+
+export const nextWinnersPage = async (): Promise<void> => {
+  if (
+    commonState.pageWinners <
+    Math.ceil(commonState.countWinners / commonState.limitWinners)
+  ) {
+    commonState.pageWinners += Indexes.one;
+
+    changeWinnersPage();
+  }
+};
+
+export const prevWinnersPage = async (): Promise<void> => {
+  if (commonState.pageWinners !== Indexes.one) {
+    commonState.pageWinners -= Indexes.one;
+
+    changeWinnersPage();
+  }
 };

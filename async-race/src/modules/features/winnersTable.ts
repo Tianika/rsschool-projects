@@ -1,6 +1,6 @@
 import { getCar } from '.';
 import { createCarImage } from '../components';
-import { Indexes, TABLE_HEADER, Winner } from '../utils';
+import { commonState, Indexes, TABLE_HEADER, Winner } from '../utils';
 
 export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
   const table = document.createElement('table');
@@ -19,8 +19,10 @@ export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
 
   table.appendChild(tr);
 
+  let startIndex = (commonState.pageWinners - 1) * commonState.limitWinners;
+
   winners.forEach(async (winner: Winner, index: number): Promise<void> => {
-    const tr = await createRow(winner, index);
+    const tr = await createRow(winner, index + startIndex);
     table.appendChild(tr);
   });
 

@@ -92,6 +92,12 @@ export const drive = async (id: string): Promise<RaceStatus | undefined> => {
 export const getWinners = async (): Promise<Winner[]> => {
   const url = `${ResponceURLS.winners}?_page=${commonState.pageWinners}&_limit=${commonState.limitWinners}&_sort=${commonState.winnersSortType}&_order=${commonState.winnersSortOrder}`;
   const responce = await fetch(url);
+
+  const winnersCount = responce.headers.get('X-Total-Count');
+  if (winnersCount) {
+    commonState.countWinners = +winnersCount;
+  }
+
   const data = await responce.json();
 
   return data;

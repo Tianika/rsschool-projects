@@ -12,6 +12,7 @@ export const commonState: CommonState = {
   limitGarage: 7,
   limitWinners: 10,
   countCars: 4,
+  countWinners: 1,
   promises: [],
   animationIds: [],
   raceResult: [],

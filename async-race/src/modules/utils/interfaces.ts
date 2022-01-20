@@ -87,6 +87,7 @@ export type CommonState = {
   limitGarage: number;
   limitWinners: number;
   countCars: number;
+  countWinners: number;
   promises: Array<PromiseResult>;
   animationIds: Array<number>;
   raceResult: Array<PromiseRaceResolve>;

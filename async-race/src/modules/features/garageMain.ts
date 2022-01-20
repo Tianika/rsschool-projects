@@ -9,6 +9,7 @@ import {
   PageTitles,
   ResponceURLS,
   commonState,
+  DEFAULT_STRING,
 } from '../utils';
 import { createCarItem, getCars } from '.';
 
@@ -44,4 +45,36 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
   main.appendChild(carsContainer);
 
   return main;
+};
+
+export const addCarToPage = async (): Promise<void> => {
+  const cars = await getCars(
+    `${ResponceURLS.garage}?_page=${commonState.pageGarage}&_limit=${commonState.limitGarage}`
+  );
+  const carsOnPage = document.querySelectorAll('.car-item').length as number;
+
+  const carsContainer = document.querySelector(
+    '.cars-container'
+  ) as HTMLElement;
+
+  for (let i = carsOnPage; i < cars.length; i++) {
+    const car = cars[i];
+
+    carsContainer.appendChild(createCarItem(car));
+  }
+};
+
+export const drawCarsOnPage = async (): Promise<void> => {
+  const carsContainer = document.querySelector(
+    '.cars-container'
+  ) as HTMLElement;
+  carsContainer.innerHTML = DEFAULT_STRING;
+
+  const cars = await getCars(
+    `${ResponceURLS.garage}?_page=${commonState.pageGarage}&_limit=${commonState.limitGarage}`
+  );
+
+  cars.forEach((car: Car): void => {
+    carsContainer.appendChild(createCarItem(car));
+  });
 };
