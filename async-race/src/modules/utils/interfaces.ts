@@ -1,3 +1,5 @@
+import { WinnersSortOrder, WinnersSortType } from '.';
+
 export type HandlerFunction = (event: Event | undefined) => void;
 
 export type BtnData = {
@@ -66,6 +68,21 @@ export type ResultRace = {
   timeRace: number;
 };
 
+export type CheckWinner = ResultRace | undefined;
+
 export type PromiseResult = Promise<void | ResultRace>;
 
 export type PromiseRace = Promise<void | RaceStatus | undefined>;
+
+export type CommonState = {
+  pageGarage: number;
+  pageWinners: number;
+  limitGarage: number;
+  limitWinners: number;
+  countCars: number;
+  promises: Array<PromiseResult>;
+  animationIds: Array<number>;
+  raceResult: Array<void | ResultRace>;
+  winnersSortType: WinnersSortType;
+  winnersSortOrder: WinnersSortOrder;
+};

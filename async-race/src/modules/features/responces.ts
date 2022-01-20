@@ -2,9 +2,12 @@ import {
   Car,
   CarData,
   CarDataForUpdate,
+  commonState,
   DataRace,
   RaceStatus,
   ResponceURLS,
+  status,
+  Winner,
 } from '../utils';
 
 export const getCars = async (url: string): Promise<Car[]> => {
@@ -100,4 +103,52 @@ export const drive = async (id: string): Promise<RaceStatus | undefined> => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const getWinners = async (): Promise<Winner[]> => {
+  const url = `${ResponceURLS.winners}?_page=${commonState.pageWinners}&_limit=${commonState.limitWinners}&_sort=${commonState.winnersSortType}&_order=${commonState.winnersSortOrder}`;
+  const responce = await fetch(url);
+  const data = await responce.json();
+
+  return data;
+};
+
+export const getWinner = async (id: string): Promise<Winner | null> => {
+  const responce = await fetch(`${ResponceURLS.winners}/${+id}`);
+  console.log(responce);
+  let data: Winner | null;
+
+  if (responce.status === status.ok) {
+    data = await responce.json();
+  } else {
+    data = null;
+  }
+
+  return data;
+};
+
+export const createWinner = async (winner) => {
+  const responce = await fetch(ResponceURLS.winners, {
+    method: 'POST',
+    body: JSON.stringify(winner),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await responce.json();
+
+  return data;
+};
+
+export const updateWinner = async (id, winner) => {
+  const responce = await fetch(`${ResponceURLS.winners}/${+id}`, {
+    method: 'PUT',
+    body: JSON.stringify(winner),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await responce.json();
+
+  return data;
 };

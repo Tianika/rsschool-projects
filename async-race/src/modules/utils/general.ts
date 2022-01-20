@@ -6,6 +6,8 @@ import {
   LinkData,
   ResponceURLS,
   commonState,
+  ResultRace,
+  CheckWinner,
 } from '.';
 import { carBrands, carModels } from '../data';
 import { createCarItem, getCars } from '../features';
@@ -116,4 +118,35 @@ export const getId = (event: Event): string => {
   const id = target.dataset.id as string;
 
   return id;
+};
+
+export const addActiveClass = (className: string): void => {
+  const element = document.querySelector(`.${className}`) as HTMLButtonElement;
+  element.classList.add('active');
+};
+
+export const removeActiveClass = (className: string): void => {
+  const element = document.querySelector(`.${className}`) as HTMLButtonElement;
+  element.classList.remove('active');
+};
+
+export const checkWinner = (
+  resultRace: Array<void | ResultRace>
+): CheckWinner | void => {
+  let id: string = '1';
+  let timeRace: number = 10000;
+  let flag = false;
+
+  resultRace.forEach((result: void | ResultRace): void => {
+    if (result && result.timeRace <= timeRace) {
+      id = result.id;
+      timeRace = result.timeRace;
+      flag = true;
+    }
+  });
+
+  if (flag) {
+    timeRace = Number((timeRace / 1000).toFixed(2));
+    return { id, timeRace };
+  }
 };

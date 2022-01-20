@@ -2,7 +2,6 @@ import {
   DATA_PAGINATION_WINNERS_BTNS,
   PageTitles,
   ResponceURLS,
-  Winner,
   commonState,
   BtnData,
 } from '../utils';
@@ -11,22 +10,13 @@ import {
   createPageSubtitle,
   createButton,
 } from '../components';
-import { createTable } from '.';
-
-export async function getWinners(url: string): Promise<Winner[]> {
-  const responce = await fetch(url);
-  const data = await responce.json();
-
-  return data;
-}
+import { createTable, getWinners } from '.';
 
 export const winnersMainCreate = async (): Promise<HTMLElement> => {
   const main = document.createElement('main');
   main.classList.add('main');
 
-  const winners = await getWinners(
-    `${ResponceURLS.winners}?_page=${commonState.pageWinners}&_limit=${commonState.limitWinners}`
-  );
+  const winners = await getWinners();
 
   const title = createPageTitle(PageTitles.winners, winners.length);
   main.appendChild(title);

@@ -1,22 +1,15 @@
 import {
   changeUpdatedCar,
-  driveCar,
+  driveOneCar,
   generateCars,
   nextCarPage,
   prevCarPage,
   removeCar,
   renderCar,
-  resetRace,
   selectCar,
   startRace,
 } from '../features';
-import {
-  BtnData,
-  FooterData,
-  InputData,
-  createInputState,
-  updateInputState,
-} from '.';
+import { BtnData, FooterData, InputData } from '.';
 
 export const DEFAULT_STRING = '';
 
@@ -81,7 +74,7 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
     text: 'reset',
     className: 'reset-button',
     isActive: false,
-    handler: () => resetRace(),
+    handler: () => {},
   },
   {
     text: 'generate cars',
@@ -141,13 +134,13 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
     text: 'Start',
     className: 'start-button',
     isActive: true,
-    handler: (event?: Event) => driveCar(event),
+    handler: (event?: Event) => driveOneCar(event),
   },
   {
     text: 'Stop',
     className: 'stop-button',
     isActive: false,
-    handler: (event?: Event) => console.log(event),
+    handler: () => {},
   },
 ];
 
@@ -219,4 +212,20 @@ export enum Delays {
 export enum Positions {
   offset = 320,
   start = 0,
+}
+
+export enum WinnersSortType {
+  id = 'id',
+  wins = 'wins',
+  time = 'time',
+}
+
+export enum WinnersSortOrder {
+  asc = 'ASC',
+  desc = 'DESC',
+}
+
+export enum status {
+  ok = 200,
+  notFound = 404,
 }

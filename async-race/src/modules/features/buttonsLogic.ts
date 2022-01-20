@@ -1,13 +1,17 @@
 import {
   createCar,
+  createWinner,
   deleteCar,
   drive,
   getCar,
+  getWinner,
   startEngine,
   stopEngine,
   updateCar,
+  updateWinner,
 } from '.';
 import { createSvg } from '../components';
+import { winners } from '../pages';
 import {
   addCarToPage,
   changeSubtitle,
@@ -27,6 +31,10 @@ import {
   updateInputState,
   PromiseResult,
   Indexes,
+  addActiveClass,
+  removeActiveClass,
+  checkWinner,
+  CheckWinner,
 } from '../utils';
 
 export const renderCar = async (): Promise<void> => {
@@ -53,7 +61,7 @@ export const renderCar = async (): Promise<void> => {
 
 export const removeCar = async (event: EventType): Promise<void> => {
   if (event) {
-    const id = getId(event);
+    const id: string = getId(event);
 
     if (id) {
       await deleteCar(id);
@@ -91,10 +99,7 @@ export const selectCar = async (event: EventType): Promise<void> => {
     const id = getId(event);
     const car = await getCar(id);
 
-    const updateBtn = document.querySelector(
-      '.update-button'
-    ) as HTMLButtonElement;
-    updateBtn.classList.add('active');
+    addActiveClass('update-button');
 
     const textInputUpdate = document.querySelector(
       '.input-update'
@@ -113,7 +118,6 @@ export const selectCar = async (event: EventType): Promise<void> => {
 };
 
 export const changeUpdatedCar = (): void => {
-  console.log(updateInputState);
   if (updateInputState.id !== DEFAULT_STRING) {
     updateCar(updateInputState);
 
@@ -129,10 +133,7 @@ export const changeUpdatedCar = (): void => {
 
     updateInputState.id = DEFAULT_STRING;
 
-    const updateBtn = document.querySelector(
-      '.update-button'
-    ) as HTMLButtonElement;
-    updateBtn.classList.remove('active');
+    removeActiveClass('update-button');
 
     const textInputUpdate = document.querySelector(
       '.input-update'
@@ -202,29 +203,36 @@ const animationDriveCar = async (id: string): PromiseResult => {
   animation();
 
   stopBtn.addEventListener('click', async (event: Event): Promise<void> => {
-    await stopCar(event);
-    window.cancelAnimationFrame(animationId);
+    Promise.resolve(stopCar(event)).then(() => {
+      window.cancelAnimationFrame(animationId);
+    });
+  });
+
+  const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
+  resetBtn.addEventListener('click', async (): Promise<void> => {
+    Promise.resolve(resetAnimationCar(id)).then(() => {
+      window.cancelAnimationFrame(animationId);
+    });
+
+    resetBtn.classList.remove('active');
+    addActiveClass('race-button');
   });
 
   const result = Promise.resolve(drive(id))
     .then(() => {
-      console.log({ id, timeRace });
-
       return { id, timeRace };
     })
-    .catch((err: string): void => {
+    .catch((): void => {
       const errorMsg = container.querySelector('.car-error') as HTMLElement;
       errorMsg.classList.add('active');
 
       window.cancelAnimationFrame(animationId);
-      console.error(err);
     });
 
-  console.log(result);
   return result;
 };
 
-export const driveCar = async (event: EventType): Promise<void> => {
+export const driveOneCar = async (event: EventType): Promise<void> => {
   if (event) {
     const target = event.target as HTMLElement;
     if (target.classList.contains('active')) {
@@ -250,7 +258,7 @@ const resetAnimationCar = async (id: string): Promise<void> => {
   errorMsg.classList.remove('active');
 
   const car = container.querySelector('.car-icon') as HTMLElement;
-  car.style.left = '0px';
+  car.style.left = `${Positions.start}px`;
 };
 
 export const stopCar = async (event: EventType): Promise<void> => {
@@ -267,12 +275,13 @@ export const stopCar = async (event: EventType): Promise<void> => {
 
 export const startRace = async (): Promise<void> => {
   const raceBtn = document.querySelector('.race-button') as HTMLButtonElement;
-  const promises: Array<PromiseResult> = [];
 
   if (raceBtn.classList.contains('active')) {
     raceBtn.classList.remove('active');
 
-    const resetBtn = document.querySelector('.reset-button') as HTMLElement;
+    const resetBtn = document.querySelector(
+      '.reset-button'
+    ) as HTMLButtonElement;
     resetBtn.classList.add('active');
 
     const cars = document.querySelectorAll(
@@ -282,30 +291,38 @@ export const startRace = async (): Promise<void> => {
     cars.forEach(async (car: HTMLElement): Promise<void> => {
       const id = car.dataset.id as string;
 
-      promises.push(animationDriveCar(id));
+      commonState.promises.push(animationDriveCar(id));
     });
   }
 
-  Promise.all(promises).then((data) => console.log(data));
-};
+  Promise.all(commonState.promises).then((data) => {
+    commonState.raceResult = [...data];
+    console.log('result', commonState.raceResult);
+    const winner: CheckWinner | void = checkWinner(commonState.raceResult);
+    console.log('winner ', winner);
+    commonState.raceResult = [];
+    commonState.promises = [];
 
-export const resetRace = (): void => {
-  const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
+    if (winner) {
+      Promise.resolve(getWinner(winner.id)).then((data) => {
+        console.log(winner.id);
+        console.log('data ', data);
+        if (data) {
+          console.log('update');
+          if (winner.timeRace < +data.time) {
+            const newWins = data.wins + 1;
+            const newData = { wins: newWins, time: winner.timeRace };
 
-  if (resetBtn.classList.contains('active')) {
-    resetBtn.classList.remove('active');
-
-    const cars = document.querySelectorAll(
-      '.car-item'
-    ) as NodeListOf<HTMLElement>;
-
-    cars.forEach(async (car: HTMLElement): Promise<void> => {
-      const id = car.dataset.id as string;
-
-      await resetAnimationCar(id);
-    });
-
-    const raceBtn = document.querySelector('.race-button') as HTMLElement;
-    raceBtn.classList.add('active');
-  }
+            updateWinner(winner.id, newData);
+          }
+        } else {
+          createWinner({
+            id: winner.id,
+            wins: 1,
+            time: winner.timeRace,
+          });
+        }
+      });
+    }
+  });
 };
