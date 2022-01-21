@@ -233,6 +233,11 @@ $gray: #868686;
   .button {
     font-size: 12px;
     width: 70px;
+    @media (max-width: 1024px) {
+      width: 40px;
+      font-size: 8px;
+      padding: 2px;
+    }
   }
 }
 
@@ -253,6 +258,9 @@ $gray: #868686;
 .car-name {
   font-size: 20px;
   margin-left: 15px;
+  @media (max-width: 1024px) {
+    font-size: 14px;
+  }
 }
 
 .car-item-race {
@@ -269,14 +277,23 @@ $gray: #868686;
   justify-content: center;
   align-items: end;
   left: 0;
+  @media (max-width: 1024px) {
+    width: 60px;
+    height: 25px;
+  }
 
   svg {
     position: absolute;
     left: 10px;
-    bottom: -8px;
     width: 80px;
-    height: 40px;
+    height: 25px;
     filter: drop-shadow(0px 3px 3px $light);
+
+    @media (max-width: 1024px) {
+      width: 60px;
+      height: 25px;
+      filter: drop-shadow(0px 2px 2px $light);
+    }
   }
 }
 
@@ -290,18 +307,29 @@ $gray: #868686;
   background-repeat: no-repeat;
   background-size: contain;
   filter: invert(1);
+  @media (max-width: 1024px) {
+    width: 50px;
+    height: 20px;
+    right: 50px;
+  }
 }
 
 .winner-msg {
   position: absolute;
-  left: 40%;
   top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
   color: $colorBtn;
   font-size: 46px;
+  text-align: center;
   opacity: 0;
   filter: drop-shadow(0px 0px 10px $light);
   &.active {
     opacity: 1;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 30px;
   }
 }
 

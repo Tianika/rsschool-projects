@@ -212,7 +212,8 @@ export enum Delays {
 }
 
 export enum Positions {
-  offset = 320,
+  offsetBig = 320,
+  offsetSmall = 210,
   start = 0,
 }
 

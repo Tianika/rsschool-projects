@@ -190,7 +190,13 @@ const animationDriveCar = async (id: string): PromiseResult => {
 
   const startTime = new Date().getTime();
   const finishTime = startTime + timeRace;
-  const dist = window.innerWidth - Positions.offset;
+
+  let dist = 0;
+  if (window.innerWidth > 1024) {
+    dist = window.innerWidth - Positions.offsetBig;
+  } else {
+    dist = window.innerWidth - Positions.offsetSmall;
+  }
 
   let animationId: number;
 
