@@ -1,6 +1,14 @@
-import { getCar } from '.';
+import { getCar, getWinners, sortWinnersByTime, sortWinnersByWins } from '.';
 import { createCarImage } from '../components';
-import { commonState, Indexes, TABLE_HEADER, Winner } from '../utils';
+import {
+  commonState,
+  DEFAULT_STRING,
+  Indexes,
+  TABLE_HEADER,
+  Winner,
+  WinnersSortOrder,
+  WinnersSortType,
+} from '../utils';
 
 export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
   const table = document.createElement('table');
@@ -10,9 +18,18 @@ export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
 
   const headers: string[] = Object.keys(TABLE_HEADER);
 
-  headers.forEach((header: string): void => {
+  headers.forEach((header: string, index: number): void => {
     const th = document.createElement('th');
     th.innerText = TABLE_HEADER[header];
+
+    if (index === Indexes.three) {
+      th.classList.add('sort-by-wins');
+      th.addEventListener('click', sortWinnersByWins);
+    }
+    if (index === Indexes.four) {
+      th.classList.add('sort-by-time');
+      th.addEventListener('click', sortWinnersByTime);
+    }
 
     tr.appendChild(th);
   });
@@ -50,11 +67,11 @@ async function createRow(
   tr.appendChild(th2);
 
   const th3 = document.createElement('th');
-  th3.innerText = winner.wins;
+  th3.innerText = winner.wins.toString();
   tr.appendChild(th3);
 
   const th4 = document.createElement('th');
-  th4.innerText = winner.time;
+  th4.innerText = winner.time.toString();
   tr.appendChild(th4);
 
   return tr;

@@ -35,13 +35,13 @@ export type Car = {
 };
 
 export type Winner = {
-  id: string;
-  time: string;
-  wins: string;
+  id: number;
+  time: number;
+  wins: number;
 };
 
 export type UpdateWinner = {
-  id: string;
+  id: number;
   time: number;
   wins: number;
 };
@@ -54,7 +54,7 @@ export type CarData = {
 export type CarDataForUpdate = {
   name: string;
   color: string;
-  id: string;
+  id: number;
 };
 
 export type DataRace = {
@@ -64,18 +64,18 @@ export type DataRace = {
 
 export type RaceStatus = {
   success: boolean;
-  id: string;
+  id: number;
 };
 
 export type EventType = Event | undefined;
 
 export type ResultRace = {
-  id: string;
+  id: number;
   timeRace: number;
 };
 
 export type DataForUpdateWinner = {
-  wins: string;
+  wins: number;
   time: number;
 };
 
@@ -97,8 +97,8 @@ export type CommonState = {
   promises: Array<PromiseResult>;
   animationIds: Array<number>;
   raceResult: Array<PromiseRaceResolve>;
-  winnersSortType: WinnersSortType;
-  winnersSortOrder: WinnersSortOrder;
+  winnersSortType: string;
+  winnersSortOrder: string;
   winnerData: null | ResultRace;
   isRace: boolean;
 };

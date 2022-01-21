@@ -1,10 +1,4 @@
-import {
-  CarData,
-  CarDataForUpdate,
-  CommonState,
-  WinnersSortOrder,
-  WinnersSortType,
-} from '.';
+import { CarData, CarDataForUpdate, CommonState } from '.';
 
 export const commonState: CommonState = {
   pageGarage: 1,
@@ -16,8 +10,8 @@ export const commonState: CommonState = {
   promises: [],
   animationIds: [],
   raceResult: [],
-  winnersSortType: WinnersSortType.id,
-  winnersSortOrder: WinnersSortOrder.asc,
+  winnersSortType: 'id',
+  winnersSortOrder: 'ASC',
   winnerData: null,
   isRace: false,
 };
@@ -30,5 +24,5 @@ export const createInputState: CarData = {
 export const updateInputState: CarDataForUpdate = {
   name: '',
   color: '#ffffff',
-  id: '',
+  id: 0,
 };

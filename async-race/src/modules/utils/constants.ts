@@ -16,8 +16,11 @@ import { BtnData, FooterData, InputData } from '.';
 export const DEFAULT_STRING = '';
 
 export const enum Indexes {
-  zero,
-  one,
+  zero = 0,
+  one = 1,
+  two = 2,
+  three = 3,
+  four = 4,
 }
 
 export const NUM_FOR_GENERATE = 100;

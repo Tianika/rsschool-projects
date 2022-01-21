@@ -37,6 +37,8 @@ import {
   checkWinnersPaginationBtn,
   ResultRace,
   showWinnerMsg,
+  WinnersSortType,
+  WinnersSortOrder,
 } from '../utils';
 import { addCarToPage, drawCarsOnPage } from './garageMain';
 
@@ -64,7 +66,7 @@ export const renderCar = async (): Promise<void> => {
 
 export const removeCar = async (event: EventType): Promise<void> => {
   if (event) {
-    const id: string = getId(event);
+    const id: number = getId(event);
 
     if (id) {
       await deleteCar(id);
@@ -99,7 +101,7 @@ export const generateCars = (): void => {
 
 export const selectCar = async (event: EventType): Promise<void> => {
   if (event) {
-    const id = getId(event);
+    const id = +getId(event);
     const car = await getCar(id);
 
     addActiveClass('update-button');
@@ -121,7 +123,7 @@ export const selectCar = async (event: EventType): Promise<void> => {
 };
 
 export const changeUpdatedCar = (): void => {
-  if (updateInputState.id !== DEFAULT_STRING) {
+  if (updateInputState.id !== Indexes.zero) {
     updateCar(updateInputState);
 
     const car = document.querySelector(
@@ -134,7 +136,7 @@ export const changeUpdatedCar = (): void => {
     const carIcon = car.querySelector('.car-icon') as HTMLElement;
     carIcon.innerHTML = createSvg(updateInputState.color);
 
-    updateInputState.id = DEFAULT_STRING;
+    updateInputState.id = Indexes.zero;
 
     removeActiveClass('update-button');
 
@@ -173,7 +175,7 @@ export const prevCarPage = async (): Promise<void> => {
   }
 };
 
-const animationDriveCar = async (id: string): PromiseResult => {
+const animationDriveCar = async (id: number): PromiseResult => {
   const container = document.querySelector(`.car${id}`) as HTMLElement;
 
   const startBtn = container.querySelector('.start-button') as HTMLElement;
@@ -251,7 +253,7 @@ export const driveOneCar = async (event: EventType): Promise<void> => {
   }
 };
 
-const resetAnimationCar = async (id: string): Promise<void> => {
+const resetAnimationCar = async (id: number): Promise<void> => {
   const container = document.querySelector(`.car${id}`) as HTMLElement;
 
   const stopBtn = container.querySelector('.stop-button') as HTMLElement;
@@ -295,10 +297,10 @@ export const startRace = async (): Promise<void> => {
     cars.forEach(async (car: HTMLElement): Promise<void> => {
       const id = car.dataset.id as string;
 
-      commonState.promises.push(animationDriveCar(id));
+      commonState.promises.push(animationDriveCar(+id));
     });
 
-    Promise.all(commonState.promises).then((data) => {
+    Promise.all(commonState.promises).then((): void => {
       addActiveClass('reset-button');
     });
   }
@@ -313,9 +315,11 @@ export const startRace = async (): Promise<void> => {
 
       cars.forEach((car: HTMLElement): void => {
         const id = car.dataset.id as string;
-        promises.push(Promise.resolve(resetAnimationCar(id)));
+        promises.push(Promise.resolve(resetAnimationCar(+id)));
         resetBtn.classList.remove('active');
       });
+
+      removeActiveClass('winner-msg');
 
       Promise.all(promises).then((): void => {
         addActiveClass('race-button');
@@ -343,7 +347,7 @@ const addWinnerToServer = async (): Promise<void> => {
             newTime = timeRace;
           }
 
-          const newWins = data.wins + Indexes.one;
+          const newWins = +data.wins + Indexes.one;
           const newData: DataForUpdateWinner = {
             wins: newWins,
             time: newTime,
@@ -395,5 +399,33 @@ export const prevWinnersPage = async (): Promise<void> => {
     commonState.pageWinners -= Indexes.one;
 
     changeWinnersPage();
+  }
+};
+
+export const sortWinnersByWins = async () => {
+  commonState.winnersSortType = WinnersSortType.wins;
+
+  sortWinners();
+};
+
+export const sortWinnersByTime = async () => {
+  commonState.winnersSortType = WinnersSortType.time;
+
+  sortWinners();
+};
+
+const sortWinners = async () => {
+  const winnersContainer = document.querySelector(
+    '.winners-container'
+  ) as HTMLElement;
+  winnersContainer.innerHTML = DEFAULT_STRING;
+
+  const winners = await getWinners();
+  winnersContainer.appendChild(await createTable(winners));
+
+  if (commonState.winnersSortOrder === WinnersSortOrder.asc) {
+    commonState.winnersSortOrder = WinnersSortOrder.desc;
+  } else {
+    commonState.winnersSortOrder = WinnersSortOrder.asc;
   }
 };

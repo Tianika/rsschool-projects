@@ -1,5 +1,5 @@
 import { createFooter, createNavigation } from '../components';
-import { winnersMainCreate } from '../features';
+import { sortWinnersByTime, winnersMainCreate } from '../features';
 import { checkWinnersPaginationBtn, DEFAULT_STRING } from '../utils';
 
 export const draw = async (): Promise<void> => {

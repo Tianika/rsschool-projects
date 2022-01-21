@@ -96,11 +96,11 @@ export const checkWinnersPaginationBtn = (): void => {
   }
 };
 
-export const getId = (event: Event): string => {
+export const getId = (event: Event): number => {
   const target = event.target as HTMLElement;
   const id = target.dataset.id as string;
 
-  return id;
+  return +id;
 };
 
 export const addActiveClass = (className: string): void => {
@@ -114,11 +114,10 @@ export const removeActiveClass = (className: string): void => {
 };
 
 export const showWinnerMsg = async (
-  id: string,
+  id: number,
   timeRace: number
 ): Promise<void> => {
   const winner = await getCar(id);
-  console.log(winner);
 
   const name = document.querySelector('.name-winner') as HTMLElement;
   name.innerText = winner.name;

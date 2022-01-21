@@ -346,6 +346,11 @@ $gray: #868686;
   }
 }
 
+.sort-by-wins,
+.sort-by-time {
+  cursor: pointer;
+}
+
 .footer {
   display: flex;
   justify-content: center;

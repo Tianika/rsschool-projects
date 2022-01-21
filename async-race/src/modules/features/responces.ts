@@ -10,6 +10,8 @@ import {
   status,
   UpdateWinner,
   Winner,
+  WinnersSortOrder,
+  WinnersSortType,
 } from '../utils';
 
 export const getCars = async (url: string): Promise<Car[]> => {
@@ -19,7 +21,7 @@ export const getCars = async (url: string): Promise<Car[]> => {
   return data;
 };
 
-export const getCar = async (id: string): Promise<Car> => {
+export const getCar = async (id: number): Promise<Car> => {
   const responce = await fetch(`${ResponceURLS.garage}/${id}`);
   const data = await responce.json();
 
@@ -39,7 +41,7 @@ export const createCar = async (car: CarData): Promise<Car> => {
   return data;
 };
 
-export const deleteCar = async (id: string): Promise<void> => {
+export const deleteCar = async (id: number): Promise<void> => {
   await fetch(`${ResponceURLS.garage}/${id}`, {
     method: 'DELETE',
   });
@@ -57,7 +59,7 @@ export const updateCar = async (car: CarDataForUpdate): Promise<void> => {
   });
 };
 
-export const startEngine = async (id: string): Promise<DataRace> => {
+export const startEngine = async (id: number): Promise<DataRace> => {
   const responce = await fetch(
     `${ResponceURLS.engine}?id=${id}&status=started`,
     {
@@ -69,7 +71,7 @@ export const startEngine = async (id: string): Promise<DataRace> => {
   return data;
 };
 
-export const stopEngine = async (id: string): Promise<DataRace> => {
+export const stopEngine = async (id: number): Promise<DataRace> => {
   const responce = await fetch(
     `${ResponceURLS.engine}?id=${id}&status=stopped`,
     {
@@ -81,7 +83,7 @@ export const stopEngine = async (id: string): Promise<DataRace> => {
   return data;
 };
 
-export const drive = async (id: string): Promise<RaceStatus | undefined> => {
+export const drive = async (id: number): Promise<RaceStatus | undefined> => {
   const responce = await fetch(`${ResponceURLS.engine}?id=${id}&status=drive`, {
     method: 'PATCH',
   });
@@ -104,8 +106,8 @@ export const getWinners = async (): Promise<Winner[]> => {
   return data;
 };
 
-export const getWinner = async (id: string): Promise<Winner | null> => {
-  const responce = await fetch(`${ResponceURLS.winners}/${+id}`);
+export const getWinner = async (id: number): Promise<Winner | null> => {
+  const responce = await fetch(`${ResponceURLS.winners}/${id}`);
   let data: Winner | null;
 
   if (responce.status === status.ok) {
@@ -131,10 +133,10 @@ export const createWinner = async (winner: UpdateWinner) => {
 };
 
 export const updateWinner = async (
-  id: string,
+  id: number,
   winner: DataForUpdateWinner
 ): Promise<void> => {
-  const responce = await fetch(`${ResponceURLS.winners}/${+id}`, {
+  const responce = await fetch(`${ResponceURLS.winners}/${id}`, {
     method: 'PUT',
     body: JSON.stringify(winner),
     headers: {
@@ -142,11 +144,11 @@ export const updateWinner = async (
     },
   });
   const data = await responce.json();
-  console.log('updateWinner ', data);
+
   return data;
 };
 
-export const deleteWinner = async (id: string): Promise<void> => {
+export const deleteWinner = async (id: number): Promise<void> => {
   fetch(`${ResponceURLS.winners}/${id}`, {
     method: 'DELETE',
   });
