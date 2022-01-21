@@ -10,8 +10,6 @@ import {
   status,
   UpdateWinner,
   Winner,
-  WinnersSortOrder,
-  WinnersSortType,
 } from '../utils';
 
 export const getCars = async (url: string): Promise<Car[]> => {

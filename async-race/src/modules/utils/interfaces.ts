@@ -1,12 +1,10 @@
-import { WinnersSortOrder, WinnersSortType } from '.';
-
 export type HandlerFunction = (event: Event | undefined) => void;
 
 export type BtnData = {
   text: string;
   className: string;
   isActive: boolean;
-  handler: HandlerFunction;
+  handler: HandlerFunction | null;
 };
 
 export type InputData = {

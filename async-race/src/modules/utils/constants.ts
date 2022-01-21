@@ -79,7 +79,7 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
     text: 'reset',
     className: 'reset-button',
     isActive: false,
-    handler: () => {},
+    handler: null,
   },
   {
     text: 'generate cars',
@@ -145,7 +145,7 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
     text: 'Stop',
     className: 'stop-button',
     isActive: false,
-    handler: () => {},
+    handler: null,
   },
 ];
 

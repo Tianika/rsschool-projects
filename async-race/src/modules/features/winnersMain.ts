@@ -1,10 +1,8 @@
 import {
   DATA_PAGINATION_WINNERS_BTNS,
   PageTitles,
-  ResponceURLS,
   commonState,
   BtnData,
-  checkWinnersPaginationBtn,
 } from '../utils';
 import {
   createPageTitle,
