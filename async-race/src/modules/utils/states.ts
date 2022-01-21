@@ -18,6 +18,8 @@ export const commonState: CommonState = {
   raceResult: [],
   winnersSortType: WinnersSortType.id,
   winnersSortOrder: WinnersSortOrder.asc,
+  winnerData: null,
+  isRace: false,
 };
 
 export const createInputState: CarData = {

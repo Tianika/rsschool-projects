@@ -40,6 +40,12 @@ export type Winner = {
   wins: string;
 };
 
+export type UpdateWinner = {
+  id: string;
+  time: number;
+  wins: number;
+};
+
 export type CarData = {
   name: string;
   color: string;
@@ -93,4 +99,6 @@ export type CommonState = {
   raceResult: Array<PromiseRaceResolve>;
   winnersSortType: WinnersSortType;
   winnersSortOrder: WinnersSortOrder;
+  winnerData: null | ResultRace;
+  isRace: boolean;
 };

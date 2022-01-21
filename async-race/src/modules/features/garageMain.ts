@@ -2,6 +2,7 @@ import {
   createButton,
   createPageSubtitle,
   createPageTitle,
+  createWinnerMsg,
 } from '../components';
 import {
   Car,
@@ -43,6 +44,9 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
   });
 
   main.appendChild(carsContainer);
+
+  const winnerMsg = createWinnerMsg();
+  main.appendChild(winnerMsg);
 
   return main;
 };

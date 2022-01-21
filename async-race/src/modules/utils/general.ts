@@ -1,16 +1,6 @@
-import {
-  Car,
-  DEFAULT_STRING,
-  HEX_CODE,
-  Indexes,
-  LinkData,
-  ResponceURLS,
-  commonState,
-  ResultRace,
-  CheckWinner,
-} from '.';
+import { HEX_CODE, Indexes, LinkData, commonState } from '.';
 import { carBrands, carModels } from '../data';
-import { createCarItem, getCars } from '../features';
+import { getCar } from '../features';
 
 export const createLink = (target: string, data: LinkData): HTMLElement => {
   const div = document.createElement('div');
@@ -123,23 +113,18 @@ export const removeActiveClass = (className: string): void => {
   element.classList.remove('active');
 };
 
-export const checkWinner = (
-  resultRace: Array<void | ResultRace>
-): CheckWinner | void => {
-  let id: string = '1';
-  let timeRace: number = 10000;
-  let flag = false;
+export const showWinnerMsg = async (
+  id: string,
+  timeRace: number
+): Promise<void> => {
+  const winner = await getCar(id);
+  console.log(winner);
 
-  resultRace.forEach((result: void | ResultRace): void => {
-    if (result && result.timeRace <= timeRace) {
-      id = result.id;
-      timeRace = result.timeRace;
-      flag = true;
-    }
-  });
+  const name = document.querySelector('.name-winner') as HTMLElement;
+  name.innerText = winner.name;
 
-  if (flag) {
-    timeRace = Number((timeRace / 1000).toFixed(2));
-    return { id, timeRace };
-  }
+  const time = document.querySelector('.time-winner') as HTMLElement;
+  time.innerText = (timeRace / 1000).toFixed(2);
+
+  addActiveClass('winner-msg');
 };

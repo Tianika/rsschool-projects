@@ -32,12 +32,11 @@ import {
   Indexes,
   addActiveClass,
   removeActiveClass,
-  checkWinner,
-  CheckWinner,
-  PromiseRaceResolve,
   Winner,
   DataForUpdateWinner,
   checkWinnersPaginationBtn,
+  ResultRace,
+  showWinnerMsg,
 } from '../utils';
 import { addCarToPage, drawCarsOnPage } from './garageMain';
 
@@ -92,8 +91,8 @@ export const generateCars = (): void => {
   }
 
   commonState.countCars += NUM_FOR_GENERATE;
-  changeTitle(commonState.countCars);
 
+  changeTitle(commonState.countCars);
   addCarToPage();
   checkCarsPaginationBtn();
 };
@@ -147,6 +146,9 @@ export const changeUpdatedCar = (): void => {
 };
 
 const changeCarPage = async (): Promise<void> => {
+  addActiveClass('race-button');
+  removeActiveClass('reset-button');
+  removeActiveClass('winner-msg');
   changeSubtitle(commonState.pageGarage);
   await drawCarsOnPage();
   checkCarsPaginationBtn();
@@ -207,13 +209,19 @@ const animationDriveCar = async (id: string): PromiseResult => {
   animation();
 
   stopBtn.addEventListener('click', async (event: Event): Promise<void> => {
-    Promise.resolve(stopCar(event)).then(() => {
+    Promise.resolve(stopCar(event)).then((): void => {
       window.cancelAnimationFrame(animationId);
     });
   });
 
   const result = Promise.resolve(drive(id))
-    .then(() => {
+    .then((): ResultRace => {
+      if (!commonState.winnerData && commonState.isRace) {
+        commonState.winnerData = { id, timeRace };
+        addWinnerToServer();
+        showWinnerMsg(id, timeRace);
+      }
+
       return { id, timeRace };
     })
     .catch((): void => {
@@ -222,7 +230,7 @@ const animationDriveCar = async (id: string): PromiseResult => {
 
       window.cancelAnimationFrame(animationId);
     });
-  console.log(result);
+
   return result;
 };
 
@@ -272,6 +280,7 @@ export const startRace = async (): Promise<void> => {
 
   if (raceBtn.classList.contains('active')) {
     raceBtn.classList.remove('active');
+    commonState.isRace = true;
 
     const cars = document.querySelectorAll(
       '.car-item'
@@ -281,6 +290,10 @@ export const startRace = async (): Promise<void> => {
       const id = car.dataset.id as string;
 
       commonState.promises.push(animationDriveCar(id));
+    });
+
+    Promise.all(commonState.promises).then((data) => {
+      addActiveClass('reset-button');
     });
   }
 
@@ -300,49 +313,48 @@ export const startRace = async (): Promise<void> => {
 
       Promise.all(promises).then((): void => {
         addActiveClass('race-button');
+        removeActiveClass('winner-msg');
       });
     }
   });
+};
 
-  Promise.all(commonState.promises).then((data: PromiseRaceResolve[]) => {
-    commonState.raceResult = [...data];
-
-    const winner: CheckWinner | void = checkWinner(commonState.raceResult);
-
-    commonState.raceResult = [];
+const addWinnerToServer = async (): Promise<void> => {
+  Promise.all(commonState.promises).then((): void => {
     commonState.promises = [];
 
-    if (winner) {
-      Promise.resolve(getWinner(winner.id)).then(
-        (data: Winner | null): void => {
-          const resetBtn = document.querySelector(
-            '.reset-button'
-          ) as HTMLButtonElement;
-          resetBtn.classList.add('active');
-
-          if (data) {
-            let newTime = +data.time;
-
-            if (winner.timeRace < +data.time) {
-              newTime = winner.timeRace;
-            }
-
-            const newWins = data.wins + Indexes.one;
-            const newData: DataForUpdateWinner = {
-              wins: newWins,
-              time: newTime,
-            };
-
-            updateWinner(winner.id, newData);
-          } else {
-            createWinner({
-              id: winner.id,
-              wins: Indexes.one.toString(),
-              time: winner.timeRace.toString(),
-            });
-          }
-        }
+    if (commonState.winnerData) {
+      const id = commonState.winnerData.id;
+      const timeRace = Number(
+        (commonState.winnerData.timeRace / 1000).toFixed(2)
       );
+
+      Promise.resolve(getWinner(id)).then((data: Winner | null): void => {
+        if (data) {
+          let newTime = +data.time;
+
+          if (timeRace < +data.time) {
+            newTime = timeRace;
+          }
+
+          const newWins = data.wins + Indexes.one;
+          const newData: DataForUpdateWinner = {
+            wins: newWins,
+            time: newTime,
+          };
+
+          updateWinner(id, newData);
+        } else {
+          createWinner({
+            id: id,
+            wins: Indexes.one,
+            time: timeRace,
+          });
+        }
+
+        commonState.winnerData = null;
+        commonState.isRace = false;
+      });
     }
   });
 };

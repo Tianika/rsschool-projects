@@ -8,6 +8,7 @@ import {
   RaceStatus,
   ResponceURLS,
   status,
+  UpdateWinner,
   Winner,
 } from '../utils';
 
@@ -105,7 +106,6 @@ export const getWinners = async (): Promise<Winner[]> => {
 
 export const getWinner = async (id: string): Promise<Winner | null> => {
   const responce = await fetch(`${ResponceURLS.winners}/${+id}`);
-  console.log(responce);
   let data: Winner | null;
 
   if (responce.status === status.ok) {
@@ -117,7 +117,7 @@ export const getWinner = async (id: string): Promise<Winner | null> => {
   return data;
 };
 
-export const createWinner = async (winner: Winner) => {
+export const createWinner = async (winner: UpdateWinner) => {
   const responce = await fetch(ResponceURLS.winners, {
     method: 'POST',
     body: JSON.stringify(winner),
@@ -126,7 +126,7 @@ export const createWinner = async (winner: Winner) => {
     },
   });
   const data = await responce.json();
-  console.log('createWinner ', data);
+
   return data;
 };
 
