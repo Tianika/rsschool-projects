@@ -3,6 +3,7 @@ import {
   createPageSubtitle,
   createPageTitle,
   createWinnerMsg,
+  raceOverMsg,
 } from '../components';
 import {
   Car,
@@ -47,6 +48,9 @@ export const garageMainCreate = async (): Promise<HTMLElement> => {
 
   const winnerMsg = createWinnerMsg();
   main.appendChild(winnerMsg);
+
+  const finishMsg = raceOverMsg();
+  main.appendChild(finishMsg);
 
   return main;
 };

@@ -314,9 +314,9 @@ $gray: #868686;
   }
 }
 
-.winner-msg {
+.winner-msg,
+.race-over {
   position: absolute;
-  top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
   color: $colorBtn;
@@ -333,8 +333,25 @@ $gray: #868686;
   }
 }
 
+.winner-msg {
+  top: 45%;
+}
+
+.race-over {
+  top: 55%;
+}
+
 .winners-table {
   width: 480px;
+  svg {
+    width: 50px;
+    height: 18px;
+  }
+
+  .car-icon {
+    width: 60px;
+    height: 20px;
+  }
   ::first-line {
     font-size: 18px;
   }
@@ -342,6 +359,7 @@ $gray: #868686;
     height: 26px;
     th {
       margin: 3px;
+      word-wrap: normal;
     }
   }
 }
@@ -349,6 +367,35 @@ $gray: #868686;
 .sort-by-wins,
 .sort-by-time {
   cursor: pointer;
+  &.arrow-up {
+    &:after {
+      content: '';
+      position: relative;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-left: 3px;
+      background-image: url('../assets/png/arrow-up.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      filter: invert(1);
+    }
+  }
+
+  &.arrow-down:after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    background-image: url('../assets/png/arrow-down.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    filter: invert(1);
+  }
 }
 
 .footer {

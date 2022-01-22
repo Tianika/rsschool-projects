@@ -8,4 +8,4 @@ export { createHeader } from './header';
 export { createNavigation } from './navigation';
 export { createInputBlock } from './inputsBlock';
 export { createRaceHeaderBtns } from './raceHeaderBtns';
-export { createWinnerMsg } from './winnerMsg';
+export { createWinnerMsg, raceOverMsg } from './messages';

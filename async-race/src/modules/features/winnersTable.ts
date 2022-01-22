@@ -1,6 +1,7 @@
-import { getCar, sortWinnersByTime, sortWinnersByWins } from '.';
+import { getCar } from '.';
 import { createCarImage } from '../components';
 import { commonState, Indexes, TABLE_HEADER, Winner } from '../utils';
+import { sortWinnersByTime, sortWinnersByWins } from './winnersMain';
 
 export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
   const table = document.createElement('table');
@@ -12,7 +13,7 @@ export const createTable = async (winners: Winner[]): Promise<HTMLElement> => {
 
   headers.forEach((header: string, index: number): void => {
     const th = document.createElement('th');
-    th.innerText = TABLE_HEADER[header];
+    th.innerHTML = TABLE_HEADER[header];
 
     if (index === Indexes.three) {
       th.classList.add('sort-by-wins');

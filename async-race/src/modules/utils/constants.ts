@@ -13,7 +13,7 @@ import {
   startRace,
   stopCar,
 } from '../features';
-import { BtnData, FooterData, InputData, removeActiveClass } from '.';
+import { BtnData, FooterData, InputData } from '.';
 
 export const DEFAULT_STRING = '';
 
@@ -186,7 +186,7 @@ export enum TableHeader {
 }
 
 export const TABLE_HEADER: Record<TableHeader, string> = {
-  number: 'Number',
+  number: '№',
   car: 'Car',
   name: 'Name',
   wins: 'Wins',
@@ -237,3 +237,7 @@ export enum status {
   ok = 200,
   notFound = 404,
 }
+
+export const ADAPTIVE_POINT = 1024;
+
+export const MS_PER_SEC = 1000;

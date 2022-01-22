@@ -103,13 +103,19 @@ export const getId = (event: Event): number => {
   return +id;
 };
 
-export const addActiveClass = (className: string): void => {
-  const element = document.querySelector(`.${className}`) as HTMLButtonElement;
+export const addActiveClass = (
+  className: string,
+  scope: HTMLElement | Document = document
+): void => {
+  const element = scope.querySelector(`.${className}`) as HTMLButtonElement;
   element.classList.add('active');
 };
 
-export const removeActiveClass = (className: string): void => {
-  const element = document.querySelector(`.${className}`) as HTMLButtonElement;
+export const removeActiveClass = (
+  className: string,
+  scope: HTMLElement | Document = document
+): void => {
+  const element = scope.querySelector(`.${className}`) as HTMLButtonElement;
   element.classList.remove('active');
 };
 

@@ -6,3 +6,12 @@ export const createWinnerMsg = (): HTMLElement => {
 
   return message;
 };
+
+export const raceOverMsg = (): HTMLElement => {
+  const message = document.createElement('div');
+  message.classList.add('race-over');
+
+  message.innerHTML = 'The race is over';
+
+  return message;
+};

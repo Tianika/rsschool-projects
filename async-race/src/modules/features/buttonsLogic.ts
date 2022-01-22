@@ -37,8 +37,8 @@ import {
   checkWinnersPaginationBtn,
   ResultRace,
   showWinnerMsg,
-  WinnersSortType,
-  WinnersSortOrder,
+  ADAPTIVE_POINT,
+  MS_PER_SEC,
 } from '../utils';
 import { addCarToPage, drawCarsOnPage } from './garageMain';
 
@@ -126,6 +126,11 @@ export const changeUpdatedCar = (): void => {
   if (updateInputState.id !== Indexes.zero) {
     updateCar(updateInputState);
 
+    const textInputUpdate = document.querySelector(
+      '.input-update'
+    ) as HTMLInputElement;
+    textInputUpdate.value = DEFAULT_STRING;
+
     const car = document.querySelector(
       `.car${updateInputState.id}`
     ) as HTMLElement;
@@ -139,18 +144,13 @@ export const changeUpdatedCar = (): void => {
     updateInputState.id = Indexes.zero;
 
     removeActiveClass('update-button');
-
-    const textInputUpdate = document.querySelector(
-      '.input-update'
-    ) as HTMLInputElement;
-    textInputUpdate.value = DEFAULT_STRING;
   }
 };
 
 const changeCarPage = async (): Promise<void> => {
   addActiveClass('race-button');
   removeActiveClass('reset-button');
-  removeActiveClass('winner-msg');
+  removeMessages();
   changeSubtitle(commonState.pageGarage);
   await drawCarsOnPage();
   checkCarsPaginationBtn();
@@ -177,30 +177,21 @@ export const prevCarPage = async (): Promise<void> => {
 
 const animationDriveCar = async (id: number): PromiseResult => {
   const container = document.querySelector(`.car${id}`) as HTMLElement;
-
-  const startBtn = container.querySelector('.start-button') as HTMLElement;
-  startBtn.classList.remove('active');
+  removeActiveClass('start-button', container);
 
   const data: DataRace = await startEngine(id);
+  addActiveClass('stop-button', container);
+
   const { velocity, distance } = data;
   const timeRace = distance / velocity;
-
-  const stopBtn = container.querySelector('.stop-button') as HTMLElement;
-  stopBtn.classList.add('active');
-
-  const car = container.querySelector('.car-icon') as HTMLElement;
-
   const startTime = new Date().getTime();
   const finishTime = startTime + timeRace;
-
-  let dist = 0;
-  if (window.innerWidth > 1024) {
-    dist = window.innerWidth - Positions.offsetBig;
-  } else {
-    dist = window.innerWidth - Positions.offsetSmall;
-  }
-
+  const dist =
+    window.innerWidth > ADAPTIVE_POINT
+      ? window.innerWidth - Positions.offsetBig
+      : window.innerWidth - Positions.offsetSmall;
   let animationId: number;
+  const car = container.querySelector('.car-icon') as HTMLElement;
 
   function animation(): void {
     const currentTime = new Date().getTime();
@@ -209,37 +200,41 @@ const animationDriveCar = async (id: number): PromiseResult => {
       const newPos =
         Positions.start + (dist / timeRace) * (currentTime - startTime);
       car.style.left = `${Positions.start + newPos}px`;
-
       animationId = window.requestAnimationFrame(animation);
     }
   }
 
   animation();
 
+  const stopBtn = container.querySelector('.stop-button') as HTMLButtonElement;
   stopBtn.addEventListener('click', async (event: Event): Promise<void> => {
     Promise.resolve(stopCar(event)).then((): void => {
       window.cancelAnimationFrame(animationId);
     });
   });
 
-  const result = Promise.resolve(drive(id))
-    .then((): ResultRace => {
-      if (!commonState.winnerData && commonState.isRace) {
-        commonState.winnerData = { id, timeRace };
-        addWinnerToServer();
-        showWinnerMsg(id, timeRace);
-      }
+  return Promise.resolve(drive(id))
+    .then((): ResultRace => checkWinnerOnServer(id, timeRace))
+    .catch((): void => showBrokenCar(container, animationId));
+};
 
-      return { id, timeRace };
-    })
-    .catch((): void => {
-      const errorMsg = container.querySelector('.car-error') as HTMLElement;
-      errorMsg.classList.add('active');
+const checkWinnerOnServer = (id: number, timeRace: number): ResultRace => {
+  if (!commonState.winnerData && commonState.isRace) {
+    addWinner(id, timeRace);
+  }
 
-      window.cancelAnimationFrame(animationId);
-    });
+  return { id, timeRace };
+};
 
-  return result;
+const showBrokenCar = (container: HTMLElement, animationId: number): void => {
+  addActiveClass('car-error', container);
+  window.cancelAnimationFrame(animationId);
+};
+
+const addWinner = (id: number, timeRace: number) => {
+  commonState.winnerData = { id, timeRace };
+  addWinnerToServer();
+  showWinnerMsg(id, timeRace);
 };
 
 export const driveOneCar = async (event: EventType): Promise<void> => {
@@ -302,6 +297,7 @@ export const startRace = async (): Promise<void> => {
 
     Promise.all(commonState.promises).then((): void => {
       addActiveClass('reset-button');
+      addActiveClass('race-over');
     });
   }
 };
@@ -321,13 +317,18 @@ export const resetRace = async (event): Promise<void> => {
       button.classList.remove('active');
     });
 
-    removeActiveClass('winner-msg');
+    removeMessages();
 
     Promise.all(promises).then((): void => {
       addActiveClass('race-button');
-      removeActiveClass('winner-msg');
+      removeMessages();
     });
   }
+};
+
+const removeMessages = (): void => {
+  removeActiveClass('winner-msg');
+  removeActiveClass('race-over');
 };
 
 const addWinnerToServer = async (): Promise<void> => {
@@ -337,7 +338,7 @@ const addWinnerToServer = async (): Promise<void> => {
     if (commonState.winnerData) {
       const id = commonState.winnerData.id;
       const timeRace = Number(
-        (commonState.winnerData.timeRace / 1000).toFixed(2)
+        (commonState.winnerData.timeRace / MS_PER_SEC).toFixed(Indexes.two)
       );
 
       Promise.resolve(getWinner(id)).then((data: Winner | null): void => {
@@ -400,33 +401,5 @@ export const prevWinnersPage = async (): Promise<void> => {
     commonState.pageWinners -= Indexes.one;
 
     changeWinnersPage();
-  }
-};
-
-export const sortWinnersByWins = async () => {
-  commonState.winnersSortType = WinnersSortType.wins;
-
-  sortWinners();
-};
-
-export const sortWinnersByTime = async () => {
-  commonState.winnersSortType = WinnersSortType.time;
-
-  sortWinners();
-};
-
-const sortWinners = async () => {
-  const winnersContainer = document.querySelector(
-    '.winners-container'
-  ) as HTMLElement;
-  winnersContainer.innerHTML = DEFAULT_STRING;
-
-  const winners = await getWinners();
-  winnersContainer.appendChild(await createTable(winners));
-
-  if (commonState.winnersSortOrder === WinnersSortOrder.asc) {
-    commonState.winnersSortOrder = WinnersSortOrder.desc;
-  } else {
-    commonState.winnersSortOrder = WinnersSortOrder.asc;
   }
 };
