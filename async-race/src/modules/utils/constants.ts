@@ -8,10 +8,12 @@ import {
   prevWinnersPage,
   removeCar,
   renderCar,
+  resetRace,
   selectCar,
   startRace,
+  stopCar,
 } from '../features';
-import { BtnData, FooterData, InputData } from '.';
+import { BtnData, FooterData, InputData, removeActiveClass } from '.';
 
 export const DEFAULT_STRING = '';
 
@@ -79,7 +81,7 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
     text: 'reset',
     className: 'reset-button',
     isActive: false,
-    handler: null,
+    handler: (event?: Event) => resetRace(event),
   },
   {
     text: 'generate cars',
@@ -145,7 +147,7 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
     text: 'Stop',
     className: 'stop-button',
     isActive: false,
-    handler: null,
+    handler: (event?: Event) => stopCar(event),
   },
 ];
 

@@ -4,7 +4,7 @@ export type BtnData = {
   text: string;
   className: string;
   isActive: boolean;
-  handler: HandlerFunction | null;
+  handler: HandlerFunction;
 };
 
 export type InputData = {

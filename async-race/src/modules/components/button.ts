@@ -10,9 +10,7 @@ export const createButton = (data: BtnData): HTMLButtonElement => {
   }
 
   button.innerText = data.text.toUpperCase();
-  button.addEventListener('click', (event: Event | undefined) =>
-    data.handler(event)
-  );
+  button.addEventListener('click', (event?: Event) => data.handler(event));
   button.addEventListener('click', (): void => {
     if (button.classList.contains('active')) {
       button.classList.add('click');

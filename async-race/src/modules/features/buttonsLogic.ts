@@ -304,29 +304,30 @@ export const startRace = async (): Promise<void> => {
       addActiveClass('reset-button');
     });
   }
+};
 
-  const resetBtn = document.querySelector('.reset-button') as HTMLButtonElement;
-  resetBtn.addEventListener('click', async (): Promise<void> => {
-    if (resetBtn.classList.contains('active')) {
-      const cars = document.querySelectorAll(
-        '.car-item'
-      ) as NodeListOf<HTMLElement>;
-      const promises: Array<PromiseResult> = [];
+export const resetRace = async (event): Promise<void> => {
+  const button = event.target as HTMLElement;
 
-      cars.forEach((car: HTMLElement): void => {
-        const id = car.dataset.id as string;
-        promises.push(Promise.resolve(resetAnimationCar(+id)));
-        resetBtn.classList.remove('active');
-      });
+  if (button.classList.contains('active')) {
+    const cars = document.querySelectorAll(
+      '.car-item'
+    ) as NodeListOf<HTMLElement>;
+    const promises: Array<PromiseResult> = [];
 
+    cars.forEach((car: HTMLElement): void => {
+      const id = car.dataset.id as string;
+      promises.push(Promise.resolve(resetAnimationCar(+id)));
+      button.classList.remove('active');
+    });
+
+    removeActiveClass('winner-msg');
+
+    Promise.all(promises).then((): void => {
+      addActiveClass('race-button');
       removeActiveClass('winner-msg');
-
-      Promise.all(promises).then((): void => {
-        addActiveClass('race-button');
-        removeActiveClass('winner-msg');
-      });
-    }
-  });
+    });
+  }
 };
 
 const addWinnerToServer = async (): Promise<void> => {
