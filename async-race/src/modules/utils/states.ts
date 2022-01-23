@@ -1,4 +1,4 @@
-import { CarData, CarDataForUpdate, CommonState } from '.';
+import { CarData, CarDataForUpdate, CommonState, PATH_TO_AUDIO } from '.';
 
 export const commonState: CommonState = {
   pageGarage: 1,
@@ -14,6 +14,8 @@ export const commonState: CommonState = {
   winnersSortOrder: 'ASC',
   winnerData: null,
   isRace: false,
+  audio: new Audio(PATH_TO_AUDIO),
+  audioIsPlay: false,
 };
 
 export const createInputState: CarData = {

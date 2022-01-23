@@ -99,4 +99,6 @@ export type CommonState = {
   winnersSortOrder: string;
   winnerData: null | ResultRace;
   isRace: boolean;
+  audio: HTMLAudioElement;
+  audioIsPlay: boolean;
 };

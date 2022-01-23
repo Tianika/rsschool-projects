@@ -1,6 +1,10 @@
 import { createFooter, createHeader } from '../components';
 import { garageMainCreate } from '../features';
-import { checkCarsPaginationBtn, DEFAULT_STRING } from '../utils';
+import {
+  checkAudioPlay,
+  checkCarsPaginationBtn,
+  DEFAULT_STRING,
+} from '../utils';
 
 export const draw = async (): Promise<void> => {
   const root = document.querySelector('.root') as HTMLElement;
@@ -23,4 +27,5 @@ export const draw = async (): Promise<void> => {
   root.appendChild(fragment);
 
   checkCarsPaginationBtn();
+  checkAudioPlay();
 };

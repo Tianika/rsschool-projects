@@ -13,7 +13,7 @@ import {
   startRace,
   stopCar,
 } from '../features';
-import { BtnData, FooterData, InputData } from '.';
+import { activeSound, BtnData, FooterData, InputData } from '.';
 
 export const DEFAULT_STRING = '';
 
@@ -38,6 +38,12 @@ export const DATA_NAV_BTNS: Array<BtnData> = [
     className: 'garage-button',
     isActive: true,
     handler: (): string => (window.location.hash = `#${Hashes.garage}`),
+  },
+  {
+    text: '',
+    className: 'sound-button',
+    isActive: false,
+    handler: (event?: Event | undefined) => activeSound(event),
   },
   {
     text: 'to winners',
@@ -241,3 +247,5 @@ export enum status {
 export const ADAPTIVE_POINT = 1024;
 
 export const MS_PER_SEC = 1000;
+
+export const PATH_TO_AUDIO = '../assets/audio/sound.mp3';

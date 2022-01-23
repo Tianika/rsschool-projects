@@ -178,6 +178,20 @@ $gray: #868686;
   }
 }
 
+.sound-button {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url('../assets/svg/mute.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  padding: 5px;
+  &.active {
+    background-image: url('../assets/svg/sound.svg');
+  }
+}
+
 .input-container {
   display: flex;
   justify-content: space-between;

@@ -133,3 +133,27 @@ export const showWinnerMsg = async (
 
   addActiveClass('winner-msg');
 };
+
+export const activeSound = (event: Event | undefined): void => {
+  if (event) {
+    const target = event.target as HTMLButtonElement;
+
+    target.classList.toggle('active');
+    if (target.classList.contains('active')) {
+      commonState.audio.play();
+      commonState.audioIsPlay = true;
+    } else {
+      commonState.audio.pause();
+      commonState.audioIsPlay = false;
+    }
+  }
+};
+
+export const checkAudioPlay = () => {
+  const audioBtn = document.querySelector('.sound-button') as HTMLButtonElement;
+  commonState.audio.loop = true;
+
+  if (commonState.audioIsPlay) {
+    audioBtn.classList.add('active');
+  }
+};
