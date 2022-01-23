@@ -248,4 +248,4 @@ export const ADAPTIVE_POINT = 1024;
 
 export const MS_PER_SEC = 1000;
 
-export const PATH_TO_AUDIO = '../assets/audio/sound.mp3';
+export const PATH_TO_AUDIO = './assets/audio/sound.mp3';
