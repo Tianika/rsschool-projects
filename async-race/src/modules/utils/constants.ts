@@ -37,19 +37,19 @@ export const DATA_NAV_BTNS: Array<BtnData> = [
     text: 'to garage',
     className: 'garage-button',
     isActive: true,
-    handler: (): string => (window.location.hash = `#${Hashes.garage}`),
+    handler: () => (window.location.hash = `#${Hashes.garage}`),
   },
   {
     text: '',
     className: 'sound-button',
     isActive: false,
-    handler: (event?: Event | undefined) => activeSound(event),
+    handler: (event?) => activeSound(event),
   },
   {
     text: 'to winners',
     className: 'winners-button',
     isActive: true,
-    handler: (): string => (window.location.hash = `#${Hashes.winners}`),
+    handler: () => (window.location.hash = `#${Hashes.winners}`),
   },
 ];
 
@@ -87,7 +87,7 @@ export const DATA_RACE_BTNS: Array<BtnData> = [
     text: 'reset',
     className: 'reset-button',
     isActive: false,
-    handler: (event?: Event) => resetRace(event),
+    handler: (event?) => resetRace(event),
   },
   {
     text: 'generate cars',
@@ -132,13 +132,13 @@ export const DATA_CAR_BTNS: Array<BtnData> = [
     text: 'select',
     className: 'select-button',
     isActive: true,
-    handler: (event?: Event) => selectCar(event),
+    handler: (event?) => selectCar(event),
   },
   {
     text: 'remove',
     className: 'remove-button',
     isActive: true,
-    handler: (event?: Event) => removeCar(event),
+    handler: (event?) => removeCar(event),
   },
 ];
 
@@ -147,13 +147,13 @@ export const DATA_ENGINE_BTNS: Array<BtnData> = [
     text: 'Start',
     className: 'start-button',
     isActive: true,
-    handler: (event?: Event) => driveOneCar(event),
+    handler: (event?) => driveOneCar(event),
   },
   {
     text: 'Stop',
     className: 'stop-button',
     isActive: false,
-    handler: (event?: Event) => stopCar(event),
+    handler: (event?) => stopCar(event),
   },
 ];
 

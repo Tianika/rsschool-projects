@@ -149,7 +149,7 @@ export const activeSound = (event: Event | undefined): void => {
   }
 };
 
-export const checkAudioPlay = () => {
+export const checkAudioPlay = (): void => {
   const audioBtn = document.querySelector('.sound-button') as HTMLButtonElement;
   commonState.audio.loop = true;
 
