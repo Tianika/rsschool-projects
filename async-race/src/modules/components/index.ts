@@ -1,0 +1,11 @@
+export { createButton } from './button';
+export { createColorChoice, createTextInput } from './inputs';
+export { createPageTitle } from './pageTitle';
+export { createPageSubtitle } from './pageSubtitle';
+export { createCarImage, createSvg } from './car';
+export { createFooter } from './footer';
+export { createHeader } from './header';
+export { createNavigation } from './navigation';
+export { createInputBlock } from './inputsBlock';
+export { createRaceHeaderBtns } from './raceHeaderBtns';
+export { createWinnerMsg, raceOverMsg } from './messages';
